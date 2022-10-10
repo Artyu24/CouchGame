@@ -6,6 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    private GameState actualGameState = GameState.MENU;
+
+    public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
+
+    public Transform[] spawnList = new Transform[] { };
+
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
     void Awake()
@@ -14,24 +20,38 @@ public class GameManager : MonoBehaviour
             instance = this;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            AddPlayer();
+        }
+    }
+
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         Player dataPlayer = player.GetComponent<Player>();
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
-        if (dataPlayer.playerID == 1)
+        dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
+
+        switch (dataPlayer.playerID)
         {
-            //player.transform.position = spawnJ1.position;
-            //player.name = PseudoManager.pseudoJ1;
-            //boxTutoJ1Text.SetActive(false);
-            //boxTutoJ2Text.SetActive(true);
-        }
-        else
-        {
-            //player.transform.position = spawnJ2.position;
-            //player.name = PseudoManager.pseudoJ2;
-            //boxTutoJ2Text.SetActive(false);
+            case 1:
+                player.transform.position = spawnList[0].position;
+                break;
+            case 2:
+                player.transform.position = spawnList[1].position;
+                break;
+            case 3:
+                player.transform.position = spawnList[2].position;
+                break;
+            case 4:
+                player.transform.position = spawnList[3].position; 
+                break;
+            default:
+                break;
         }
         player.tag = "Player";
     }
