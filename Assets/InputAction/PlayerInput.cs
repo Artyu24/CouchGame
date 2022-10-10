@@ -28,15 +28,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""id"": ""41bcdfae-efaa-4de2-977b-0525346a846f"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""364cbfdb-66ac-4c5a-88a9-8891eda4d4b8"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Rotation"",
                     ""type"": ""Button"",
                     ""id"": ""bdc2f649-d3a5-4e1d-a974-98c61b7c7c35"",
@@ -57,61 +48,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""129bc871-ba4b-448c-a008-c8c7cdec2c5b"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c056006a-5ecf-462a-8ab4-e5c6fb2b06a0"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4293335e-5460-4ff1-9421-bbdbd3042d1f"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""5cd4e0ae-6e2f-4c4a-a771-173523a42644"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""4a88842a-67e0-479c-b61d-4ac941f28aa8"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Rotation_Circle"",
                     ""id"": ""a87e49d5-3bed-4a1b-98d3-55f3ec4db088"",
                     ""path"": ""1DAxis"",
@@ -125,7 +61,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Positive"",
                     ""id"": ""f95dc086-00db-4012-947a-35139d4e6555"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -136,7 +72,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Negative"",
                     ""id"": ""93126a66-65ea-42f8-a0e1-3fa890fc5dc8"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -330,7 +266,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
 }");
         // Circle
         m_Circle = asset.FindActionMap("Circle", throwIfNotFound: true);
-        m_Circle_Move = m_Circle.FindAction("Move", throwIfNotFound: true);
         m_Circle_Rotation = m_Circle.FindAction("Rotation", throwIfNotFound: true);
         m_Circle_Switch = m_Circle.FindAction("Switch", throwIfNotFound: true);
         // Player
@@ -397,14 +332,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // Circle
     private readonly InputActionMap m_Circle;
     private ICircleActions m_CircleActionsCallbackInterface;
-    private readonly InputAction m_Circle_Move;
     private readonly InputAction m_Circle_Rotation;
     private readonly InputAction m_Circle_Switch;
     public struct CircleActions
     {
         private @PlayerInput m_Wrapper;
         public CircleActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Circle_Move;
         public InputAction @Rotation => m_Wrapper.m_Circle_Rotation;
         public InputAction @Switch => m_Wrapper.m_Circle_Switch;
         public InputActionMap Get() { return m_Wrapper.m_Circle; }
@@ -416,9 +349,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CircleActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_CircleActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_CircleActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_CircleActionsCallbackInterface.OnMove;
                 @Rotation.started -= m_Wrapper.m_CircleActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_CircleActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_CircleActionsCallbackInterface.OnRotation;
@@ -429,9 +359,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             m_Wrapper.m_CircleActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
@@ -502,7 +429,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     }
     public interface ICircleActions
     {
-        void OnMove(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
     }

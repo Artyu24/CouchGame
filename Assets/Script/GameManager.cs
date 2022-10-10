@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private GameObject[] tabCicle;
+    public GameObject[] TabCicle => tabCicle;
+
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
     void Awake()
