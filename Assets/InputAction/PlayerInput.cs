@@ -184,7 +184,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""id"": ""3baab267-783c-4dd9-912b-b24f90ff0e90"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""PlayerMove"",
                     ""type"": ""PassThrough"",
                     ""id"": ""673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf"",
                     ""expectedControlType"": ""Vector3"",
@@ -193,7 +193,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""PlayerAttack"",
                     ""type"": ""Value"",
                     ""id"": ""a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef"",
                     ""expectedControlType"": ""Button"",
@@ -202,7 +202,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Special Attack"",
+                    ""name"": ""PlayerSpecial Attack"",
                     ""type"": ""Button"",
                     ""id"": ""b9a6496e-2367-4aa3-a1e5-0c73429c7f18"",
                     ""expectedControlType"": ""Button"",
@@ -219,18 +219,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
                     ""id"": ""a0b3967c-3a14-4549-9de4-e38f3df22620"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -241,7 +241,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -252,18 +252,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""814aa370-d041-4f4d-8b29-992d214baa61"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -274,7 +263,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""814aa370-d041-4f4d-8b29-992d214baa61"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -285,7 +285,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -296,7 +296,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""PlayerAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -307,7 +307,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Special Attack"",
+                    ""action"": ""PlayerSpecial Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -335,9 +335,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Circle_Switch = m_Circle.FindAction("Switch", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_SpecialAttack = m_Player.FindAction("Special Attack", throwIfNotFound: true);
+        m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
+        m_Player_PlayerAttack = m_Player.FindAction("PlayerAttack", throwIfNotFound: true);
+        m_Player_PlayerSpecialAttack = m_Player.FindAction("PlayerSpecial Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -446,16 +446,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_SpecialAttack;
+    private readonly InputAction m_Player_PlayerMove;
+    private readonly InputAction m_Player_PlayerAttack;
+    private readonly InputAction m_Player_PlayerSpecialAttack;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
+        public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
+        public InputAction @PlayerAttack => m_Wrapper.m_Player_PlayerAttack;
+        public InputAction @PlayerSpecialAttack => m_Wrapper.m_Player_PlayerSpecialAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -465,28 +465,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @SpecialAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
-                @SpecialAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
-                @SpecialAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
+                @PlayerMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMove;
+                @PlayerMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMove;
+                @PlayerMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMove;
+                @PlayerAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAttack;
+                @PlayerAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAttack;
+                @PlayerAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAttack;
+                @PlayerSpecialAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
+                @PlayerSpecialAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
+                @PlayerSpecialAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @SpecialAttack.started += instance.OnSpecialAttack;
-                @SpecialAttack.performed += instance.OnSpecialAttack;
-                @SpecialAttack.canceled += instance.OnSpecialAttack;
+                @PlayerMove.started += instance.OnPlayerMove;
+                @PlayerMove.performed += instance.OnPlayerMove;
+                @PlayerMove.canceled += instance.OnPlayerMove;
+                @PlayerAttack.started += instance.OnPlayerAttack;
+                @PlayerAttack.performed += instance.OnPlayerAttack;
+                @PlayerAttack.canceled += instance.OnPlayerAttack;
+                @PlayerSpecialAttack.started += instance.OnPlayerSpecialAttack;
+                @PlayerSpecialAttack.performed += instance.OnPlayerSpecialAttack;
+                @PlayerSpecialAttack.canceled += instance.OnPlayerSpecialAttack;
             }
         }
     }
@@ -508,8 +508,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnSpecialAttack(InputAction.CallbackContext context);
+        void OnPlayerMove(InputAction.CallbackContext context);
+        void OnPlayerAttack(InputAction.CallbackContext context);
+        void OnPlayerSpecialAttack(InputAction.CallbackContext context);
     }
 }

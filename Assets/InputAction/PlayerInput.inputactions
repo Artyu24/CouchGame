@@ -162,7 +162,7 @@
             "id": "3baab267-783c-4dd9-912b-b24f90ff0e90",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "PlayerMove",
                     "type": "PassThrough",
                     "id": "673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf",
                     "expectedControlType": "Vector3",
@@ -171,7 +171,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "PlayerAttack",
                     "type": "Value",
                     "id": "a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef",
                     "expectedControlType": "Button",
@@ -180,7 +180,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Special Attack",
+                    "name": "PlayerSpecial Attack",
                     "type": "Button",
                     "id": "b9a6496e-2367-4aa3-a1e5-0c73429c7f18",
                     "expectedControlType": "Button",
@@ -197,18 +197,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
                     "id": "a0b3967c-3a14-4549-9de4-e38f3df22620",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -219,7 +219,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -230,18 +230,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "814aa370-d041-4f4d-8b29-992d214baa61",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -252,7 +241,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "814aa370-d041-4f4d-8b29-992d214baa61",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -263,7 +263,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -274,7 +274,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "PlayerAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -285,7 +285,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Special Attack",
+                    "action": "PlayerSpecial Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
