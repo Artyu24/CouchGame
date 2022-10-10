@@ -123,9 +123,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Negative"",
-                    ""id"": ""93126a66-65ea-42f8-a0e1-3fa890fc5dc8"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""name"": ""Positive"",
+                    ""id"": ""f95dc086-00db-4012-947a-35139d4e6555"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -134,9 +134,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Positive"",
-                    ""id"": ""f95dc086-00db-4012-947a-35139d4e6555"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""name"": ""Negative"",
+                    ""id"": ""93126a66-65ea-42f8-a0e1-3fa890fc5dc8"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -156,9 +156,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""7cd3f713-9d6d-4012-8e7e-bd2521ef9765"",
-                    ""path"": """",
+                    ""name"": ""positive"",
+                    ""id"": ""692b82e3-b5b8-40c7-bdb7-506ccc51a07c"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -167,9 +167,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""692b82e3-b5b8-40c7-bdb7-506ccc51a07c"",
-                    ""path"": """",
+                    ""name"": ""negative"",
+                    ""id"": ""7cd3f713-9d6d-4012-8e7e-bd2521ef9765"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
