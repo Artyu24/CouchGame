@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3401797323309441106
+--- !u!1 &2747911819112521618
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3401797323309441110}
-  - component: {fileID: 3401797323309441109}
-  - component: {fileID: 3401797323309441108}
-  - component: {fileID: 3401797323309441107}
-  - component: {fileID: 94631856153523914}
-  - component: {fileID: 7562432766065648255}
-  - component: {fileID: 240819831020419034}
+  - component: {fileID: 2747911819112521622}
+  - component: {fileID: 2747911819112521621}
+  - component: {fileID: 2747911819112521620}
+  - component: {fileID: 2747911819112521619}
+  - component: {fileID: 2747911819112521625}
+  - component: {fileID: 2747911819112521624}
+  - component: {fileID: 2747911819112521623}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -22,36 +22,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3401797323309441110
+--- !u!4 &2747911819112521622
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 0.5, z: 20}
+  m_LocalPosition: {x: -0.19, y: 3.053336, z: 0.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3401797323309441109
+--- !u!33 &2747911819112521621
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3401797323309441108
+  m_GameObject: {fileID: 2747911819112521618}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2747911819112521620
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,56 +87,58 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3401797323309441107
-BoxCollider:
+--- !u!136 &2747911819112521619
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &94631856153523914
+--- !u!54 &2747911819112521625
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7562432766065648255
+--- !u!114 &2747911819112521624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead46b7040b5b1147a8a6c75eb0fe61c, type: 3}
+  m_Script: {fileID: 11500000, guid: 623cbf9d460b55f4d90179aa509fe8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 0
-  speed: 50
---- !u!114 &240819831020419034
+  rb: {fileID: 0}
+  movementInput: {x: 0, y: 0, z: 0}
+  speed: 0.5
+--- !u!114 &2747911819112521623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401797323309441106}
+  m_GameObject: {fileID: 2747911819112521618}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -157,9 +159,21 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 364cbfdb-66ac-4c5a-88a9-8891eda4d4b8
+    m_ActionName: Circle/Move[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bdc2f649-d3a5-4e1d-a974-98c61b7c7c35
+    m_ActionName: Circle/Rotation[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 106136fa-715e-4a55-955c-3b0bfb2cb4c7
+    m_ActionName: Circle/Switch
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7562432766065648255}
-        m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
+      - m_Target: {fileID: 2747911819112521624}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -170,13 +184,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 364cbfdb-66ac-4c5a-88a9-8891eda4d4b8
-    m_ActionName: Circle/Move[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
+    m_ActionId: 673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7562432766065648255}
-        m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
-        m_MethodName: OnRotation
+      - m_Target: {fileID: 2747911819112521624}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -186,14 +200,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: bdc2f649-d3a5-4e1d-a974-98c61b7c7c35
-    m_ActionName: Circle/Rotation[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonEast]
+    m_ActionId: a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef
+    m_ActionName: Player/Attack[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 106136fa-715e-4a55-955c-3b0bfb2cb4c7
-    m_ActionName: Circle/Switch
+      m_Calls:
+      - m_Target: {fileID: 2747911819112521624}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnSpecialAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b9a6496e-2367-4aa3-a1e5-0c73429c7f18
+    m_ActionName: Player/Special Attack[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
-  m_DefaultActionMap: Circle
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
