@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public Transform[] spawnList = new Transform[] { };
 
+    [SerializeField] private GameObject[] tabCicle;
+    public GameObject[] TabCicle => tabCicle;
+    
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
     void Awake()

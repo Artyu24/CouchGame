@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3401797323309441106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 0.5, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3401797323309441106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead46b7040b5b1147a8a6c75eb0fe61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 0
   speed: 50
 --- !u!114 &240819831020419034
 MonoBehaviour:
@@ -160,22 +159,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7562432766065648255}
         m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 364cbfdb-66ac-4c5a-88a9-8891eda4d4b8
-    m_ActionName: Circle/Move[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7562432766065648255}
-        m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
         m_MethodName: OnRotation
         m_Mode: 0
         m_Arguments:
@@ -189,9 +172,33 @@ MonoBehaviour:
     m_ActionId: bdc2f649-d3a5-4e1d-a974-98c61b7c7c35
     m_ActionName: Circle/Rotation[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7562432766065648255}
+        m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
+        m_MethodName: OnSwitchCircle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 106136fa-715e-4a55-955c-3b0bfb2cb4c7
     m_ActionName: Circle/Switch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef
+    m_ActionName: Player/Attack[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9a6496e-2367-4aa3-a1e5-0c73429c7f18
+    m_ActionName: Player/Special Attack[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
   m_DefaultActionMap: Circle
