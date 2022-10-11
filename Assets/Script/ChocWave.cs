@@ -20,7 +20,8 @@ public class ChocWave : MonoBehaviour
     {
         if(sphereCollider.radius < radiusMax)
         {
-            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;           
+            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;   
+ 
 
         }
         if (getPushed == true)
@@ -30,7 +31,13 @@ public class ChocWave : MonoBehaviour
             //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
         }
     }
-
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
+        
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
