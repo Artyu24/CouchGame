@@ -7,10 +7,21 @@ public class RespawnManager : MonoBehaviour
     
    public GameObject player;
    [Header("-------Mettre Tout les spawner-------")]
-   [SerializeField] Transform[] respawn;
+   [SerializeField]
+   Transform[] respawn;
 
    public float timeToRespawn;
-    
+   
+
+   void Start()
+   {
+       //respawn = new Transform[transform.childCount];
+
+       //for (int i = 0; i < transform.childCount; i++)
+       //{
+       //    respawn[i] = transform.GetChild(i);
+       //}
+   }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -23,16 +34,23 @@ public class RespawnManager : MonoBehaviour
 
     public IEnumerator Die()
     {
+        //yield return new WaitForSeconds(timeToRespawn);
+        //int ran = Random.Range(0, transform.childCount);
+        //player.transform.position = respawn[ran].transform.position;
+
+
+
         int ran = Random.Range(0, 8);
+
         switch (ran)
         {
             case 0:
-                
+
                 yield return new WaitForSeconds(timeToRespawn);
                 player.transform.position = respawn[0].position;
                 break;
             case 1:
-                
+
                 yield return new WaitForSeconds(timeToRespawn);
                 player.transform.position = respawn[1].position;
                 break;
