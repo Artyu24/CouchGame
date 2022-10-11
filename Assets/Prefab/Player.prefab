@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2747911819112521624}
   - component: {fileID: 1152138206}
   - component: {fileID: 2747911819112521623}
+  - component: {fileID: 1763112199407127489}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -133,7 +134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   movementInput: {x: 0, y: 0, z: 0}
+  orientation: {x: 0, y: 0, z: 0, w: 0}
   speed: 0.5
+  test: {x: 0, y: 0, z: 0}
 --- !u!114 &1152138206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,10 +181,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 364cbfdb-66ac-4c5a-88a9-8891eda4d4b8
-    m_ActionName: Circle/Move[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: bdc2f649-d3a5-4e1d-a974-98c61b7c7c35
@@ -243,6 +242,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1763112199407127489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2747911819112521618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1108df9174911c54ca30be5e4c505440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 1
+  respawnDelay: 5
+  spawnTransform: {fileID: 0}
 --- !u!1 &3480060994679286045
 GameObject:
   m_ObjectHideFlags: 0
