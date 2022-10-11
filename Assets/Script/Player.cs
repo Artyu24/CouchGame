@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private IEnumerator RespawnDelay()
     {
         yield return new WaitForSeconds(respawnDelay);
+        actualPlayerState = PlayerState.FIGHTING;
         transform.position = spawnTransform.position;
     }
 }
