@@ -8,7 +8,7 @@ public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
     [SerializeField] private Camera camera;
-    [SerializeField] private GameObject redBorder;
+    //[SerializeField] private GameObject redBorder;
     [Header("Variables Game Feel")]
     public float shakePower = 0.05f;
 
@@ -32,7 +32,7 @@ public class GetInIgloo : MonoBehaviour
     private IEnumerator ShakeCam()
     {
         float timer = 0.0f;
-        redBorder.SetActive(true);
+        //redBorder.SetActive(true);
         while (timer < shakeDuration)
         {
             camera.transform.localPosition -= offsetCam;
@@ -43,7 +43,7 @@ public class GetInIgloo : MonoBehaviour
         }
         camera.transform.localPosition -= offsetCam;
         Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
-        redBorder.SetActive(false);
+        //redBorder.SetActive(false);
 
     }
     public void OnVibrate()

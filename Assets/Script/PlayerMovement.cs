@@ -9,7 +9,6 @@ using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerState playerState;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 movementInput;
     [SerializeField] private Quaternion orientation;
@@ -22,10 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private int actualCircle;
     private float rotation = 0;
     [SerializeField] private float circleSpeed = 5;
-    public Color activeColor;
-    public Color beginColor;
-    private MeshRenderer[] childrenMeshRenderers;
+
     public Animator animator;
+
+    [SerializeField] private Material colorMaterial, baseMaterial;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,19 +32,20 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         //beginColor = GameManager.instance.TabCicle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color;
-        playerState = GetComponent<Player>().ActualPlayerState;
         animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (playerState != PlayerState.DEAD)
+        if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
             rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
             transform.rotation = orientation;
         }
+
+        if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
+            GameManager.instance.TabCicle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCicle[actualCircle].transform.eulerAngles.y + (rotation * circleSpeed * Time.fixedDeltaTime), 0);
     }
 
 
@@ -76,14 +76,36 @@ public class PlayerMovement : MonoBehaviour
     {
         if (player.ActualPlayerState == PlayerState.MIDDLE)
         {
+            //if (context.started)
+            //{
+            //    childrenMeshRenderers =
+            //        GameManager.instance.TabCicle[actualCircle].GetComponentsInChildren<MeshRenderer>();
+            //    foreach (var child in childrenMeshRenderers)
+            //    {
+            //        child.material.color = beginColor;
+            //    }
+
+            //    float nextCircle = context.ReadValue<float>();
+            //    if (actualCircle + nextCircle < 0)
+            //        actualCircle = GameManager.instance.TabCicle.Length - 1;
+            //    else if (actualCircle + nextCircle > GameManager.instance.TabCicle.Length - 1)
+            //        actualCircle = 0;
+            //    else
+            //        actualCircle += (int) nextCircle;
+
+            //    childrenMeshRenderers =
+            //        GameManager.instance.TabCicle[actualCircle].GetComponentsInChildren<MeshRenderer>();
+            //    foreach (var child in childrenMeshRenderers)
+            //    {
+            //        child.material.color = activeColor;
+            //    }
+            //}
+
+
             if (context.started)
             {
-                childrenMeshRenderers =
-                    GameManager.instance.TabCicle[actualCircle].GetComponentsInChildren<MeshRenderer>();
-                foreach (var child in childrenMeshRenderers)
-                {
-                    child.material.color = beginColor;
-                }
+                GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = false;
+                GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = baseMaterial;
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
@@ -91,14 +113,10 @@ public class PlayerMovement : MonoBehaviour
                 else if (actualCircle + nextCircle > GameManager.instance.TabCicle.Length - 1)
                     actualCircle = 0;
                 else
-                    actualCircle += (int) nextCircle;
+                    actualCircle += (int)nextCircle;
 
-                childrenMeshRenderers =
-                    GameManager.instance.TabCicle[actualCircle].GetComponentsInChildren<MeshRenderer>();
-                foreach (var child in childrenMeshRenderers)
-                {
-                    child.material.color = activeColor;
-                }
+                GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = true;
+                GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = colorMaterial;
             }
 
         }
