@@ -7,8 +7,8 @@ using UnityEngine.InputSystem.Controls;
 public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
-    [SerializeField] private Camera camera;
-    //[SerializeField] private GameObject redBorder;
+    [SerializeField] private Camera cameraScene;
+
     [Header("Variables Game Feel")]
     public float shakePower = 0.05f;
 
@@ -32,19 +32,16 @@ public class GetInIgloo : MonoBehaviour
     private IEnumerator ShakeCam()
     {
         float timer = 0.0f;
-        //redBorder.SetActive(true);
         while (timer < shakeDuration)
         {
-            camera.transform.localPosition -= offsetCam;
+            cameraScene.transform.localPosition -= offsetCam;
             offsetCam = new Vector3(Random.Range(-shakePower, shakePower), Random.Range(-shakePower, shakePower), 0);
-            camera.transform.localPosition += offsetCam;
+            cameraScene.transform.localPosition += offsetCam;
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();  
         }
-        camera.transform.localPosition -= offsetCam;
+        cameraScene.transform.localPosition -= offsetCam;
         Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
-        //redBorder.SetActive(false);
-
     }
     public void OnVibrate()
     {

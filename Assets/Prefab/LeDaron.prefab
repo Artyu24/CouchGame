@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1685385915726475693}
-  - component: {fileID: 181805183}
   - component: {fileID: 181805184}
-  - component: {fileID: 181805185}
   - component: {fileID: 181805186}
+  - component: {fileID: 181805183}
+  - component: {fileID: 181805185}
+  - component: {fileID: 5251401784062500209}
   - component: {fileID: 181805189}
   - component: {fileID: 7534642234813016138}
-  - component: {fileID: 5251401784062500209}
   m_Layer: 0
   m_Name: LeDaron
   m_TagString: LostPlayer
@@ -32,32 +32,13 @@ Transform:
   m_GameObject: {fileID: 1685385915726475695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6683296585486301614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &181805183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685385915726475695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623cbf9d460b55f4d90179aa509fe8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 181805189}
-  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
-  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
-  animator: {fileID: 0}
-  speed: 0.05
-  deadZone: 0.3
-  circleSpeed: 5
 --- !u!114 &181805184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,25 +150,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &181805185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685385915726475695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acbbadd6e10c32745868510ed73a76f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalStrenght: 0.3
-  specialStrenght: 0.5
-  range: 0.1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 3072
-  sideRangeDeg: 20
 --- !u!114 &181805186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +164,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   respawnDelay: 5
-  spawnTransform: {fileID: 0}
+--- !u!114 &181805183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685385915726475695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623cbf9d460b55f4d90179aa509fe8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
+  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
+  animator: {fileID: 0}
+--- !u!114 &181805185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685385915726475695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbbadd6e10c32745868510ed73a76f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalStrenght: 0.3
+  specialStrenght: 0.5
+  range: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3072
+  sideRangeDeg: 20
+--- !u!114 &5251401784062500209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685385915726475695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c53610cf737d34684b0de55eeec1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawn: []
+  timeToRespawn: 0
 --- !u!54 &181805189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -233,20 +242,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5251401784062500209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685385915726475695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c53610cf737d34684b0de55eeec1e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawn: []
-  timeToRespawn: 0
 --- !u!1 &5392766852885401381
 GameObject:
   m_ObjectHideFlags: 0

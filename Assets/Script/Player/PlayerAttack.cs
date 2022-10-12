@@ -60,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
                 {
-                    hit.transform.GetComponent<PointArea>().Dammage(this.gameObject);
+                    hit.transform.GetComponent<PointArea>().Damage(this.gameObject);
                 }
                 #endregion
 

@@ -4,10 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
-{   
-       
- 
-   public float timeToRespawn;   
+{
+    public float timeToRespawn;   
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -13,7 +13,7 @@ public class PointArea : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Dammage(GameObject player)
+    public void Damage(GameObject player)
     {
         transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
         hp--;

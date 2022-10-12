@@ -8,14 +8,23 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerInMiddle;
 
+    [Header("Setup Data")]
+    [SerializeField] private float circleRotationSpeed = 5;
+    public float CircleRotationSpeed => circleRotationSpeed;
+    [SerializeField] private float movementSpeed;
+    public float MovementSpeed => movementSpeed;
+    [SerializeField] private float deadZoneController = 0.3f;
+    public float DeadZoneController => deadZoneController;
+
     private GameState actualGameState = GameState.MENU;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
-    public Transform[] spawnList = new Transform[] { };
 
     [SerializeField] private GameObject[] tabCicle;
+    [SerializeField] private Transform[] spawnList = new Transform[] { };
     public GameObject[] TabCicle => tabCicle;
-    
+    public Transform[] SpawnList => spawnList;
+
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
     void Awake()
@@ -50,5 +59,11 @@ public class GameManager : MonoBehaviour
                 break;
         }
         player.tag = "Player";
+    }
+
+    public Transform RandomSpawn()
+    {
+        int random = Random.Range(0, spawnList.Length);
+        return spawnList[random];
     }
 }

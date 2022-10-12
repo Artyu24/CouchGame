@@ -5,18 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int playerID;
-    public float respawnDelay = 5;
-    public Transform spawnTransform;
-
-    private Rigidbody rb;
+    public float respawnDelay = 2;
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
 
     public void Kill()
     {
@@ -27,6 +19,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnDelay);
         actualPlayerState = PlayerState.FIGHTING;
-        transform.position = spawnTransform.position;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = GameManager.instance.RandomSpawn().position;
     }
 }

@@ -18,8 +18,7 @@ public class PlayerRespawn : MonoBehaviour
             {
                 case 0:
                     this.gameObject.GetComponent<Transform>().position = respawn[0].transform.position;
-                    
-                break;
+                    break;
                 case 1:
                     this.gameObject.GetComponent<Transform>().position = respawn[1].transform.position;
                     break;
