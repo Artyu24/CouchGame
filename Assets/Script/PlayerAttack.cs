@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -10,6 +11,20 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private float range;
     [SerializeField] private LayerMask layerMask;
+
+    [SerializeField] private float sideRange;
+
+    private PlayerState playerState;
+
+    void Awake()
+    {
+        playerState = GetComponent<Player>().ActualPlayerState;
+    }
+
+    void Update()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * range, Color.red);
+    }
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
@@ -26,11 +41,22 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(float _strenght)
     {
+        GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
+        
+        if (playerState != PlayerState.DEAD && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
         {
-            hit.rigidbody.AddForce(transform.TransformDirection(Vector3.forward) * _strenght, ForceMode.Impulse);
-            Debug.Log("Player has been hit");
+            if (hit.transform.tag == "Player")
+            {
+                hit.rigidbody.AddForce(transform.TransformDirection(Vector3.forward) * _strenght, ForceMode.Impulse);
+                Debug.Log(hit.transform.name +  " has been hit");
+            }
+            else if(hit.transform.tag == "PointArea")
+            {
+                hit.transform.GetComponent<PointArea>().Dammage(this.gameObject);
+            }
         }
+        
     }
+
 }
