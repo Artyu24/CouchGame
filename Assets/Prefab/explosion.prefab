@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1043392141120676028
+--- !u!1 &5601359092959106557
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,58 +8,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1043392141120676003}
-  - component: {fileID: 1043392141120676002}
-  - component: {fileID: 1043392141120676029}
+  - component: {fileID: 5601359092959106547}
+  - component: {fileID: 5601359092959106546}
+  - component: {fileID: 5479239180911548185}
   m_Layer: 0
-  m_Name: ChocWave
+  m_Name: explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1043392141120676003
+--- !u!4 &5601359092959106547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043392141120676028}
+  m_GameObject: {fileID: 5601359092959106557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.16, y: 0, z: -2.87}
+  m_LocalPosition: {x: -4.8801384, y: 9.197123, z: 15.08101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1043392141120676002
+--- !u!135 &5601359092959106546
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043392141120676028}
+  m_GameObject: {fileID: 5601359092959106557}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.00001
-  m_Center: {x: -1.3475142, y: 0, z: 0}
---- !u!114 &1043392141120676029
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5479239180911548185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043392141120676028}
+  m_GameObject: {fileID: 5601359092959106557}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ff362704043c654ba9177ce7143a6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereCollider: {fileID: 1043392141120676002}
-  radiusMax: 44.24
-  growingSpeed: 7.66
-  player: {fileID: 0}
-  pushForce: 1003.9
+  sphereCollider: {fileID: 5601359092959106546}
+  radiusMax: 10
+  growingSpeed: 7
+  pushForce: 1000
+  canDestroyMeteore: 0
