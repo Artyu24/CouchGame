@@ -20,25 +20,42 @@ public class ChocWave : MonoBehaviour
     {
         if(sphereCollider.radius < radiusMax)
         {
-            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;           
+            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;   
+ 
 
         }
         if (getPushed == true)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             //a changer quand on aura les player
             //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
         }
-    }
 
+        if(sphereCollider.radius >= radiusMax)
+        {
+            Destroy(gameObject);
+            getPushed = false;
+        }
+    }
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
+        
+        
+    //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {            
-            Vector3 push = (player.transform.position -sphereCollider.transform.position).normalized;
-            player.GetComponent<Rigidbody>().AddForce(push*pushForce);
-            getPushed = true;
+        if(getPushed == false)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Vector3 push = (player.transform.position - sphereCollider.transform.position).normalized;
+                player.GetComponent<Rigidbody>().AddForce(push * pushForce);
+                getPushed = true;
 
+            }
         }
+        
     }
 }
