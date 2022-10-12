@@ -9,22 +9,22 @@ using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Component")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Vector3 movementInput;
-    [SerializeField] private Quaternion orientation;
-    [SerializeField] private float speed;
-    [SerializeField] private float deadZone = 0.3f;
-
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private Material colorMaterial, baseMaterial;
+    public Animator animator;
     private Player player;
 
+    [Header("Data")]
+    [SerializeField] private float speed;
+    [SerializeField] private float deadZone = 0.3f;
+    [SerializeField] private float circleSpeed = 5;
+    private Vector3 movementInput;
+    private Quaternion orientation;
     private int actualCircle;
     private float rotation = 0;
-    [SerializeField] private float circleSpeed = 5;
 
-    public Animator animator;
-
-    [SerializeField] private Material colorMaterial, baseMaterial;
 
     // Start is called before the first frame update
     void Awake()

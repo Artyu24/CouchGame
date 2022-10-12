@@ -52,14 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 181805189}
-  movementInput: {x: 0, y: 0, z: 0}
-  orientation: {x: 0, y: 0, z: 0, w: 0}
+  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
+  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
+  animator: {fileID: 0}
   speed: 0.05
   deadZone: 0.3
   circleSpeed: 5
-  animator: {fileID: 0}
-  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
-  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
 --- !u!114 &181805184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,13 +181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbbadd6e10c32745868510ed73a76f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalStrenght: 3
-  specialStrenght: 5
-  range: 10.45
+  normalStrenght: 0.3
+  specialStrenght: 0.5
+  range: 0.1
   layerMask:
     serializedVersion: 2
     m_Bits: 3072
-  sideRange: 0
+  sideRangeDeg: 20
 --- !u!114 &181805186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +259,7 @@ GameObject:
   - component: {fileID: 8659998153073115434}
   - component: {fileID: 5043700687786623662}
   - component: {fileID: 6877597918256944406}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
