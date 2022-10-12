@@ -5,6 +5,7 @@ using UnityEngine;
 public class EjectPlayerCentre : MonoBehaviour
 {
     private GameObject playerCentre;
+    [SerializeField] private Transform ejectMiddlePlayerPosition;
 
     [Tooltip("Temps en seconde que doit rester le joueur dans la zone pour éjecter le joueur dans le centre")]
     [SerializeField]
@@ -14,9 +15,11 @@ public class EjectPlayerCentre : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //palyerCentre.SwitchModePlayerToModeCente(false);
+            //playerCentre.SwitchModePlayerToModeCentre(false);
+            GameManager.instance.playerInMiddle.transform.position = ejectMiddlePlayerPosition.position;
+            GameManager.instance.playerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
             Debug.Log("Player au centre éjecté !");
-            Destroy(this);
+            //Destroy(this);
         }
     }
 

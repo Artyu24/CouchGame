@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
             //input system normal
             rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
             transform.rotation = orientation;
-
         }
     }
     
