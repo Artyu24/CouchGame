@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class GetInIgloo : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class GetInIgloo : MonoBehaviour
             
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
             StartCoroutine(ShakeCam());
+            OnVibrate();
         }
     }
 
@@ -41,5 +44,9 @@ public class GetInIgloo : MonoBehaviour
             yield return new WaitForEndOfFrame();  
         }
         camera.transform.localPosition -= offsetCam;
+    }
+    public void OnVibrate()
+    {
+        Gamepad.current.SetMotorSpeeds(0.123f, 0.234f);
     }
 }
