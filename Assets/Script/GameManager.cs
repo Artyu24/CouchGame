@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject playerInMiddle;
+
     private GameState actualGameState = GameState.MENU;
 
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
@@ -25,10 +27,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 4; i++)
+        /*for (int i = 0; i < 4; i++)
         {
             AddPlayer();
-        }
+        }*/
     }
 
     public void AddPlayer()
