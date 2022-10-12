@@ -24,15 +24,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614585}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614589}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614984}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614593}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614629}
       id: 0
       isStickyNote: 0
@@ -42,19 +33,7 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614558}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614600}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614569}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614580}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614555}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614556}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614622}
@@ -72,9 +51,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614583}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614648}
-      id: 0
-      isStickyNote: 0
   - title: TRAIL BACK
     position:
       serializedVersion: 2
@@ -89,28 +65,10 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614820}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614988}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614854}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614989}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614878}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614881}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614992}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614887}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614894}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614856}
@@ -171,37 +129,10 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615065}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615108}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615080}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615091}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615096}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615099}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615122}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615109}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615100}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615102}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615094}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615126}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615132}
@@ -2408,7 +2339,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -2673,7 +2604,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -4364,7 +4295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -7960,7 +7891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -9470,7 +9401,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615238}
   - {fileID: 8926484042661615330}
   dataType: 0
-  capacity: 32
+  capacity: 100
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
@@ -9716,7 +9647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
