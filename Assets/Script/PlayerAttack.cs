@@ -14,13 +14,6 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private float sideRange;
 
-    private PlayerState playerState;
-
-    void Awake()
-    {
-        playerState = GetComponent<Player>().ActualPlayerState;
-    }
-
     void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * range, Color.red);
@@ -44,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
         RaycastHit hit;
         
-        if (playerState != PlayerState.DEAD && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
+        if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
         {
             if (hit.transform.tag == "Player")
             {

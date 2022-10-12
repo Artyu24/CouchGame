@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject playerInMiddle;
 
     private GameState actualGameState = GameState.MENU;
-
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
     public Transform[] spawnList = new Transform[] { };
@@ -23,14 +22,6 @@ public class GameManager : MonoBehaviour
     {   
         if (instance == null)
             instance = this;
-    }
-
-    private void Start()
-    {
-        /*for (int i = 0; i < 4; i++)
-        {
-            AddPlayer();
-        }*/
     }
 
     public void AddPlayer()
