@@ -9,8 +9,16 @@ public class CircleMovement : MonoBehaviour
 {
     private float rotation = 0;
 
+    [SerializeField] private Material colorMaterial, baseMaterial;
+
     public float speed = 5;
     private int actualCircle;
+
+    private void Start()
+    {
+        GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = true;
+        GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = colorMaterial;
+    }
 
     private void FixedUpdate()
     {
@@ -29,6 +37,9 @@ public class CircleMovement : MonoBehaviour
     {
         if (context.started)
         {
+            GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = false;
+            GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = baseMaterial;
+
             float nextCircle = context.ReadValue<float>();
             if (actualCircle + nextCircle < 0)
                 actualCircle = GameManager.instance.TabCicle.Length - 1;
@@ -36,6 +47,9 @@ public class CircleMovement : MonoBehaviour
                 actualCircle = 0;
             else
                 actualCircle += (int)nextCircle;
+
+            GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = true;
+            GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = colorMaterial;
         }
     }
 }

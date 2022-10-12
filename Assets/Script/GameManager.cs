@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 4; i++)
+        /*for (int i = 0; i < 4; i++)
         {
             AddPlayer();
-        }
+        }*/
     }
 
     public void AddPlayer()
