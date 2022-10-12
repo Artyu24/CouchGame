@@ -22,8 +22,8 @@ public class GetInIgloo : MonoBehaviour
             Debug.Log("PlayerState : " + other.GetComponent<Player>().ActualPlayerState);
             
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
-            StartCoroutine(ShakeCam());
             OnVibrate();
+            StartCoroutine(ShakeCam());
         }
     }
 
@@ -44,6 +44,8 @@ public class GetInIgloo : MonoBehaviour
             yield return new WaitForEndOfFrame();  
         }
         camera.transform.localPosition -= offsetCam;
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+
     }
     public void OnVibrate()
     {
