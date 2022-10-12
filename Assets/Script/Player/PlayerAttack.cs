@@ -6,31 +6,44 @@ using UnityEngine.Playables;
 
 public class PlayerAttack : MonoBehaviour
 {
+    #region Variable
     [Header("Variable")]
     [SerializeField] private float normalStrenght;
     [SerializeField] private float specialStrenght;
+    [SerializeField] private float attackCd = 1.5f;
+    [SerializeField] private bool canAttack = true;
 
     [Header("Range")]
     [SerializeField] private float range = 0.1f;
     [SerializeField] private LayerMask layerMask;
     [SerializeField][Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")] private float sideRangeDeg = 20.0f;
     private float middleDirAngle;
-
+    #endregion
 
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = normalStrenght;
-        if (ctx.started)
-            Attack(strenght);
+        if (ctx.started && canAttack)
+            StartCoroutine(AttackCoroutine(strenght));
     }
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
         float strenght = specialStrenght;
-        if (ctx.started)
-            Attack(strenght);
+        if (ctx.started && canAttack)
+            StartCoroutine(AttackCoroutine(strenght));
     }
     #endregion
+
+    #region Attack
+    IEnumerator AttackCoroutine(float _strenght)
+    {
+        canAttack = false;
+        Attack(_strenght);
+        yield return new WaitForSecondsRealtime(attackCd);
+        canAttack = true;
+    }
+
 
     void Attack(float _strenght)
     {
@@ -73,8 +86,7 @@ public class PlayerAttack : MonoBehaviour
 
             }
             #endregion
-        
-
         }
     }
+    #endregion
 }
