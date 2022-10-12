@@ -13,7 +13,6 @@ public class PlayerRespawn : MonoBehaviour
     public void SpawnPlayer()
     {
             //this.gameObject.SetActive(true);
-            Debug.Log("on est la ");
             int ran = Random.Range(0, 8);
             switch (ran)
             {
