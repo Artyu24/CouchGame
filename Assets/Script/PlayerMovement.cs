@@ -16,20 +16,39 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 test;
 
     [SerializeField] private PlayerInput playerInput;
+    private Player player;
+    
+    private int actualCircle;
+    private float rotation = 0;
+    [SerializeField] private float circleSpeed = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
-        transform.rotation = orientation;
+        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        {
+            //input system middle
+            //tournent les jolis cercles tournent
+            GameManager.instance.TabCicle[actualCircle].transform.eulerAngles = new Vector3(0,
+                GameManager.instance.TabCicle[actualCircle].transform.eulerAngles.y +
+                (rotation * speed * Time.fixedDeltaTime), 0);
+        }
+        else if (player.ActualPlayerState == PlayerState.FIGHTING)
+        {
+            //input system normal
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
+            transform.rotation = orientation;
 
+        }
     }
+    
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -37,6 +56,28 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed)
         {
             orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
+        }
+    }
+
+    public void OnRotation(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            rotation = context.ReadValue<float>();
+        else
+            rotation = 0;
+    }
+
+    public void OnSwitchCircle(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            float nextCircle = context.ReadValue<float>();
+            if (actualCircle + nextCircle < 0)
+                actualCircle = GameManager.instance.TabCicle.Length - 1;
+            else if (actualCircle + nextCircle > GameManager.instance.TabCicle.Length - 1)
+                actualCircle = 0;
+            else
+                actualCircle += (int) nextCircle;
         }
     }
 }
