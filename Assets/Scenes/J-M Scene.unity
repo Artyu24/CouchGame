@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 778117573}
   - component: {fileID: 778117572}
   - component: {fileID: 778117576}
+  - component: {fileID: 778117577}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Player
@@ -786,6 +787,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &778117577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778117571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c53610cf737d34684b0de55eeec1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawn:
+  - {fileID: 103544562}
+  - {fileID: 2061581292}
+  - {fileID: 18175732}
+  - {fileID: 530720026}
+  - {fileID: 1134027827}
+  - {fileID: 312291913}
+  - {fileID: 86204744}
+  - {fileID: 254441578}
+  timeToRespawn: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,16 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfab8a7879647e4cae18c47c521794f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 778117571}
-  respawn:
-  - {fileID: 103544562}
-  - {fileID: 2061581292}
-  - {fileID: 18175732}
-  - {fileID: 530720026}
-  - {fileID: 1134027827}
-  - {fileID: 312291913}
-  - {fileID: 86204744}
-  - {fileID: 254441578}
   timeToRespawn: 2
 --- !u!65 &912347320
 BoxCollider:
@@ -1051,7 +1064,7 @@ PrefabInstance:
     - target: {fileID: 1043392141120676029, guid: 453d429aac1784d4ba23dbbd7d93a54e,
         type: 3}
       propertyPath: radiusMax
-      value: 55.91
+      value: 44.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453d429aac1784d4ba23dbbd7d93a54e, type: 3}
