@@ -29,14 +29,14 @@ public class EjectPlayerCentre : MonoBehaviour
 	                circle.GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
 	                circle.GetComponent<Outline>().enabled = false;
 	            }
-                GameManager.instance.PlayerInMiddle = null;
-                Debug.Log("Player au centre éjecté !");
                 for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
                 {
                     GameManager.instance.ejectPlatesActive = 0;
-                    GetComponentInChildren<MeshRenderer>().material.color = activeColor;
+                    GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = activeColor;
                     GameManager.instance.EjectPlates[i].SetActive(false);
                 }
+                GameManager.instance.PlayerInMiddle = null;
+                Debug.Log("Player au centre éjecté !");
             }
         }
     }
