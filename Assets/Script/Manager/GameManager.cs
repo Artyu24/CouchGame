@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
     private GameObject playerInMiddle;
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
-    [Header("Setup Data")]
+    [Header("Variables Game Feel")]
+    [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     public float CircleRotationSpeed => circleRotationSpeed;
+    [Tooltip("Vitesse de d�placement des joueurs")]
     [SerializeField] private float movementSpeed;
     public float MovementSpeed => movementSpeed;
+    [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
     public float DeadZoneController => deadZoneController;
 
@@ -21,8 +24,11 @@ public class GameManager : MonoBehaviour
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
 
+    [Tooltip("Liste des anneaux du terrain")]
     [SerializeField] private GameObject[] tabCicle;
+    [Tooltip("Vitesse des points de spawn")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
+
     public GameObject[] TabCicle => tabCicle;
     public Transform[] SpawnList => spawnList;
 

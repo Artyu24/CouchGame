@@ -7,11 +7,13 @@ using UnityEngine.InputSystem.Controls;
 public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
+    [Tooltip("Pas touche mdr")]
     [SerializeField] private Camera cameraScene;
 
     [Header("Variables Game Feel")]
+    [Tooltip("Variable pour augmenter ou diminuer le shake de la cam")]
     public float shakePower = 0.05f;
-
+    [Tooltip("Variable pour augmenter ou diminuer le temps du shake de la cam")]
     public float shakeDuration = 0.5f;
 
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour

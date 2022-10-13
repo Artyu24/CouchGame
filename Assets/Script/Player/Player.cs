@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int playerID;
+    [HideInInspector] public int playerID;
+
+    [Header("Variables Game Feel")]
+    [Tooltip("Temps du respawn des players en seconde")]
     public float respawnDelay = 2;
 
     private PlayerState actualPlayerState = PlayerState.INIT;
