@@ -21,7 +21,11 @@ public class PointArea : MonoBehaviour
         Debug.Log(player.name + " SCORE ++");
         animator.SetTrigger("SHAKEMETHAT");
 
-        if(hp <= 0)
+        if (hp <= 0)
+        {
             Destroy(gameObject);
+            PointAreaManager.instance.Spawn();
+
+        }
     }
 }
