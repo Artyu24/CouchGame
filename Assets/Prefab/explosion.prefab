@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 5601359092959106546}
-  radiusMax: 10
-  growingSpeed: 7
-  pushForce: 1000
-  canDestroyMeteore: 0
+  radiusMax: 3.85
+  growingSpeed: 4
+  pushForce: 500

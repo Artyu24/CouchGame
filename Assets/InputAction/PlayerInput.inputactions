@@ -55,6 +55,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Meteorite",
+                    "type": "Button",
+                    "id": "9db291d6-ed9f-40d9-882a-9fe9aa028d1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChocWave",
+                    "type": "Button",
+                    "id": "679814ab-779a-4e63-a702-310c790b2e49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -288,6 +306,28 @@
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9194bcd4-9c4a-4a2c-b77c-97be63814d1c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Meteorite",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b32aa6c7-d599-450c-bee3-7a10daa37b6c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChocWave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
