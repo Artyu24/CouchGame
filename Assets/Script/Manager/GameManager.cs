@@ -20,6 +20,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float deadZoneController = 0.3f;
     public float DeadZoneController => deadZoneController;
 
+    #region Attack
+    [Header("Attack Variable")]
+    private float range = 0.1f;
+    public float Range {get => range; private set => range = value;}
+
+    private float sideRangeDeg = 20.0f;
+    public float SideRangeDeg { get => sideRangeDeg; private set => sideRangeDeg = value; }
+
+    private float normalStrenght;
+    public float NormalStrenght { get => normalStrenght; private set => normalStrenght = value; }
+
+    private float specialStrenght;
+    public float SpecialStrenght { get => specialStrenght; private set => specialStrenght = value; }
+
+    private float attackCd = 1.5f;
+    public float AttackCd { get => attackCd; private set => attackCd = value; }
+    #endregion
+
     private GameState actualGameState = GameState.MENU;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
