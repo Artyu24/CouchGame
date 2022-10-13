@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject playerInMiddle;
+    private GameObject playerInMiddle;
+    public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     [Header("Setup Data")]
     [SerializeField] private float circleRotationSpeed = 5;

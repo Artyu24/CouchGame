@@ -17,12 +17,14 @@ public class GetInIgloo : MonoBehaviour
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle == null)
         {
-            GameManager.instance.playerInMiddle = other.gameObject;
+            GameManager.instance.PlayerInMiddle = other.gameObject;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             Debug.Log("PlayerState : " + other.GetComponent<Player>().ActualPlayerState);
-            
+
+            other.GetComponent<Player>().HideGuy(false);
+
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
             OnVibrate();
             StartCoroutine(ShakeCam());

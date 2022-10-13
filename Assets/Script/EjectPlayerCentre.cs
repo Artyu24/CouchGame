@@ -10,12 +10,13 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance.playerInMiddle != null)
+        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
         {
             //playerCentre.SwitchModePlayerToModeCentre(false);
-            GameManager.instance.playerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
-            GameManager.instance.playerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-            GameManager.instance.playerInMiddle = null;
+            GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
+            GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+            GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+            GameManager.instance.PlayerInMiddle = null;
             Debug.Log("Player au centre éjecté !");
             //Destroy(this);
         }

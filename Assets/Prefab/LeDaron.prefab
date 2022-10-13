@@ -193,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalStrenght: 0.3
   specialStrenght: 0.5
+  attackCd: 1.5
+  canAttack: 1
   range: 1
   layerMask:
     serializedVersion: 2
@@ -269,8 +271,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5392766852885401381}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.458, z: 0.785}
-  m_LocalScale: {x: 1, y: 0.12, z: 0.13}
+  m_LocalPosition: {x: 0, y: 0.458, z: 0.514}
+  m_LocalScale: {x: 0.5, y: 0.12, z: 0.13}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6683296585486301614}
@@ -350,7 +352,6 @@ GameObject:
   - component: {fileID: 6683296585486301614}
   - component: {fileID: 6683296585486301613}
   - component: {fileID: 6683296585486301612}
-  - component: {fileID: 6683296585486301611}
   - component: {fileID: 139179868}
   m_Layer: 10
   m_Name: Player
@@ -425,20 +426,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6683296585486301611
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6683296585486301610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &139179868
 Animator:
   serializedVersion: 4

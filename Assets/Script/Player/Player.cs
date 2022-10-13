@@ -22,4 +22,10 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = GameManager.instance.RandomSpawn().position;
     }
+
+    public void HideGuy(bool enable)
+    {
+        GetComponent<CapsuleCollider>().enabled = enable;
+        GetComponentInChildren<MeshRenderer>().enabled = enable;
+    }
 }

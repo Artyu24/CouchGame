@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * GameManager.instance.MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.deltaTime * GameManager.instance.MovementSpeed);
             transform.rotation = orientation;
         }
 
