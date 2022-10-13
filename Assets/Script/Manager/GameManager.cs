@@ -19,17 +19,20 @@ public class GameManager : MonoBehaviour
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
     public float DeadZoneController => deadZoneController;
+    [SerializeField] private Material colorMaterial, baseMaterial;
+    public Material ColorMaterial => colorMaterial;
+    public Material BaseMaterial => baseMaterial;
 
     private GameState actualGameState = GameState.MENU;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCicle;
+    [SerializeField] private GameObject[] tabCircle;
     [Tooltip("Vitesse des points de spawn")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
 
-    public GameObject[] TabCicle => tabCicle;
+    public GameObject[] TabCircle => tabCircle;
     public Transform[] SpawnList => spawnList;
 
     private Dictionary<int, Player> players = new Dictionary<int, Player>();

@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Component")]
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private Material colorMaterial, baseMaterial;
     private Player player;
     private Rigidbody rb;
     public Animator animator;
@@ -40,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
-            GameManager.instance.TabCicle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCicle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
+            GameManager.instance.TabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
     }
 
 
@@ -73,19 +72,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if (context.started)
             {
-                GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = baseMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = false;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.TabCicle.Length - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.TabCicle.Length - 1)
+                    actualCircle = GameManager.instance.TabCircle.Length - 1;
+                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Length - 1)
                     actualCircle = 0;
                 else
                     actualCircle += (int)nextCircle;
 
-                GameManager.instance.TabCicle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.TabCicle[actualCircle].GetComponent<MeshRenderer>().material = colorMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = true;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
             }
         }
     }
