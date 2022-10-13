@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5251401784062500209}
   - component: {fileID: 181805189}
   - component: {fileID: 7534642234813016138}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeDaron
   m_TagString: LostPlayer
   m_Icon: {fileID: 0}
@@ -145,6 +145,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 218dd42a-e25d-495a-800c-88d0f9fad91a
     m_ActionName: Player/Switch[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181805183}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnMeteorite
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9db291d6-ed9f-40d9-882a-9fe9aa028d1e
+    m_ActionName: Player/Meteorite[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181805183}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnChocWave
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 679814ab-779a-4e63-a702-310c790b2e49
+    m_ActionName: Player/ChocWave[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
   m_DefaultActionMap: Player
@@ -163,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
-  respawnDelay: 5
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,9 +207,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623cbf9d460b55f4d90179aa509fe8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
-  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
   animator: {fileID: 0}
+  interactionCD: 8
+  meteorite: {fileID: 8503794699829721347, guid: eb3588bd443fbe24889136fd5263bde5,
+    type: 3}
+  departChoc: {fileID: 7040533958992175993, guid: 9b6d042ec6d22584c944815493275216,
+    type: 3}
+  departMeteorite: {fileID: 3885025025803279888, guid: 566e0e475f8ac1d4d9c172ec118d24cc,
+    type: 3}
+  chocWave: {fileID: 1043392141120676028, guid: 453d429aac1784d4ba23dbbd7d93a54e,
+    type: 3}
 --- !u!114 &181805185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,15 +229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbbadd6e10c32745868510ed73a76f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalStrenght: 0.3
-  specialStrenght: 0.5
-  attackCd: 1.5
   canAttack: 1
-  range: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 3072
-  sideRangeDeg: 20
 --- !u!114 &5251401784062500209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +289,7 @@ GameObject:
   - component: {fileID: 8659998153073115434}
   - component: {fileID: 5043700687786623662}
   - component: {fileID: 6877597918256944406}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

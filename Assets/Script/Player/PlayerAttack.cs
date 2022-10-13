@@ -66,10 +66,12 @@ public class PlayerAttack : MonoBehaviour
                     //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
                     hit.rigidbody.AddForce(dir * _strenght, ForceMode.Impulse);
                     Debug.Log(hit.transform.name + " has been hit");
+                    return;
                 }
                 else if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
                 {
                     hit.transform.GetComponent<PointArea>().Damage(this.gameObject);
+                    return;
                 }
                 #endregion
 

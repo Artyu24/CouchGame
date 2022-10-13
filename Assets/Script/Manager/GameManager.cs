@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private GameObject playerInMiddle;
+
+
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     [Header("Variables Game Feel")]
@@ -16,8 +18,18 @@ public class GameManager : MonoBehaviour
     [Tooltip("Vitesse de d�placement des joueurs")]
     [SerializeField] private float movementSpeed;
     public float MovementSpeed => movementSpeed;
+    [Tooltip("Temps du respawn des players en seconde")]
+    [SerializeField] private float respawnDelay = 2;
+    public float RespawnDelay => respawnDelay;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
+    [Tooltip("Couleur que prend la zone quand elle est activée")]
+    [SerializeField] private Color activatedColor;
+    [Tooltip("Couleur que prend la zone quand elle est spawn")]
+    [SerializeField]  private Color activeColor;
+    public Color ActivatedColor => activatedColor;
+    public Color ActiveColor => activeColor;
+
     public float DeadZoneController => deadZoneController;
     [SerializeField] private Material colorMaterial, baseMaterial;
     public Material ColorMaterial => colorMaterial;
@@ -25,19 +37,19 @@ public class GameManager : MonoBehaviour
 
     #region Attack
     [Header("Attack Variable")]
-    private float range = 0.1f;
+    [SerializeField] private float range = 0.1f;
     public float Range {get => range; private set => range = value;}
 
-    private float sideRangeDeg = 20.0f;
+    [SerializeField] private float sideRangeDeg = 20.0f;
     public float SideRangeDeg { get => sideRangeDeg; private set => sideRangeDeg = value; }
 
-    private float normalStrenght;
+    [SerializeField] private float normalStrenght;
     public float NormalStrenght { get => normalStrenght; private set => normalStrenght = value; }
 
-    private float specialStrenght;
+    [SerializeField] private float specialStrenght;
     public float SpecialStrenght { get => specialStrenght; private set => specialStrenght = value; }
 
-    private float attackCd = 1.5f;
+    [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
     #endregion
 
@@ -99,4 +111,6 @@ public class GameManager : MonoBehaviour
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
     }
+
+
 }
