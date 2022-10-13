@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PointArea : MonoBehaviour
 {
-    [SerializeField] public int hp;
+    [SerializeField] public int hp = 10;
     [SerializeField] private Animator animator;
 
     void Awake()
@@ -15,9 +15,13 @@ public class PointArea : MonoBehaviour
 
     public void Damage(GameObject player)
     {
-        transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+        transform.localScale -= new Vector3(transform.localScale.x - (transform.localScale.x/10), transform.localScale.x - (transform.localScale.y / 10), transform.localScale.z - (transform.localScale.x / 10));
         hp--;
+
         Debug.Log(player.name + " SCORE ++");
         animator.SetTrigger("SHAKEMETHAT");
+
+        if(hp <= 0)
+            Destroy(gameObject);
     }
 }
