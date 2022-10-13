@@ -33,6 +33,7 @@ public class EjectPlayerCentre : MonoBehaviour
                 Debug.Log("Player au centre éjecté !");
                 for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
                 {
+                    GameManager.instance.ejectPlatesActive = 0;
                     GetComponentInChildren<MeshRenderer>().material.color = activeColor;
                     GameManager.instance.EjectPlates[i].SetActive(false);
                 }
