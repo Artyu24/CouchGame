@@ -7,32 +7,25 @@ using UnityEngine.Playables;
 public class PlayerAttack : MonoBehaviour
 {
     #region Variable
-
-    [Header("Variables Game Feel")]
     [Header("Variable")]
-    [SerializeField] private float normalStrenght;
-    [SerializeField] private float specialStrenght;
-    [SerializeField] private float attackCd = 1.5f;
     [SerializeField] private bool canAttack = true;
 
     [Header("Range")]
-    [SerializeField] private float range = 0.1f;
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
-    [SerializeField] private float sideRangeDeg = 20.0f;
     private float middleDirAngle;
     #endregion
 
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        float strenght = normalStrenght;
+        float strenght = GameManager.instance.NormalStrenght;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
-        float strenght = specialStrenght;
+        float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
@@ -43,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
         Attack(_strenght);
-        yield return new WaitForSecondsRealtime(attackCd);
+        yield return new WaitForSecondsRealtime(GameManager.instance.AttackCd);
         canAttack = true;
     }
 
@@ -54,8 +47,8 @@ public class PlayerAttack : MonoBehaviour
         if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD)
         {
             #region Range
-            float it = -sideRangeDeg;
-            for (int i = 0; i < sideRangeDeg * 2; i++)//do all the raycast
+            float it = -GameManager.instance.SideRangeDeg;
+            for (int i = 0; i < GameManager.instance.SideRangeDeg * 2; i++)//do all the raycast
             {
                 RaycastHit hit;
                 #region Raycast Calcul
@@ -63,8 +56,8 @@ public class PlayerAttack : MonoBehaviour
                 middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ça marche plus faut faire le transform.TransformDirection après les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-                Debug.DrawRay(transform.position, dir * range, Color.blue, 1.0f);
-                Physics.Raycast(transform.position, dir, out hit, range,layerMask);
+                Debug.DrawRay(transform.position, dir * GameManager.instance.Range, Color.blue, 1.0f);
+                Physics.Raycast(transform.position, dir, out hit, GameManager.instance.Range,layerMask);
                 #endregion
 
                 #region HitCondition
@@ -81,8 +74,8 @@ public class PlayerAttack : MonoBehaviour
                 #endregion
 
                 #region Don't Do To Much
-                if (it < sideRangeDeg)
-                    it += sideRangeDeg / sideRangeDeg * 4;
+                if (it < GameManager.instance.SideRangeDeg)
+                    it += GameManager.instance.SideRangeDeg / GameManager.instance.SideRangeDeg * 4;
                 else
                     break;
                 #endregion

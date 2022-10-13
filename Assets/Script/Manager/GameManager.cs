@@ -19,13 +19,34 @@ public class GameManager : MonoBehaviour
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
     public float DeadZoneController => deadZoneController;
+    [SerializeField] private Material colorMaterial, baseMaterial;
+    public Material ColorMaterial => colorMaterial;
+    public Material BaseMaterial => baseMaterial;
+
+    #region Attack
+    [Header("Attack Variable")]
+    private float range = 0.1f;
+    public float Range {get => range; private set => range = value;}
+
+    private float sideRangeDeg = 20.0f;
+    public float SideRangeDeg { get => sideRangeDeg; private set => sideRangeDeg = value; }
+
+    private float normalStrenght;
+    public float NormalStrenght { get => normalStrenght; private set => normalStrenght = value; }
+
+    private float specialStrenght;
+    public float SpecialStrenght { get => specialStrenght; private set => specialStrenght = value; }
+
+    private float attackCd = 1.5f;
+    public float AttackCd { get => attackCd; private set => attackCd = value; }
+    #endregion
 
     private GameState actualGameState = GameState.MENU;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
 
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCicle;
+    [SerializeField] private GameObject[] tabCircle;
     [Tooltip("Liste des points de spawn")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Liste des plaques d'ejection du player au centre")]
@@ -33,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public int ejectPlatesActive = 0;
 
-    public GameObject[] TabCicle => tabCicle;
+    public GameObject[] TabCircle => tabCircle;
     public Transform[] SpawnList => spawnList;
     public GameObject[] EjectPlates => ejectPlates;
 
