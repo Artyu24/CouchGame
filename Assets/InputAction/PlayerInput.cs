@@ -77,6 +77,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Meteorite"",
+                    ""type"": ""Button"",
+                    ""id"": ""9db291d6-ed9f-40d9-882a-9fe9aa028d1e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChocWave"",
+                    ""type"": ""Button"",
+                    ""id"": ""679814ab-779a-4e63-a702-310c790b2e49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -310,6 +328,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9194bcd4-9c4a-4a2c-b77c-97be63814d1c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Meteorite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b32aa6c7-d599-450c-bee3-7a10daa37b6c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChocWave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -337,6 +377,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_PlayerSpecialAttack = m_Player.FindAction("PlayerSpecial Attack", throwIfNotFound: true);
         m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_Meteorite = m_Player.FindAction("Meteorite", throwIfNotFound: true);
+        m_Player_ChocWave = m_Player.FindAction("ChocWave", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -426,6 +468,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerSpecialAttack;
     private readonly InputAction m_Player_Rotation;
     private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_Meteorite;
+    private readonly InputAction m_Player_ChocWave;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -435,6 +479,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @PlayerSpecialAttack => m_Wrapper.m_Player_PlayerSpecialAttack;
         public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @Meteorite => m_Wrapper.m_Player_Meteorite;
+        public InputAction @ChocWave => m_Wrapper.m_Player_ChocWave;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -459,6 +505,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 @Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 @Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                @Meteorite.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteorite;
+                @Meteorite.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteorite;
+                @Meteorite.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteorite;
+                @ChocWave.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
+                @ChocWave.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
+                @ChocWave.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -478,6 +530,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Switch.started += instance.OnSwitch;
                 @Switch.performed += instance.OnSwitch;
                 @Switch.canceled += instance.OnSwitch;
+                @Meteorite.started += instance.OnMeteorite;
+                @Meteorite.performed += instance.OnMeteorite;
+                @Meteorite.canceled += instance.OnMeteorite;
+                @ChocWave.started += instance.OnChocWave;
+                @ChocWave.performed += instance.OnChocWave;
+                @ChocWave.canceled += instance.OnChocWave;
             }
         }
     }
@@ -501,5 +559,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnPlayerSpecialAttack(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
+        void OnMeteorite(InputAction.CallbackContext context);
+        void OnChocWave(InputAction.CallbackContext context);
     }
 }

@@ -21,6 +21,16 @@ public class PlayerMovement : MonoBehaviour
     private float rotation = 0;
 
 
+
+    bool isInteracting = false;
+
+    public float interactionCD;
+
+    public GameObject meteorite;
+    public GameObject departChoc;
+    public GameObject departMeteorite;
+    public GameObject chocWave;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
             GameManager.instance.TabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
+
     }
 
 
@@ -87,5 +98,44 @@ public class PlayerMovement : MonoBehaviour
                 GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
             }
         }
+    }
+    
+
+    public void OnMeteorite(InputAction.CallbackContext context)
+    {
+        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        {
+            if (context.performed)
+            {
+                if (isInteracting == false)
+                {
+                    Instantiate(meteorite, departMeteorite.transform.position, departMeteorite.transform.rotation);
+                    StartCoroutine(CooldownForInteraction());
+                }
+            }
+            
+        }
+    }
+    public void OnChocWave(InputAction.CallbackContext context)
+    {
+        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        {
+            if (context.performed)
+            {
+                if (isInteracting == false)
+                {
+                    Instantiate(chocWave, departChoc.transform.position, departChoc.transform.rotation);
+                    StartCoroutine(CooldownForInteraction());
+                }
+            }
+
+        }
+    }
+
+    public IEnumerator CooldownForInteraction()
+    {
+        isInteracting = true;
+        yield return new WaitForSeconds(interactionCD);
+        isInteracting = false;
     }
 }

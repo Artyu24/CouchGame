@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private GameObject playerInMiddle;
+
+
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     [Header("Variables Game Feel")]
@@ -102,4 +104,6 @@ public class GameManager : MonoBehaviour
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
     }
+
+
 }

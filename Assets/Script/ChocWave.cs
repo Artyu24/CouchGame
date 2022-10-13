@@ -41,8 +41,7 @@ public class ChocWave : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
-
-
+        
     }
     private void OnTriggerEnter(Collider other)
     {
