@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
     public float RespawnDelay => respawnDelay;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
+    [Tooltip("Couleur que prend la zone quand elle est activée")]
+    [SerializeField] private Color activatedColor;
+    [Tooltip("Couleur que prend la zone quand elle est spawn")]
+    [SerializeField]  private Color activeColor;
+    public Color ActivatedColor => activatedColor;
+    public Color ActiveColor => activeColor;
+
     public float DeadZoneController => deadZoneController;
     [SerializeField] private Material colorMaterial, baseMaterial;
     public Material ColorMaterial => colorMaterial;

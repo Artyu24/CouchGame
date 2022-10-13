@@ -22,10 +22,13 @@ public class GetInIgloo : MonoBehaviour
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle == null)
         {
             GameManager.instance.PlayerInMiddle = other.gameObject;
+
             for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
             {
                 GameManager.instance.EjectPlates[i].SetActive(true);
+                GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
             }
+
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             Debug.Log("PlayerState : " + other.GetComponent<Player>().ActualPlayerState);
 

@@ -5,10 +5,6 @@ using UnityEngine;
 public class EjectPlayerCentre : MonoBehaviour
 {
     [Header("Variables Game Feel")]
-    [Tooltip("Couleur que prend la zone quand elle est activée")]
-    public Color activatedColor;
-    [Tooltip("Couleur que prend la zone quand elle est spawn")]
-    public Color activeColor;
     [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
     public int numberOfPlate = 3;
 
@@ -17,7 +13,7 @@ public class EjectPlayerCentre : MonoBehaviour
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
         {
             GameManager.instance.ejectPlatesActive++;
-            GetComponentInChildren<MeshRenderer>().material.color = activatedColor;
+            GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
 
             if (GameManager.instance.ejectPlatesActive >= numberOfPlate)
             {
@@ -32,7 +28,7 @@ public class EjectPlayerCentre : MonoBehaviour
                 for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
                 {
                     GameManager.instance.ejectPlatesActive = 0;
-                    GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = activeColor;
+                    GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
                     GameManager.instance.EjectPlates[i].SetActive(false);
                 }
                 GameManager.instance.PlayerInMiddle = null;
