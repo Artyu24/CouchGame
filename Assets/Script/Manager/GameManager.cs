@@ -26,11 +26,16 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Liste des anneaux du terrain")]
     [SerializeField] private GameObject[] tabCicle;
-    [Tooltip("Vitesse des points de spawn")]
+    [Tooltip("Liste des points de spawn")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
+    [Tooltip("Liste des plaques d'ejection du player au centre")]
+    [SerializeField] private GameObject[] ejectPlates;
+
+    [HideInInspector] public int ejectPlatesActive = 0;
 
     public GameObject[] TabCicle => tabCicle;
     public Transform[] SpawnList => spawnList;
+    public GameObject[] EjectPlates => ejectPlates;
 
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 

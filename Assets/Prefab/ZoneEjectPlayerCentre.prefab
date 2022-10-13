@@ -59,8 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2847b36c766fb44a4ad3d53adb37b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ejectMiddlePlayerPosition: {fileID: 0}
   SecondToEject: 3
+  numberOfPlate: 3
+  activatedColor: {r: 0.054071307, g: 1, b: 0, a: 0}
 --- !u!1 &7836892437115829815
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,4 +173,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b9253934b5769408110e6d608b7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeColor: {r: 0, g: 1, b: 0.8970537, a: 0}
+  activeColor: {r: 1, g: 0.02934316, b: 0, a: 0}

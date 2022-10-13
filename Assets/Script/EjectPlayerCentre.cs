@@ -5,25 +5,28 @@ using UnityEngine;
 public class EjectPlayerCentre : MonoBehaviour
 {
     [Header("Variables Game Feel")]
-    [Tooltip("Temps en seconde que doit rester le joueur dans la zone pour éjecter le joueur dans le centre")]
-    [SerializeField] private float SecondToEject;
+    [Tooltip("Couleur que prend la zone quand elle est activée")]
+    public Color activatedColor;
+    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
+    public int numberOfPlate = 3;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
         {
-            //playerCentre.SwitchModePlayerToModeCentre(false);
-            GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
-            GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-            GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
-            GameManager.instance.PlayerInMiddle = null;
-            Debug.Log("Player au centre éjecté !");
-            //Destroy(this);
-        }
-    }
+            GameManager.instance.ejectPlatesActive++;
+            GetComponentInChildren<MeshRenderer>().material.color = activatedColor;
 
-    private IEnumerator WaitForExpulse()
-    {
-        yield return new WaitForSeconds(SecondToEject);
+            if (GameManager.instance.ejectPlatesActive >= numberOfPlate)
+            {
+                GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
+                GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+                GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+                GameManager.instance.PlayerInMiddle = null;
+                Debug.Log("Player au centre éjecté !");
+                //Destroy(this);
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 }
