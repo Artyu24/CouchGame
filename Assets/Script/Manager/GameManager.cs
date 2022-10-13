@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Vitesse de d�placement des joueurs")]
     [SerializeField] private float movementSpeed;
     public float MovementSpeed => movementSpeed;
+    [Tooltip("Temps du respawn des players en seconde")]
+    [SerializeField] private float respawnDelay = 2;
+    public float RespawnDelay => respawnDelay;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
     public float DeadZoneController => deadZoneController;

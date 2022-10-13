@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     [HideInInspector] public int playerID;
 
     [Header("Variables Game Feel")]
-    [Tooltip("Temps du respawn des players en seconde")]
-    public float respawnDelay = 2;
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
@@ -20,7 +18,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator RespawnDelay()
     {
-        yield return new WaitForSeconds(respawnDelay);
+        yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = GameManager.instance.RandomSpawn().position;
