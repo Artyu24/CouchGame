@@ -7,6 +7,8 @@ using UnityEngine.Playables;
 public class PlayerAttack : MonoBehaviour
 {
     #region Variable
+
+    [Header("Variables Game Feel")]
     [Header("Variable")]
     [SerializeField] private float normalStrenght;
     [SerializeField] private float specialStrenght;
@@ -16,7 +18,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("Range")]
     [SerializeField] private float range = 0.1f;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField][Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")] private float sideRangeDeg = 20.0f;
+    [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
+    [SerializeField] private float sideRangeDeg = 20.0f;
     private float middleDirAngle;
     #endregion
 

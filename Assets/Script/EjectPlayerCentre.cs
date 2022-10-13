@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EjectPlayerCentre : MonoBehaviour
 {
+    [Header("Variables Game Feel")]
     [Tooltip("Temps en seconde que doit rester le joueur dans la zone pour éjecter le joueur dans le centre")]
-    [SerializeField]
-    private float SecondToEject;
+    [SerializeField] private float SecondToEject;
 
     public void OnTriggerEnter(Collider other)
     {
