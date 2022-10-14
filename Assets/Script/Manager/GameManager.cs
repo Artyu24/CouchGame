@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
     [Tooltip("Liste des plaques d'ejection du player au centre")]
     [SerializeField] private GameObject[] ejectPlates;
     
-
     [HideInInspector] public int ejectPlatesActive = 0;
 
     public GameObject[] TabCircle => tabCircle;

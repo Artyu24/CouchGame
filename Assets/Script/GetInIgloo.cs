@@ -27,6 +27,7 @@ public class GetInIgloo : MonoBehaviour
             {
                 GameManager.instance.EjectPlates[i].SetActive(true);
                 GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
+                GameManager.instance.EjectPlates[i].GetComponent<BoxCollider>().enabled = true;
             }
 
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
