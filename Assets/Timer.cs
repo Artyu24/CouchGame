@@ -28,7 +28,10 @@ public class Timer : MonoBehaviour
             Time.timeScale = 1;
         }
         GameManager.instance.Timer -= Time.deltaTime;
-        timerText.text = $"{GameManager.instance.Timer / 60:00} : {GameManager.instance.Timer % 60:00}";
+        int minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
+        int seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
+        
+        timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
     private IEnumerator ReloadScene()

@@ -16288,14 +16288,15 @@ MonoBehaviour:
   respawnDelay: 2
   deadZoneController: 0.3
   timer: 150
+  numberOfPlate: 3
   activatedColor: {r: 0.101122975, g: 1, b: 0, a: 0}
   activeColor: {r: 1, g: 0, b: 0, a: 0}
   colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
   baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
   range: 2.5
-  sideRangeDeg: 20
+  sideRangeDeg: 30
   normalStrenght: 8
-  specialStrenght: 8
+  specialStrenght: 12
   attackCd: 1
   tabCircle:
   - {fileID: 1007933571}
