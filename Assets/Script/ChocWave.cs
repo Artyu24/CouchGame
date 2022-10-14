@@ -13,40 +13,30 @@ public class ChocWave : MonoBehaviour
     public Transform transparence;
 
     private void Start()
-    {
-        sphereCollider.radius = 0f;
+    {        
         transparence.localScale = new Vector3(0, 0, 0);
     }
 
     private void Update()
     {
-        if(sphereCollider.radius < radiusMax)
-        {
-            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;
-            transparence.localScale = new Vector3(sphereCollider.radius, sphereCollider.radius, sphereCollider.radius);
-
-
-
+        if(transparence.localScale.x < radiusMax)
+        {            
+            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * growingSpeed, transparence.localScale.y + Time.deltaTime * growingSpeed, transparence.localScale.z + Time.deltaTime * growingSpeed);
         }
-        if (getPushed == true)
-        {
-            //Destroy(gameObject);
-            //a changer quand on aura les player
-            //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
-        }
+        //if (getPushed == true)
+        //{
+        //    //Destroy(gameObject);
+        //    //a changer quand on aura les player
+        //    //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
+        //}
 
-        if(sphereCollider.radius >= radiusMax)
+        if(transparence.localScale.x >= radiusMax)
         {
             getPushed = false;
             Destroy(gameObject);
         }
     }
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
-        
-    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if(getPushed == false)
