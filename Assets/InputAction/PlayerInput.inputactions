@@ -209,39 +209,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Rotatipn_Circle_Joystick",
-                    "id": "2b880b18-284b-4534-9df1-386c81eac003",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotation",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "c0b693b0-fe02-481a-91c1-7d4b01da9e4d",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "CircularScheme",
-                    "action": "Rotation",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "negative",
-                    "id": "9fb4a9ba-2519-4150-a2be-6099ef34456d",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "CircularScheme",
-                    "action": "Rotation",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "Switch_Circle",
                     "id": "e2aa9cef-3a0e-4c6c-a80e-990bd31ce729",
                     "path": "1DAxis",
@@ -267,39 +234,6 @@
                     "name": "negative",
                     "id": "d65bdaef-d64d-4d02-82e2-2541e6cd914c",
                     "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "CircularScheme",
-                    "action": "Switch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Switch_Circle_Joystick",
-                    "id": "e9216f38-b723-4330-bf91-04bf8753fd2a",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Switch",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "b056a429-def9-4b85-a6b2-99a4bda76361",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "CircularScheme",
-                    "action": "Switch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "e7afa06e-de86-4363-b8db-e024c1b87bca",
-                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "CircularScheme",
