@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5251401784062500209}
   - component: {fileID: 181805189}
   - component: {fileID: 7534642234813016138}
+  - component: {fileID: -1332834367385738243}
   m_Layer: 10
   m_Name: LeDaron
   m_TagString: LostPlayer
@@ -277,6 +278,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1332834367385738243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685385915726475695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b9253934b5769408110e6d608b7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5392766852885401381
 GameObject:
   m_ObjectHideFlags: 0
