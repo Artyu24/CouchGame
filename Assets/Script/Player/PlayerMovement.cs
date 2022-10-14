@@ -17,10 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 movementInput;
     private Quaternion orientation;
-    private int actualCircle;
     private float rotation = 0;
-
-
+    private int actualCircle;
+    public int ActualCircle => actualCircle;
 
     bool isInteracting = false;
 

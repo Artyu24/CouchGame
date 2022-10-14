@@ -27,12 +27,14 @@ public class GetInIgloo : MonoBehaviour
             {
                 GameManager.instance.EjectPlates[i].SetActive(true);
                 GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
+                GameManager.instance.EjectPlates[i].GetComponent<BoxCollider>().enabled = true;
             }
 
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
-            Debug.Log("PlayerState : " + other.GetComponent<Player>().ActualPlayerState);
-
             other.GetComponent<Player>().HideGuy(false);
+
+            GameManager.instance.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
+            GameManager.instance.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
 
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
             OnVibrate();

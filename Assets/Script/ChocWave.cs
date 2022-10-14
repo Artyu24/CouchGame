@@ -10,18 +10,22 @@ public class ChocWave : MonoBehaviour
     //public GameObject player;
     public float pushForce;
     bool getPushed = false;
+    public Transform transparence;
 
     private void Start()
     {
         sphereCollider.radius = 0f;
+        transparence.localScale = new Vector3(0, 0, 0);
     }
 
     private void Update()
     {
         if(sphereCollider.radius < radiusMax)
         {
-            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;   
- 
+            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;
+            transparence.localScale = new Vector3(sphereCollider.radius, sphereCollider.radius, sphereCollider.radius);
+
+
 
         }
         if (getPushed == true)
@@ -37,12 +41,12 @@ public class ChocWave : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
         
-    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if(getPushed == false)

@@ -23,17 +23,25 @@ public class GameManager : MonoBehaviour
     public float RespawnDelay => respawnDelay;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
+    [Tooltip("Temps pour 1 manche en seconde (donc pour une game de 2min30 => 150 sec)")]
+    [SerializeField] private float timer;
+    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
+    [SerializeField] private int numberOfPlate = 3;
     [Tooltip("Couleur que prend la zone quand elle est activée")]
     [SerializeField] private Color activatedColor;
     [Tooltip("Couleur que prend la zone quand elle est spawn")]
     [SerializeField]  private Color activeColor;
-    public Color ActivatedColor => activatedColor;
-    public Color ActiveColor => activeColor;
 
     public float DeadZoneController => deadZoneController;
+    public float Timer { get => timer; set => timer = value; }
+
+    public int NumberOfPlate => numberOfPlate;
+
     [SerializeField] private Material colorMaterial, baseMaterial;
     public Material ColorMaterial => colorMaterial;
     public Material BaseMaterial => baseMaterial;
+    public Color ActivatedColor => activatedColor;
+    public Color ActiveColor => activeColor;
 
     #region Attack
     [Header("Attack Variable")]
@@ -63,12 +71,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Liste des plaques d'ejection du player au centre")]
     [SerializeField] private GameObject[] ejectPlates;
-
+    
     [HideInInspector] public int ejectPlatesActive = 0;
 
     public GameObject[] TabCircle => tabCircle;
     public Transform[] SpawnList => spawnList;
     public GameObject[] EjectPlates => ejectPlates;
+
 
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
