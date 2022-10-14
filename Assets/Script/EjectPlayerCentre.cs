@@ -24,11 +24,13 @@ public class EjectPlayerCentre : MonoBehaviour
                 GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
                 GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
                 GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
-                foreach (GameObject circle in GameManager.instance.TabCircle)
+
+                for (int i = 0; i < GameManager.instance.TabCircle.Length; i++)
 	            {
-	                circle.GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
-	                circle.GetComponent<Outline>().enabled = false;
+                    GameManager.instance.TabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
+                    GameManager.instance.TabCircle[i].GetComponent<Outline>().enabled = false;
 	            }
+
                 for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
                 {
                     GameManager.instance.ejectPlatesActive = 0;

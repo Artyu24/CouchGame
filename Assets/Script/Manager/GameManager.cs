@@ -37,9 +37,11 @@ public class GameManager : MonoBehaviour
 
     public int NumberOfPlate => numberOfPlate;
 
-    [SerializeField] private Material colorMaterial, baseMaterial;
-    public Material ColorMaterial => colorMaterial;
-    public Material BaseMaterial => baseMaterial;
+    private List<Color> tabMaterialColor = new List<Color>();
+    public List<Color> TabMaterialColor => tabMaterialColor;
+    [SerializeField] private Color colorCircleChoose;
+    public Color ColorCircleChoose => colorCircleChoose;
+
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
 
@@ -85,6 +87,11 @@ public class GameManager : MonoBehaviour
     {   
         if (instance == null)
             instance = this;
+
+        foreach (GameObject circle in TabCircle)
+        {
+            tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
+        }
     }
 
     public void AddPlayer()
