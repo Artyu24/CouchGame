@@ -34,7 +34,7 @@ public class GetInIgloo : MonoBehaviour
             other.GetComponent<Player>().HideGuy(false);
 
             GameManager.instance.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
-            GameManager.instance.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
+            GameManager.instance.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
 
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
             OnVibrate();
