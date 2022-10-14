@@ -24,8 +24,7 @@ public class PointArea : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
-            PointAreaManager.instance.Spawn();
-
+            PointAreaManager.instance.StartNextSpawn();
         }
     }
 }
