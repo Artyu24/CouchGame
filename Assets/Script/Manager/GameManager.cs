@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public float RespawnDelay => respawnDelay;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
+    [Tooltip("Temps pour 1 manche en seconde (donc pour une game de 2min30 => 150 sec)")]
+    [SerializeField] private float timer;
     [Tooltip("Couleur que prend la zone quand elle est activée")]
     [SerializeField] private Color activatedColor;
     [Tooltip("Couleur que prend la zone quand elle est spawn")]
@@ -63,12 +65,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Liste des plaques d'ejection du player au centre")]
     [SerializeField] private GameObject[] ejectPlates;
+    
 
     [HideInInspector] public int ejectPlatesActive = 0;
 
     public GameObject[] TabCircle => tabCircle;
     public Transform[] SpawnList => spawnList;
     public GameObject[] EjectPlates => ejectPlates;
+
+    public float Timer { get => timer; set => timer = value; }
 
     private Dictionary<int, Player> players = new Dictionary<int, Player>();
 
