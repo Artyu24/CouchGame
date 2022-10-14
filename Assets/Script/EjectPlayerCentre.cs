@@ -4,24 +4,40 @@ using UnityEngine;
 
 public class EjectPlayerCentre : MonoBehaviour
 {
-    private GameObject playerCentre;
+    private BoxCollider bc;
 
-    [Tooltip("Temps en seconde que doit rester le joueur dans la zone pour éjecter le joueur dans le centre")]
-    [SerializeField]
-    private float SecondToEject;
+    private void Start()
+    {
+        bc = GetComponent<BoxCollider>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
         {
-            //palyerCentre.SwitchModePlayerToModeCente(false);
-            Debug.Log("Player au centre éjecté !");
-            Destroy(this);
-        }
-    }
+            GameManager.instance.ejectPlatesActive++;
+            bc.enabled = false;
+            GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
 
-    private IEnumerator WaitForExpulse()
-    {
-        yield return new WaitForSeconds(SecondToEject);
+            if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
+            {
+                GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
+                GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+                GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+                foreach (GameObject circle in GameManager.instance.TabCircle)
+	            {
+	                circle.GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
+	                circle.GetComponent<Outline>().enabled = false;
+	            }
+                for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
+                {
+                    GameManager.instance.ejectPlatesActive = 0;
+                    GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
+                    GameManager.instance.EjectPlates[i].SetActive(false);
+                }
+                GameManager.instance.PlayerInMiddle = null;
+                Debug.Log("Player au centre éjecté !");
+            }
+        }
     }
 }

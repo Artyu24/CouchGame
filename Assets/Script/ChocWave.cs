@@ -7,7 +7,7 @@ public class ChocWave : MonoBehaviour
     public SphereCollider sphereCollider;
     public float radiusMax;
     public float growingSpeed;
-    public GameObject player;
+    //public GameObject player;
     public float pushForce;
     bool getPushed = false;
 
@@ -33,25 +33,24 @@ public class ChocWave : MonoBehaviour
 
         if(sphereCollider.radius >= radiusMax)
         {
-            Destroy(gameObject);
             getPushed = false;
+            Destroy(gameObject);
         }
     }
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
         
-        
-    //}
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(getPushed == false)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                Vector3 push = (player.transform.position - sphereCollider.transform.position).normalized;
-                player.GetComponent<Rigidbody>().AddForce(push * pushForce);
+                Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
+                other.GetComponent<Rigidbody>().AddForce(push * pushForce);
                 getPushed = true;
 
             }

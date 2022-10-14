@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead46b7040b5b1147a8a6c75eb0fe61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: a1f2925081e4df743991d9b2e549b963, type: 2}
+  baseMaterial: {fileID: 2100000, guid: d03deb48fa3b3034cb36795dc4d3308f, type: 2}
   speed: 50
 --- !u!114 &240819831020419034
 MonoBehaviour:
@@ -156,6 +158,18 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef
+    m_ActionName: Player/Attack[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9a6496e-2367-4aa3-a1e5-0c73429c7f18
+    m_ActionName: Player/Special Attack[/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7562432766065648255}
         m_TargetAssemblyTypeName: CircleMovement, Assembly-CSharp
@@ -169,8 +183,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: bdc2f649-d3a5-4e1d-a974-98c61b7c7c35
-    m_ActionName: Circle/Rotation[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonEast]
+    m_ActionId: 0485588a-b5ee-4fbc-91a5-7715d7e0a90c
+    m_ActionName: Player/Rotation[/XInputControllerWindows/dpad/right,/XInputControllerWindows/dpad/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/left]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7562432766065648255}
@@ -185,22 +199,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 106136fa-715e-4a55-955c-3b0bfb2cb4c7
-    m_ActionName: Circle/Switch
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf
-    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef
-    m_ActionName: Player/Attack[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b9a6496e-2367-4aa3-a1e5-0c73429c7f18
-    m_ActionName: Player/Special Attack[/XInputControllerWindows/rightShoulder]
+    m_ActionId: 218dd42a-e25d-495a-800c-88d0f9fad91a
+    m_ActionName: Player/Switch[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
-  m_DefaultActionMap: Circle
+  m_DefaultActionMap: 3baab267-783c-4dd9-912b-b24f90ff0e90
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
