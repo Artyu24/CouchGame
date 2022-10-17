@@ -20687,34 +20687,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a3e3af94f4b3f4faaa3095315063c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleRotationSpeed: 20
-  movementSpeed: 4
-  respawnDelay: 2
-  deadZoneController: 0.3
   timer: 150
-  numberOfPlate: 3
-  activatedColor: {r: 0.22345018, g: 1, b: 0, a: 1}
-  activeColor: {r: 1, g: 0, b: 0, a: 1}
-  colorCircleChoose: {r: 0.8784314, g: 0.69803923, b: 0.70980394, a: 1}
+  deadZoneController: 0.3
   range: 2.5
   sideRangeDeg: 20
   normalStrenght: 8
   specialStrenght: 12
   attackCd: 1
-  tabCircle:
-  - {fileID: 613016172}
-  - {fileID: 1007933571}
-  - {fileID: 948263123}
   spawnList:
   - {fileID: 241461361}
   - {fileID: 997364444}
   - {fileID: 525964923}
   - {fileID: 1486995618}
   - {fileID: 553621548}
+  movementSpeed: 4
+  respawnDelay: 2
+  tabCircle:
+  - {fileID: 613016172}
+  - {fileID: 1007933571}
+  - {fileID: 948263123}
+  circleRotationSpeed: 20
+  colorCircleChoose: {r: 0.8784314, g: 0.69803923, b: 0.70980394, a: 1}
   ejectPlates:
   - {fileID: 1735257105}
   - {fileID: 1659100424}
   - {fileID: 172715590}
+  numberOfPlate: 3
+  activatedColor: {r: 0.22345018, g: 1, b: 0, a: 1}
+  activeColor: {r: 1, g: 0, b: 0, a: 1}
   ejectPlatesActive: 0
 --- !u!4 &1853587974
 Transform:
