@@ -12,9 +12,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
     public static GameManager instance;
-    private GameObject playerInMiddle;
     private GameState actualGameState = GameState.MENU;
-    public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
@@ -37,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
     #endregion
+
     #region Player
     [Header("Variables des Players")]
 
@@ -84,6 +83,23 @@ public class GameManager : MonoBehaviour
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
 
+
+    #endregion
+    #region Middle
+    [Header("Variable de l'Igloo")]
+
+    [Tooltip("Main Camera du jeu")]
+    [SerializeField] private Camera cameraScene;
+    [Tooltip("Variable pour augmenter ou diminuer le shake de la cam")]
+    public float shakePower = 0.05f;
+    [Tooltip("Variable pour augmenter ou diminuer le temps du shake de la cam")]
+    public float shakeDuration = 0.5f;
+    private GameObject playerInMiddle;
+
+    public Camera CameraScene { get => cameraScene; set => cameraScene = value; }
+    public float ShakePower => shakePower;
+    public float ShakeDuration => shakeDuration;
+    public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
 
