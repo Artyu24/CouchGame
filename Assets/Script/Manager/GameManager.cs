@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
     #region GameManager
     [Header("Variables du Game Manager")]
 
-    public static GameManager instance;
-    private GameObject playerInMiddle;
-    private GameState actualGameState = GameState.MENU;
     [Tooltip("Temps pour 1 manche en seconde (donc pour une game de 2min30 => 150 sec)")]
     [SerializeField] private float timer;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
+    public static GameManager instance;
+    private GameObject playerInMiddle;
+    private GameState actualGameState = GameState.MENU;
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
