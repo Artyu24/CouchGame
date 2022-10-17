@@ -5,7 +5,6 @@ using UnityEngine;
 public class EjectPlayerCentre : MonoBehaviour
 {
     private BoxCollider bc;
-
     private void Start()
     {
         bc = GetComponent<BoxCollider>();
