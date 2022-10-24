@@ -17,10 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 movementInput;
     private Quaternion orientation;
-    private int actualCircle;
     private float rotation = 0;
-
-
+    private int actualCircle;
+    public int ActualCircle => actualCircle;
 
     bool isInteracting = false;
 
@@ -84,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             if (context.started)
             {
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
@@ -95,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
                     actualCircle += (int)nextCircle;
 
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
             }
         }
     }

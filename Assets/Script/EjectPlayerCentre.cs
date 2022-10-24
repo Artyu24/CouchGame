@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class EjectPlayerCentre : MonoBehaviour
 {
-    [Header("Variables Game Feel")]
-    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
-    public int numberOfPlate = 3;
+    private BoxCollider bc;
+    private void Start()
+    {
+        bc = GetComponent<BoxCollider>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
         {
             GameManager.instance.ejectPlatesActive++;
+            bc.enabled = false;
             GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
 
-            if (GameManager.instance.ejectPlatesActive >= numberOfPlate)
+            if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
                 GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
                 GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
                 GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
-                foreach (GameObject circle in GameManager.instance.TabCircle)
+
+                for (int i = 0; i < GameManager.instance.TabCircle.Length; i++)
 	            {
-	                circle.GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
-	                circle.GetComponent<Outline>().enabled = false;
+                    GameManager.instance.TabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
+                    GameManager.instance.TabCircle[i].GetComponent<Outline>().enabled = false;
 	            }
+
                 for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
                 {
                     GameManager.instance.ejectPlatesActive = 0;

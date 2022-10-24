@@ -406,7 +406,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29612
+  m_Name: pb_Mesh29138
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10753,7 +10753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29580
+  m_Name: pb_Mesh29106
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15981,7 +15981,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29640
+  m_Name: pb_Mesh29166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16554,16 +16554,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleRotationSpeed: 5
   movementSpeed: 20
+  respawnDelay: 2
   deadZoneController: 0.3
-  tabCicle:
-  - {fileID: 1007933571}
-  - {fileID: 613016172}
+  timer: 0
+  numberOfPlate: 3
+  activatedColor: {r: 0, g: 0, b: 0, a: 0}
+  activeColor: {r: 0, g: 0, b: 0, a: 0}
+  colorMaterial: {fileID: 0}
+  baseMaterial: {fileID: 0}
+  range: 0.1
+  sideRangeDeg: 20
+  normalStrenght: 0
+  specialStrenght: 0
+  attackCd: 1.5
+  tabCircle: []
   spawnList:
   - {fileID: 241461361}
   - {fileID: 997364444}
   - {fileID: 525964923}
   - {fileID: 1486995618}
   - {fileID: 553621548}
+  ejectPlates: []
+  ejectPlatesActive: 0
 --- !u!4 &1853587974
 Transform:
   m_ObjectHideFlags: 0
