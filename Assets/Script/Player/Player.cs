@@ -10,11 +10,6 @@ public class Player : MonoBehaviour
 
     [Header("Variables Game Feel")]
 
-    [Tooltip("Point gagner par le joueur est au milieu")]
-    public int scoreMiddle;
-    [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
-    public float middelPointsCooldown;
-
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
 
@@ -35,12 +30,5 @@ public class Player : MonoBehaviour
     {
         GetComponent<CapsuleCollider>().enabled = enable;
         GetComponentInChildren<MeshRenderer>().enabled = enable;
-    }
-
-    private IEnumerator MoreScore()
-    {
-        yield return new WaitForSeconds(middelPointsCooldown);
-        ScoreManager.instance.AddScore(scoreMiddle, this);
-        actualPlayerState = PlayerState.FIGHTING;
     }
 }
