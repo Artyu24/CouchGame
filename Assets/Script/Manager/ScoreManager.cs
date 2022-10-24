@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     public int scoreMiddle = 10;
     [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
     public float middelPointsCooldown = 2;
+    public int scoreKill = 10;
     private bool addMiddleScore = true;
     public GameObject scoreParent1/*, scoreParent2, scoreParent3, scoreParent4*/;
 

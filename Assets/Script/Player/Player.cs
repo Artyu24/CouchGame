@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -24,6 +25,12 @@ public class Player : MonoBehaviour
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = GameManager.instance.RandomSpawn().position;
+
+        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
+        {
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
+            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
+        }
     }
 
     public void HideGuy(bool enable)
