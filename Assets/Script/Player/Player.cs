@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [HideInInspector] public int playerID;
 
-    [HideInInspector]  public int score = 0;
+    public int score = 0;
 
     [Header("Variables Game Feel")]
 
