@@ -15,6 +15,6 @@ public class ChangingColor : MonoBehaviour
         activeColor.r = red;
         activeColor.b = blue;
         activeColor.g = green;
-        GetComponent<MeshRenderer>().material.color = activeColor;
+        GetComponentInChildren<MeshRenderer>().material.color = activeColor;
     }
 }
