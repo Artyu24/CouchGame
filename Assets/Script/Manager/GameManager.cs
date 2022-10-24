@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         manettes.Add(Gamepad.current);
-        Debug.Log("manette  : " + Gamepad.current);
+        //Debug.Log("manette  : " + Gamepad.current);
         Player dataPlayer = player.GetComponent<Player>();
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         player.tag = "Player";
+        ScoreManager.instance.UpdateScores();
     }
 
     public Transform RandomSpawn()
@@ -151,6 +152,4 @@ public class GameManager : MonoBehaviour
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
     }
-
-
 }
