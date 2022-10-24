@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,11 +37,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
     #endregion
-
     #region Player
     [Header("Variables des Players")]
 
-    private Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse de d�placement des joueurs")]
     [SerializeField] private float movementSpeed;
@@ -56,12 +57,12 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Liste des anneaux du terrain")]
     [SerializeField] private GameObject[] tabCircle;
+    public GameObject[] TabCircle => tabCircle;
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     [Tooltip("...")]
     [SerializeField] private Color colorCircleChoose;
     private List<Color> tabMaterialColor = new List<Color>();
-    public GameObject[] TabCircle => tabCircle;
     public float CircleRotationSpeed => circleRotationSpeed;
     public Color ColorCircleChoose => colorCircleChoose;
     public List<Color> TabMaterialColor => tabMaterialColor;
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
 
+    public List<Gamepad> manettes = new List<Gamepad>();
 
     #endregion
     #region Middle
@@ -117,6 +119,8 @@ public class GameManager : MonoBehaviour
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
+        manettes.Add(Gamepad.current);
+        //Debug.Log("manette  : " + Gamepad.current);
         Player dataPlayer = player.GetComponent<Player>();
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         player.tag = "Player";
+        ScoreManager.instance.UpdateScores();
     }
 
     public Transform RandomSpawn()
@@ -147,6 +152,4 @@ public class GameManager : MonoBehaviour
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
     }
-
-
 }

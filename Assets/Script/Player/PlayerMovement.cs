@@ -39,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.deltaTime * GameManager.instance.MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * GameManager.instance.MovementSpeed);
             transform.rotation = orientation;
         }
 
