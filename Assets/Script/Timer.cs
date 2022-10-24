@@ -69,13 +69,13 @@ public class Timer : MonoBehaviour
             temp.name = "Player " + (p + 1);
         }
 
+
+
+
         /*for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
             scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i + 1].score;
         }*/
-
-
-
     }
 
     private IEnumerator ReloadScene()
