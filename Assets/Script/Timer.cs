@@ -8,11 +8,12 @@ public class Timer : MonoBehaviour
 {
     private Text timerText;
     private float timerBegin;
-    private bool scoreWindowIsActive = false;
-    [SerializeField] private GameObject scoreWindow;
-    [SerializeField] private GameObject textParent;
+    private bool scoreWindowRoundIsActive = false;
+    private bool scoreWindowGeneralIsActive = false;
+    [SerializeField] private GameObject scoreWindowRound, scoreWindowGeneral;
+    [SerializeField] private GameObject textParentRound, textParentGeneral;
     private Text[] scorePlayerText = new Text[4];
-    public GameObject finalScoreTextPrefab;
+    public GameObject roundScoreTextPrefab, generalScoreTextPrefab;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.Timer <= 0.0f && !scoreWindowIsActive)
+        if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
         {
             Time.timeScale = 0;
             PrintScoreWindow();
@@ -40,11 +41,11 @@ public class Timer : MonoBehaviour
 
     private void PrintScoreWindow()
     {
-        scoreWindowIsActive = true;
-        scoreWindow.SetActive(scoreWindowIsActive);
+        scoreWindowRoundIsActive = true;
+        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
         for (int p = 0; p < GameManager.instance.players.Count; p++)
         {
-            GameObject temp = Instantiate(finalScoreTextPrefab, textParent.transform);
+            GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
             scorePlayerText[p] = temp.GetComponent<Text>();
             temp.name = "Player " + (p + 1);
         }
@@ -53,6 +54,28 @@ public class Timer : MonoBehaviour
         {
             scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i + 1].score;
         }
+    }
+
+    private void PrintGeneralScoreWindow()
+    {
+        scoreWindowRoundIsActive = false;
+        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
+        scoreWindowGeneralIsActive = true;
+        scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
+        for (int p = 0; p < GameManager.instance.players.Count; p++)
+        {
+            GameObject temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
+            scorePlayerText[p] = temp.GetComponent<Text>();
+            temp.name = "Player " + (p + 1);
+        }
+
+        /*for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i + 1].score;
+        }*/
+
+
+
     }
 
     private IEnumerator ReloadScene()
