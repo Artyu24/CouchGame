@@ -8,6 +8,11 @@ public class Timer : MonoBehaviour
 {
     private Text timerText;
     private float timerBegin;
+    private bool scoreWindowIsActive = false;
+    [SerializeField] private GameObject scoreWindow;
+    [SerializeField] private GameObject textParent;
+    private Text[] scorePlayerText = new Text[4];
+    public GameObject finalScoreTextPrefab;
 
     private void Awake()
     {
@@ -21,16 +26,33 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.Timer <= 0.0f)
+        if (GameManager.instance.Timer <= 0.0f && !scoreWindowIsActive)
         {
-            StartCoroutine(ReloadScene());
-            Time.timeScale = 1;
+            Time.timeScale = 0;
+            PrintScoreWindow();
         }
         GameManager.instance.Timer -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
         int seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
         
         timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    private void PrintScoreWindow()
+    {
+        scoreWindowIsActive = true;
+        scoreWindow.SetActive(scoreWindowIsActive);
+        for (int p = 0; p < GameManager.instance.players.Count; p++)
+        {
+            GameObject temp = Instantiate(finalScoreTextPrefab, textParent.transform);
+            scorePlayerText[p] = temp.GetComponent<Text>();
+            temp.name = "Player " + (p + 1);
+        }
+
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i + 1].score;
+        }
     }
 
     private IEnumerator ReloadScene()
