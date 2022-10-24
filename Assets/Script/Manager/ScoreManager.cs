@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public Text[] scorePlayerText = new Text[4];
     public GameObject scoreTextPrefab;
-    public GameObject scoreParent;
+    public GameObject scoreParent1/*, scoreParent2, scoreParent3, scoreParent4*/;
 
     public static ScoreManager instance;
 
@@ -15,15 +15,13 @@ public class ScoreManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
-
     }
 
     void Start()
     {
         for (int p = 0; p < 4 /*GameManager.instance.players.Count*/; p++)
         {
-            GameObject temp = Instantiate(scoreTextPrefab, scoreParent.transform);
+            GameObject temp = Instantiate(scoreTextPrefab, scoreParent1.transform);
             scorePlayerText[p] = temp.GetComponent<Text>();
             temp.name = "Player " + (p + 1);
         }

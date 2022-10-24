@@ -196,6 +196,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
+  score: 0
+  scoreMiddle: 10
+  middelPointsCooldown: 2
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b9253934b5769408110e6d608b7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5392766852885401381
 GameObject:
   m_ObjectHideFlags: 0
