@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,7 @@ public class LD_Tool : EditorWindow
 
         if (prefab != null)
         {
-            float patate = EditorGUILayout.FloatField("Taille ", prefab.GetComponent<ProBuilderShape>().size.x);
+            //float patate = EditorGUILayout.FloatField("Taille ", prefab.GetComponent<ProBuilderShape>().size.x);
         }
     }
 

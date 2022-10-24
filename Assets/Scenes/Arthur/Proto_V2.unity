@@ -5755,7 +5755,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33042
+  m_Name: pb_Mesh29310
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11552,9 +11552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512ceeb6e2ff34e4f922f7e767eb910e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraScene: {fileID: 661453171}
-  shakePower: 0.05
-  shakeDuration: 0.5
 --- !u!135 &1531707272
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11781,6 +11778,9 @@ MonoBehaviour:
   activatedColor: {r: 0.22345018, g: 1, b: 0, a: 1}
   activeColor: {r: 1, g: 0, b: 0, a: 1}
   ejectPlatesActive: 0
+  cameraScene: {fileID: 0}
+  shakePower: 0.05
+  shakeDuration: 0.5
 --- !u!4 &1853587974
 Transform:
   m_ObjectHideFlags: 0
