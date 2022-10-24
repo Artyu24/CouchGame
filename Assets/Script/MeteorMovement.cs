@@ -11,39 +11,33 @@ public class MeteorMovement : MonoBehaviour
     public bool explosion = false;
     ChocWave choc;
     public GameObject explos;
-    public bool targetFind = false;
-    
+
     void Update()
     {
-        if(targetFind == false)
-        {            
-            MovePlanete();
+        if(nextPos != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nextPos.position, speed * Time.deltaTime);
         }
-        transform.position = Vector3.MoveTowards(transform.position, nextPos.position, speed * Time.deltaTime);
     }
-    void MovePlanete()
+    public void MovePlanete(int i)
     {
-        int ran = Random.Range(1, 5);
-        switch (ran)
+        
+        switch (i)
         {
 
             case 1:
-                targetFind = true;
                 nextPos = position[0];
                 break;
 
             case 2:
-                targetFind = true;
                 nextPos = position[1];
                 break;
 
             case 3:
-                targetFind = true;
                 nextPos = position[2];
                 break;
 
             case 4:
-                targetFind = true;
                 nextPos = position[3];
                 break;
         }

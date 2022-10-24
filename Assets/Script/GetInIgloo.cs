@@ -8,6 +8,8 @@ public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
 
+    private Player playerInMid;
+
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
     public void OnTriggerEnter(Collider other)
     {
@@ -31,6 +33,7 @@ public class GetInIgloo : MonoBehaviour
             //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
             OnVibrate();
             StartCoroutine(ShakeCam());
+            playerInMid = other.GetComponent<Player>();
         }
     }
 
