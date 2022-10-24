@@ -150,7 +150,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181805183}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnMeteorite
+        m_MethodName: Meteo4
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -178,6 +178,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 679814ab-779a-4e63-a702-310c790b2e49
     m_ActionName: Player/ChocWave[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181805183}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Meteo2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 56e39e2b-9c2e-419a-9d97-9a17351b5751
+    m_ActionName: Player/MeteoriteSouth[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181805183}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Meteo3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4790957a-f69e-409b-a810-09de049053c9
+    m_ActionName: Player/MeteoriteEast[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 181805183}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Meteo1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 063a562e-2088-4ce3-8626-f895dc80dc52
+    m_ActionName: Player/MeteoriteWest[/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
   m_DefaultActionMap: Player
@@ -209,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  interactionCD: 8
+  interactionCD: 2
   meteorite: {fileID: 8503794699829721347, guid: eb3588bd443fbe24889136fd5263bde5,
     type: 3}
   departChoc: {fileID: 7040533958992175993, guid: 9b6d042ec6d22584c944815493275216,
@@ -290,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b9253934b5769408110e6d608b7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5392766852885401381
 GameObject:
   m_ObjectHideFlags: 0

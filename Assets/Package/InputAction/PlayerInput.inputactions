@@ -57,9 +57,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Meteorite",
+                    "name": "MeteoriteNorth",
                     "type": "Button",
                     "id": "9db291d6-ed9f-40d9-882a-9fe9aa028d1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MeteoriteSouth",
+                    "type": "Button",
+                    "id": "56e39e2b-9c2e-419a-9d97-9a17351b5751",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MeteoriteEast",
+                    "type": "Button",
+                    "id": "4790957a-f69e-409b-a810-09de049053c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MeteoriteWest",
+                    "type": "Button",
+                    "id": "063a562e-2088-4ce3-8626-f895dc80dc52",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -244,22 +271,55 @@
                 {
                     "name": "",
                     "id": "9194bcd4-9c4a-4a2c-b77c-97be63814d1c",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Meteorite",
+                    "action": "MeteoriteNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "b32aa6c7-d599-450c-bee3-7a10daa37b6c",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ChocWave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "079317b9-3631-47df-bc15-c67091a9562d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MeteoriteSouth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "085401e0-65fc-4bb6-8e83-520ed15a7680",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MeteoriteEast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18dc9006-3253-4000-af50-3635032e710a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MeteoriteWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
