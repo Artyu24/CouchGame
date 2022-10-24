@@ -57,12 +57,12 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Liste des anneaux du terrain")]
     [SerializeField] private GameObject[] tabCircle;
+    public GameObject[] TabCircle => tabCircle;
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     [Tooltip("...")]
     [SerializeField] private Color colorCircleChoose;
     private List<Color> tabMaterialColor = new List<Color>();
-    public GameObject[] TabCircle => tabCircle;
     public float CircleRotationSpeed => circleRotationSpeed;
     public Color ColorCircleChoose => colorCircleChoose;
     public List<Color> TabMaterialColor => tabMaterialColor;
