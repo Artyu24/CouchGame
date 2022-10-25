@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [SerializeField] private Transform[] spawnList = new Transform[] { };
-    [Tooltip("Vitesse de d�placement des joueurs")]
+    [Tooltip("Vitesse de déplacement des joueurs")]
     [SerializeField] private float movementSpeed;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;

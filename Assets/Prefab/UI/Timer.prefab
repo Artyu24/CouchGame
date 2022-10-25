@@ -93,3 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61548388566ac74ba61cbed29cf37ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreWindowRound: {fileID: 0}
+  scoreWindowGeneral: {fileID: 0}
+  textParentRound: {fileID: 0}
+  textParentGeneral: {fileID: 0}
+  roundScoreTextPrefab: {fileID: 6026816814468351564, guid: 78508db7605d06c448622a66f51175bd,
+    type: 3}
+  generalScoreTextPrefab: {fileID: 2036963654598244154, guid: ea504755cb8d4cb4381086a409dcbe99,
+    type: 3}
