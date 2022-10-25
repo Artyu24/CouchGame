@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject textParentRound, textParentGeneral;
     private Text[] scorePlayerText = new Text[4];
     private Text[] scoreGeneralPlayerText = new Text[4];
-    public GameObject roundScoreTextPrefab, generalScoreTextPrefab, medalIcon;
+    public GameObject roundScoreTextPrefab, generalScoreTextPrefab, goldMedalIcon, silverMedalIcon, copperMedalIcon;
 
     private void Awake()
     {
@@ -74,6 +74,14 @@ public class Timer : MonoBehaviour
 
         GameObject temp = null;
 
+        //Mettre dans l'ordre les joueurs par points
+        //Idee : creer un tableau/liste qui va accueillir les joueurs dans le bonne ordre
+        //c'est celui la qui va etre utilisé pour afficher les joueurs sur score generale
+        /*for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            Mathf.Max(GameManager.instance.players[i].score, GameManager.instance.players[i + 1].score);
+        }*/
+
         for (int p = 0; p < GameManager.instance.players.Count; p++)
         {
             temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
@@ -82,15 +90,13 @@ public class Timer : MonoBehaviour
 
             for(int i = 0; i < GameManager.instance.players.Count; i++)
             {
-                Debug.Log("add medal");
                 for (int j = 0; j < (GameManager.instance.players[p+1].score/10); j++)
                 {
-                    GameObject temp2 = Instantiate(medalIcon, temp.transform);
+                    GameObject temp2 = Instantiate(goldMedalIcon, temp.transform);
                     GameManager.instance.players[p + 1].scoreGeneral++;
                 }
             }
         }
-        
     }
 
     private IEnumerator ReloadScene()
