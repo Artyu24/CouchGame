@@ -16051,7 +16051,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55618
+  m_Name: pb_Mesh36866
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16278,6 +16278,11 @@ PrefabInstance:
       objectReference: {fileID: 661453171}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
+      propertyPath: maxMovementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
       propertyPath: spawnList.Array.data[0]
       value: 
       objectReference: {fileID: 241461361}
@@ -16469,6 +16474,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ---UI---
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728313912059628572, guid: 7c447ba96b9b3624e93b82b3ad906524,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
