@@ -6,18 +6,23 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    #region Timer
     private Text timerText;
     private Text timerSet;
     private float timerBegin;
     private int minutes, seconds;
+    #endregion
 
+    #region Scoreboard
     private bool scoreWindowRoundIsActive = false;
     private bool scoreWindowGeneralIsActive = false;
     [SerializeField] private GameObject scoreWindowRound, scoreWindowGeneral;
     [SerializeField] private GameObject textParentRound, textParentGeneral;
     private Text[] scorePlayerText = new Text[4];
     private Text[] scoreGeneralPlayerText = new Text[4];
-    public GameObject roundScoreTextPrefab, generalScoreTextPrefab, goldMedalIcon, silverMedalIcon, copperMedalIcon;
+    public GameObject roundScoreTextPrefab, generalScoreTextPrefab;
+    public List<GameObject> medals = new List<GameObject>();
+    #endregion
 
     private void Awake()
     {
@@ -71,34 +76,50 @@ public class Timer : MonoBehaviour
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
         scoreWindowGeneralIsActive = true;
         scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
-
-        //Mettre dans l'ordre les joueurs par points
-        //Idee : creer un tableau/liste qui va accueillir les joueurs dans le bonne ordre
-        //c'est celui la qui va etre utilisé pour afficher les joueurs sur score generale
         
-        //List<Player> tempsPlayerListPlayer = new List<Player>();
-        /*for (int i = 0; i < GameManager.instance.players.Count; i++)
-        {
-            tempsPlayerListPlayer.Add(GameManager.instance.players[i+1]);
-            tempsPlayerListPlayer.Sort();
-            Debug.Log(i + " : " + tempsPlayerListPlayer[i]);
-        }*/
+        List<Player> tempPlayerListPlayer = new List<Player>();
+        int position = 0;
 
+        Player playerTemp = null;
+        int bestScore = 0;
+        while (tempPlayerListPlayer.Count < GameManager.instance.players.Count)
+        {
+            foreach (var player in GameManager.instance.players)
+            {
+                if (bestScore <= player.Value.score)
+                {
+                    bestScore = player.Value.score;
+                    playerTemp = player.Value;
+                }
+            }
+            tempPlayerListPlayer.Add(playerTemp);
+        }
+        
         GameObject temp = null;
 
-        for (int p = 0; p < GameManager.instance.players.Count; p++)
+        for (int p = 0; p < tempPlayerListPlayer.Count; p++)
         {
             temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
             scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-            scoreGeneralPlayerText[p].text = "Player " + (p+1) + " : "; 
-            temp.name = "Player " + (p + 1);
 
-            for (int j = 0; j < (GameManager.instance.players[p+1].score/10); j++)
+            //temp.name = "Player " + tempPlayerListPlayer[p].playerID;
+            Debug.Log(tempPlayerListPlayer[p].playerID);
+            scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + " : ";
+
+            for (int i = 0; i < (tempPlayerListPlayer.Count-p+1); i++)
             {
-                GameObject temp2 = Instantiate(goldMedalIcon, temp.transform);
+                InstantiateMedals(temp.transform, position);
                 GameManager.instance.players[p + 1].scoreGeneral++;
             }
+
+            position++;
         }
+    }
+
+    private void InstantiateMedals(Transform t, int position)
+    {
+        GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
+
     }
 
     private IEnumerator ReloadScene()

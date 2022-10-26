@@ -811,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8919906984847974370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1099,6 +1099,11 @@ PrefabInstance:
       objectReference: {fileID: 2728313912059628572}
     - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
         type: 3}
+      propertyPath: medals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
+        type: 3}
       propertyPath: textParentGeneral
       value: 
       objectReference: {fileID: 6848540181765179639}
@@ -1112,6 +1117,24 @@ PrefabInstance:
       propertyPath: finalScoreTextPrefab
       value: 
       objectReference: {fileID: 5402396106665992430, guid: e0345835923987c4b85210fb75c7c671,
+        type: 3}
+    - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
+        type: 3}
+      propertyPath: medals.Array.data[0]
+      value: 
+      objectReference: {fileID: 3017236466551022589, guid: 3f1797c0ded0eb1409c0f07ba42454c6,
+        type: 3}
+    - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
+        type: 3}
+      propertyPath: medals.Array.data[1]
+      value: 
+      objectReference: {fileID: 3017236466551022589, guid: 00ed871909c07c1458dfc41c24e2a55e,
+        type: 3}
+    - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
+        type: 3}
+      propertyPath: medals.Array.data[2]
+      value: 
+      objectReference: {fileID: 3017236466551022589, guid: 1aa23ad742e24a1439703a2ab78fc1b9,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4720ddec51b7e443a85d50df6bbd460, type: 3}
