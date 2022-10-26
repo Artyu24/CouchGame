@@ -72,16 +72,23 @@ public class Timer : MonoBehaviour
         scoreWindowGeneralIsActive = true;
         scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
 
-        GameObject temp = null;
+
+
 
         //Mettre dans l'ordre les joueurs par points
         //Idee : creer un tableau/liste qui va accueillir les joueurs dans le bonne ordre
         //c'est celui la qui va etre utilisé pour afficher les joueurs sur score generale
-        /*for (int i = 0; i < GameManager.instance.players.Count; i++)
-        {
-            Mathf.Max(GameManager.instance.players[i].score, GameManager.instance.players[i + 1].score);
-        }*/
+        
+        List<Player> tempsPlayerListPlayer = new List<Player>();
 
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            tempsPlayerListPlayer.Add(GameManager.instance.players[i+1]);
+            tempsPlayerListPlayer.Sort();
+            Debug.Log(i + " : " + tempsPlayerListPlayer[i]);
+        }
+
+        GameObject temp = null;
         for (int p = 0; p < GameManager.instance.players.Count; p++)
         {
             temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);

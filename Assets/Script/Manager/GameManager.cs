@@ -122,6 +122,9 @@ public class GameManager : MonoBehaviour
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
+
+        MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
     }
 
     public void AddPlayer()
