@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject departMeteorite;
     public GameObject chocWave;
 
+    private float movementSpeed;
+
+    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * GameManager.instance.MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * MovementSpeed);
             transform.rotation = orientation;
         }
 
