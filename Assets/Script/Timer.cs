@@ -86,13 +86,14 @@ public class Timer : MonoBehaviour
         {
             foreach (var player in GameManager.instance.players)
             {
-                if (bestScore <= player.Value.score)
+                if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
                 {
                     bestScore = player.Value.score;
                     playerTemp = player.Value;
                 }
             }
             tempPlayerListPlayer.Add(playerTemp);
+            bestScore = 0;
         }
         
         GameObject temp = null;
