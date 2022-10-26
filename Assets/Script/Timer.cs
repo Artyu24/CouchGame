@@ -72,36 +72,31 @@ public class Timer : MonoBehaviour
         scoreWindowGeneralIsActive = true;
         scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
 
-
-
-
         //Mettre dans l'ordre les joueurs par points
         //Idee : creer un tableau/liste qui va accueillir les joueurs dans le bonne ordre
         //c'est celui la qui va etre utilisé pour afficher les joueurs sur score generale
         
-        List<Player> tempsPlayerListPlayer = new List<Player>();
-
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        //List<Player> tempsPlayerListPlayer = new List<Player>();
+        /*for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
             tempsPlayerListPlayer.Add(GameManager.instance.players[i+1]);
             tempsPlayerListPlayer.Sort();
             Debug.Log(i + " : " + tempsPlayerListPlayer[i]);
-        }
+        }*/
 
         GameObject temp = null;
+
         for (int p = 0; p < GameManager.instance.players.Count; p++)
         {
             temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-            scoreGeneralPlayerText[p] = temp.GetComponent<Text>();
+            scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+            scoreGeneralPlayerText[p].text = "Player " + (p+1) + " : "; 
             temp.name = "Player " + (p + 1);
 
-            for(int i = 0; i < GameManager.instance.players.Count; i++)
+            for (int j = 0; j < (GameManager.instance.players[p+1].score/10); j++)
             {
-                for (int j = 0; j < (GameManager.instance.players[p+1].score/10); j++)
-                {
-                    GameObject temp2 = Instantiate(goldMedalIcon, temp.transform);
-                    GameManager.instance.players[p + 1].scoreGeneral++;
-                }
+                GameObject temp2 = Instantiate(goldMedalIcon, temp.transform);
+                GameManager.instance.players[p + 1].scoreGeneral++;
             }
         }
     }
