@@ -65,8 +65,9 @@ public class GameManager : MonoBehaviour
     [Header("Variables des Anneaux")]
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCircle;
-    public GameObject[] TabCircle => tabCircle;
+    [SerializeField] private List<GameObject> tabCircle;
+    public List<GameObject> TabCircle => tabCircle;
+
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     [Tooltip("...")]
@@ -123,9 +124,6 @@ public class GameManager : MonoBehaviour
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
-
-
-
     }
 
     public void AddPlayer()

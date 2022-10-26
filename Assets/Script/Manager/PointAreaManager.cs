@@ -31,6 +31,6 @@ public class PointAreaManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2.0f);
         int i = Random.Range(0, spawnPoint.Length);
-        Instantiate(pointArea, spawnPoint[i].transform.position, Quaternion.identity, anneau.transform);
+        Instantiate(pointArea, spawnPoint[i].transform.position, Quaternion.identity);
     }
 }

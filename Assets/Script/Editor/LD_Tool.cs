@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -14,8 +15,10 @@ public class LD_Tool : EditorWindow
 {
     private int nbrCircle = 2;
     private float sizeCircle = 12;
+    private float heighCircle = 0.1f;
     private float surfaceSize = 2;
 
+    private Material[] tabMat = new Material[6];
 
     [MenuItem("Tools/Level Creator")]
     static void InitWindow()
@@ -33,18 +36,49 @@ public class LD_Tool : EditorWindow
 
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/CirclePrefab.prefab");
 
+        for (int i = 1; i <= 6; i++)
+        {
+            tabMat[i - 1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Material/Circle_Mat_Proto/Circle_Mat_" + i.ToString() + ".mat");
+        }
+
         if (prefab != null)
         {
             nbrCircle = EditorGUILayout.IntField("Nombre de Cercle :", nbrCircle);
             sizeCircle = EditorGUILayout.FloatField("Taille du premier cercle :", sizeCircle);
+            heighCircle = EditorGUILayout.FloatField("Hauteur des cercles :", heighCircle);
             surfaceSize = EditorGUILayout.FloatField("Surface des cercles :", surfaceSize);
 
             if (GUILayout.Button("Print LD"))
             {
                 //Reset et destruction de l'ancien terrain
+                foreach (GameObject circle in gameManager.TabCircle)
+                {
+                    DestroyImmediate(circle);
+                }
+                gameManager.TabCircle.Clear();
 
+                //On créé les nouveaux cercles
                 Type probuilderShapeType = _GetProBuilderType();
-                Component proBuilderComponent = prefab.GetComponent(probuilderShapeType);
+
+                for (int i = 0; i < nbrCircle; i++)
+                {
+                    GameObject newCircle = Instantiate(prefab);
+                    newCircle.GetComponent<MeshRenderer>().material = tabMat[i];
+
+                    Component proBuilderComponent = newCircle.GetComponent(probuilderShapeType);
+
+                    //Surface
+                    var so = new SerializedObject(proBuilderComponent);
+                    so.FindProperty("m_Shape").FindPropertyRelative("m_Thickness").floatValue = surfaceSize;
+                    so.ApplyModifiedProperties();
+
+                    //Taille
+                    SetProBuilderSize(probuilderShapeType, proBuilderComponent, new Vector3(sizeCircle + i * surfaceSize * 2, heighCircle, sizeCircle + i * surfaceSize * 2));
+
+                    gameManager.TabCircle.Add(newCircle);
+                }
+
+                EditorUtility.SetDirty(gameManager);
             }
         }
 
@@ -92,7 +126,7 @@ public class LD_Tool : EditorWindow
             // Determine if this is the property getter or setter.
             if (m.ReturnType == typeof(void))
             {
-                Debug.Log("Setter");
+                //Debug.Log("Setter");
                 //  Set the value of the property.
                 m.Invoke(component, new object[] { size });
             }

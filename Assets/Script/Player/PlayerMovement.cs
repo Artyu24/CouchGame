@@ -93,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.TabCircle.Length - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Length - 1)
+                    actualCircle = GameManager.instance.TabCircle.Count - 1;
+                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Count - 1)
                     actualCircle = 0;
                 else
                     actualCircle += (int)nextCircle;
