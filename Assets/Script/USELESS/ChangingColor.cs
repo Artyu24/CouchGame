@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class ChangingColor : MonoBehaviour
 {
-    public Color activeColor;
+    private Color activeColor;
+    private float red, green, blue;
 
     void Start()
     {
-        GetComponent<MeshRenderer>().material.color = activeColor;
+        red = Random.Range(0, 256);
+        green = Random.Range(0, 256);
+        blue = Random.Range(0, 256);
+        activeColor.r = red;
+        activeColor.b = blue;
+        activeColor.g = green;
+        GetComponentInChildren<MeshRenderer>().material.color = activeColor;
     }
 }

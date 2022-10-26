@@ -39,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.deltaTime * GameManager.instance.MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * GameManager.instance.MovementSpeed);
             transform.rotation = orientation;
         }
 
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             if (context.started)
             {
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
@@ -94,13 +94,33 @@ public class PlayerMovement : MonoBehaviour
                     actualCircle += (int)nextCircle;
 
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
             }
         }
     }
     
+    public void Meteo1(InputAction.CallbackContext context) 
+    {
+        OnMeteorite(context,1);
+    
+    }
+    public void Meteo2(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 2);
 
-    public void OnMeteorite(InputAction.CallbackContext context)
+    }
+    public void Meteo3(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 3);
+
+    }
+    public void Meteo4(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 4);
+
+    }
+
+    public void OnMeteorite(InputAction.CallbackContext context, int i)
     {
         if (player.ActualPlayerState == PlayerState.MIDDLE)
         {
@@ -108,7 +128,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
-                    Instantiate(meteorite, departMeteorite.transform.position, departMeteorite.transform.rotation);
+                    GameObject metoto = Instantiate(meteorite, departMeteorite.transform.position, departMeteorite.transform.rotation);
+                    metoto.GetComponent<MeteorMovement>().MovePlanete(i);
                     StartCoroutine(CooldownForInteraction());
                 }
             }
