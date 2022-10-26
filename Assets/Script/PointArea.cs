@@ -18,7 +18,11 @@ public class PointArea : MonoBehaviour
         transform.localScale -= new Vector3(transform.localScale.x - (transform.localScale.x/10), transform.localScale.x - (transform.localScale.y / 10), transform.localScale.z - (transform.localScale.x / 10));
         hp--;
 
-        Debug.Log(player.name + " SCORE ++");
+        ScoreManager.instance.AddScore(1,player.GetComponent<Player>());
+
+        if(player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
+            player.GetComponent<PlayerAttack>().CurrentSpecial += 1;
+
         animator.SetTrigger("SHAKEMETHAT");
 
         if (hp <= 0)

@@ -9,6 +9,19 @@ public class PlayerAttack : MonoBehaviour
     #region Variable
     [Header("Variable")]
     [SerializeField] private bool canAttack = true;
+    public int maxSpecial = 20;
+    private int currentSpecial;
+    public int CurrentSpecial
+    {
+        get => currentSpecial;
+        set => currentSpecial = value;
+    }
+    private GameObject playerHitedBy;
+    public GameObject PlayerHitedBy
+    {
+        get => playerHitedBy;
+        set => playerHitedBy = value;
+    }
 
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
@@ -26,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.SpecialStrenght;
-        if (ctx.started && canAttack)
+        if (ctx.started && canAttack && currentSpecial == maxSpecial)
             StartCoroutine(AttackCoroutine(strenght));
     }
     #endregion
@@ -43,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(float _strenght)
     {
-        GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
+        //GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
         if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD)
         {
             #region Range
@@ -56,8 +69,8 @@ public class PlayerAttack : MonoBehaviour
                 middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ça marche plus faut faire le transform.TransformDirection après les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-                Debug.DrawRay(transform.position, dir * GameManager.instance.Range, Color.blue, 1.0f);
-                Physics.Raycast(transform.position, dir, out hit, GameManager.instance.Range,layerMask);
+                Debug.DrawRay((dir + (transform.localPosition * 10)), dir * GameManager.instance.Range, Color.blue, 5.0f);
+                Physics.Raycast((dir + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
                 #endregion
 
                 #region HitCondition
@@ -66,11 +79,12 @@ public class PlayerAttack : MonoBehaviour
                     //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
                     hit.rigidbody.AddForce(dir * _strenght, ForceMode.Impulse);
                     Debug.Log(hit.transform.name + " has been hit");
+                    hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
                     return;
                 }
-                else if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
+                if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
                 {
-                    hit.transform.GetComponent<PointArea>().Damage(this.gameObject);
+                    hit.transform.GetComponent<PointArea>().Damage(gameObject);
                     return;
                 }
                 #endregion
@@ -87,4 +101,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     #endregion
+
+    public void HitTag(GameObject _player)
+    {
+        StartCoroutine(WhoHitMe(_player, 5));
+    }
+
+    IEnumerator WhoHitMe(GameObject _player, float _s)
+    {
+        playerHitedBy = _player;
+        yield return new WaitForSecondsRealtime(_s);
+        playerHitedBy = null;
+    }
 }

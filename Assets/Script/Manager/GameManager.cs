@@ -38,18 +38,27 @@ public class GameManager : MonoBehaviour
     public float AttackCd { get => attackCd; private set => attackCd = value; }
     #endregion
     #region Player
-    [Header("Variables des Players")]
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    [Header("Variables des Players")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
-    [Tooltip("Vitesse de d�placement des joueurs")]
-    [SerializeField] private float movementSpeed;
+    [Tooltip("Vitesse max de d�placement des joueurs")]
+    [SerializeField] private float maxMovementSpeed;
+    [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
+    [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
     [Tooltip("Liste des points de spawn")]
     public Transform[] SpawnList => spawnList;
-    public float MovementSpeed => movementSpeed;
+
+
+    public float MovSpeedSlowZone => movSpeedSlowZone;
+
+    public float MaxMovementSpeed => maxMovementSpeed;
+
+
     public float RespawnDelay => respawnDelay;
+
 
     #endregion
     #region Circles
@@ -114,6 +123,9 @@ public class GameManager : MonoBehaviour
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
+
+
+
     }
 
     public void AddPlayer()

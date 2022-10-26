@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector] public int playerID;
+    public int playerID;
 
-    [HideInInspector]  public int score = 0;
+    public int score = 0;
+    public int scoreGeneral = 0;
+
+    public bool isChockedWaved = false;
 
     [Header("Variables Game Feel")]
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
+
+
+
+
 
     public void Kill()
     {
@@ -24,6 +32,12 @@ public class Player : MonoBehaviour
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = GameManager.instance.RandomSpawn().position;
+
+        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
+        {
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
+            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
+        }
     }
 
     public void HideGuy(bool enable)
