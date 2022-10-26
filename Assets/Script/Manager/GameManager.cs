@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public float RespawnDelay => respawnDelay;
 
+
     #endregion
     #region Circles
     [Header("Variables des Anneaux")]
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
 
-        MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
 
     }
 

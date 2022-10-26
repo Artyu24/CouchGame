@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
+
+        MovementSpeed = GameManager.instance.MaxMovementSpeed;
     }
 
     // Update is called once per frame
