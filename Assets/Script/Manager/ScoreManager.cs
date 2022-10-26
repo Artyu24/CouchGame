@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     public GameObject scoreTextPrefab;
     [Tooltip("Point gagner par le joueur est au milieu")]
     public int scoreMiddle = 10;
+    [Tooltip("Point gagner par le joueur lorsqu'il marche sur un interrupteur")]
+    public int scoreInterrupteur = 5;
     [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
     public float middelPointsCooldown = 2;
     public int scoreKill = 10;

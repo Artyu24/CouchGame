@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour
 {
-
+    Player player;
     
-    private void Start()
-    {
-        GameManager.instance.MovementSpeed = GameManager.instance.MaxMovementSpeed;
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.MovementSpeed = GameManager.instance.MovSpeedSlowZone; 
+            player.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone; 
 
         }
 
@@ -25,7 +20,7 @@ public class SlowZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.MovementSpeed = GameManager.instance.MaxMovementSpeed;
+            player.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
 
         }
 

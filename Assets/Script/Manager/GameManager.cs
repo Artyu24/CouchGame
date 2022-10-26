@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
     [SerializeField] private float maxMovementSpeed;
-    [Tooltip("Vitesse de d�placement des joueurs")]
-    private float movementSpeed;
     [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
     [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
@@ -53,7 +51,6 @@ public class GameManager : MonoBehaviour
     [Tooltip("Liste des points de spawn")]
     public Transform[] SpawnList => spawnList;
 
-    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
     public float MovSpeedSlowZone => movSpeedSlowZone;
 
@@ -61,6 +58,7 @@ public class GameManager : MonoBehaviour
 
 
     public float RespawnDelay => respawnDelay;
+
 
     #endregion
     #region Circles
@@ -126,7 +124,7 @@ public class GameManager : MonoBehaviour
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
 
-        MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
 
     }
 
