@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector] public int playerID;
+    public int playerID;
 
     public int score = 0;
     public int scoreGeneral = 0;
