@@ -58,10 +58,18 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void AddScore(int points , Player player)
+    public void AddScore(int points, Player player)
     {
         player.score += points;
 
         UpdateScores();
+    }
+
+    public void AddScoreGeneral(int points, Player player)
+    {
+        player.scoreGeneral += points;
+
+        UpdateScores();
+
     }
 }
