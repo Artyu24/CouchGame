@@ -11,6 +11,7 @@ public class ChocWave : MonoBehaviour
     public float pushForce;
     bool getPushed = false;
     public Transform transparence;
+    private List<Player> playerList = new List<Player>();
 
     private void Start()
     {        
@@ -23,16 +24,16 @@ public class ChocWave : MonoBehaviour
         {            
             transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * growingSpeed, transparence.localScale.y + Time.deltaTime * growingSpeed, transparence.localScale.z + Time.deltaTime * growingSpeed);
         }
-        //if (getPushed == true)
-        //{
-        //    //Destroy(gameObject);
-        //    //a changer quand on aura les player
-        //    //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
-        //}
+
 
         if(transparence.localScale.x >= radiusMax)
         {
             getPushed = false;
+            foreach(Player player in playerList)
+            {
+                player.isChockedWaved = false;                
+            }
+            playerList.Clear();
             Destroy(gameObject);
         }
     }
@@ -43,10 +44,13 @@ public class ChocWave : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
-                other.GetComponent<Rigidbody>().AddForce(push * pushForce);
-                getPushed = true;
-
+                if(other.gameObject.GetComponent<Player>().isChockedWaved == false)
+                {
+                    Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
+                    other.GetComponent<Rigidbody>().AddForce(push * pushForce);
+                    other.gameObject.GetComponent<Player>().isChockedWaved = true;
+                    playerList.Add(other.gameObject.GetComponent<Player>());
+                }
             }
         }
         

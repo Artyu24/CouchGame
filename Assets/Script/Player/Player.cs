@@ -10,10 +10,16 @@ public class Player : MonoBehaviour
     public int score = 0;
     public int scoreGeneral = 0;
 
+    public bool isChockedWaved = false;
+
     [Header("Variables Game Feel")]
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
+
+
+
+
 
     public void Kill()
     {
