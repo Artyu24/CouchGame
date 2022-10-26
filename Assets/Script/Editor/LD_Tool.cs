@@ -12,7 +12,10 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class LD_Tool : EditorWindow
 {
-    private Vector3 s = new Vector3(15,0.1f,15);
+    private int nbrCircle = 2;
+    private float sizeCircle = 12;
+    private float surfaceSize = 2;
+
 
     [MenuItem("Tools/Level Creator")]
     static void InitWindow()
@@ -28,13 +31,30 @@ public class LD_Tool : EditorWindow
         if (gameManager == null)
             return;
 
-        int nbrCircle = EditorGUILayout.IntField("Nombre de Cercle : ", gameManager.TabCircle.Length);
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/CirclePrefab.prefab");
 
         if (prefab != null)
         {
+            nbrCircle = EditorGUILayout.IntField("Nombre de Cercle :", nbrCircle);
+            sizeCircle = EditorGUILayout.FloatField("Taille du premier cercle :", sizeCircle);
+            surfaceSize = EditorGUILayout.FloatField("Surface des cercles :", surfaceSize);
 
+            if (GUILayout.Button("Print LD"))
+            {
+                //Reset et destruction de l'ancien terrain
+
+                Type probuilderShapeType = _GetProBuilderType();
+                Component proBuilderComponent = prefab.GetComponent(probuilderShapeType);
+            }
         }
+
+        //Example de récupération d'une property provenant d'un script héritant d'un autre
+        //En gros j'ai chopper la variable de type Shape dans le ProBuilderShape et étant donné que c'est une classe Pipe qui héite de Shape, je peux accéder par property relative à la classe Pipe et donc à sa thickness
+        //Type probuilderShapeType = _GetProBuilderType();
+        //Component proBuilderComponent = prefab.GetComponent(probuilderShapeType);
+        //var so = new SerializedObject(proBuilderComponent);
+        //so.FindProperty("m_Shape").FindPropertyRelative("m_Thickness").floatValue = 1.5f;
+        //so.ApplyModifiedProperties();
 
         //Example with Prefab
         //Type probuilderShapeType = _GetProBuilderType();
