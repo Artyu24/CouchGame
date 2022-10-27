@@ -48,16 +48,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
-    [Tooltip("Liste des points de spawn")]
+    [Tooltip("Temps de slow des players apres zone slow en seconde")]
+    [SerializeField] private float slowDuration = 2;
+    //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
+
     public Transform[] SpawnList => spawnList;
-
-
     public float MovSpeedSlowZone => movSpeedSlowZone;
-
     public float MaxMovementSpeed => maxMovementSpeed;
-
-
     public float RespawnDelay => respawnDelay;
+
+    public float SlowDuration => slowDuration;
+
+    //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
 
 
     #endregion
@@ -65,8 +67,9 @@ public class GameManager : MonoBehaviour
     [Header("Variables des Anneaux")]
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCircle;
-    public GameObject[] TabCircle => tabCircle;
+    [SerializeField] private List<GameObject> tabCircle;
+    public List<GameObject> TabCircle => tabCircle;
+
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     [Tooltip("...")]
@@ -115,16 +118,20 @@ public class GameManager : MonoBehaviour
     #endregion
 
     void Awake()
-    {   
+    {
         if (instance == null)
+        {
             instance = this;
+            //DontDestroyOnLoad(this.gameObject);
+        }
+        /*else
+            Destroy(this.gameObject);*/
+        
 
         foreach (GameObject circle in TabCircle)
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
-
-
 
     }
 

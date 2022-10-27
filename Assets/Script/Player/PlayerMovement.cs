@@ -34,10 +34,15 @@ public class PlayerMovement : MonoBehaviour
 
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
+    //public static PlayerMovement instance;
+
+
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //if (instance == null)
+        //        instance = this;
+            rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
 
@@ -93,8 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.TabCircle.Length - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Length - 1)
+                    actualCircle = GameManager.instance.TabCircle.Count - 1;
+                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Count - 1)
                     actualCircle = 0;
                 else
                     actualCircle += (int)nextCircle;
