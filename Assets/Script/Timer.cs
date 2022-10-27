@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     private Text timerSet;
     private float timerBegin;
     private int minutes, seconds;
+    public string levelName;
     #endregion
 
     #region Scoreboard
@@ -22,7 +23,7 @@ public class Timer : MonoBehaviour
     private Text[] scoreGeneralPlayerText = new Text[4];
     public GameObject roundScoreTextPrefab, generalScoreTextPrefab;
     public List<GameObject> medals = new List<GameObject>();
-    //private int nbrOfRound = 0;
+    private int nbrOfRound = 0;
     #endregion
 
     private void Awake()
@@ -115,13 +116,13 @@ public class Timer : MonoBehaviour
                 }
                 /*if (nbrOfRound >= 1)
                 {
-                    for (int j = 0; j < GameManager.instance.players[p + 1].scoreGeneral; j++)
+                    for (int j = 0; j < GameManager.instance.PlayersScoreGenerals[GameManager.instance.players[p + 1]]; j++)
                     {
                         InstantiateMedals(temp.transform, position);
                     }
                 }*/
             }
-
+            //GameManager.instance.PlayersScoreGenerals.Add(GameManager.instance.players[p + 1], GameManager.instance.players[p + 1].scoreGeneral);
             position++;
         }
 
@@ -136,7 +137,10 @@ public class Timer : MonoBehaviour
 
     public void ReloadScene()
     {
+        GameManager.instance.Timer = timerBegin;
+        scoreWindowGeneral.SetActive(false);
+        scoreWindowRound.SetActive(false);
         Time.timeScale = 1;
-        SceneManager.LoadScene("Proto_Téo");
+        SceneManager.LoadScene(levelName);
     }
 }
