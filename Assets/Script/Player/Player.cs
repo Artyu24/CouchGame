@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector] public int playerID;
+    public int playerID;
 
     public int score = 0;
+    public int scoreGeneral = 0;
+
+    public bool isChockedWaved = false;
 
     [Header("Variables Game Feel")]
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
+
+
+
+
 
     public void Kill()
     {

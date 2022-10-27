@@ -245,8 +245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   score: 0
-  scoreMiddle: 10
-  middelPointsCooldown: 2
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
+  maxSpecial: 20
   layerMask:
     serializedVersion: 2
     m_Bits: 3072

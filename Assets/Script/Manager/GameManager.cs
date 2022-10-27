@@ -38,26 +38,36 @@ public class GameManager : MonoBehaviour
     public float AttackCd { get => attackCd; private set => attackCd = value; }
     #endregion
     #region Player
-    [Header("Variables des Players")]
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    [Header("Variables des Players")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
-    [Tooltip("Vitesse de d�placement des joueurs")]
-    [SerializeField] private float movementSpeed;
+    [Tooltip("Vitesse max de d�placement des joueurs")]
+    [SerializeField] private float maxMovementSpeed;
+    [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
+    [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
     [Tooltip("Liste des points de spawn")]
     public Transform[] SpawnList => spawnList;
-    public float MovementSpeed => movementSpeed;
+
+
+    public float MovSpeedSlowZone => movSpeedSlowZone;
+
+    public float MaxMovementSpeed => maxMovementSpeed;
+
+
     public float RespawnDelay => respawnDelay;
+
 
     #endregion
     #region Circles
     [Header("Variables des Anneaux")]
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCircle;
-    public GameObject[] TabCircle => tabCircle;
+    [SerializeField] private List<GameObject> tabCircle;
+    public List<GameObject> TabCircle => tabCircle;
+
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
     [Tooltip("...")]
