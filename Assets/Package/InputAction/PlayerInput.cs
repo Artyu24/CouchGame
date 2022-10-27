@@ -139,7 +139,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""a0b3967c-3a14-4549-9de4-e38f3df22620"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
