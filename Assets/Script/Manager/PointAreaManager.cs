@@ -41,10 +41,10 @@ public class PointAreaManager : MonoBehaviour
         while (point == null && secuEnfant != 1000)
         {
             RaycastHit hit;
-            Debug.DrawRay(spawnPoint[0].position, spawnPoint[0].up * -1 * 2, Color.yellow, 5.0f);
-            Physics.Raycast(spawnPoint[0].position, spawnPoint[0].up * -1, out hit, 2);
-
             int i = Random.Range(0, spawnPoint.Count);
+            Debug.DrawRay(spawnPoint[i].position, spawnPoint[i].up * -1 * 2, Color.yellow, 5.0f);
+            Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
+
             if (hit.transform != null)
             {
                 if (hit.transform.tag == "Platform")

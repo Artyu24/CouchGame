@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     [Header("Variables des EjectPlates")]
 
     [Tooltip("Liste des plaques d'ejection du player au centre")]
-    private List<GameObject> ejectPlates;
+    private List<GameObject> ejectPlates = new List<GameObject>();
     [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
     [SerializeField] private int numberOfPlate = 3;
     [Tooltip("Couleur que prend la zone quand elle est activée")]
