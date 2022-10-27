@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
+    [Tooltip("Temps invincibilité des players apres le respawn en seconde")]
+    [SerializeField] private float invincibleDelay = 2;
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
@@ -56,6 +58,9 @@ public class GameManager : MonoBehaviour
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
     public float RespawnDelay => respawnDelay;
+
+    public float InvincibleDelay => invincibleDelay;
+
 
     public float SlowDuration => slowDuration;
 

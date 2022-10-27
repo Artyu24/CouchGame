@@ -44,7 +44,7 @@ public class ChocWave : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                if(other.gameObject.GetComponent<Player>().isChockedWaved == false)
+                if (other.gameObject.GetComponent<Player>().isChockedWaved == false && other.gameObject.GetComponent<Player>().isInvincible == false)
                 {
                     Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
                     other.GetComponent<Rigidbody>().AddForce(push * pushForce);
