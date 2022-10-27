@@ -69,8 +69,8 @@ public class PlayerAttack : MonoBehaviour
                 middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ça marche plus faut faire le transform.TransformDirection après les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-                Debug.DrawRay((dir + (transform.localPosition * 10)), dir * GameManager.instance.Range, Color.blue, 5.0f);
-                Physics.Raycast((dir + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
+                Debug.DrawRay((new Vector3(dir.x / 2.5f,0,dir.z / 2.5f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
+                Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
                 #endregion
 
                 #region HitCondition
