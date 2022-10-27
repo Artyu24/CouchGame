@@ -6,9 +6,9 @@ public class PointAreaManager : MonoBehaviour
 {
     public static PointAreaManager instance;
 
-    [SerializeField] private GameObject[] spawnPoint;
-    [SerializeField] private GameObject pointArea;
-    [SerializeField] private GameObject anneau;
+    [SerializeField] private List<Transform> spawnPoint = new List<Transform>();
+    public List<Transform> SpawnPoint => spawnPoint;
+    [SerializeField] private GameObject fishBag;
 
     void Awake()
     {
@@ -27,10 +27,40 @@ public class PointAreaManager : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    public IEnumerator Spawn()
+    private IEnumerator Spawn()
     {
         yield return new WaitForSecondsRealtime(2.0f);
-        int i = Random.Range(0, spawnPoint.Length);
-        Instantiate(pointArea, spawnPoint[i].transform.position, Quaternion.identity, anneau.transform);
+        Transform pos = RandomPosition();
+        Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
+    }
+
+    public Transform RandomPosition()
+    {
+        Transform point = null;
+        int secuEnfant = 0;
+        while (point == null && secuEnfant != 1000)
+        {
+            RaycastHit hit;
+            Debug.DrawRay(spawnPoint[0].position, spawnPoint[0].up * -1 * 2, Color.yellow, 5.0f);
+            Physics.Raycast(spawnPoint[0].position, spawnPoint[0].up * -1, out hit, 2);
+
+            int i = Random.Range(0, spawnPoint.Count);
+            if (hit.transform != null)
+            {
+                if (hit.transform.tag == "Platform")
+                    point = spawnPoint[i];
+            }
+
+            secuEnfant++;
+        }
+
+
+        if (secuEnfant == 1000)
+        {
+            Debug.Log("LES GD VOUS FAITES NIMP");
+            point = transform;
+        }
+
+        return point;
     }
 }

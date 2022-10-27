@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1292024828151461916}
   - component: {fileID: 1292024828151461919}
   - component: {fileID: 1292024828151461889}
+  - component: {fileID: -8861030665786887477}
   m_Layer: 0
   m_Name: CirclePrefab
   m_TagString: Untagged
@@ -4986,3 +4987,15 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &-8861030665786887477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292024828151461918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05381c879d76543bf13f5541b883fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
