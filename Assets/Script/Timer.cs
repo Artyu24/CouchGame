@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     private Text timerSet;
     private float timerBegin;
     private int minutes, seconds;
+    public string levelName;
     #endregion
 
     #region Scoreboard
@@ -22,6 +23,7 @@ public class Timer : MonoBehaviour
     private Text[] scoreGeneralPlayerText = new Text[4];
     public GameObject roundScoreTextPrefab, generalScoreTextPrefab;
     public List<GameObject> medals = new List<GameObject>();
+    private int nbrOfRound = 0;
     #endregion
 
     private void Awake()
@@ -102,19 +104,29 @@ public class Timer : MonoBehaviour
         {
             temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
             scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-
-            //temp.name = "Player " + tempPlayerListPlayer[p].playerID;
-            Debug.Log(tempPlayerListPlayer[p].playerID);
+            temp.name = "Player " + tempPlayerListPlayer[p].playerID;
             scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + " : ";
 
             for (int i = 0; i < (tempPlayerListPlayer.Count-p+1); i++)
             {
-                InstantiateMedals(temp.transform, position);
-                GameManager.instance.players[p + 1].scoreGeneral++;
+                if (tempPlayerListPlayer[p].score > 0)
+                {
+                    InstantiateMedals(temp.transform, position);
+                    GameManager.instance.players[p + 1].scoreGeneral++;
+                }
+                /*if (nbrOfRound >= 1)
+                {
+                    for (int j = 0; j < GameManager.instance.PlayersScoreGenerals[GameManager.instance.players[p + 1]]; j++)
+                    {
+                        InstantiateMedals(temp.transform, position);
+                    }
+                }*/
             }
-
+            //GameManager.instance.PlayersScoreGenerals.Add(GameManager.instance.players[p + 1], GameManager.instance.players[p + 1].scoreGeneral);
             position++;
         }
+
+        //nbrOfRound++;
     }
 
     private void InstantiateMedals(Transform t, int position)
@@ -123,10 +135,12 @@ public class Timer : MonoBehaviour
 
     }
 
-    private IEnumerator ReloadScene()
+    public void ReloadScene()
     {
-        Time.timeScale = 0;
-        SceneManager.LoadScene("Proto_Vincent");
-        yield return new WaitForSeconds(3);
+        GameManager.instance.Timer = timerBegin;
+        scoreWindowGeneral.SetActive(false);
+        scoreWindowRound.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(levelName);
     }
 }
