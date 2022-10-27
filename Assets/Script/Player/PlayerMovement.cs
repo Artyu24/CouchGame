@@ -34,10 +34,15 @@ public class PlayerMovement : MonoBehaviour
 
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
+    //public static PlayerMovement instance;
+
+
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //if (instance == null)
+        //        instance = this;
+            rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
 
