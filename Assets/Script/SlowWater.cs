@@ -18,17 +18,12 @@ public class SlowWater : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(TimeSlowByWater(other));
-            Debug.Log("je suis la");
         }
     }
 
     public IEnumerator TimeSlowByWater(Collider other)
     {
-        Debug.Log("Debut Coroutine");
-
         yield return new WaitForSeconds(GameManager.instance.SlowDuration);
         other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
-        Debug.Log("fin Coroutine");
-
     }
 }
