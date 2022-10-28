@@ -12,7 +12,7 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
+        if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.USE)
         {
             GameManager.instance.ejectPlatesActive++;
             bc.enabled = false;
@@ -22,6 +22,7 @@ public class EjectPlayerCentre : MonoBehaviour
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
                 EjectPlayer();
+                CenterManager.instance.DesactivateAllBridge();
             }
         }
     }
@@ -33,7 +34,6 @@ public class EjectPlayerCentre : MonoBehaviour
         GM.PlayerInMiddle.transform.position = GM.RandomSpawn().position;
         GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
         GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
-        GM.PlayerInMiddle.GetComponent<Rigidbody>().useGravity = true;
 
         for (int i = 0; i < GameManager.instance.TabCircle.Count; i++)
         {
