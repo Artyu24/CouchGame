@@ -68,7 +68,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9ddf810fdb977544993bf9a374ec1964, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61548388566ac74ba61cbed29cf37ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: 
   scoreWindowRound: {fileID: 0}
   scoreWindowGeneral: {fileID: 0}
   textParentRound: {fileID: 0}
@@ -101,9 +102,4 @@ MonoBehaviour:
     type: 3}
   generalScoreTextPrefab: {fileID: 2036963654598244154, guid: ea504755cb8d4cb4381086a409dcbe99,
     type: 3}
-  goldMedalIcon: {fileID: 3017236466551022589, guid: 3f1797c0ded0eb1409c0f07ba42454c6,
-    type: 3}
-  silverMedalIcon: {fileID: 3017236466551022589, guid: 00ed871909c07c1458dfc41c24e2a55e,
-    type: 3}
-  copperMedalIcon: {fileID: 3017236466551022589, guid: 1aa23ad742e24a1439703a2ab78fc1b9,
-    type: 3}
+  medals: []
