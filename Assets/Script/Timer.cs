@@ -13,7 +13,6 @@ public class Timer : MonoBehaviour
     private int minutes, seconds;
     public string levelName;
     #endregion
-
     #region Scoreboard
     private bool scoreWindowRoundIsActive = false;
     private bool scoreWindowGeneralIsActive = false;
