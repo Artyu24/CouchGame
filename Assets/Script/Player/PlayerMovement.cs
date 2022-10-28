@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 if (isInteracting == false)
                 {
                     Instantiate(chocWave, departChoc.transform.position, departChoc.transform.rotation);
-                    Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
+                    //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
                 }
             }
