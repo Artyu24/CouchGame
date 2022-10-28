@@ -3,7 +3,37 @@ guid: 1f44a47ba48310f41aed197fe068412d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube
+    second: {fileID: 2100000, guid: fb821cb2cddf1234eb1757256e427f00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_001
+    second: {fileID: 2100000, guid: 56e55c94ad3057b4b988810bcc03cf7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sphere
+    second: {fileID: 2100000, guid: 7c98ca4c86d7d2a4ab1865f4ec897942, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sphere_001
+    second: {fileID: 2100000, guid: 1b1995e3e0d9d6742a65eba4bdde937e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sphere_002
+    second: {fileID: 2100000, guid: 305aa186a87852f40a887190b97befc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Torus_003
+    second: {fileID: 2100000, guid: 55bee17bd5c15b54fabb7dd1dbe924c8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
