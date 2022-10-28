@@ -121,9 +121,10 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
-
+    #region UI
     public GameObject speBarrePrefab;
     public List<GameObject> speBarreParentList = new List<GameObject>();
+    #endregion
 
     void Awake()
     {

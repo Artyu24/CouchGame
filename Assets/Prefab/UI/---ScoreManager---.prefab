@@ -51,11 +51,12 @@ MonoBehaviour:
   - {fileID: 0}
   scoreTextPrefab: {fileID: 6026816814468351564, guid: 78508db7605d06c448622a66f51175bd,
     type: 3}
-  speBarrePrefab: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
-    type: 3}
   scoreMiddle: 10
   scoreInterrupteur: 5
   middelPointsCooldown: 2
   scoreKill: 10
-  scoreParentList: []
-  speBarreParentList: []
+  scoreParentList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
