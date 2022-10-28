@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -27,12 +28,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
+
+    [Header("UI")] 
+    public GameObject speBarre;
     #endregion
 
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
+        speBarre.GetComponent<Slider>().value = currentSpecial;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
@@ -40,10 +45,15 @@ public class PlayerAttack : MonoBehaviour
     {
         float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
+        {
+            currentSpecial = 0;
+            speBarre.GetComponent<Slider>().value = currentSpecial;
             StartCoroutine(AttackCoroutine(strenght));
+        }
     }
     #endregion
 
+    
     #region Attack
     IEnumerator AttackCoroutine(float _strenght)
     {

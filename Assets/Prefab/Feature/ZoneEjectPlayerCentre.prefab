@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3137264077084393794}
   - component: {fileID: 3137264077084393795}
   - component: {fileID: 2797778204929660237}
+  - component: {fileID: 1726822158}
+  - component: {fileID: 8922791186554308027}
   m_Layer: 0
   m_Name: ZoneEjectPlayerCentre
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3137264077084393792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.072105, y: 0.015154228, z: -7.6882057}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59,9 +61,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2847b36c766fb44a4ad3d53adb37b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatedColor: {r: 0.054071307, g: 1, b: 0, a: 0}
-  activeColor: {r: 1, g: 0, b: 0, a: 0}
-  numberOfPlate: 3
+--- !u!65 &1726822158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137264077084393792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.01, z: 2}
+  m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!54 &8922791186554308027
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137264077084393792}
+  serializedVersion: 2
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!1 &7836892437115829815
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +101,6 @@ GameObject:
   - component: {fileID: 9217914112795124924}
   - component: {fileID: 8820453186647885900}
   - component: {fileID: 6884843020532497462}
-  - component: {fileID: 5991927055101310376}
   m_Layer: 0
   m_Name: Plane_1
   m_TagString: Untagged
@@ -146,17 +173,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5991927055101310376
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7836892437115829815}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
