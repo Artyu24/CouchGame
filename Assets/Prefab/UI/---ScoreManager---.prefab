@@ -55,4 +55,8 @@ MonoBehaviour:
   scoreInterrupteur: 5
   middelPointsCooldown: 2
   scoreKill: 10
-  scoreParent1: {fileID: 0}
+  scoreParentList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

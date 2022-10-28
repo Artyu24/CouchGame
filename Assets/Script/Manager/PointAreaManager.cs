@@ -22,6 +22,16 @@ public class PointAreaManager : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
+    //Test
+    //void Update()
+    //{
+    //    RaycastHit hit;
+    //    int i = 0;
+    //    Debug.DrawRay(spawnPoint[i].position, spawnPoint[i].up * -1 * 2, Color.yellow, 5.0f);
+    //    Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
+    //    Debug.Log(hit.transform.gameObject.name);
+    //}
+
     public void StartNextSpawn()
     {
         StartCoroutine(Spawn());
@@ -30,8 +40,13 @@ public class PointAreaManager : MonoBehaviour
     private IEnumerator Spawn()
     {
         yield return new WaitForSecondsRealtime(2.0f);
-        Transform pos = RandomPosition();
-        Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
+        if (spawnPoint.Count == 0 || spawnPoint.Contains(null))
+            Debug.Log("Il manque des spawn Point");
+        else
+        {
+            Transform pos = RandomPosition();
+            Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
+        }
     }
 
     public Transform RandomPosition()
