@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: 75f5ed611f9542044b59e3af14277072
+guid: 8f9bae599de918040b43ae04fe0614fe
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_001
+    second: {fileID: 2100000, guid: 283f0509bb1904e40a4083037a41baaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_002
+    second: {fileID: 2100000, guid: 6cdb9b4d2790db744b61b6cf5fcd003d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_003
+    second: {fileID: 2100000, guid: 8226f7b71cea2a041a987045c3ecc4f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_004
+    second: {fileID: 2100000, guid: 5c6f518468c1dc54d84e131366724498, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_005
+    second: {fileID: 2100000, guid: 16e6275cc6ad2bc4ebd8c75a07068595, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
