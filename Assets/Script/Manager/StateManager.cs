@@ -16,3 +16,11 @@ public enum PlayerState
     MIDDLE,
     DEAD
 }
+
+public enum CenterState
+{
+    PROTECTION,
+    ACCESS,
+    USE,
+    REGENERATION
+}
