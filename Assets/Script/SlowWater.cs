@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SlowWater : MonoBehaviour
 {
-    PlayerMovement playerMovement;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone;
+            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            {
+                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone;
+
+            }
         }
     }
 
@@ -17,7 +21,11 @@ public class SlowWater : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(TimeSlowByWater(other));
+            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            {
+                StartCoroutine(TimeSlowByWater(other));
+            }
+            
         }
     }
 

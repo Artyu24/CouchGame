@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class CreatePointCircle : MonoBehaviour
 {
-    private Transform firstEmpty;
-    public Transform FirstEmpty { get => firstEmpty; set => firstEmpty = value; }
+    private Object firstEmpty;
+    public Object FirstEmpty { get => firstEmpty; set => firstEmpty = value; }
+
+    private Object circleParent;
+    public Object CircleParent { get => circleParent; set => circleParent = value; }
+
+    private int nbrSpawnPoint;
+    public int NbrSpawnPoint { get => nbrSpawnPoint; set => nbrSpawnPoint = value; }
+
+    private List<Transform> spawnPointList = new List<Transform>();
+    public List<Transform> SpawnPointList => spawnPointList;
 }

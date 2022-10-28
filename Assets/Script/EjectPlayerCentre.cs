@@ -28,23 +28,26 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void EjectPlayer()
     {
-        GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
-        GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-        GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+        GameManager GM = GameManager.instance;
+
+        GM.PlayerInMiddle.transform.position = GM.RandomSpawn().position;
+        GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+        GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
 
         for (int i = 0; i < GameManager.instance.TabCircle.Count; i++)
         {
-            GameManager.instance.TabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
-            GameManager.instance.TabCircle[i].GetComponent<Outline>().enabled = false;
+            GM.TabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
+            GM.TabCircle[i].GetComponent<Outline>().enabled = false;
         }
 
-        for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
-        {
-            GameManager.instance.ejectPlatesActive = 0;
-            GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
-            GameManager.instance.EjectPlates[i].SetActive(false);
-        }
-        GameManager.instance.PlayerInMiddle = null;
+        GM.ejectPlatesActive = 0;
+
+        foreach (GameObject plate in GM.EjectPlates)
+            Destroy(plate);
+
+        GM.EjectPlates.Clear();
+
+        GM.PlayerInMiddle = null;
         Debug.Log("Player au centre éjecté !");
     }
 }

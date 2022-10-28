@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
+    [Tooltip("Temps invincibilité des players apres le respawn en seconde")]
+    [SerializeField] private float invincibleDelay = 2;
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
@@ -56,6 +58,9 @@ public class GameManager : MonoBehaviour
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
     public float RespawnDelay => respawnDelay;
+
+    public float InvincibleDelay => invincibleDelay;
+
 
     public float SlowDuration => slowDuration;
 
@@ -83,7 +88,7 @@ public class GameManager : MonoBehaviour
     [Header("Variables des EjectPlates")]
 
     [Tooltip("Liste des plaques d'ejection du player au centre")]
-    [SerializeField] private GameObject[] ejectPlates;
+    private List<GameObject> ejectPlates = new List<GameObject>();
     [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
     [SerializeField] private int numberOfPlate = 3;
     [Tooltip("Couleur que prend la zone quand elle est activée")]
@@ -91,7 +96,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Couleur que prend la zone quand elle est spawn")]
     [SerializeField]  private Color activeColor;
     [HideInInspector] public int ejectPlatesActive = 0;
-    public GameObject[] EjectPlates => ejectPlates;
+    public List<GameObject> EjectPlates => ejectPlates;
     public int NumberOfPlate => numberOfPlate;
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;

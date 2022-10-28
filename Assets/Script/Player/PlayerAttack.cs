@@ -40,10 +40,14 @@ public class PlayerAttack : MonoBehaviour
     {
         float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
+        {
+            currentSpecial = 0;
             StartCoroutine(AttackCoroutine(strenght));
+        }
     }
     #endregion
 
+    
     #region Attack
     IEnumerator AttackCoroutine(float _strenght)
     {
