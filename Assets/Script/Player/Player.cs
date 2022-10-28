@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = PointAreaManager.instance.RandomPosition().position;
-        StartCoroutine(InvincibilityFlash());
+        //StartCoroutine(InvincibilityFlash());
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
         Debug.Log(" plus Invincible");
         isInvincible = false;
@@ -60,18 +60,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public IEnumerator InvincibilityFlash()
-    {
-        while (isInvincible)
-        {
-            graphics.material.color = new Color(1f,1f,1f,0f);
-            yield return new WaitForSeconds(0.2f);
-            graphics.material.color = currentColor; 
-            yield return new WaitForSeconds(0.2f);
+    //public IEnumerator InvincibilityFlash()
+    //{
+    //    while (isInvincible)
+    //    {
+    //        graphics.material.color = new Color(1f,1f,1f,0f);
+    //        yield return new WaitForSeconds(0.2f);
+    //        graphics.material.color = currentColor; 
+    //        yield return new WaitForSeconds(0.2f);
 
 
-        }
-    }
+    //    }
+    //}
     public void HideGuy(bool enable)
     {
         GetComponent<CapsuleCollider>().enabled = enable;
