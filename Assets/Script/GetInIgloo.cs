@@ -17,6 +17,7 @@ public class GetInIgloo : MonoBehaviour
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle == null)
         {
             GameManager.instance.PlayerInMiddle = other.gameObject;
+            other.GetComponent<Rigidbody>().useGravity = false;
 
             for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
             {
