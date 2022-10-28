@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        for (int p = 0; p < 4 /*GameManager.instance.players.Count*/; p++)
+        for (int p = 0; p < 4; p++)
         {
             GameObject temp = Instantiate(scoreTextPrefab, scoreParentList[p].transform);
             scorePlayerText[p] = temp.GetComponent<Text>();
