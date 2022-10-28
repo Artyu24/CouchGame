@@ -91,6 +91,11 @@ public class PlayerAttack : MonoBehaviour
                     hit.transform.GetComponent<PointArea>().Damage(gameObject);
                     return;
                 }
+                if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
+                {
+                    CenterManager.instance.DealDamage();
+                    return;
+                }
                 #endregion
 
                 #region Don't Do To Much
