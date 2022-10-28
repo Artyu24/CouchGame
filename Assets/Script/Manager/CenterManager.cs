@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class CenterManager : MonoBehaviour
@@ -15,7 +16,8 @@ public class CenterManager : MonoBehaviour
     private CenterState actualCenterState = CenterState.PROTECTION;
     public CenterState ActualCenterState { get => actualCenterState; set => actualCenterState = value; }
     private int healthPoint;
-    private int maxHealthPoint = 10;
+    [SerializeField] private int maxHealthPoint = 10;
+    [SerializeField] private VisualEffect shieldEffect;
 
     void Awake()
     {
@@ -49,6 +51,14 @@ public class CenterManager : MonoBehaviour
         healthPoint = maxHealthPoint;
         GetComponent<SphereCollider>().enabled = true;
         //Activer le bo shield
+        shieldEffect.Play();
+        StartCoroutine(StopShieldAnimation());
+    }
+
+    private IEnumerator StopShieldAnimation()
+    {
+        yield return new WaitForSeconds(3f);
+        shieldEffect.pause = true;
     }
 
     private void DesactivateShield()
@@ -56,6 +66,7 @@ public class CenterManager : MonoBehaviour
         GetComponent<SphereCollider>().enabled = false;
         actualCenterState = CenterState.ACCESS;
         //Détruire le bo shield
+        shieldEffect.pause = false;
     }
 
     private void ActivateRandomBridge()
