@@ -236,13 +236,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005507952a801c04ca28d0effbc66beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint:
-  - {fileID: 2020481387}
-  - {fileID: 247463817}
-  - {fileID: 572612199}
-  - {fileID: 1981577001}
-  - {fileID: 1910569189}
-  - {fileID: 1473212333}
-  pointArea: {fileID: 3918320467840225395, guid: e51dbd57e3a549c439f9702260ddbc2b,
-    type: 3}
-  anneau: {fileID: 0}
+  spawnPoint: []
+  fishBag: {fileID: 3918320467840225395, guid: e51dbd57e3a549c439f9702260ddbc2b, type: 3}
