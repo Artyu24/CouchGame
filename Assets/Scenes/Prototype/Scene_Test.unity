@@ -16259,16 +16259,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---UI---
       objectReference: {fileID: 0}
-    - target: {fileID: 2728313911226112685, guid: 7c447ba96b9b3624e93b82b3ad906524,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5136208589095829134, guid: 7c447ba96b9b3624e93b82b3ad906524,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c447ba96b9b3624e93b82b3ad906524, type: 3}
 --- !u!1 &30993079984434324 stripped
@@ -16383,49 +16373,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
-      propertyPath: range
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
       propertyPath: cameraScene
       value: 
       objectReference: {fileID: 2716505133295827302}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: normalStrenght
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: specialStrenght
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: maxMovementSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: circleRotationSpeed
-      value: 32.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: spawnList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: tabCircle.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: ejectPlates.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
       propertyPath: spawnList.Array.data[0]
@@ -16448,12 +16398,6 @@ PrefabInstance:
       objectReference: {fileID: 2716505133945077943}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
-      propertyPath: spawnList.Array.data[5]
-      value: 
-      objectReference: {fileID: 2668030986375945214, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
       propertyPath: tabCircle.Array.data[0]
       value: 
       objectReference: {fileID: 613016172}
@@ -16467,39 +16411,6 @@ PrefabInstance:
       propertyPath: tabCircle.Array.data[2]
       value: 
       objectReference: {fileID: 1090153303}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: tabCircle.Array.data[3]
-      value: 
-      objectReference: {fileID: 613016172}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: tabCircle.Array.data[4]
-      value: 
-      objectReference: {fileID: 1007933571}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: tabCircle.Array.data[5]
-      value: 
-      objectReference: {fileID: 1090153303}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: ejectPlates.Array.data[0]
-      value: 
-      objectReference: {fileID: 2668030986375945215, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: ejectPlates.Array.data[1]
-      value: 
-      objectReference: {fileID: 2668030986729202004, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
-        type: 3}
-      propertyPath: ejectPlates.Array.data[2]
-      value: 
-      objectReference: {fileID: 2668030986122536437, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
       propertyPath: speBarreParentList.Array.data[0]
@@ -22277,16 +22188,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865056626624256745, guid: dd5653fb30ed303438fb3d0c340a37d9,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.05000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865056626624256745, guid: dd5653fb30ed303438fb3d0c340a37d9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.05000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865056626624256745, guid: dd5653fb30ed303438fb3d0c340a37d9,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -22340,18 +22241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Center_Igloo
       objectReference: {fileID: 0}
-    - target: {fileID: 5246684311585358253, guid: dd5653fb30ed303438fb3d0c340a37d9,
-        type: 3}
-      propertyPath: platePref
-      value: 
-      objectReference: {fileID: 3137264077084393792, guid: a2314e316ba6dda419fbe037690f1a10,
-        type: 3}
-    - target: {fileID: 5246684311585358253, guid: dd5653fb30ed303438fb3d0c340a37d9,
-        type: 3}
-      propertyPath: cameraScene
-      value: 
-      objectReference: {fileID: 2668030986794879740, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd5653fb30ed303438fb3d0c340a37d9, type: 3}
 --- !u!1001 &7800297391734138887
