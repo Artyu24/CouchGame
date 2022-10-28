@@ -34,15 +34,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
         Debug.Log("Invincible");
         isInvincible = true;
-        gameObject.GetComponent<Rigidbody>().useGravity = false;
-        //appelle fonction invincible
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = GameManager.instance.RandomSpawn().position;
+        transform.position = PointAreaManager.instance.RandomPosition().position;
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
         Debug.Log(" plus Invincible");
         isInvincible = false;
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
 
 
 
