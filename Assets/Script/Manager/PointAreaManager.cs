@@ -22,6 +22,15 @@ public class PointAreaManager : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
+    void Update()
+    {
+        RaycastHit hit;
+        int i = 0;
+        Debug.DrawRay(spawnPoint[i].position, spawnPoint[i].up * -1 * 2, Color.yellow, 5.0f);
+        Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
+        Debug.Log(hit.transform.gameObject.name);
+    }
+
     public void StartNextSpawn()
     {
         StartCoroutine(Spawn());
