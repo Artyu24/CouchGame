@@ -34,6 +34,11 @@ public class ScoreManager : MonoBehaviour
             scorePlayerText[p] = temp.GetComponent<Text>();
             temp.name = "Player " + (p + 1);
         }
+
+        if (scoreTextPrefab == null || scoreParentList.Count == 0)
+        {
+            Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
+        }
     }
 
     void Update()
