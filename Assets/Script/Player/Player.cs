@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 
     public bool isChockedWaved = false;
 
+    public bool isInvincible = false;
+
+
     [Header("Variables Game Feel")]
 
     private PlayerState actualPlayerState = PlayerState.INIT;
@@ -29,9 +32,16 @@ public class Player : MonoBehaviour
     private IEnumerator RespawnDelay()
     {
         yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
+        Debug.Log("Invincible");
+        isInvincible = true;
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = GameManager.instance.RandomSpawn().position;
+        transform.position = PointAreaManager.instance.RandomPosition().position;
+        yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
+        Debug.Log(" plus Invincible");
+        isInvincible = false;
+
+
 
         if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
         {

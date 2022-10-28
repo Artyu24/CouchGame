@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float movSpeedSlowZone;
     [Tooltip("Temps du respawn des players en seconde")]
     [SerializeField] private float respawnDelay = 2;
+    [Tooltip("Temps invincibilité des players apres le respawn en seconde")]
+    [SerializeField] private float invincibleDelay = 2;
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
@@ -56,6 +58,9 @@ public class GameManager : MonoBehaviour
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
     public float RespawnDelay => respawnDelay;
+
+    public float InvincibleDelay => invincibleDelay;
+
 
     public float SlowDuration => slowDuration;
 
@@ -83,7 +88,7 @@ public class GameManager : MonoBehaviour
     [Header("Variables des EjectPlates")]
 
     [Tooltip("Liste des plaques d'ejection du player au centre")]
-    [SerializeField] private GameObject[] ejectPlates;
+    private List<GameObject> ejectPlates = new List<GameObject>();
     [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
     [SerializeField] private int numberOfPlate = 3;
     [Tooltip("Couleur que prend la zone quand elle est activée")]
@@ -91,7 +96,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Couleur que prend la zone quand elle est spawn")]
     [SerializeField]  private Color activeColor;
     [HideInInspector] public int ejectPlatesActive = 0;
-    public GameObject[] EjectPlates => ejectPlates;
+    public List<GameObject> EjectPlates => ejectPlates;
     public int NumberOfPlate => numberOfPlate;
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
@@ -115,6 +120,10 @@ public class GameManager : MonoBehaviour
     public float ShakeDuration => shakeDuration;
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
+    #endregion
+    #region UI
+    public GameObject speBarrePrefab;
+    public List<GameObject> speBarreParentList = new List<GameObject>();
     #endregion
 
     void Awake()
@@ -149,15 +158,27 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 player.transform.position = spawnList[0].position;
+                GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
+                player.GetComponent<PlayerAttack>().speBarre = temp1;
+                temp1.name = "SpéChargeBarre " + (1);
                 break;
             case 2:
                 player.transform.position = spawnList[1].position;
+                GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
+                player.GetComponent<PlayerAttack>().speBarre = temp2;
+                temp2.name = "SpéChargeBarre " + (2);
                 break;
             case 3:
                 player.transform.position = spawnList[2].position;
+                GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
+                player.GetComponent<PlayerAttack>().speBarre = temp3;
+                temp3.name = "SpéChargeBarre " + (3);
                 break;
             case 4:
-                player.transform.position = spawnList[3].position; 
+                player.transform.position = spawnList[3].position;
+                GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
+                player.GetComponent<PlayerAttack>().speBarre = temp4;
+                temp4.name = "SpéChargeBarre " + (4);
                 break;
             default:
                 break;

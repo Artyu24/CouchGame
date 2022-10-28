@@ -9,7 +9,11 @@ public class SlowZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone; 
+            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            {
+                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone; 
+
+            }
 
         }
 
@@ -19,7 +23,11 @@ public class SlowZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
+            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            {
+                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
+            }
 
         }
 

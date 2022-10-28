@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.Controls;
 public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
+    [SerializeField] private GameObject platePref;
 
     private Player playerInMid;
 
@@ -16,12 +17,15 @@ public class GetInIgloo : MonoBehaviour
         if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle == null)
         {
             GameManager.instance.PlayerInMiddle = other.gameObject;
+            other.GetComponent<Rigidbody>().useGravity = false;
 
-            for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
+            for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
             {
-                GameManager.instance.EjectPlates[i].SetActive(true);
-                GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
-                GameManager.instance.EjectPlates[i].GetComponent<BoxCollider>().enabled = true;
+                Transform spawnPoint = PointAreaManager.instance.RandomPosition();
+                GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
+                plate.GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
+                plate.GetComponent<BoxCollider>().enabled = true;
+                GameManager.instance.EjectPlates.Add(plate);
             }
 
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
