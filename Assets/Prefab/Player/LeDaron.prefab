@@ -248,6 +248,8 @@ MonoBehaviour:
   scoreGeneral: 0
   isChockedWaved: 0
   isInvincible: 0
+  graphics: {fileID: 6683296585486301612}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,10 +287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
-  maxSpecial: 20
+  maxSpecial: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 3072
   speBarre: {fileID: 0}
 --- !u!114 &5251401784062500209
 MonoBehaviour:

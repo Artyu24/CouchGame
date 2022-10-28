@@ -46,18 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 150
   deadZoneController: 0.3
-  range: 2.5
+  range: 1.5
   sideRangeDeg: 30
-  normalStrenght: 8
-  specialStrenght: 12
+  normalStrenght: 11
+  specialStrenght: 30
   attackCd: 1
   spawnList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  maxMovementSpeed: 5
+  maxMovementSpeed: 4
   movSpeedSlowZone: 0
   respawnDelay: 2
   invincibleDelay: 2
@@ -65,7 +64,8 @@ MonoBehaviour:
   tabCircle:
   - {fileID: 0}
   - {fileID: 0}
-  circleRotationSpeed: 20
+  - {fileID: 0}
+  circleRotationSpeed: 32.2
   colorCircleChoose: {r: 0.8784314, g: 0.69803923, b: 0.70980394, a: 1}
   numberOfPlate: 3
   activatedColor: {r: 0.101122975, g: 1, b: 0, a: 1}
