@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CenterManager : MonoBehaviour
 {
     public static CenterManager instance;
 
-    [SerializeField] private Bridge[] bridges = new Bridge[4];
+
+    [SerializeField] private int TimeBtwNextCenter;
+    private Bridge[] bridges = new Bridge[4];
     private CenterState actualCenterState = CenterState.PROTECTION;
     public CenterState ActualCenterState { get => actualCenterState; set => actualCenterState = value; }
     private int healthPoint;
@@ -20,6 +25,20 @@ public class CenterManager : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < 4; ++i)
+        {
+            try
+            {
+                bridges[i] = transform.GetChild(i).gameObject.GetComponent<Bridge>();
+            }
+            catch (Exception)
+            {
+                Debug.Log("IL MANQUE DES BRIDGE");
+                return;
+            }
+        }
+
+        healthPoint = maxHealthPoint;
         transform.position = Vector3.zero;
         ActivateRandomBridge();
         ActivateShield();
@@ -66,6 +85,7 @@ public class CenterManager : MonoBehaviour
 
         actualCenterState = CenterState.REGENERATION;
         ActivateShield();
+        StartCoroutine(ResetBridge());
     }
 
     public void DealDamage()
@@ -73,5 +93,11 @@ public class CenterManager : MonoBehaviour
         healthPoint--;
         if(healthPoint <= 0)
             DesactivateShield();
+    }
+
+    private IEnumerator ResetBridge()
+    {
+        yield return new WaitForSeconds(TimeBtwNextCenter);
+        ActivateRandomBridge();
     }
 }
