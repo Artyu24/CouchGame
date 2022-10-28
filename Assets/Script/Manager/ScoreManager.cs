@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     public float middelPointsCooldown = 2;
     public int scoreKill = 10;
     private bool addMiddleScore = true;
-    public GameObject scoreParent1/*, scoreParent2, scoreParent3, scoreParent4*/;
+    public List<GameObject> scoreParentList = new List<GameObject>();
 
     public static ScoreManager instance;
 
@@ -28,11 +28,16 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        for (int p = 0; p < 4 /*GameManager.instance.players.Count*/; p++)
+        for (int p = 0; p < 4; p++)
         {
-            GameObject temp = Instantiate(scoreTextPrefab, scoreParent1.transform);
+            GameObject temp = Instantiate(scoreTextPrefab, scoreParentList[p].transform);
             scorePlayerText[p] = temp.GetComponent<Text>();
             temp.name = "Player " + (p + 1);
+        }
+
+        if (scoreTextPrefab == null || scoreParentList.Count == 0)
+        {
+            Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
     }
 
