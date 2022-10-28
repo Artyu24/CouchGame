@@ -525,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 5246684311585357907}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.05000002, y: 0.05, z: 0.05000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8643957634566996364}
@@ -552,9 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512ceeb6e2ff34e4f922f7e767eb910e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraScene: {fileID: 0}
-  shakePower: 0.05
-  shakeDuration: 0.5
+  platePref: {fileID: 3137264077084393792, guid: a2314e316ba6dda419fbe037690f1a10,
+    type: 3}
 --- !u!135 &5246684311585358252
 SphereCollider:
   m_ObjectHideFlags: 0

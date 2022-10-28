@@ -76,5 +76,6 @@ public class Player : MonoBehaviour
     {
         GetComponent<CapsuleCollider>().enabled = enable;
         GetComponentInChildren<MeshRenderer>().enabled = enable;
+        GetComponent<Rigidbody>().useGravity = enable;
     }
 }
