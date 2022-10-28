@@ -249,7 +249,6 @@ MonoBehaviour:
   isChockedWaved: 0
   isInvincible: 0
   graphics: {fileID: 6683296585486301612}
-  normalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}
+  - {fileID: 2100000, guid: 2ab8149ec4775284bada96c1b85b4a09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
