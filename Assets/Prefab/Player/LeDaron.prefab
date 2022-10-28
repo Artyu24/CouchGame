@@ -285,10 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
-  maxSpecial: 20
+  maxSpecial: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 3072
+  speBarre: {fileID: 0}
 --- !u!114 &5251401784062500209
 MonoBehaviour:
   m_ObjectHideFlags: 0
