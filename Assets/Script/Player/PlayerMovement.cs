@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject departChoc;
     public GameObject departMeteorite;
     public GameObject chocWave;
+    public GameObject chocWaveSprite;
 
     private float movementSpeed;
 
@@ -156,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 if (isInteracting == false)
                 {
                     Instantiate(chocWave, departChoc.transform.position, departChoc.transform.rotation);
+                    //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
                 }
             }

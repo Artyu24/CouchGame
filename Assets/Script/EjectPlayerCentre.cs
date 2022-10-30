@@ -12,7 +12,7 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
+        if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.USE)
         {
             GameManager.instance.ejectPlatesActive++;
             bc.enabled = false;
@@ -22,6 +22,7 @@ public class EjectPlayerCentre : MonoBehaviour
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
                 EjectPlayer();
+                CenterManager.instance.DesactivateAllBridge();
             }
         }
     }

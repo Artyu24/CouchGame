@@ -248,6 +248,7 @@ MonoBehaviour:
   scoreGeneral: 0
   isChockedWaved: 0
   isInvincible: 0
+  graphics: {fileID: 6683296585486301612}
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +271,8 @@ MonoBehaviour:
     type: 3}
   chocWave: {fileID: 1043392141120676028, guid: 453d429aac1784d4ba23dbbd7d93a54e,
     type: 3}
+  chocWaveSprite: {fileID: 2194196379437685399, guid: 703dc40034ca4a441b80ed8139e600fc,
+    type: 3}
 --- !u!114 &181805185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,10 +286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
-  maxSpecial: 20
+  maxSpecial: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 3584
+  speBarre: {fileID: 0}
 --- !u!114 &5251401784062500209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +388,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6683296585486301610}
-  m_Mesh: {fileID: 5147715686971427031, guid: 5fd28c401ae67d042a84440b1ea16fa9, type: 3}
+  m_Mesh: {fileID: 7788228752022133180, guid: 5fd28c401ae67d042a84440b1ea16fa9, type: 3}
 --- !u!23 &6683296585486301612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -405,7 +409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}
+  - {fileID: 2100000, guid: 2ab8149ec4775284bada96c1b85b4a09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

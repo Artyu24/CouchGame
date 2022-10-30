@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-    private void ActivateBridge()
+    public void ActivateBridge()
     {
         transform.DOScaleZ(1, 5f);
     }
 
-    private void DesactivateBridge()
+    public void DesactivateBridge()
     {
         transform.DOScaleZ(0.1f, 5f);
     }

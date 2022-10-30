@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -27,12 +28,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
+
+    [Header("UI")] 
+    public GameObject speBarre;
     #endregion
 
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
+        speBarre.GetComponent<Slider>().value = currentSpecial;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
@@ -42,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
         {
             currentSpecial = 0;
+            speBarre.GetComponent<Slider>().value = currentSpecial;
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -91,6 +97,12 @@ public class PlayerAttack : MonoBehaviour
                     hit.transform.GetComponent<PointArea>().Damage(gameObject);
                     return;
                 }
+                if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
+                {
+                    CenterManager.instance.DealDamage();
+                    return;
+                }
+
                 #endregion
 
                 #region Don't Do To Much
