@@ -18,7 +18,12 @@ public class LD_Tool : EditorWindow
     private float heighCircle = 0.1f;
     private float surfaceSize = 2;
 
+    private bool[] canControlTab;
+    private float[] surfaceSizeTab;
+
     private Material[] tabMat = new Material[6];
+
+    private Vector2 scroll = Vector2.zero;
 
     [MenuItem("Tools/Level Creator")]
     static void InitWindow()
@@ -28,11 +33,23 @@ public class LD_Tool : EditorWindow
         window.Show();
     }
 
+    private void Awake()
+    {
+        if (nbrCircle < 0)
+            nbrCircle = 0;
+
+        InitAllTab();
+    }
+
     private void OnGUI()
     {
+        #region Search all the files we need
         GameManager gameManager = FindGameManagerInScene();
         if (gameManager == null)
             return;
+
+        SerializedObject GM = new SerializedObject(gameManager);
+        GM.Update();
 
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/CirclePrefab.prefab");
 
@@ -40,28 +57,90 @@ public class LD_Tool : EditorWindow
         {
             tabMat[i - 1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Material/Circle_Mat_Proto/Circle_Mat_" + i.ToString() + ".mat");
         }
+        #endregion
 
         if (prefab != null)
         {
+            scroll = EditorGUILayout.BeginScrollView(scroll);
+
             nbrCircle = EditorGUILayout.IntField("Nombre de Cercle :", nbrCircle);
             sizeCircle = EditorGUILayout.FloatField("Taille du premier cercle :", sizeCircle);
             heighCircle = EditorGUILayout.FloatField("Hauteur des cercles :", heighCircle);
-            surfaceSize = EditorGUILayout.FloatField("Surface des cercles :", surfaceSize);
+            //surfaceSize = EditorGUILayout.FloatField("Surface des cercles :", surfaceSize);
 
+            if (nbrCircle <= 0 || sizeCircle <= 0 || heighCircle <= 0 || surfaceSize <= 0)
+            {
+                EditorGUILayout.EndScrollView();
+                return;
+            }
+
+            if (canControlTab.Length != nbrCircle || surfaceSizeTab.Length != nbrCircle)
+                InitAllTab();
+
+            #region All the list
+
+            #region Can Be possessed List
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.LabelField("--Can be possessed--");
+
+            for (int i = 0; i < nbrCircle; i++)
+            {
+                canControlTab[i] = EditorGUILayout.Toggle("Cercle " + (i + 1), canControlTab[i]);
+            }
+
+            EditorGUILayout.EndVertical();
+            #endregion
+
+            #region Surface List
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.LabelField("--Surface--");
+
+            for (int i = 0; i < nbrCircle; i++)
+            {
+                surfaceSizeTab[i] = EditorGUILayout.FloatField("Size " + (i + 1), surfaceSizeTab[i]);
+            }
+
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            #endregion
+
+            foreach (float size in surfaceSizeTab)
+            {
+                if (size <= 0)
+                {
+                    EditorGUILayout.EndScrollView();
+                    return;
+                }
+            }
+            
             if (GUILayout.Button("Print LD"))
             {
+                #region Clear Old Circle
                 //Reset et destruction de l'ancien terrain
-                foreach (GameObject circle in gameManager.TabCircle)
-                {
-                    DestroyImmediate(circle);
-                }
-                gameManager.TabCircle.Clear();
 
+                foreach (GameObject circle in gameManager.TabCircle)
+                    DestroyImmediate(circle);
+
+                foreach (GameObject circleBlock in gameManager.CircleBlockList)
+                    DestroyImmediate(circleBlock);
+
+                SerializedProperty spTabCircle = FindHiddenPropertyRelative(GM, "tabCircle");
+                SerializedProperty spCircleBlockList = FindHiddenPropertyRelative(GM, "circleBlockList");
+
+                spTabCircle.ClearArray();
+                spCircleBlockList.ClearArray();
+                #endregion
+
+                #region New Circle Generation
                 //On créé les nouveaux cercles
                 Type probuilderShapeType = _GetProBuilderType();
-
+                float sizeCircleBefore = sizeCircle;
                 for (int i = 0; i < nbrCircle; i++)
                 {
+                    #region Setup Circle
                     GameObject newCircle = Instantiate(prefab);
                     newCircle.GetComponent<MeshRenderer>().material = tabMat[i];
 
@@ -69,17 +148,41 @@ public class LD_Tool : EditorWindow
 
                     //Surface
                     var so = new SerializedObject(proBuilderComponent);
-                    so.FindProperty("m_Shape").FindPropertyRelative("m_Thickness").floatValue = surfaceSize;
+                    so.FindProperty("m_Shape").FindPropertyRelative("m_Thickness").floatValue = surfaceSizeTab[i];
                     so.ApplyModifiedProperties();
 
                     //Taille
-                    SetProBuilderSize(probuilderShapeType, proBuilderComponent, new Vector3(sizeCircle + i * surfaceSize * 2, heighCircle, sizeCircle + i * surfaceSize * 2));
+                    if (i == 0)
+                        SetProBuilderSize(probuilderShapeType, proBuilderComponent, new Vector3(sizeCircle, heighCircle, sizeCircle));
+                    else
+                    {
+                        SetProBuilderSize(probuilderShapeType, proBuilderComponent, new Vector3(sizeCircleBefore + surfaceSizeTab[i] * 2, heighCircle, sizeCircleBefore + surfaceSizeTab[i] * 2));
+                        sizeCircleBefore += surfaceSizeTab[i] * 2;
+                    }
+                    #endregion
 
-                    gameManager.TabCircle.Add(newCircle);
+                    #region Add To System
+
+                    if (canControlTab[i])
+                    {
+                        int arraySize = spTabCircle.arraySize;
+                        spTabCircle.InsertArrayElementAtIndex(arraySize);
+                        spTabCircle.GetArrayElementAtIndex(arraySize).objectReferenceValue = newCircle;
+                    }
+                    else
+                    {
+                        int arraySize = spCircleBlockList.arraySize;
+                        spCircleBlockList.InsertArrayElementAtIndex(arraySize);
+                        spCircleBlockList.GetArrayElementAtIndex(arraySize).objectReferenceValue = newCircle;
+                    }
+                    #endregion
                 }
-
-                EditorUtility.SetDirty(gameManager);
+                #endregion
+                
+                GM.ApplyModifiedProperties();
             }
+
+            EditorGUILayout.EndScrollView();
         }
 
         //Example de récupération d'une property provenant d'un script héritant d'un autre
@@ -100,6 +203,26 @@ public class LD_Tool : EditorWindow
         //Component[] tabCompo = FindProbuilderPipeInScene();
         //Component proBuilderComponent = tabCompo[0];
         //SetProBuilderSize(probuilderShapeType, proBuilderComponent, s);
+    }
+
+    private void InitAllTab()
+    {
+        InitCanControlTab();
+        InitSurfaceSizeTab();
+    }
+
+    private void InitCanControlTab()
+    {
+        canControlTab = new bool[nbrCircle];
+        for (int i = 0; i < canControlTab.Length; i++)
+            canControlTab[i] = true;
+    }
+
+    private void InitSurfaceSizeTab()
+    {
+        surfaceSizeTab = new float[nbrCircle];
+        for (int i = 0; i < surfaceSizeTab.Length; i++)
+            surfaceSizeTab[i] = surfaceSize;
     }
 
     private static Type _GetProBuilderType()
@@ -186,6 +309,19 @@ public class LD_Tool : EditorWindow
         }
 
         return resultList.ToArray();
+    }
+
+    public SerializedProperty FindHiddenPropertyRelative(SerializedObject obj, string propertyName)
+    {
+        var property = obj.GetIterator();
+        var enumerator = property.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            SerializedProperty spChild = enumerator.Current as SerializedProperty;
+            if (spChild.name == propertyName)
+                return spChild;
+        }
+        return null;
     }
 
 }

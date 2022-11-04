@@ -38,7 +38,7 @@ public class CreatePointCircleEditor : Editor
         }
         catch (Exception)
         {
-                    
+            //Do nothing
         }
 
         if (mySource == null || myCircle == null)
