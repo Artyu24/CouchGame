@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
 
     public Color currentColor;
+
     private void Start()
     {
         //DG.Tweening.Sequence seq = DOTween.Sequence();
