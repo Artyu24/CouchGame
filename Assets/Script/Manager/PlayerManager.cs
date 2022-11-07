@@ -33,7 +33,6 @@ public class PlayerManager : MonoBehaviour
         dataPlayer.playerID = players.Count;
         dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
 
-        Debug.Log("Players : " + players.Count);
         switch (dataPlayer.playerID)
         {
             case 1:
