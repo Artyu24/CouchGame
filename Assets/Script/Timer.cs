@@ -34,9 +34,9 @@ public class Timer : MonoBehaviour
     private void Awake()
     {
         timerText = GetComponent<Text>();
-        medals[1] = Resources.Load<GameObject>("GoldMedal");
-        medals[2] = Resources.Load<GameObject>("SilverMedal");
-        medals[3] = Resources.Load<GameObject>("CopperMedal");
+        medals[0] = Resources.Load<GameObject>("GoldMedal");
+        medals[1] = Resources.Load<GameObject>("SilverMedal");
+        medals[2] = Resources.Load<GameObject>("CopperMedal");
     }
 
     private void Start()
