@@ -8,10 +8,10 @@ public class MeteorMovement : MonoBehaviour
     [Header("----------Mettre toutes les target pour les météorites----------")]
     //[SerializeField] Transform[] position;
     private Vector3 position1 = new Vector3(-6.55f, 0f, 0f);
-    private Vector3 position2 = new Vector3(0f, 6.55f, 0f);
+    private Vector3 position2 = new Vector3(0f, 0f, -6.55f);
     private Vector3 position3 = new Vector3(6.55f, 0f, 0f);
-    private Vector3 position4 = new Vector3(0f, -6.55f, 0f);
-
+    private Vector3 position4 = new Vector3(0f, 0f, 6.55f);
+    
     Vector3 nextPos;
     public bool explosion = false;
     private GameObject explos;
