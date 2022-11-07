@@ -60,9 +60,9 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScores()
     {
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i+1].score;
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i+1].score;
         }
     }
 
@@ -73,11 +73,11 @@ public class ScoreManager : MonoBehaviour
         UpdateScores();
     }
 
-    public void AddScoreGeneral(int points, Player player)
+    /*public void AddScoreGeneral(int points, Player player)
     {
         player.scoreGeneral += points;
 
         UpdateScores();
 
-    }
+    }*/
 }

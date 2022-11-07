@@ -5,10 +5,6 @@ using UnityEngine;
 public class ChocWave : MonoBehaviour
 {
     public SphereCollider sphereCollider;
-    public float radiusMax;
-    public float growingSpeed;
-    //public GameObject player;
-    public float pushForce;
     bool getPushed = false;
     public Transform transparence;
     private List<Player> playerList = new List<Player>();
@@ -20,13 +16,13 @@ public class ChocWave : MonoBehaviour
 
     private void Update()
     {
-        if(transparence.localScale.x < radiusMax)
+        if(transparence.localScale.x < GameManager.instance.RadiusMax)
         {            
-            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * growingSpeed, transparence.localScale.y + Time.deltaTime * growingSpeed, transparence.localScale.z + Time.deltaTime * growingSpeed);
+            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeed);
         }
 
 
-        if(transparence.localScale.x >= radiusMax)
+        if(transparence.localScale.x >= GameManager.instance.RadiusMax)
         {
             getPushed = false;
             foreach(Player player in playerList)
@@ -47,7 +43,7 @@ public class ChocWave : MonoBehaviour
                 if (other.gameObject.GetComponent<Player>().isChockedWaved == false && other.gameObject.GetComponent<Player>().isInvincible == false)
                 {
                     Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
-                    other.GetComponent<Rigidbody>().AddForce(push * pushForce);
+                    other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForce);
                     other.gameObject.GetComponent<Player>().isChockedWaved = true;
                     playerList.Add(other.gameObject.GetComponent<Player>());
                 }
