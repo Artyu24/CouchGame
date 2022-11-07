@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float movementSpeed;
 
+
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
     //public static PlayerMovement instance;
@@ -62,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
             GameManager.instance.TabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
-
     }
 
 
