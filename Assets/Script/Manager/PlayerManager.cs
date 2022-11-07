@@ -23,6 +23,10 @@ public class PlayerManager : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+        speBarrePrefab = Resources.Load<GameObject>("SpeChargeBarre");
+    }
 
     public void AddPlayer()
     {

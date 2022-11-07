@@ -61,11 +61,11 @@ public class Timer : MonoBehaviour
         if (GameManager.instance.Timer >= 0.0f)
         {
             timerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
-        }/*
+        }
         else
         {
             timerText.text = "00 : 00";
-        }*/
+        }
     }
 
     private void PrintScoreWindow()
