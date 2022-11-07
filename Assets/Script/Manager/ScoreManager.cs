@@ -14,7 +14,8 @@ public class ScoreManager : MonoBehaviour
     public int scoreInterrupteur = 5;
     [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
     public float middelPointsCooldown = 2;
-    public int scoreKill = 10;
+    [Tooltip("Point gagner à chaque hit du sac")] public int scorePointArea = 1;
+    [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
     private bool addMiddleScore = true;
     public List<GameObject> scoreParentList = new List<GameObject>();
 
@@ -28,6 +29,11 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        if(scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        {
+            return;
+        }
+
         for (int p = 0; p < 4; p++)
         {
             GameObject temp = Instantiate(scoreTextPrefab, scoreParentList[p].transform);
@@ -43,6 +49,11 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        if (scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        {
+            return;
+        }
+        
         if (GameManager.instance.PlayerInMiddle != null && addMiddleScore)
         {
             StartCoroutine(AddScoreFromMiddle());
@@ -59,9 +70,9 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScores()
     {
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i+1].score;
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i+1].score;
         }
     }
 
@@ -72,11 +83,11 @@ public class ScoreManager : MonoBehaviour
         UpdateScores();
     }
 
-    public void AddScoreGeneral(int points, Player player)
+    /*public void AddScoreGeneral(int points, Player player)
     {
         player.scoreGeneral += points;
 
         UpdateScores();
 
-    }
+    }*/
 }

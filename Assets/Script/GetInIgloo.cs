@@ -58,10 +58,10 @@ public class GetInIgloo : MonoBehaviour
             offsetCam = new Vector3(Random.Range(-GameManager.instance.shakePower, GameManager.instance.shakePower), Random.Range(-GameManager.instance.shakePower, GameManager.instance.shakePower), 0);
             GameManager.instance.CameraScene.transform.localPosition += offsetCam;
             timer += Time.deltaTime;
-            yield return new WaitForEndOfFrame();  
+            yield return new WaitForEndOfFrame();
         }
         GameManager.instance.CameraScene.transform.localPosition -= offsetCam;
-        foreach (var gamepad in GameManager.instance.manettes)
+        foreach (var gamepad in PlayerManager.instance.manettes)
         {
             gamepad.SetMotorSpeeds(0.0f, 0.0f);
         }

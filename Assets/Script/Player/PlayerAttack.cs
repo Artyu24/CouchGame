@@ -29,11 +29,17 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
-    [Header("UI")] 
+    [HideInInspector] 
     public GameObject speBarre;
     #endregion
 
     #region InputSysteme
+
+    private void Start()
+    {
+        speBarre = Resources.Load<GameObject>("SpeChargeBarre");
+    }
+
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
@@ -87,7 +93,7 @@ public class PlayerAttack : MonoBehaviour
                 if (hit.transform != null && hit.transform.tag == "Player")//if we hit a player we push him
                 {
                     //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
-                    hit.rigidbody.AddForce(dir * _strenght, ForceMode.Impulse);
+                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                     Debug.Log(hit.transform.name + " has been hit");
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
                     return;

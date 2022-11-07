@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,12 +16,11 @@ public class Player : MonoBehaviour
 
     public MeshRenderer graphics;
 
-    [Header("Variables Game Feel")]
-
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
 
     public Color currentColor;
+
     private void Start()
     {
         //DG.Tweening.Sequence seq = DOTween.Sequence();
@@ -78,4 +76,6 @@ public class Player : MonoBehaviour
         GetComponentInChildren<MeshRenderer>().enabled = enable;
         GetComponent<Rigidbody>().useGravity = enable;
     }
+
+
 }
