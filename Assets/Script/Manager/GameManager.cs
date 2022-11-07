@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Timeline;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -81,12 +85,15 @@ public class GameManager : MonoBehaviour
     #region Circles
     [Header("Variables des Anneaux")]
 
-    [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private List<GameObject> tabCircle;
-    public List<GameObject> TabCircle => tabCircle;
-
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
+    [Tooltip("PAS TOUCHE"), SerializeReference]
+    private List<GameObject> tabCircle;
+    public List<GameObject> TabCircle => tabCircle;
+    [Tooltip("PAS TOUCHE"), SerializeReference]
+    private List<GameObject> circleBlockList;
+    public List<GameObject> CircleBlockList => circleBlockList;
+
     [Tooltip("...")]
     [SerializeField] private Color colorCircleChoose;
     private List<Color> tabMaterialColor = new List<Color>();
@@ -136,6 +143,20 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+        }
+        /*else
+            Destroy(this.gameObject);*/
+
+        for (int i = 0; i < tabCircle.Count; i++)
+        {
+            if (tabCircle[i] == null)
+                tabCircle.Remove(tabCircle[i]);
+        }
+
+        if (tabCircle.Count == 0)
+        {
+            Debug.Log("NO PLATFORM ON GAME");
+            return;
         }
 
         foreach (GameObject circle in TabCircle)
