@@ -17079,6 +17079,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[0]
+      value: 
+      objectReference: {fileID: 241461361}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[1]
+      value: 
+      objectReference: {fileID: 997364444}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[2]
+      value: 
+      objectReference: {fileID: 525964923}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[3]
+      value: 
+      objectReference: {fileID: 1486995618}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[4]
+      value: 
+      objectReference: {fileID: 553621548}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[0]
+      value: 
+      objectReference: {fileID: 141476951}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[1]
+      value: 
+      objectReference: {fileID: 13736493}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[2]
+      value: 
+      objectReference: {fileID: 152691187}
+    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[3]
+      value: 
+      objectReference: {fileID: 350594851}
     - target: {fileID: 9128324310274591444, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
