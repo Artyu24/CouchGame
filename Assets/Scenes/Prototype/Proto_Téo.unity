@@ -16543,18 +16543,6 @@ Transform:
   m_Father: {fileID: 613016178}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1613703651 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-    type: 3}
-  m_PrefabInstance: {fileID: 9128324311145727533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d9cf7671cccc8d4683d6e2ece6ff667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1652400655
 Mesh:
   m_ObjectHideFlags: 0
@@ -17246,7 +17234,7 @@ PrefabInstance:
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
       propertyPath: timer
-      value: 150
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
@@ -17700,62 +17688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.data[0]
-      value: 
-      objectReference: {fileID: 241461361}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.data[1]
-      value: 
-      objectReference: {fileID: 997364444}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.data[2]
-      value: 
-      objectReference: {fileID: 525964923}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.data[3]
-      value: 
-      objectReference: {fileID: 1486995618}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.data[4]
-      value: 
-      objectReference: {fileID: 553621548}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarreParentList.Array.data[0]
-      value: 
-      objectReference: {fileID: 141476951}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarreParentList.Array.data[1]
-      value: 
-      objectReference: {fileID: 13736493}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarreParentList.Array.data[2]
-      value: 
-      objectReference: {fileID: 152691187}
-    - target: {fileID: 4766490420918063453, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarreParentList.Array.data[3]
-      value: 
-      objectReference: {fileID: 350594851}
-    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarrePrefab
-      value: 
-      objectReference: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
-        type: 3}
-    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: spawnList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: spawnList.Array.data[0]
@@ -17781,11 +17713,6 @@ PrefabInstance:
       propertyPath: spawnList.Array.data[4]
       value: 
       objectReference: {fileID: 553621548}
-    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: speBarreParentList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: speBarreParentList.Array.data[0]
@@ -17806,21 +17733,6 @@ PrefabInstance:
       propertyPath: speBarreParentList.Array.data[3]
       value: 
       objectReference: {fileID: 2011885496}
-    - target: {fileID: 9128324310274591444, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1613703651}
-    - target: {fileID: 9128324310274591444, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128324310274591444, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
-        type: 3}
-      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 9128324310274591445, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: m_Name
