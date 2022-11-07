@@ -12587,6 +12587,7 @@ MonoBehaviour:
   normalStrenght: 11
   specialStrenght: 30
   attackCd: 1
+  interactionCD: 1.5
   spawnList:
   - {fileID: 0}
   - {fileID: 0}
@@ -12597,6 +12598,10 @@ MonoBehaviour:
   respawnDelay: 2
   invincibleDelay: 2
   slowDuration: 2
+  radiusMax: 1.5
+  growingSpeed: 1.5
+  pushForce: 1.5
+  speedMeteorite: 1.5
   circleRotationSpeed: 32.2
   tabCircle:
   - {fileID: 36744169}
@@ -12612,9 +12617,6 @@ MonoBehaviour:
   cameraScene: {fileID: 0}
   shakePower: 0.05
   shakeDuration: 0.5
-  speBarrePrefab: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
-    type: 3}
-  speBarreParentList: []
 --- !u!4 &769883633
 Transform:
   m_ObjectHideFlags: 0
@@ -13246,6 +13248,7 @@ MonoBehaviour:
   scoreMiddle: 10
   scoreInterrupteur: 5
   middelPointsCooldown: 2
+  scorePointArea: 1
   scoreKill: 10
   scoreParentList:
   - {fileID: 1553468274}
@@ -19840,10 +19843,6 @@ MonoBehaviour:
     type: 3}
   generalScoreTextPrefab: {fileID: 2036963654598244154, guid: ea504755cb8d4cb4381086a409dcbe99,
     type: 3}
-  medals:
-  - {fileID: 3017236466551022589, guid: 3f1797c0ded0eb1409c0f07ba42454c6, type: 3}
-  - {fileID: 3017236466551022589, guid: 00ed871909c07c1458dfc41c24e2a55e, type: 3}
-  - {fileID: 3017236466551022589, guid: 1aa23ad742e24a1439703a2ab78fc1b9, type: 3}
 --- !u!114 &1353171960
 MonoBehaviour:
   m_ObjectHideFlags: 0

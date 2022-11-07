@@ -147,10 +147,16 @@ public class GameManager : MonoBehaviour
         /*else
             Destroy(this.gameObject);*/
 
-        foreach (GameObject circle in tabCircle)
+        for (int i = 0; i < tabCircle.Count; i++)
         {
-            if (circle == null)
-                tabCircle.Remove(circle);
+            if (tabCircle[i] == null)
+                tabCircle.Remove(tabCircle[i]);
+        }
+
+        if (tabCircle.Count == 0)
+        {
+            Debug.Log("NO PLATFORM ON GAME");
+            return;
         }
 
         foreach (GameObject circle in TabCircle)
