@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
+
+    [SerializeField] private float interactionCD = 1.5f;
+    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+
     #endregion
     #region Player
 

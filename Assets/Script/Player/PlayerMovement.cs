@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool isInteracting = false;
 
-    public float interactionCD;
 
     public GameObject meteorite;
     public GameObject departChoc;
@@ -168,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator CooldownForInteraction()
     {
         isInteracting = true;
-        yield return new WaitForSeconds(interactionCD);
+        yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         isInteracting = false;
     }
 }
