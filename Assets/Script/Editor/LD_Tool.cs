@@ -56,10 +56,11 @@ public class LD_Tool : EditorWindow
             
             EditorGUILayout.HelpBox("VOUS DEVEZ INITIALISE LA SCENE", MessageType.Warning);
             
-            if (GUILayout.Button("Print LD"))
+            if (GUILayout.Button("INIT SCENE"))
             {
                 GameObject parentPrefab = Instantiate(prefabGeneral);
                 parentPrefab.transform.DetachChildren();
+                DestroyImmediate(parentPrefab);
             }
             return;
         }
