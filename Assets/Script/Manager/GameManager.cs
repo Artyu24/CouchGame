@@ -39,9 +39,7 @@ public class GameManager : MonoBehaviour
     #endregion
     #region Player
 
-    public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [Header("Variables des Players")]
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
     [SerializeField] private float maxMovementSpeed;
     [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
@@ -54,18 +52,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
 
-    public Transform[] SpawnList => spawnList;
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
     public float RespawnDelay => respawnDelay;
-
     public int InvincibleDelay => invincibleDelay;
-
-
     public float SlowDuration => slowDuration;
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
-
 
     #endregion
     #region Circles
@@ -101,7 +94,6 @@ public class GameManager : MonoBehaviour
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
 
-    public List<Gamepad> manettes = new List<Gamepad>();
 
     #endregion
     #region Middle
@@ -121,75 +113,18 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
-    #region UI
-    public GameObject speBarrePrefab;
-    public List<GameObject> speBarreParentList = new List<GameObject>();
-    #endregion
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(this.gameObject);
         }
-        /*else
-            Destroy(this.gameObject);*/
-        
 
         foreach (GameObject circle in TabCircle)
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
 
-    }
-
-    public void AddPlayer()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
-        manettes.Add(Gamepad.current);
-        //Debug.Log("manette  : " + Gamepad.current);
-        Player dataPlayer = player.GetComponent<Player>();
-        players.Add(players.Count + 1, dataPlayer);
-        dataPlayer.playerID = players.Count;
-        dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-
-        switch (dataPlayer.playerID)
-        {
-            case 1:
-                player.transform.position = spawnList[0].position;
-                GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp1;
-                temp1.name = "SpéChargeBarre " + (1);
-                break;
-            case 2:
-                player.transform.position = spawnList[1].position;
-                GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp2;
-                temp2.name = "SpéChargeBarre " + (2);
-                break;
-            case 3:
-                player.transform.position = spawnList[2].position;
-                GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp3;
-                temp3.name = "SpéChargeBarre " + (3);
-                break;
-            case 4:
-                player.transform.position = spawnList[3].position;
-                GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp4;
-                temp4.name = "SpéChargeBarre " + (4);
-                break;
-            default:
-                break;
-        }
-        player.tag = "Player";
-        ScoreManager.instance.UpdateScores();
-    }
-
-    public Transform RandomSpawn()
-    {
-        int random = Random.Range(0, spawnList.Length);
-        return spawnList[random];
     }
 }

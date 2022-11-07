@@ -61,7 +61,7 @@ public class GetInIgloo : MonoBehaviour
             yield return new WaitForEndOfFrame();  
         }
         GameManager.instance.CameraScene.transform.localPosition -= offsetCam;
-        foreach (var gamepad in GameManager.instance.manettes)
+        foreach (var gamepad in PlayerManager.instance.manettes)
         {
             gamepad.SetMotorSpeeds(0.0f, 0.0f);
         }
