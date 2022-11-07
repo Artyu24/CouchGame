@@ -95,12 +95,8 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
-    [Tooltip("PAS TOUCHE"), SerializeReference]
-    private List<GameObject> tabCircle;
-    public List<GameObject> TabCircle => tabCircle;
-    [Tooltip("PAS TOUCHE"), SerializeReference]
-    private List<GameObject> circleBlockList;
-    public List<GameObject> CircleBlockList => circleBlockList;
+    public List<GameObject> tabCircle;
+    public List<GameObject> circleBlockList;
 
     [Tooltip("...")]
     [SerializeField] private Color colorCircleChoose;
@@ -167,7 +163,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        foreach (GameObject circle in TabCircle)
+        foreach (GameObject circle in tabCircle)
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }

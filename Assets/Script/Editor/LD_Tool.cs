@@ -119,10 +119,7 @@ public class LD_Tool : EditorWindow
 
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
-            #endregion
-
-            #endregion
-
+            
             foreach (float size in surfaceSizeTab)
             {
                 if (size <= 0)
@@ -131,20 +128,23 @@ public class LD_Tool : EditorWindow
                     return;
                 }
             }
-            
+            #endregion
+
+            #endregion
+
             if (GUILayout.Button("Print LD"))
             {
                 #region Clear Old Circle
                 //Reset et destruction de l'ancien terrain
 
-                foreach (GameObject circle in gameManager.TabCircle)
+                foreach (GameObject circle in gameManager.tabCircle)
                     DestroyImmediate(circle);
 
-                foreach (GameObject circleBlock in gameManager.CircleBlockList)
+                foreach (GameObject circleBlock in gameManager.circleBlockList)
                     DestroyImmediate(circleBlock);
 
-                SerializedProperty spTabCircle = FindHiddenPropertyRelative(GM, "tabCircle");
-                SerializedProperty spCircleBlockList = FindHiddenPropertyRelative(GM, "circleBlockList");
+                SerializedProperty spTabCircle = GM.FindProperty("tabCircle");
+                SerializedProperty spCircleBlockList = GM.FindProperty("circleBlockList");
 
 
                 spTabCircle.ClearArray();
@@ -328,17 +328,17 @@ public class LD_Tool : EditorWindow
         return resultList.ToArray();
     }
 
-    public SerializedProperty FindHiddenPropertyRelative(SerializedObject obj, string propertyName)
-    {
-        var property = obj.GetIterator();
-        var enumerator = property.GetEnumerator();
-        while (enumerator.MoveNext())
-        {
-            SerializedProperty spChild = enumerator.Current as SerializedProperty;
-            if (spChild.name == propertyName)
-                return spChild;
-        }
-        return null;
-    }
+    //public SerializedProperty FindHiddenPropertyRelative(SerializedObject obj, string propertyName)
+    //{
+    //    var property = obj.GetIterator();
+    //    var enumerator = property.GetEnumerator();
+    //    while (enumerator.MoveNext())
+    //    {
+    //        SerializedProperty spChild = enumerator.Current as SerializedProperty;
+    //        if (spChild.name == propertyName)
+    //            return spChild;
+    //    }
+    //    return null;
+    //}
 
 }
