@@ -46,7 +46,23 @@ public class LD_Tool : EditorWindow
         #region Search all the files we need
         GameManager gameManager = FindGameManagerInScene();
         if (gameManager == null)
+        {
+            GameObject prefabGeneral = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/PREFAB_GENERAL.prefab");
+            if (prefabGeneral == null)
+            {
+                EditorGUILayout.HelpBox("PROBLEME AVEC LA PREFAB GENERAL -> VOIR GP", MessageType.Error);
+                return;
+            }
+            
+            EditorGUILayout.HelpBox("VOUS DEVEZ INITIALISE LA SCENE", MessageType.Warning);
+            
+            if (GUILayout.Button("Print LD"))
+            {
+                GameObject parentPrefab = Instantiate(prefabGeneral);
+                parentPrefab.transform.DetachChildren();
+            }
             return;
+        }
 
         SerializedObject GM = new SerializedObject(gameManager);
         GM.Update();
@@ -66,9 +82,8 @@ public class LD_Tool : EditorWindow
             nbrCircle = EditorGUILayout.IntField("Nombre de Cercle :", nbrCircle);
             sizeCircle = EditorGUILayout.FloatField("Taille du premier cercle :", sizeCircle);
             heighCircle = EditorGUILayout.FloatField("Hauteur des cercles :", heighCircle);
-            //surfaceSize = EditorGUILayout.FloatField("Surface des cercles :", surfaceSize);
 
-            if (nbrCircle <= 0 || sizeCircle <= 0 || heighCircle <= 0 || surfaceSize <= 0)
+            if (nbrCircle <= 0 || sizeCircle <= 0 || heighCircle <= 0)
             {
                 EditorGUILayout.EndScrollView();
                 return;
@@ -129,6 +144,7 @@ public class LD_Tool : EditorWindow
 
                 SerializedProperty spTabCircle = FindHiddenPropertyRelative(GM, "tabCircle");
                 SerializedProperty spCircleBlockList = FindHiddenPropertyRelative(GM, "circleBlockList");
+
 
                 spTabCircle.ClearArray();
                 spCircleBlockList.ClearArray();

@@ -142,6 +142,12 @@ public class GameManager : MonoBehaviour
         }
         /*else
             Destroy(this.gameObject);*/
+
+        foreach (GameObject circle in tabCircle)
+        {
+            if (circle == null)
+                tabCircle.Remove(circle);
+        }
         
 
         foreach (GameObject circle in TabCircle)
