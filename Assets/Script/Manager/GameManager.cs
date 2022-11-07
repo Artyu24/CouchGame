@@ -1,42 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    #region GameManager
+    [Header("Variables du Game Manager")]
 
-    private GameObject playerInMiddle;
-
-
-    public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
-
-    [Header("Variables Game Feel")]
-    [Tooltip("Vitesse de rotation des anneaux")]
-    [SerializeField] private float circleRotationSpeed = 5;
-    public float CircleRotationSpeed => circleRotationSpeed;
-    [Tooltip("Vitesse de d�placement des joueurs")]
-    [SerializeField] private float movementSpeed;
-    public float MovementSpeed => movementSpeed;
-    [Tooltip("Temps du respawn des players en seconde")]
-    [SerializeField] private float respawnDelay = 2;
-    public float RespawnDelay => respawnDelay;
+    [Tooltip("Temps pour 1 manche en seconde (donc pour une game de 2min30 => 150 sec)")]
+    [SerializeField] private float timer;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
-    [Tooltip("Couleur que prend la zone quand elle est activée")]
-    [SerializeField] private Color activatedColor;
-    [Tooltip("Couleur que prend la zone quand elle est spawn")]
-    [SerializeField]  private Color activeColor;
-    public Color ActivatedColor => activatedColor;
-    public Color ActiveColor => activeColor;
-
+    public static GameManager instance;
+    private GameState actualGameState = GameState.MENU;
+    public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
+    public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
-    [SerializeField] private Material colorMaterial, baseMaterial;
-    public Material ColorMaterial => colorMaterial;
-    public Material BaseMaterial => baseMaterial;
-
+    #endregion
     #region Attack
-    [Header("Attack Variable")]
+    [Header("Variable de l'Attack")]
+
     [SerializeField] private float range = 0.1f;
     public float Range {get => range; private set => range = value;}
 
@@ -51,66 +36,112 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
+
+    [SerializeField] private float interactionCD = 1.5f;
+    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+
     #endregion
+    #region Player
 
-    private GameState actualGameState = GameState.MENU;
-    public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
+    [Header("Variables des Players")]
+    [SerializeField] private Transform[] spawnList = new Transform[] { };
+    [Tooltip("Vitesse max de d�placement des joueurs")]
+    [SerializeField] private float maxMovementSpeed;
+    [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
+    [SerializeField] private float movSpeedSlowZone;
+    [Tooltip("Temps du respawn des players en seconde")]
+    [SerializeField] private float respawnDelay = 2;
+    [Tooltip("Temps invincibilité des players apres le respawn en seconde")]
+    [SerializeField] private int invincibleDelay = 2;
+    [Tooltip("Temps de slow des players apres zone slow en seconde")]
+    [SerializeField] private float slowDuration = 2;
+    //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
+    [Header("Variables des ChocWave/Meteorite")]
+    [SerializeField] private float radiusMax = 1.5f;
+    public float RadiusMax { get => radiusMax; private set => radiusMax = value; }
+    [SerializeField] private float growingSpeed = 1.5f;
+    public float GrowingSpeed { get => growingSpeed; private set => growingSpeed = value; }
+    [SerializeField] private float pushForce = 1.5f;
+    public float PushForce { get => pushForce; private set => pushForce = value; }
+    [SerializeField] private float speedMeteorite = 1.5f;
+    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
+
+
+
+    public float MovSpeedSlowZone => movSpeedSlowZone;
+    public float MaxMovementSpeed => maxMovementSpeed;
+    public float RespawnDelay => respawnDelay;
+    public int InvincibleDelay => invincibleDelay;
+    public float SlowDuration => slowDuration;
+
+    //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
+
+    #endregion
+    #region Circles
+    [Header("Variables des Anneaux")]
 
     [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private GameObject[] tabCircle;
-    [Tooltip("Liste des points de spawn")]
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
+    [SerializeField] private List<GameObject> tabCircle;
+    public List<GameObject> TabCircle => tabCircle;
+
+    [Tooltip("Vitesse de rotation des anneaux")]
+    [SerializeField] private float circleRotationSpeed = 5;
+    [Tooltip("...")]
+    [SerializeField] private Color colorCircleChoose;
+    private List<Color> tabMaterialColor = new List<Color>();
+    public float CircleRotationSpeed => circleRotationSpeed;
+    public Color ColorCircleChoose => colorCircleChoose;
+    public List<Color> TabMaterialColor => tabMaterialColor;
+    #endregion
+    #region EjectPlates
+    [Header("Variables des EjectPlates")]
+
     [Tooltip("Liste des plaques d'ejection du player au centre")]
-    [SerializeField] private GameObject[] ejectPlates;
-
+    private List<GameObject> ejectPlates = new List<GameObject>();
+    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
+    [SerializeField] private int numberOfPlate = 3;
+    [Tooltip("Couleur que prend la zone quand elle est activée")]
+    [SerializeField] private Color activatedColor;
+    [Tooltip("Couleur que prend la zone quand elle est spawn")]
+    [SerializeField]  private Color activeColor;
     [HideInInspector] public int ejectPlatesActive = 0;
+    public List<GameObject> EjectPlates => ejectPlates;
+    public int NumberOfPlate => numberOfPlate;
+    public Color ActivatedColor => activatedColor;
+    public Color ActiveColor => activeColor;
 
-    public GameObject[] TabCircle => tabCircle;
-    public Transform[] SpawnList => spawnList;
-    public GameObject[] EjectPlates => ejectPlates;
 
-    private Dictionary<int, Player> players = new Dictionary<int, Player>();
+    #endregion
+    #region Middle
+    [Header("Variable de l'Igloo")]
+
+    [Tooltip("Main Camera du jeu")]
+    [SerializeField] private Camera cameraScene;
+    [Tooltip("Variable pour augmenter ou diminuer le shake de la cam")]
+    public float shakePower = 0.05f;
+    [Tooltip("Variable pour augmenter ou diminuer le temps du shake de la cam")]
+    public float shakeDuration = 0.5f;
+    private GameObject playerInMiddle;
+
+    public Camera CameraScene { get => cameraScene; set => cameraScene = value; }
+    public float ShakePower => shakePower;
+    public float ShakeDuration => shakeDuration;
+    public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
+
+    #endregion
 
     void Awake()
-    {   
+    {
         if (instance == null)
-            instance = this;
-    }
-
-    public void AddPlayer()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
-        Player dataPlayer = player.GetComponent<Player>();
-        players.Add(players.Count + 1, dataPlayer);
-        dataPlayer.playerID = players.Count;
-        dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-
-        switch (dataPlayer.playerID)
         {
-            case 1:
-                player.transform.position = spawnList[0].position;
-                break;
-            case 2:
-                player.transform.position = spawnList[1].position;
-                break;
-            case 3:
-                player.transform.position = spawnList[2].position;
-                break;
-            case 4:
-                player.transform.position = spawnList[3].position; 
-                break;
-            default:
-                break;
+            instance = this;
         }
-        player.tag = "Player";
+
+        foreach (GameObject circle in TabCircle)
+        {
+            tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
+        }
+
     }
-
-    public Transform RandomSpawn()
-    {
-        int random = Random.Range(0, spawnList.Length);
-        return spawnList[random];
-    }
-
-
 }

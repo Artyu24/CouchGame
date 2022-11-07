@@ -4,36 +4,51 @@ using UnityEngine;
 
 public class EjectPlayerCentre : MonoBehaviour
 {
-    [Header("Variables Game Feel")]
-    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
-    public int numberOfPlate = 3;
+    private BoxCollider bc;
+    private void Start()
+    {
+        bc = GetComponent<BoxCollider>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance.PlayerInMiddle != null)
+        if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.USE)
         {
             GameManager.instance.ejectPlatesActive++;
+            bc.enabled = false;
             GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreInterrupteur, other.GetComponent<Player>());
 
-            if (GameManager.instance.ejectPlatesActive >= numberOfPlate)
+            if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
-                GameManager.instance.PlayerInMiddle.transform.position = GameManager.instance.RandomSpawn().position;
-                GameManager.instance.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-                GameManager.instance.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
-                foreach (GameObject circle in GameManager.instance.TabCircle)
-	            {
-	                circle.GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
-	                circle.GetComponent<Outline>().enabled = false;
-	            }
-                for (int i = 0; i < GameManager.instance.EjectPlates.Length; i++)
-                {
-                    GameManager.instance.ejectPlatesActive = 0;
-                    GameManager.instance.EjectPlates[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActiveColor;
-                    GameManager.instance.EjectPlates[i].SetActive(false);
-                }
-                GameManager.instance.PlayerInMiddle = null;
-                Debug.Log("Player au centre éjecté !");
+                EjectPlayer();
+                CenterManager.instance.DesactivateAllBridge();
             }
         }
+    }
+
+    public void EjectPlayer()
+    {
+        GameManager GM = GameManager.instance;
+
+        GM.PlayerInMiddle.transform.position = PlayerManager.instance.RandomSpawn().position;
+        GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+        GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+
+        for (int i = 0; i < GameManager.instance.TabCircle.Count; i++)
+        {
+            GM.TabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
+            GM.TabCircle[i].GetComponent<Outline>().enabled = false;
+        }
+
+        GM.ejectPlatesActive = 0;
+
+        foreach (GameObject plate in GM.EjectPlates)
+            Destroy(plate);
+
+        GM.EjectPlates.Clear();
+
+        GM.PlayerInMiddle = null;
+        Debug.Log("Player au centre éjecté !");
     }
 }

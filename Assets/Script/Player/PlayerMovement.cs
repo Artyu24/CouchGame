@@ -17,34 +17,46 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 movementInput;
     private Quaternion orientation;
-    private int actualCircle;
     private float rotation = 0;
-
-
+    private int actualCircle;
+    public int ActualCircle => actualCircle;
 
     bool isInteracting = false;
 
-    public float interactionCD;
 
-    public GameObject meteorite;
-    public GameObject departChoc;
-    public GameObject departMeteorite;
-    public GameObject chocWave;
+    private GameObject meteorite;
+    private Vector3 departChoc = Vector3.zero;
+    private Vector3 departMeteorite = new Vector3(0, 20, 0);
+    private GameObject chocWave;
+
+    private float movementSpeed;
+
+    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+
+    //public static PlayerMovement instance;
+
 
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //if (instance == null)
+        //        instance = this;
+            rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
+
+        MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
+        meteorite = Resources.Load<GameObject>("Meteorite");
+        chocWave = Resources.Load<GameObject>("ChocWave");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.deltaTime * GameManager.instance.MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * MovementSpeed);
             transform.rotation = orientation;
         }
 
@@ -84,24 +96,44 @@ public class PlayerMovement : MonoBehaviour
             if (context.started)
             {
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.BaseMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.TabCircle.Length - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Length - 1)
+                    actualCircle = GameManager.instance.TabCircle.Count - 1;
+                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Count - 1)
                     actualCircle = 0;
                 else
                     actualCircle += (int)nextCircle;
 
                 GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material = GameManager.instance.ColorMaterial;
+                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
             }
         }
     }
     
+    public void Meteo1(InputAction.CallbackContext context) 
+    {
+        OnMeteorite(context,1);
+    
+    }
+    public void Meteo2(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 2);
 
-    public void OnMeteorite(InputAction.CallbackContext context)
+    }
+    public void Meteo3(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 3);
+
+    }
+    public void Meteo4(InputAction.CallbackContext context)
+    {
+        OnMeteorite(context, 4);
+
+    }
+
+    public void OnMeteorite(InputAction.CallbackContext context, int i)
     {
         if (player.ActualPlayerState == PlayerState.MIDDLE)
         {
@@ -109,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
-                    Instantiate(meteorite, departMeteorite.transform.position, departMeteorite.transform.rotation);
+                    GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
+                    metoto.GetComponent<MeteorMovement>().MovePlanete(i);
                     StartCoroutine(CooldownForInteraction());
                 }
             }
@@ -124,7 +157,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
-                    Instantiate(chocWave, departChoc.transform.position, departChoc.transform.rotation);
+                    Instantiate(chocWave, departChoc , quaternion.identity);
+                    //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
                 }
             }
@@ -135,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator CooldownForInteraction()
     {
         isInteracting = true;
-        yield return new WaitForSeconds(interactionCD);
+        yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         isInteracting = false;
     }
 }

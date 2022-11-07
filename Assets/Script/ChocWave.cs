@@ -5,54 +5,48 @@ using UnityEngine;
 public class ChocWave : MonoBehaviour
 {
     public SphereCollider sphereCollider;
-    public float radiusMax;
-    public float growingSpeed;
-    //public GameObject player;
-    public float pushForce;
     bool getPushed = false;
+    public Transform transparence;
+    private List<Player> playerList = new List<Player>();
 
     private void Start()
-    {
-        sphereCollider.radius = 0f;
+    {        
+        transparence.localScale = new Vector3(0, 0, 0);
     }
 
     private void Update()
     {
-        if(sphereCollider.radius < radiusMax)
-        {
-            sphereCollider.radius = sphereCollider.radius + Time.deltaTime * growingSpeed;   
- 
-
-        }
-        if (getPushed == true)
-        {
-            //Destroy(gameObject);
-            //a changer quand on aura les player
-            //mettre un bool qui empeche les joueur qui ont deja été touché d'etre re touché par le collider
+        if(transparence.localScale.x < GameManager.instance.RadiusMax)
+        {            
+            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeed);
         }
 
-        if(sphereCollider.radius >= radiusMax)
+
+        if(transparence.localScale.x >= GameManager.instance.RadiusMax)
         {
             getPushed = false;
+            foreach(Player player in playerList)
+            {
+                player.isChockedWaved = false;                
+            }
+            playerList.Clear();
             Destroy(gameObject);
         }
     }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(sphereCollider.transform.position, sphereCollider.radius);
-        
-    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(getPushed == false)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
-                other.GetComponent<Rigidbody>().AddForce(push * pushForce);
-                getPushed = true;
-
+                if (other.gameObject.GetComponent<Player>().isChockedWaved == false && other.gameObject.GetComponent<Player>().isInvincible == false)
+                {
+                    Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
+                    other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForce);
+                    other.gameObject.GetComponent<Player>().isChockedWaved = true;
+                    playerList.Add(other.gameObject.GetComponent<Player>());
+                }
             }
         }
         
