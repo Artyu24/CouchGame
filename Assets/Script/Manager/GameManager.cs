@@ -60,13 +60,21 @@ public class GameManager : MonoBehaviour
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
-    [Header("Variables des ChocWave/Meteorite")]
+    [Header("Variables des ChocWave")]
     [SerializeField] private float radiusMax = 1.5f;
     public float RadiusMax { get => radiusMax; private set => radiusMax = value; }
     [SerializeField] private float growingSpeed = 1.5f;
     public float GrowingSpeed { get => growingSpeed; private set => growingSpeed = value; }
     [SerializeField] private float pushForce = 1.5f;
     public float PushForce { get => pushForce; private set => pushForce = value; }
+
+    [Header("Variables des Meteorite")]
+    [SerializeField] private float radiusMaxExplosion = 1.5f;
+    public float RadiusMaxExplosion { get => radiusMaxExplosion; private set => radiusMaxExplosion = value; }
+    [SerializeField] private float growingSpeedExplossion = 1.5f;
+    public float GrowingSpeedExplosion { get => growingSpeedExplossion; private set => growingSpeedExplossion = value; }
+    [SerializeField] private float pushForceExplosion = 1.5f;
+    public float PushForceExplosion { get => pushForceExplosion; private set => pushForceExplosion = value; }
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 

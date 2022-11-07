@@ -29,21 +29,15 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
-    [HideInInspector] 
-    public GameObject speBarre;
     #endregion
 
     #region InputSysteme
 
-    private void Start()
-    {
-        speBarre = Resources.Load<GameObject>("SpeChargeBarre");
-    }
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
-        speBarre.GetComponent<Slider>().value = currentSpecial;
+        PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
@@ -53,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
         {
             currentSpecial = 0;
-            speBarre.GetComponent<Slider>().value = currentSpecial;
+            PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
