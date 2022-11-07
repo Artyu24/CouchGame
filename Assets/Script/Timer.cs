@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     #region Timer
+
     private Text timerText;
     private Text timerSet;
+
     private float timerBegin;
     private int minutes, seconds;
     public string levelName;
@@ -16,18 +18,25 @@ public class Timer : MonoBehaviour
     #region Scoreboard
     private bool scoreWindowRoundIsActive = false;
     private bool scoreWindowGeneralIsActive = false;
+
     [SerializeField] private GameObject scoreWindowRound, scoreWindowGeneral;
     [SerializeField] private GameObject textParentRound, textParentGeneral;
+    public GameObject roundScoreTextPrefab, generalScoreTextPrefab; 
+
     private Text[] scorePlayerText = new Text[4];
     private Text[] scoreGeneralPlayerText = new Text[4];
-    public GameObject roundScoreTextPrefab, generalScoreTextPrefab;
-    public List<GameObject> medals = new List<GameObject>();
+
+    private GameObject[] medals = new GameObject[3];
+
     private int nbrOfRound = 0;
     #endregion
 
     private void Awake()
     {
         timerText = GetComponent<Text>();
+        medals[1] = Resources.Load<GameObject>("GoldMedal");
+        medals[2] = Resources.Load<GameObject>("SilverMedal");
+        medals[3] = Resources.Load<GameObject>("CopperMedal");
     }
 
     private void Start()
