@@ -29,11 +29,17 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
-    [Header("UI")] 
+    [HideInInspector] 
     public GameObject speBarre;
     #endregion
 
     #region InputSysteme
+
+    private void Start()
+    {
+        speBarre = Resources.Load<GameObject>("SpeChargeBarre");
+    }
+
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;

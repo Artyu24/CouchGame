@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+
     #region UI
     public GameObject speBarrePrefab;
     public List<GameObject> speBarreParentList = new List<GameObject>();
@@ -27,12 +28,12 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         manettes.Add(Gamepad.current);
-        //Debug.Log("manette  : " + Gamepad.current);
         Player dataPlayer = player.GetComponent<Player>();
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
         dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
 
+        Debug.Log("Players : " + players.Count);
         switch (dataPlayer.playerID)
         {
             case 1:

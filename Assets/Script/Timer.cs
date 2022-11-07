@@ -53,6 +53,7 @@ public class Timer : MonoBehaviour
 
         if (PlayerManager.instance.players.Count >= 1 && !scoreWindowRoundIsActive)
         {
+            Debug.Log("Tic Tac");
             GameManager.instance.Timer -= Time.deltaTime;
             minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
             seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
@@ -61,11 +62,11 @@ public class Timer : MonoBehaviour
         if (GameManager.instance.Timer >= 0.0f)
         {
             timerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
-        }
+        }/*
         else
         {
             timerText.text = "00 : 00";
-        }
+        }*/
     }
 
     private void PrintScoreWindow()
