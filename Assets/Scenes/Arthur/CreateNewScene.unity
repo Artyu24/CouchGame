@@ -448,7 +448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46724
+  m_Name: pb_Mesh32088
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17726,6 +17726,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarrePrefab
+      value: 
+      objectReference: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
+        type: 3}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[0]
+      value: 
+      objectReference: {fileID: 2668030984951244756}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[1]
+      value: 
+      objectReference: {fileID: 2668030985808371065}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[2]
+      value: 
+      objectReference: {fileID: 2668030985206815198}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: spawnList.Array.data[3]
+      value: 
+      objectReference: {fileID: 2668030986314616583}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1308840603}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1948117866}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[2]
+      value: 
+      objectReference: {fileID: 627764363}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
+      propertyPath: speBarreParentList.Array.data[3]
+      value: 
+      objectReference: {fileID: 836471687}
     - target: {fileID: 9128324310274591444, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target

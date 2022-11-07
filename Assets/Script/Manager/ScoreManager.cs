@@ -14,7 +14,8 @@ public class ScoreManager : MonoBehaviour
     public int scoreInterrupteur = 5;
     [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
     public float middelPointsCooldown = 2;
-    public int scoreKill = 10;
+    [Tooltip("Point gagner à chaque hit du sac")] public int scorePointArea = 1;
+    [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
     private bool addMiddleScore = true;
     public List<GameObject> scoreParentList = new List<GameObject>();
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9128324310274591447}
   - component: {fileID: 9128324310274591444}
   - component: {fileID: 8054305074120083710}
-  - component: {fileID: 4766490420918063453}
+  - component: {fileID: 5792684987367438007}
   m_Layer: 0
   m_Name: ---PlayerManager---
   m_TagString: Untagged
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbcd5072aa42d8048b4ae8eb4666cf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4766490420918063453
+--- !u!114 &5792684987367438007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,16 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9cf7671cccc8d4683d6e2ece6ff667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speBarrePrefab: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
-    type: 3}
-  speBarreParentList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  speBarrePrefab: {fileID: 0}
+  speBarreParentList: []
+  spawnList: []

@@ -36,10 +36,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
+
+    [SerializeField] private float interactionCD = 1.5f;
+    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+
     #endregion
     #region Player
 
     [Header("Variables des Players")]
+    [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
     [SerializeField] private float maxMovementSpeed;
     [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
@@ -51,6 +56,18 @@ public class GameManager : MonoBehaviour
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
+    [Header("Variables des ChocWave/Meteorite")]
+    [SerializeField] private float radiusMax = 1.5f;
+    public float RadiusMax { get => radiusMax; private set => radiusMax = value; }
+    [SerializeField] private float growingSpeed = 1.5f;
+    public float GrowingSpeed { get => growingSpeed; private set => growingSpeed = value; }
+    [SerializeField] private float pushForce = 1.5f;
+    public float PushForce { get => pushForce; private set => pushForce = value; }
+    [SerializeField] private float speedMeteorite = 1.5f;
+    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
+
+
+
 
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
