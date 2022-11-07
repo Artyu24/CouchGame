@@ -31,7 +31,7 @@ public class EjectPlayerCentre : MonoBehaviour
     {
         GameManager GM = GameManager.instance;
 
-        GM.PlayerInMiddle.transform.position = GM.RandomSpawn().position;
+        GM.PlayerInMiddle.transform.position = PlayerManager.instance.RandomSpawn().position;
         GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
         GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
 
