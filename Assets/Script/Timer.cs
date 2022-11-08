@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,10 +43,12 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         timerBegin = GameManager.instance.Timer; 
+
+        PlayerManager.instance.FindCanvas();
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             Debug.Log("Init");
-            PlayerManager.instance.Init(i, PlayerManager.instance.players[i+1].gameObject);
+            PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
     }
 
@@ -88,7 +91,7 @@ public class Timer : MonoBehaviour
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i + 1].score;
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
         }
     }
 
@@ -126,15 +129,15 @@ public class Timer : MonoBehaviour
             {
                 temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
                 scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-                temp.name = "Player " + tempPlayerListPlayer[p].playerID;
-                scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + " : ";
+                temp.name = "Player " + tempPlayerListPlayer[p].playerID + 1;
+                scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + 1 + " : ";
 
                 for (int i = 0; i < (tempPlayerListPlayer.Count - p + 1); i++)
                 {
                     if (tempPlayerListPlayer[p].score > 0)
                     {
                         InstantiateMedals(temp.transform, position);
-                        PlayerManager.instance.players[p + 1].scoreGeneral++;
+                        PlayerManager.instance.players[p].scoreGeneral++;
                     }
                     /*if (nbrOfRound >= 1)
                     {
@@ -161,15 +164,14 @@ public class Timer : MonoBehaviour
 
     public void ReloadScene()
     {
-        //GameManager.instance.Timer = timerBegin;
-        //scoreWindowGeneral.SetActive(false);
-        //scoreWindowRound.SetActive(false);
-        SceneManager.LoadScene(levelName);
+        Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
         Time.timeScale = 1;
         
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        {
-            PlayerManager.instance.players[i+1].transform.position = PlayerManager.instance.RandomSpawn().position;
-        }
+        //for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        //{
+        //    PlayerManager.instance.players[i].transform.position = PlayerManager.instance.RandomSpawn().position;
+        //}
+
+        SceneManager.LoadScene(levelName);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    [HideInInspector]
     public Text[] scorePlayerText = new Text[4];
     [HideInInspector]
     public GameObject scoreTextPrefab;
@@ -37,7 +38,7 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
-        if (scoreTextPrefab == null || PlayerManager.instance.PlayerUiInterface.Length == 0)
+        if (scoreTextPrefab == null || PlayerManager.instance.InterfaceUiPrefab.Length == 0)
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
@@ -68,7 +69,7 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i+1].score;
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
         }
     }
 
@@ -81,8 +82,8 @@ public class ScoreManager : MonoBehaviour
 
     public void InstantiateScoreText(int p)
     {
-        GameObject temp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayerUiInterface[p].transform);
-        scorePlayerText[p] = temp.GetComponent<Text>();
-        temp.name = "Player " + (p + 1);
+        GameObject scoreTextTemp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayersInterface[p].transform);
+        scoreTextTemp.name = "Player " + (p + 1);
+        scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
     }
 }

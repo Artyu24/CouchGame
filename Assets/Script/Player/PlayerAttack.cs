@@ -24,6 +24,9 @@ public class PlayerAttack : MonoBehaviour
         set => playerHitedBy = value;
     }
 
+    private Slider speBarreSlider;
+    public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
+
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
@@ -32,22 +35,20 @@ public class PlayerAttack : MonoBehaviour
     #endregion
 
     #region InputSysteme
-
-
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
-        PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
+
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
         {
             currentSpecial = 0;
-            PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
+            speBarreSlider.value = currentSpecial;
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -92,9 +93,9 @@ public class PlayerAttack : MonoBehaviour
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
                     return;
                 }
-                if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
+                if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
                 {
-                    hit.transform.GetComponent<PointArea>().Damage(gameObject);
+                    hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
                 }
                 if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
@@ -117,6 +118,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     #endregion
+
+    public void AddSpeBarrePoint()
+    {
+        currentSpecial++;
+        speBarreSlider.value = currentSpecial;
+    }
 
     public void HitTag(GameObject _player)
     {

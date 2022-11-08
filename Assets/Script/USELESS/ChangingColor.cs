@@ -13,16 +13,16 @@ public class ChangingColor : MonoBehaviour
 
         switch (player.playerID)
         {
-            case 1:
+            case 0:
                 activeColor = Color.blue;
                 break;
-            case 2:
+            case 1:
                 activeColor = Color.red;
                 break;
-            case 3:
+            case 2:
                 activeColor = Color.yellow;
                 break;
-            case 4:
+            case 3:
                 activeColor = Color.green;
                 break;
             default:

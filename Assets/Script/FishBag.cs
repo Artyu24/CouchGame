@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PointArea : MonoBehaviour
+public class FishBag : MonoBehaviour
 {
     [SerializeField] public int hp = 10;
     [SerializeField] private Animator animator;
@@ -20,8 +20,8 @@ public class PointArea : MonoBehaviour
 
         ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
 
-        if(player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
-            player.GetComponent<PlayerAttack>().CurrentSpecial += 1;
+        if (player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
+            player.GetComponent<PlayerAttack>().AddSpeBarrePoint();
 
         animator.SetTrigger("SHAKEMETHAT");
 

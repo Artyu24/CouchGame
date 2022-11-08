@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,39 +15,50 @@ public class PlayerManager : MonoBehaviour
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
     [SerializeField] private Transform[] spawnList = new Transform[] { };
-    [SerializeField] private GameObject[] playerUiInterface = new GameObject[4];
-
-    public GameObject ui;
-
     public Transform[] SpawnList => spawnList;
-    public GameObject[] PlayerUiInterface => playerUiInterface;
+
+    private GameObject[] interfaceUIPrefab = new GameObject[4];
+    public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
+    
+    private GameObject[] playersInterface = new GameObject[4];
+    public GameObject[] PlayersInterface => playersInterface;
+
+
+    public GameObject canvasUI;
 
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this.gameObject);
-        }
+
+        //Find all prefab
         speBarrePrefab = Resources.Load<GameObject>("UI/SpeChargeBarre");
-        playerUiInterface = Resources.LoadAll<GameObject>("UI/PlayersUI");
-        ui = GameObject.FindGameObjectWithTag("Canvas");
+        interfaceUIPrefab = Resources.LoadAll<GameObject>("UI/PlayersUI");
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+
         //Debug.Log("Player count : " + players.Count);
     }
 
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
+        player.tag = "Player";
+        
         manettes.Add(Gamepad.current);
+
+        int id = players.Count;
+
         Player dataPlayer = player.GetComponent<Player>();
-        players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
         dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-        Init(dataPlayer.playerID - 1, player);
-        player.tag = "Player";
+        
+        //Dict Players
+        players.Add(id, dataPlayer);
+        
+        Init(id, player);
+        
         ScoreManager.instance.UpdateScores();
     }
 
@@ -56,14 +68,25 @@ public class PlayerManager : MonoBehaviour
         return spawnList[random];
     }
 
+    public void FindCanvas()
+    {
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+    }
+
     public void Init(int i, GameObject player)
     {
         //player.transform.position = spawnList[i].position;
-        GameObject playerInterface = Instantiate(playerUiInterface[i], ui.transform);
-        playerUiInterface[i] = playerInterface;
+
+        //Parent UI par Player
+        GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);
+        playersInterface[i] = playerInterfaceTempo;
+
+        //Text du score par Player
         ScoreManager.instance.InstantiateScoreText(i);
-        GameObject temp = Instantiate(speBarrePrefab, playerInterface.transform);
-        //speBarrePrefab = temp;
-        temp.name = "SpéChargeBarre " + (1);
+
+        //Spé barre par player
+        GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform);
+        speBarreTemp.name = "SpéChargeBarre " + (1);
+        player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
     }
 }
