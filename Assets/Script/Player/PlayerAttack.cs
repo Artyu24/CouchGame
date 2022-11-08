@@ -91,6 +91,7 @@ public class PlayerAttack : MonoBehaviour
                     hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                     //Debug.Log(hit.transform.name + " has been hit");
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                    hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
                     return;
                 }
                 if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
