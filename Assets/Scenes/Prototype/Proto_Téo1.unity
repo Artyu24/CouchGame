@@ -17400,7 +17400,7 @@ PrefabInstance:
     - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
       propertyPath: levelName
-      value: "Proto_T\xE9o1"
+      value: "Proto_T\xE9o"
       objectReference: {fileID: 0}
     - target: {fileID: 3375827646638982307, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
@@ -17672,6 +17672,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
+      propertyPath: speBarrePrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792684987367438007, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
+        type: 3}
       propertyPath: spawnList.Array.data[0]
       value: 
       objectReference: {fileID: 241461361}
@@ -17718,7 +17723,7 @@ PrefabInstance:
     - target: {fileID: 9128324310274591445, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}
       propertyPath: m_Name
-      value: ---PlayerManager---
+      value: ---TESTManager---
       objectReference: {fileID: 0}
     - target: {fileID: 9128324310274591447, guid: 0ed6c8b9a3e8d0e43861247aa3c523af,
         type: 3}

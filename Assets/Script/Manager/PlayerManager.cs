@@ -9,12 +9,17 @@ public class PlayerManager : MonoBehaviour
 
     #region UI
     public GameObject speBarrePrefab;
-    public List<GameObject> speBarreParentList = new List<GameObject>();
+    //public List<GameObject> speBarreParentList = new List<GameObject>();
     #endregion
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
     [SerializeField] private Transform[] spawnList = new Transform[] { };
+    [SerializeField] private GameObject[] playerUiInterface = new GameObject[4];
+
+    public GameObject ui;
+
     public Transform[] SpawnList => spawnList;
+    public GameObject[] PlayerUiInterface => playerUiInterface;
 
     private void Awake()
     {
@@ -22,10 +27,14 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
-    }
-    private void Start()
-    {
-        speBarrePrefab = Resources.Load<GameObject>("SpeChargeBarre");
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        speBarrePrefab = Resources.Load<GameObject>("UI/SpeChargeBarre");
+        playerUiInterface = Resources.LoadAll<GameObject>("UI/PlayersUI");
+        ui = GameObject.FindGameObjectWithTag("Canvas");
+        //Debug.Log("Player count : " + players.Count);
     }
 
     public void AddPlayer()
@@ -36,42 +45,25 @@ public class PlayerManager : MonoBehaviour
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
         dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-
-        switch (dataPlayer.playerID)
-        {
-            case 1:
-                player.transform.position = spawnList[0].position;
-                GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
-                speBarrePrefab = temp1;
-                temp1.name = "SpéChargeBarre " + (1);
-                break;
-            case 2:
-                player.transform.position = spawnList[1].position;
-                GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
-                speBarrePrefab = temp2;
-                temp2.name = "SpéChargeBarre " + (2);
-                break;
-            case 3:
-                player.transform.position = spawnList[2].position;
-                GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
-                speBarrePrefab = temp3;
-                temp3.name = "SpéChargeBarre " + (3);
-                break;
-            case 4:
-                player.transform.position = spawnList[3].position;
-                GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
-                speBarrePrefab = temp4;
-                temp4.name = "SpéChargeBarre " + (4);
-                break;
-            default:
-                break;
-        }
+        Init(dataPlayer.playerID - 1, player);
         player.tag = "Player";
         ScoreManager.instance.UpdateScores();
     }
+
     public Transform RandomSpawn()
     {
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
+    }
+
+    public void Init(int i, GameObject player)
+    {
+        //player.transform.position = spawnList[i].position;
+        GameObject playerInterface = Instantiate(playerUiInterface[i], ui.transform);
+        playerUiInterface[i] = playerInterface;
+        ScoreManager.instance.InstantiateScoreText(i);
+        GameObject temp = Instantiate(speBarrePrefab, playerInterface.transform);
+        //speBarrePrefab = temp;
+        temp.name = "SpéChargeBarre " + (1);
     }
 }

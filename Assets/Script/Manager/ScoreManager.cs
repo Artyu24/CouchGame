@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public Text[] scorePlayerText = new Text[4];
+    [HideInInspector]
     public GameObject scoreTextPrefab;
     [Tooltip("Point gagner par le joueur est au milieu")]
     public int scoreMiddle = 10;
@@ -14,10 +15,10 @@ public class ScoreManager : MonoBehaviour
     public int scoreInterrupteur = 5;
     [Tooltip("Temps entre 2 gain de point que le joueur est au milieu")]
     public float middelPointsCooldown = 2;
-    [Tooltip("Point gagner à chaque hit du sac")] public int scorePointArea = 1;
+    [Tooltip("Point gagner à chaque hit du sac")] 
+    public int scorePointArea = 1;
     [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
     private bool addMiddleScore = true;
-    public List<GameObject> scoreParentList = new List<GameObject>();
 
     public static ScoreManager instance;
 
@@ -25,23 +26,18 @@ public class ScoreManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        scoreTextPrefab = Resources.Load<GameObject>("UI/ScoreText");
     }
 
     void Start()
     {
-        if(scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        if(scorePlayerText == null || scoreTextPrefab == null)
         {
             return;
         }
 
-        for (int p = 0; p < 4; p++)
-        {
-            GameObject temp = Instantiate(scoreTextPrefab, scoreParentList[p].transform);
-            scorePlayerText[p] = temp.GetComponent<Text>();
-            temp.name = "Player " + (p + 1);
-        }
-
-        if (scoreTextPrefab == null || scoreParentList.Count == 0)
+        if (scoreTextPrefab == null || PlayerManager.instance.PlayerUiInterface.Length == 0)
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
@@ -49,7 +45,7 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if (scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        if (scorePlayerText == null || scoreTextPrefab == null)
         {
             return;
         }
@@ -83,11 +79,10 @@ public class ScoreManager : MonoBehaviour
         UpdateScores();
     }
 
-    /*public void AddScoreGeneral(int points, Player player)
+    public void InstantiateScoreText(int p)
     {
-        player.scoreGeneral += points;
-
-        UpdateScores();
-
-    }*/
+        GameObject temp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayerUiInterface[p].transform);
+        scorePlayerText[p] = temp.GetComponent<Text>();
+        temp.name = "Player " + (p + 1);
+    }
 }

@@ -34,14 +34,19 @@ public class Timer : MonoBehaviour
     private void Awake()
     {
         timerText = GetComponent<Text>();
-        medals[0] = Resources.Load<GameObject>("GoldMedal");
-        medals[1] = Resources.Load<GameObject>("SilverMedal");
-        medals[2] = Resources.Load<GameObject>("CopperMedal");
+        medals[0] = Resources.Load<GameObject>("UI/GoldMedal");
+        medals[1] = Resources.Load<GameObject>("UI/SilverMedal");
+        medals[2] = Resources.Load<GameObject>("UI/CopperMedal");
     }
 
     private void Start()
     {
-        timerBegin = GameManager.instance.Timer;
+        timerBegin = GameManager.instance.Timer; 
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            Debug.Log("Init");
+            PlayerManager.instance.Init(i, PlayerManager.instance.players[i+1].gameObject);
+        }
     }
 
     void Update()
@@ -89,59 +94,63 @@ public class Timer : MonoBehaviour
 
     public void PrintGeneralScoreWindow()
     {
-        scoreWindowRoundIsActive = false;
-        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-        scoreWindowGeneralIsActive = true;
-        scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
+        //scoreWindowRoundIsActive = false;
+        //scoreWindowRound.SetActive(scoreWindowRoundIsActive);
         
-        List<Player> tempPlayerListPlayer = new List<Player>();
-        int position = 0;
-
-        Player playerTemp = null;
-        int bestScore = 0;
-        while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
+        if (!scoreWindowGeneralIsActive)
         {
-            foreach (var player in PlayerManager.instance.players)
+            scoreWindowGeneralIsActive = true;
+            scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
+            List<Player> tempPlayerListPlayer = new List<Player>();
+            int position = 0;
+
+            Player playerTemp = null;
+            int bestScore = 0;
+            while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
             {
-                if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
+                foreach (var player in PlayerManager.instance.players)
                 {
-                    bestScore = player.Value.score;
-                    playerTemp = player.Value;
+                    if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
+                    {
+                        bestScore = player.Value.score;
+                        playerTemp = player.Value;
+                    }
                 }
+                tempPlayerListPlayer.Add(playerTemp);
+                bestScore = 0;
             }
-            tempPlayerListPlayer.Add(playerTemp);
-            bestScore = 0;
-        }
-        
-        GameObject temp = null;
 
-        for (int p = 0; p < tempPlayerListPlayer.Count; p++)
-        {
-            temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-            scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-            temp.name = "Player " + tempPlayerListPlayer[p].playerID;
-            scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + " : ";
+            GameObject temp = null;
 
-            for (int i = 0; i < (tempPlayerListPlayer.Count-p+1); i++)
+            for (int p = 0; p < tempPlayerListPlayer.Count; p++)
             {
-                if (tempPlayerListPlayer[p].score > 0)
+                temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
+                scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                temp.name = "Player " + tempPlayerListPlayer[p].playerID;
+                scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + " : ";
+
+                for (int i = 0; i < (tempPlayerListPlayer.Count - p + 1); i++)
                 {
-                    InstantiateMedals(temp.transform, position);
-                    PlayerManager.instance.players[p + 1].scoreGeneral++;
-                }
-                /*if (nbrOfRound >= 1)
-                {
-                    for (int j = 0; j < GameManager.instance.PlayersScoreGenerals[GameManager.instance.players[p + 1]]; j++)
+                    if (tempPlayerListPlayer[p].score > 0)
                     {
                         InstantiateMedals(temp.transform, position);
+                        PlayerManager.instance.players[p + 1].scoreGeneral++;
                     }
-                }*/
+                    /*if (nbrOfRound >= 1)
+                    {
+                        for (int j = 0; j < GameManager.instance.PlayersScoreGenerals[GameManager.instance.players[p + 1]]; j++)
+                        {
+                            InstantiateMedals(temp.transform, position);
+                        }
+                    }*/
+                }
+                //GameManager.instance.PlayersScoreGenerals.Add(GameManager.instance.players[p + 1], GameManager.instance.players[p + 1].scoreGeneral);
+                position++;
             }
-            //GameManager.instance.PlayersScoreGenerals.Add(GameManager.instance.players[p + 1], GameManager.instance.players[p + 1].scoreGeneral);
-            position++;
+
+            //nbrOfRound++;
         }
 
-        //nbrOfRound++;
     }
 
     private void InstantiateMedals(Transform t, int position)
@@ -152,10 +161,15 @@ public class Timer : MonoBehaviour
 
     public void ReloadScene()
     {
-        GameManager.instance.Timer = timerBegin;
-        scoreWindowGeneral.SetActive(false);
-        scoreWindowRound.SetActive(false);
-        Time.timeScale = 1;
+        //GameManager.instance.Timer = timerBegin;
+        //scoreWindowGeneral.SetActive(false);
+        //scoreWindowRound.SetActive(false);
         SceneManager.LoadScene(levelName);
+        Time.timeScale = 1;
+        
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            PlayerManager.instance.players[i+1].transform.position = PlayerManager.instance.RandomSpawn().position;
+        }
     }
 }
