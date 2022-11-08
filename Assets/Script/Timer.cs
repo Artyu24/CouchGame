@@ -34,9 +34,9 @@ public class Timer : MonoBehaviour
     private void Awake()
     {
         timerText = GetComponent<Text>();
-        medals[1] = Resources.Load<GameObject>("GoldMedal");
-        medals[2] = Resources.Load<GameObject>("SilverMedal");
-        medals[3] = Resources.Load<GameObject>("CopperMedal");
+        medals[0] = Resources.Load<GameObject>("GoldMedal");
+        medals[1] = Resources.Load<GameObject>("SilverMedal");
+        medals[2] = Resources.Load<GameObject>("CopperMedal");
     }
 
     private void Start()
@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
             PrintScoreWindow();
         }
 
-        if (GameManager.instance.players.Count >= 1 && !scoreWindowRoundIsActive)
+        if (PlayerManager.instance.players.Count >= 1 && !scoreWindowRoundIsActive)
         {
             GameManager.instance.Timer -= Time.deltaTime;
             minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
@@ -74,16 +74,16 @@ public class Timer : MonoBehaviour
         Time.timeScale = 0;
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 
-        for (int p = 0; p < GameManager.instance.players.Count; p++)
+        for (int p = 0; p < PlayerManager.instance.players.Count; p++)
         {
             GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
             scorePlayerText[p] = temp.GetComponent<Text>();
             temp.name = "Player " + (p + 1);
         }
 
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + GameManager.instance.players[i + 1].score;
+            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i + 1].score;
         }
     }
 
@@ -99,9 +99,9 @@ public class Timer : MonoBehaviour
 
         Player playerTemp = null;
         int bestScore = 0;
-        while (tempPlayerListPlayer.Count < GameManager.instance.players.Count)
+        while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
         {
-            foreach (var player in GameManager.instance.players)
+            foreach (var player in PlayerManager.instance.players)
             {
                 if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
                 {
@@ -127,7 +127,7 @@ public class Timer : MonoBehaviour
                 if (tempPlayerListPlayer[p].score > 0)
                 {
                     InstantiateMedals(temp.transform, position);
-                    GameManager.instance.players[p + 1].scoreGeneral++;
+                    PlayerManager.instance.players[p + 1].scoreGeneral++;
                 }
                 /*if (nbrOfRound >= 1)
                 {

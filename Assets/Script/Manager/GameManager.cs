@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Timeline;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,10 +40,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
+
+    [SerializeField] private float interactionCD = 1.5f;
+    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+
     #endregion
     #region Player
 
-    public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [Header("Variables des Players")]
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
@@ -53,30 +60,44 @@ public class GameManager : MonoBehaviour
     [Tooltip("Temps de slow des players apres zone slow en seconde")]
     [SerializeField] private float slowDuration = 2;
     //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
+    [Header("Variables des ChocWave")]
+    [SerializeField] private float radiusMax = 1.5f;
+    public float RadiusMax { get => radiusMax; private set => radiusMax = value; }
+    [SerializeField] private float growingSpeed = 1.5f;
+    public float GrowingSpeed { get => growingSpeed; private set => growingSpeed = value; }
+    [SerializeField] private float pushForce = 1.5f;
+    public float PushForce { get => pushForce; private set => pushForce = value; }
 
-    public Transform[] SpawnList => spawnList;
+    [Header("Variables des Meteorite")]
+    [SerializeField] private float radiusMaxExplosion = 1.5f;
+    public float RadiusMaxExplosion { get => radiusMaxExplosion; private set => radiusMaxExplosion = value; }
+    [SerializeField] private float growingSpeedExplossion = 1.5f;
+    public float GrowingSpeedExplosion { get => growingSpeedExplossion; private set => growingSpeedExplossion = value; }
+    [SerializeField] private float pushForceExplosion = 1.5f;
+    public float PushForceExplosion { get => pushForceExplosion; private set => pushForceExplosion = value; }
+    [SerializeField] private float speedMeteorite = 1.5f;
+    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
+
+
+
+
     public float MovSpeedSlowZone => movSpeedSlowZone;
     public float MaxMovementSpeed => maxMovementSpeed;
     public float RespawnDelay => respawnDelay;
-
     public int InvincibleDelay => invincibleDelay;
-
-
     public float SlowDuration => slowDuration;
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
-
 
     #endregion
     #region Circles
     [Header("Variables des Anneaux")]
 
-    [Tooltip("Liste des anneaux du terrain")]
-    [SerializeField] private List<GameObject> tabCircle;
-    public List<GameObject> TabCircle => tabCircle;
-
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
+    public List<GameObject> tabCircle;
+    public List<GameObject> circleBlockList;
+
     [Tooltip("...")]
     [SerializeField] private Color colorCircleChoose;
     private List<Color> tabMaterialColor = new List<Color>();
@@ -101,7 +122,6 @@ public class GameManager : MonoBehaviour
     public Color ActivatedColor => activatedColor;
     public Color ActiveColor => activeColor;
 
-    public List<Gamepad> manettes = new List<Gamepad>();
 
     #endregion
     #region Middle
@@ -121,75 +141,32 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
-    #region UI
-    public GameObject speBarrePrefab;
-    public List<GameObject> speBarreParentList = new List<GameObject>();
-    #endregion
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(this.gameObject);
         }
         /*else
             Destroy(this.gameObject);*/
-        
 
-        foreach (GameObject circle in TabCircle)
+        for (int i = 0; i < tabCircle.Count; i++)
+        {
+            if (tabCircle[i] == null)
+                tabCircle.Remove(tabCircle[i]);
+        }
+
+        if (tabCircle.Count == 0)
+        {
+            Debug.Log("NO PLATFORM ON GAME");
+            return;
+        }
+
+        foreach (GameObject circle in tabCircle)
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
 
-    }
-
-    public void AddPlayer()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
-        manettes.Add(Gamepad.current);
-        //Debug.Log("manette  : " + Gamepad.current);
-        Player dataPlayer = player.GetComponent<Player>();
-        players.Add(players.Count + 1, dataPlayer);
-        dataPlayer.playerID = players.Count;
-        dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-
-        switch (dataPlayer.playerID)
-        {
-            case 1:
-                player.transform.position = spawnList[0].position;
-                GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp1;
-                temp1.name = "SpéChargeBarre " + (1);
-                break;
-            case 2:
-                player.transform.position = spawnList[1].position;
-                GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp2;
-                temp2.name = "SpéChargeBarre " + (2);
-                break;
-            case 3:
-                player.transform.position = spawnList[2].position;
-                GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp3;
-                temp3.name = "SpéChargeBarre " + (3);
-                break;
-            case 4:
-                player.transform.position = spawnList[3].position;
-                GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp4;
-                temp4.name = "SpéChargeBarre " + (4);
-                break;
-            default:
-                break;
-        }
-        player.tag = "Player";
-        ScoreManager.instance.UpdateScores();
-    }
-
-    public Transform RandomSpawn()
-    {
-        int random = Random.Range(0, spawnList.Length);
-        return spawnList[random];
     }
 }

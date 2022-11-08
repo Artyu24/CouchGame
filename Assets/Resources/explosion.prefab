@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5601359092959106547}
   - component: {fileID: 5601359092959106546}
-  - component: {fileID: 5479239180911548185}
   - component: {fileID: 4298620179466867758}
   - component: {fileID: 2361588069764174468}
+  - component: {fileID: -3949209707025429542}
   m_Layer: 0
   m_Name: explosion
   m_TagString: Untagged
@@ -48,23 +48,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5479239180911548185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601359092959106557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff362704043c654ba9177ce7143a6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sphereCollider: {fileID: 5601359092959106546}
-  radiusMax: 11
-  growingSpeed: 4
-  pushForce: 800
-  transparence: {fileID: 5601359092959106547}
 --- !u!23 &4298620179466867758
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd403a4938e303c47b1629dfb87710b3, type: 2}
+  - {fileID: 2100000, guid: f52d72513b146f54aac600029b4a6c22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,3 +98,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5601359092959106557}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-3949209707025429542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601359092959106557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0dc308c99c2474daf6cf47b6c5d90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereCollider: {fileID: 5601359092959106546}
+  transparence: {fileID: 5601359092959106547}

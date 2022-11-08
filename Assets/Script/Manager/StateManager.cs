@@ -13,6 +13,7 @@ public enum PlayerState
 {
     INIT,
     FIGHTING,
+    FLYING,
     MIDDLE,
     DEAD
 }
