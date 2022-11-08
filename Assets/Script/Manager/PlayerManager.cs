@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+
     #region UI
     public GameObject speBarrePrefab;
     public List<GameObject> speBarreParentList = new List<GameObject>();
@@ -22,12 +23,15 @@ public class PlayerManager : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+        speBarrePrefab = Resources.Load<GameObject>("SpeChargeBarre");
+    }
 
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         manettes.Add(Gamepad.current);
-        //Debug.Log("manette  : " + Gamepad.current);
         Player dataPlayer = player.GetComponent<Player>();
         players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
@@ -38,25 +42,25 @@ public class PlayerManager : MonoBehaviour
             case 1:
                 player.transform.position = spawnList[0].position;
                 GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp1;
+                speBarrePrefab = temp1;
                 temp1.name = "SpéChargeBarre " + (1);
                 break;
             case 2:
                 player.transform.position = spawnList[1].position;
                 GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp2;
+                speBarrePrefab = temp2;
                 temp2.name = "SpéChargeBarre " + (2);
                 break;
             case 3:
                 player.transform.position = spawnList[2].position;
                 GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp3;
+                speBarrePrefab = temp3;
                 temp3.name = "SpéChargeBarre " + (3);
                 break;
             case 4:
                 player.transform.position = spawnList[3].position;
                 GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
-                player.GetComponent<PlayerAttack>().speBarre = temp4;
+                speBarrePrefab = temp4;
                 temp4.name = "SpéChargeBarre " + (4);
                 break;
             default:

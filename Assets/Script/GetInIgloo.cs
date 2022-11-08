@@ -35,8 +35,8 @@ public class GetInIgloo : MonoBehaviour
             other.GetComponent<Player>().HideGuy(false);
 
             //Ajoute la couleur et la outline au cercle choisis de base
-            GM.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
-            GM.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
+            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
+            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
 
             //Gestion du Centre via le Centre Manager
             CenterManager.instance.ActivateAllBridge();
@@ -58,7 +58,7 @@ public class GetInIgloo : MonoBehaviour
             offsetCam = new Vector3(Random.Range(-GameManager.instance.shakePower, GameManager.instance.shakePower), Random.Range(-GameManager.instance.shakePower, GameManager.instance.shakePower), 0);
             GameManager.instance.CameraScene.transform.localPosition += offsetCam;
             timer += Time.deltaTime;
-            yield return new WaitForEndOfFrame();  
+            yield return new WaitForEndOfFrame();
         }
         GameManager.instance.CameraScene.transform.localPosition -= offsetCam;
         foreach (var gamepad in PlayerManager.instance.manettes)

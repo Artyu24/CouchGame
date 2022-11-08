@@ -29,6 +29,11 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        if(scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        {
+            return;
+        }
+
         for (int p = 0; p < 4; p++)
         {
             GameObject temp = Instantiate(scoreTextPrefab, scoreParentList[p].transform);
@@ -44,6 +49,11 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        if (scoreParentList == null || scorePlayerText == null || scoreTextPrefab == null)
+        {
+            return;
+        }
+        
         if (GameManager.instance.PlayerInMiddle != null && addMiddleScore)
         {
             StartCoroutine(AddScoreFromMiddle());

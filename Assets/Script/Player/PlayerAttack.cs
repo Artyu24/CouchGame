@@ -29,15 +29,15 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
-    [Header("UI")] 
-    public GameObject speBarre;
     #endregion
 
     #region InputSysteme
+
+
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
-        speBarre.GetComponent<Slider>().value = currentSpecial;
+        PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
         if (ctx.started && canAttack)
             StartCoroutine(AttackCoroutine(strenght));
     }
@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
         {
             currentSpecial = 0;
-            speBarre.GetComponent<Slider>().value = currentSpecial;
+            PlayerManager.instance.speBarrePrefab.GetComponent<Slider>().value = currentSpecial;
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -88,8 +88,9 @@ public class PlayerAttack : MonoBehaviour
                 {
                     //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
                     hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    Debug.Log(hit.transform.name + " has been hit");
+                    //Debug.Log(hit.transform.name + " has been hit");
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                    hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
                     return;
                 }
                 if (hit.transform != null && hit.transform.tag == "PointArea")//if we hit a point Area we do things
