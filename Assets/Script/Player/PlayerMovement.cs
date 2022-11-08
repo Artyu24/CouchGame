@@ -23,15 +23,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool isInteracting = false;
 
-    public float interactionCD;
 
-    public GameObject meteorite;
-    public GameObject departChoc;
-    public GameObject departMeteorite;
-    public GameObject chocWave;
-    public GameObject chocWaveSprite;
+    private GameObject meteorite;
+    private Vector3 departChoc = Vector3.zero;
+    private Vector3 departMeteorite = new Vector3(0, 20, 0);
+    private GameObject chocWave;
 
     private float movementSpeed;
+
 
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
@@ -48,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         MovementSpeed = GameManager.instance.MaxMovementSpeed;
+
+        meteorite = Resources.Load<GameObject>("Meteorite");
+        chocWave = Resources.Load<GameObject>("ChocWave");
     }
 
     // Update is called once per frame
@@ -60,8 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
-            GameManager.instance.TabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.TabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
-
+            GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
     }
 
 
@@ -94,19 +95,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if (context.started)
             {
-                GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
+                GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = false;
+                GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
 
                 float nextCircle = context.ReadValue<float>();
                 if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.TabCircle.Count - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.TabCircle.Count - 1)
+                    actualCircle = GameManager.instance.tabCircle.Count - 1;
+                else if (actualCircle + nextCircle > GameManager.instance.tabCircle.Count - 1)
                     actualCircle = 0;
                 else
                     actualCircle += (int)nextCircle;
 
-                GameManager.instance.TabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.TabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
+                GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = true;
+                GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
             }
         }
     }
@@ -140,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
-                    GameObject metoto = Instantiate(meteorite, departMeteorite.transform.position, departMeteorite.transform.rotation);
+                    GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
                     metoto.GetComponent<MeteorMovement>().MovePlanete(i);
                     StartCoroutine(CooldownForInteraction());
                 }
@@ -156,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
-                    Instantiate(chocWave, departChoc.transform.position, departChoc.transform.rotation);
+                    Instantiate(chocWave, departChoc , quaternion.identity);
                     //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
                 }
@@ -168,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator CooldownForInteraction()
     {
         isInteracting = true;
-        yield return new WaitForSeconds(interactionCD);
+        yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         isInteracting = false;
     }
 }

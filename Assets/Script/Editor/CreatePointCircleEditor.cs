@@ -21,43 +21,52 @@ public class CreatePointCircleEditor : Editor
     {
         EditorGUILayout.BeginVertical();
         EditorGUILayout.LabelField("-------Outil création Spawn Point-------");
-        EditorGUILayout.HelpBox("Etape à suivre : \n Créé un empty object \n Le mettre en enfant du cercle choisis \n Le placer au centre de la surface du cercle avec une hauteur de 1 sur Y \n Ajouter le cercle et le point juste en dessous dans les cases correspondantes", MessageType.Info);
+        EditorGUILayout.HelpBox("Etape à suivre :\nPlacer le point au centre de la surface du cercle SUR X\n Ajouter le cercle et le point juste en dessous dans les cases correspondantes", MessageType.Info);
         EditorGUILayout.EndVertical();
 
-        myObject.CircleParent = EditorGUILayout.ObjectField("Le Cercle :", myObject.CircleParent, typeof(Object), true);
-        myObject.FirstEmpty = EditorGUILayout.ObjectField("Premier point de spawn vide :", myObject.FirstEmpty, typeof(Object), true);
-        myObject.NbrSpawnPoint = EditorGUILayout.IntField("Nombre de point de spawn souhaité :", myObject.NbrSpawnPoint);
+        SerializedObject soCreaterPointCircle = new SerializedObject(myObject);
+        soCreaterPointCircle.Update();
 
+        SerializedProperty circle = soCreaterPointCircle.FindProperty("circleParent");
+        SerializedProperty firstEmpty = soCreaterPointCircle.FindProperty("firstEmpty");
+        SerializedProperty nbrPoint = soCreaterPointCircle.FindProperty("nbrSpawnPoint");
+        SerializedProperty spawnPointList = soCreaterPointCircle.FindProperty("spawnPointList");
+
+        circle.objectReferenceValue = EditorGUILayout.ObjectField("Le Cercle :", circle.objectReferenceValue, typeof(Object), true);
+        firstEmpty.objectReferenceValue = EditorGUILayout.ObjectField("Premier point de spawn vide :", firstEmpty.objectReferenceValue, typeof(Object), true);
+        nbrPoint.intValue = EditorGUILayout.IntField("Nombre de point de spawn souhaité :", nbrPoint.intValue);
 
         GameObject mySource = null;
         GameObject myCircle = null;
         try
         {
-            mySource = (GameObject)myObject.FirstEmpty;
-            myCircle = (GameObject)myObject.CircleParent;
+            mySource = (GameObject)firstEmpty.objectReferenceValue;
+            myCircle = (GameObject)circle.objectReferenceValue;
         }
         catch (Exception)
         {
-                    
+            //Do nothing
         }
 
         if (mySource == null || myCircle == null)
         {
             EditorGUILayout.HelpBox("Attention, il vous manque des choses !", MessageType.Warning);
+            soCreaterPointCircle.ApplyModifiedProperties();
             return;
         }
 
-        if (myObject.FirstEmpty != null)
+        mySource.transform.position = new Vector3(mySource.transform.position.x, 1, 0);
+
+        if (firstEmpty.objectReferenceValue != null)
         {
             float r = 0;
             if (mySource.transform.position.x != 0)
                 r = mySource.transform.position.x;
-            else if (mySource.transform.position.z != 0)
-                r = mySource.transform.position.z;
 
             if (r == 0)
             {
-                EditorGUILayout.HelpBox("Attention, votre point est en 0 0 !", MessageType.Warning);
+                EditorGUILayout.HelpBox("Attention, votre point est en 0 sur X !", MessageType.Warning);
+                soCreaterPointCircle.ApplyModifiedProperties();
                 return;
             }
 
@@ -65,60 +74,63 @@ public class CreatePointCircleEditor : Editor
             if (pointAreaManager == null)
             {
                 EditorGUILayout.HelpBox("Attention, vous n'avez pas de PointAreaManager sur votre scène !", MessageType.Warning);
+                soCreaterPointCircle.ApplyModifiedProperties();
                 return;
             }
 
             if (GUILayout.Button("Création des points"))
             {
-                if (myObject.SpawnPointList.Count != 0)
+                if (spawnPointList.arraySize != 0)
                 {
-                    foreach (Transform point in myObject.SpawnPointList)
+                    for (int i = 0; i < spawnPointList.arraySize; i++)
                     {
-                        if (point == myObject.SpawnPointList[0])
+                        if (i == 0)
                             continue;
 
+                        Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
                         pointAreaManager.SpawnPoint.Remove(point);
                         DestroyImmediate(point.gameObject);
                     }
 
-                    myObject.SpawnPointList.Clear();
+                    spawnPointList.ClearArray();
                 }
 
                 float deg = 0;
-                float degSup = 360 / myObject.NbrSpawnPoint;
+                float degSup = 360 / nbrPoint.intValue;
                 deg += degSup;
+                
+                spawnPointList.InsertArrayElementAtIndex(0);
+                spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue = mySource.transform;
 
-                if(!myObject.SpawnPointList.Contains(mySource.transform))
-                    myObject.SpawnPointList.Add(mySource.transform);
-
-                if(!pointAreaManager.SpawnPoint.Contains(mySource.transform))
-                    pointAreaManager.SpawnPoint.Add(mySource.transform);
-
-                for (int i = 1; i < myObject.NbrSpawnPoint; i++)
+                for (int i = 1; i < nbrPoint.intValue; i++)
                 {
                     GameObject point = Instantiate(mySource, new Vector3(r * Mathf.Cos(Mathf.Deg2Rad * deg), 1, r * Mathf.Sin(Mathf.Deg2Rad * deg)), Quaternion.identity, myCircle.transform);
                     deg += degSup;
-                    myObject.SpawnPointList.Add(point.transform);
+                    spawnPointList.InsertArrayElementAtIndex(i);
+                    spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
                     pointAreaManager.SpawnPoint.Add(point.transform);
                 }
             }
 
-            if (myObject.SpawnPointList.Count != 0)
+            if (spawnPointList.arraySize != 0)
             {
                 if (GUILayout.Button("Destruction des points"))
                 {
-                    foreach (Transform point in myObject.SpawnPointList)
-                    { 
-                        if(point == myObject.SpawnPointList[0])
+                    for (int i = 0; i < spawnPointList.arraySize; i++)
+                    {
+                        if (i == 0)
                             continue;
 
+                        Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
                         pointAreaManager.SpawnPoint.Remove(point);
                         DestroyImmediate(point.gameObject);
                     }
 
-                    myObject.SpawnPointList.Clear();
+                    spawnPointList.ClearArray();
                 }
             }
+
+            soCreaterPointCircle.ApplyModifiedProperties();
         }
     }
 
