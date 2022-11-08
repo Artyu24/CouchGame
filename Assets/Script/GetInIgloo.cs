@@ -35,8 +35,8 @@ public class GetInIgloo : MonoBehaviour
             other.GetComponent<Player>().HideGuy(false);
 
             //Ajoute la couleur et la outline au cercle choisis de base
-            GM.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
-            GM.TabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
+            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
+            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
 
             //Gestion du Centre via le Centre Manager
             CenterManager.instance.ActivateAllBridge();
