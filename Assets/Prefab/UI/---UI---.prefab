@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2728313911226112682}
   m_Layer: 5
   m_Name: ---UI---
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,8 +32,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3011877825736816100}
-  - {fileID: 2728313912059628573}
   - {fileID: 8919906984847974370}
+  - {fileID: 2728313912059628573}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9ddf810fdb977544993bf9a374ec1964, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -217,7 +217,7 @@ RectTransform:
   - {fileID: 2728313912878769173}
   - {fileID: 6198401989257234849}
   m_Father: {fileID: 2728313911226112681}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -606,7 +606,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9ddf810fdb977544993bf9a374ec1964, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -653,7 +653,7 @@ RectTransform:
   - {fileID: 6868431275670586477}
   - {fileID: 6290066496910734760}
   m_Father: {fileID: 2728313911226112681}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1120,7 +1120,7 @@ PrefabInstance:
     - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
         type: 3}
       propertyPath: levelName
-      value: LDS1
+      value: "Proto_T\xE9o1"
       objectReference: {fileID: 0}
     - target: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
         type: 3}
