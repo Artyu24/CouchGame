@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     public Color currentColor;
 
+    public List<GameObject> medals = new List<GameObject>();
+
     private void Start()
     {
         //DG.Tweening.Sequence seq = DOTween.Sequence();
@@ -31,8 +33,6 @@ public class Player : MonoBehaviour
         //seq.Play();
     }
 
-
-
     public void Kill()
     {
         StartCoroutine(RespawnDelay());
@@ -41,14 +41,14 @@ public class Player : MonoBehaviour
     private IEnumerator RespawnDelay()
     {
         yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
-        Debug.Log("Invincible");
+        //Debug.Log("Invincible");
         isInvincible = true;
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = PointAreaManager.instance.RandomPosition().position;
+        transform.position = PointAreaManager.instance.GetRandomPosition().position;
         //StartCoroutine(InvincibilityFlash());
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
-        Debug.Log(" plus Invincible");
+        //Debug.Log(" plus Invincible");
         isInvincible = false;
 
         if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
@@ -76,6 +76,4 @@ public class Player : MonoBehaviour
         GetComponentInChildren<MeshRenderer>().enabled = enable;
         GetComponent<Rigidbody>().useGravity = enable;
     }
-
-
 }

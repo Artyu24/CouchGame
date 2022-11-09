@@ -51,6 +51,7 @@ MonoBehaviour:
   normalStrenght: 11
   specialStrenght: 30
   attackCd: 1
+  interactionCD: 1.5
   spawnList:
   - {fileID: 0}
   - {fileID: 0}
@@ -61,6 +62,13 @@ MonoBehaviour:
   respawnDelay: 2
   invincibleDelay: 2
   slowDuration: 2
+  radiusMax: 1.5
+  growingSpeed: 1.5
+  pushForce: 1.5
+  radiusMaxExplosion: 1.5
+  growingSpeedExplossion: 1.5
+  pushForceExplosion: 1.5
+  speedMeteorite: 1.5
   circleRotationSpeed: 32.2
   tabCircle: []
   circleBlockList: []
@@ -72,6 +80,3 @@ MonoBehaviour:
   cameraScene: {fileID: 0}
   shakePower: 0.05
   shakeDuration: 0.5
-  speBarrePrefab: {fileID: 4927496596624226871, guid: 7d935d479a0f31a4ba7f800b61afb38c,
-    type: 3}
-  speBarreParentList: []
