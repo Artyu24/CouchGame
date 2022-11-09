@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
+
     }
 
     private void Update()
