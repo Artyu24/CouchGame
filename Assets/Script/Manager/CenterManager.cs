@@ -83,7 +83,6 @@ public class CenterManager : MonoBehaviour
             if(bridge != null)
                 bridge.ActivateBridge();
         }
-        actualCenterState = CenterState.USE;
     }
 
     public void DesactivateAllBridge()
