@@ -18,6 +18,8 @@ public class ScoreManager : MonoBehaviour
     public float middelPointsCooldown = 2;
     [Tooltip("Point gagner à chaque hit du sac")] 
     public int scorePointArea = 1;
+    [Tooltip("Point gagner à chaque hit du sac si la sardine est dorée")]
+    public int scoreGoldPointArea = 5;
     [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
     private bool addMiddleScore = true;
 
