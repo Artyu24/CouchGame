@@ -14,8 +14,6 @@ public class PlayerManager : MonoBehaviour
     #endregion
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
-    public Transform[] SpawnList => spawnList;
 
     private GameObject[] interfaceUIPrefab = new GameObject[4];
     public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
@@ -62,12 +60,6 @@ public class PlayerManager : MonoBehaviour
         ScoreManager.instance.UpdateScores();
     }
 
-    public Transform RandomSpawn()
-    {
-        int random = Random.Range(0, spawnList.Length);
-        return spawnList[random];
-    }
-
     public void FindCanvas()
     {
         canvasUI = GameObject.FindGameObjectWithTag("Canvas");
@@ -75,7 +67,8 @@ public class PlayerManager : MonoBehaviour
 
     public void Init(int i, GameObject player)
     {
-        //player.transform.position = spawnList[i].position;
+        //Spawn at point
+        player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
 
         //Parent UI par Player
         GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);

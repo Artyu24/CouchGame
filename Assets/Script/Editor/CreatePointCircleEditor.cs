@@ -78,6 +78,10 @@ public class CreatePointCircleEditor : Editor
                 return;
             }
 
+            //SerializedObject soPAM = new SerializedObject(pointAreaManager);
+            //soPAM.Update();
+            //SerializedProperty spawnPointList = soPAM.FindProperty("");
+
             if (GUILayout.Button("Création des points"))
             {
                 if (spawnPointList.arraySize != 0)
@@ -93,6 +97,7 @@ public class CreatePointCircleEditor : Editor
                     }
 
                     spawnPointList.ClearArray();
+                    pointAreaManager.SpawnPointPlayer.Clear();
                 }
 
                 float deg = 0;
@@ -127,7 +132,34 @@ public class CreatePointCircleEditor : Editor
                     }
 
                     spawnPointList.ClearArray();
+                    pointAreaManager.SpawnPointPlayer.Clear();
                 }
+
+                EditorGUILayout.BeginVertical();
+                EditorGUILayout.LabelField("-------SPAWN POINT PLAYERS-------");
+                EditorGUILayout.BeginHorizontal();
+
+                if (!pointAreaManager.SpawnPointPlayer.Contains(spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue as Transform))
+                {
+                    if (GUILayout.Button("AJOUTER"))
+                    {
+                        for (int i = 0; i < spawnPointList.arraySize; i++)
+                        {
+                            Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
+                            pointAreaManager.SpawnPointPlayer.Add(point);
+                        }
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("ENLEVER"))
+                        pointAreaManager.SpawnPointPlayer.Clear();
+
+                    //Pas tout clear mek
+                }
+
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
             }
 
             soCreaterPointCircle.ApplyModifiedProperties();
@@ -146,9 +178,12 @@ public class CreatePointCircleEditor : Editor
             if (!obj.activeInHierarchy)
                 continue;
 
-            PointAreaManager PAM = obj.GetComponent<PointAreaManager>();
-            if (PAM != null)
-                return PAM;
+            foreach (Transform child in obj.transform)
+            {
+                PointAreaManager PAM = child.GetComponent<PointAreaManager>();
+                if (PAM != null)
+                    return PAM;
+            }
         }
 
         return null;
