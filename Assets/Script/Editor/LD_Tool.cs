@@ -58,9 +58,9 @@ public class LD_Tool : EditorWindow
             
             if (GUILayout.Button("INIT SCENE"))
             {
-                GameObject parentPrefab = Instantiate(prefabGeneral);
-                parentPrefab.transform.DetachChildren();
-                DestroyImmediate(parentPrefab);
+                PrefabUtility.InstantiatePrefab(prefabGeneral);
+                //parentPrefab.transform.DetachChildren();
+                //DestroyImmediate(parentPrefab);
             }
             return;
         }
@@ -198,7 +198,6 @@ public class LD_Tool : EditorWindow
                 
                 GM.ApplyModifiedProperties();
             }
-
             EditorGUILayout.EndScrollView();
         }
 
@@ -298,9 +297,12 @@ public class LD_Tool : EditorWindow
             if(!obj.activeInHierarchy)
                 continue;
 
-            GameManager GM = obj.GetComponent<GameManager>();
-            if (GM != null)
-                return GM;
+            foreach (Transform child in obj.transform)
+            {
+                GameManager GM = child.GetComponent<GameManager>();
+                if (GM != null)
+                    return GM;
+            }
         }
 
         return null;

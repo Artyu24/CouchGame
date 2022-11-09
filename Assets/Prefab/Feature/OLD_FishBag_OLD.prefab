@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4929956600189851767}
   m_Layer: 11
   m_Name: OLD_FishBag_OLD
-  m_TagString: PointArea
+  m_TagString: FishBag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 5
   fish: []
+  goldenFish: 
 --- !u!95 &576474425904512888
 Animator:
   serializedVersion: 4
