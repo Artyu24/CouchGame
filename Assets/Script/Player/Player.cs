@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         isInvincible = true;
         actualPlayerState = PlayerState.FIGHTING;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = PointAreaManager.instance.RandomPosition().position;
+        transform.position = PointAreaManager.instance.GetRandomPosition().position;
         //StartCoroutine(InvincibilityFlash());
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
         //Debug.Log(" plus Invincible");

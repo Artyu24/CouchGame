@@ -23,7 +23,7 @@ public class GetInIgloo : MonoBehaviour
             //On créé les plaques pour faire sortir le joueur
             for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
             {
-                Transform spawnPoint = PointAreaManager.instance.RandomPosition();
+                Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
                 GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
                 plate.GetComponentInChildren<MeshRenderer>().material.color = GM.ActiveColor;
                 plate.GetComponent<BoxCollider>().enabled = true;

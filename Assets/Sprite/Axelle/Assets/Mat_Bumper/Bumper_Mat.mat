@@ -14,7 +14,7 @@ Material:
   - _NORMALMAP
   - _OCCLUSIONMAP
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -25,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 8f9a6a8151807bf488b33678dac63fc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 477d26579d1d4e34dbdf7c9cf6166688, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 61876face01c162419eabca7430f89f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c25e348336af2f44a00c0ca33cd127f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
-        m_Texture: {fileID: 2800000, guid: b67ff5c022507f043818026fa73a438e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 834d10a1b1d30264a906878d80ab2315, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
@@ -49,15 +49,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8f9a6a8151807bf488b33678dac63fc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 477d26579d1d4e34dbdf7c9cf6166688, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 7cad627af1f90dd45a1d80e0cff428e2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 390316850768dc643820d78a1b923ea0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 2b8c42fc2efe4fa43a2c5b42b7e5b1d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: c80a015a85d532542acdb59b4fdc7764, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
