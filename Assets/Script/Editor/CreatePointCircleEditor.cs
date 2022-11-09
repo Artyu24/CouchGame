@@ -154,6 +154,8 @@ public class CreatePointCircleEditor : Editor
                 {
                     if (GUILayout.Button("ENLEVER"))
                         pointAreaManager.SpawnPointPlayer.Clear();
+
+                    //Pas tout clear mek
                 }
 
                 EditorGUILayout.EndHorizontal();
