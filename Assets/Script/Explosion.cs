@@ -42,6 +42,10 @@ public class Explosion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Player>().isChockedWaved == false && other.gameObject.GetComponent<Player>().isInvincible == false)
                 {
+                    Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
+                    other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceExplosion);
+                    other.gameObject.GetComponent<Player>().isChockedWaved = true;
+                    playerList.Add(other.gameObject.GetComponent<Player>());
                     int xcount = Random.Range(0, 5);
 
                     switch (xcount)
@@ -65,10 +69,6 @@ public class Explosion : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("Hurt6");
                             break;
                     }
-                    Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
-                    other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceExplosion);
-                    other.gameObject.GetComponent<Player>().isChockedWaved = true;
-                    playerList.Add(other.gameObject.GetComponent<Player>());
                 }
             }
         }
