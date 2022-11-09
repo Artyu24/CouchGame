@@ -17134,13 +17134,13 @@ MonoBehaviour:
   respawnDelay: 2
   invincibleDelay: 2
   slowDuration: 2
-  radiusMax: 1.5
-  growingSpeed: 1.5
-  pushForce: 1.5
-  radiusMaxExplosion: 1.5
-  growingSpeedExplossion: 1.5
-  pushForceExplosion: 1.5
-  speedMeteorite: 1.5
+  radiusMax: 20
+  growingSpeed: 6
+  pushForce: 5
+  radiusMaxExplosion: 8
+  growingSpeedExplossion: 8
+  pushForceExplosion: 8
+  speedMeteorite: 8
   circleRotationSpeed: 32.2
   tabCircle:
   - {fileID: 1442163251}
@@ -17526,6 +17526,7 @@ MonoBehaviour:
   scoreInterrupteur: 5
   middelPointsCooldown: 2
   scorePointArea: 1
+  scoreGoldPointArea: 5
   scoreKill: 10
 --- !u!4 &1273403489
 Transform:

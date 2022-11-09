@@ -10,18 +10,15 @@ public class PlayerManager : MonoBehaviour
 
     #region UI
     public GameObject speBarrePrefab;
-    //public List<GameObject> speBarreParentList = new List<GameObject>();
-    #endregion
-    public Dictionary<int, Player> players = new Dictionary<int, Player>();
-    public List<Gamepad> manettes = new List<Gamepad>();
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
-    public Transform[] SpawnList => spawnList;
-
     private GameObject[] interfaceUIPrefab = new GameObject[4];
     public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
     
     private GameObject[] playersInterface = new GameObject[4];
     public GameObject[] PlayersInterface => playersInterface;
+    //public List<GameObject> speBarreParentList = new List<GameObject>();
+    #endregion
+    public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public List<Gamepad> manettes = new List<Gamepad>();
 
 
     public GameObject canvasUI;
@@ -62,12 +59,6 @@ public class PlayerManager : MonoBehaviour
         ScoreManager.instance.UpdateScores();
     }
 
-    public Transform RandomSpawn()
-    {
-        int random = Random.Range(0, spawnList.Length);
-        return spawnList[random];
-    }
-
     public void FindCanvas()
     {
         canvasUI = GameObject.FindGameObjectWithTag("Canvas");
@@ -75,7 +66,10 @@ public class PlayerManager : MonoBehaviour
 
     public void Init(int i, GameObject player)
     {
-        //player.transform.position = spawnList[i].position;
+        //Vider les score de manche pour les joueurs
+        players[i].score = 0;
+        //Spawn at point
+        player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
 
         //Parent UI par Player
         GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);
