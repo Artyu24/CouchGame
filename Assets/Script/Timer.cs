@@ -28,16 +28,15 @@ public class Timer : MonoBehaviour
     private Text[] scoreGeneralPlayerText = new Text[4];
 
     private GameObject[] medals = new GameObject[3];
-
-    private int nbrOfRound = 0;
+    private int numberOfMedal = 3;
     #endregion
 
     private void Awake()
     {
         timerText = GetComponent<Text>();
-        medals[0] = Resources.Load<GameObject>("UI/GoldMedal");
-        medals[1] = Resources.Load<GameObject>("UI/SilverMedal");
-        medals[2] = Resources.Load<GameObject>("UI/CopperMedal");
+        medals[0] = Resources.Load<GameObject>("UI/GoldMedalParent");
+        medals[1] = Resources.Load<GameObject>("UI/SilverMedalParent");
+        medals[2] = Resources.Load<GameObject>("UI/CopperMedalParent");
     }
 
     private void Start()
@@ -57,6 +56,7 @@ public class Timer : MonoBehaviour
         if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
         {
             PrintScoreWindow();
+            //PrintGeneralScoreWindow();
         }
 
         if (PlayerManager.instance.players.Count >= 1 && !scoreWindowRoundIsActive)
@@ -97,8 +97,8 @@ public class Timer : MonoBehaviour
 
     public void PrintGeneralScoreWindow()
     {
-        //scoreWindowRoundIsActive = false;
-        //scoreWindowRound.SetActive(scoreWindowRoundIsActive);
+        scoreWindowRoundIsActive = false;
+        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
         
         if (!scoreWindowGeneralIsActive)
         {
@@ -109,6 +109,8 @@ public class Timer : MonoBehaviour
 
             Player playerTemp = null;
             int bestScore = 0;
+
+            // Rangage des joueurs par score
             while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
             {
                 foreach (var player in PlayerManager.instance.players)
@@ -124,7 +126,6 @@ public class Timer : MonoBehaviour
             }
 
             GameObject temp = null;
-
             for (int p = 0; p < tempPlayerListPlayer.Count; p++)
             {
                 temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
@@ -132,46 +133,36 @@ public class Timer : MonoBehaviour
                 temp.name = "Player " + tempPlayerListPlayer[p].playerID + 1;
                 scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + 1 + " : ";
 
-                for (int i = 0; i < (tempPlayerListPlayer.Count - p + 1); i++)
+                // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
+                for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
+                {
+                    GameObject test = Instantiate(PlayerManager.instance.players[p].medals[p], temp.transform);
+                }
+                for (int i = 0; i < numberOfMedal; i++)
                 {
                     if (tempPlayerListPlayer[p].score > 0)
                     {
+                        //Anim d'apparition
                         InstantiateMedals(temp.transform, position);
                         PlayerManager.instance.players[p].scoreGeneral++;
                     }
-                    /*if (nbrOfRound >= 1)
-                    {
-                        for (int j = 0; j < GameManager.instance.PlayersScoreGenerals[GameManager.instance.players[p + 1]]; j++)
-                        {
-                            InstantiateMedals(temp.transform, position);
-                        }
-                    }*/
                 }
-                //GameManager.instance.PlayersScoreGenerals.Add(GameManager.instance.players[p + 1], GameManager.instance.players[p + 1].scoreGeneral);
                 position++;
+                numberOfMedal--;
             }
-
-            //nbrOfRound++;
         }
-
     }
-
     private void InstantiateMedals(Transform t, int position)
     {
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
-
+        temp2. GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
+        PlayerManager.instance.players[position].medals.Add(medals[Mathf.Abs(position)]);
     }
 
     public void ReloadScene()
     {
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
         Time.timeScale = 1;
-        
-        //for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        //{
-        //    PlayerManager.instance.players[i].transform.position = PlayerManager.instance.RandomSpawn().position;
-        //}
-
         SceneManager.LoadScene(levelName);
     }
 }

@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     public Color currentColor;
 
+    public List<GameObject> medals = new List<GameObject>();
+
     private void Start()
     {
         //DG.Tweening.Sequence seq = DOTween.Sequence();
@@ -30,8 +32,6 @@ public class Player : MonoBehaviour
         //seq.Append(graphics.material.DOFade(1, 0.5f));
         //seq.Play();
     }
-
-
 
     public void Kill()
     {
@@ -76,6 +76,4 @@ public class Player : MonoBehaviour
         GetComponentInChildren<MeshRenderer>().enabled = enable;
         GetComponent<Rigidbody>().useGravity = enable;
     }
-
-
 }
