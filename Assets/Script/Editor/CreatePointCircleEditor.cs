@@ -139,7 +139,7 @@ public class CreatePointCircleEditor : Editor
                 EditorGUILayout.LabelField("-------SPAWN POINT PLAYERS-------");
                 EditorGUILayout.BeginHorizontal();
 
-                if (!pointAreaManager.SpawnPointPlayer.Contains(spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue as Transform))
+                if (!pointAreaManager.SpawnPointPlayer.Contains(mySource.transform))
                 {
                     if (GUILayout.Button("AJOUTER"))
                     {
