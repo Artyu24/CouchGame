@@ -120,9 +120,9 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
-    public void AddSpeBarrePoint()
+    public void AddSpeBarrePoint(int _point)
     {
-        currentSpecial++;
+        currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
     }
 
