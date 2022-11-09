@@ -10,16 +10,15 @@ public class PlayerManager : MonoBehaviour
 
     #region UI
     public GameObject speBarrePrefab;
-    //public List<GameObject> speBarreParentList = new List<GameObject>();
-    #endregion
-    public Dictionary<int, Player> players = new Dictionary<int, Player>();
-    public List<Gamepad> manettes = new List<Gamepad>();
-
     private GameObject[] interfaceUIPrefab = new GameObject[4];
     public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
     
     private GameObject[] playersInterface = new GameObject[4];
     public GameObject[] PlayersInterface => playersInterface;
+    //public List<GameObject> speBarreParentList = new List<GameObject>();
+    #endregion
+    public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public List<Gamepad> manettes = new List<Gamepad>();
 
 
     public GameObject canvasUI;
@@ -67,6 +66,8 @@ public class PlayerManager : MonoBehaviour
 
     public void Init(int i, GameObject player)
     {
+        //Vider les score de manche pour les joueurs
+        players[i].score = 0;
         //Spawn at point
         player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
 
