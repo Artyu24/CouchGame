@@ -43,6 +43,29 @@ public class ChocWave : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Player>().isChockedWaved == false && other.gameObject.GetComponent<Player>().isInvincible == false)
                 {
+                    int xcount = Random.Range(0, 5);
+
+                    switch (xcount)
+                    {
+                        case 0:
+                            FindObjectOfType<AudioManager>().Play("Hurt1");
+                            break;
+                        case 1:
+                            FindObjectOfType<AudioManager>().Play("Hurt2");
+                            break;
+                        case 2:
+                            FindObjectOfType<AudioManager>().Play("Hurt3");
+                            break;
+                        case 3:
+                            FindObjectOfType<AudioManager>().Play("Hurt4");
+                            break;
+                        case 4:
+                            FindObjectOfType<AudioManager>().Play("Hurt5");
+                            break;
+                        case 5:
+                            FindObjectOfType<AudioManager>().Play("Hurt6");
+                            break;
+                    }
                     Vector3 push = (other.transform.position - sphereCollider.transform.position).normalized;
                     other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForce);
                     other.gameObject.GetComponent<Player>().isChockedWaved = true;
