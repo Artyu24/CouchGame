@@ -7,9 +7,18 @@ public class PointAreaManager : MonoBehaviour
 {
     public static PointAreaManager instance;
 
-    [SerializeField] private List<Transform> spawnPoint = new List<Transform>();
+    [HideInInspector]
+    public List<Transform> spawnPoint = new List<Transform>();
     public List<Transform> SpawnPoint => spawnPoint;
-    [SerializeField] private GameObject fishBag;
+    
+    [HideInInspector]
+    public List<Transform> spawnPointPlayer = new List<Transform>();
+    public List<Transform> SpawnPointPlayer => spawnPointPlayer;
+
+    private Transform[] playerSpawnStart = new Transform[4];
+    public Transform[] PlayerSpawnStart => playerSpawnStart;
+
+    private GameObject fishBag;
 
 
     [Header("Temporaire")] 
@@ -22,6 +31,35 @@ public class PointAreaManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        fishBag = Resources.Load<GameObject>("Features/FishBag");
+
+        int i = 0;
+        foreach (Transform point in spawnPointPlayer)
+        {
+            if (point.CompareTag("SpawnPoint"))
+            {
+                if (point.position.x < 0)
+                {
+                    if (point.position.z < 0)
+                        playerSpawnStart[2] = point;
+                    else
+                        playerSpawnStart[0] = point;
+                }
+                else
+                {
+                    if (point.position.z < 0)
+                        playerSpawnStart[3] = point;
+                    else
+                        playerSpawnStart[1] = point;
+                }
+
+                i++;
+
+                if(i >= 4)
+                    return;
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -59,7 +97,7 @@ public class PointAreaManager : MonoBehaviour
     #region BEURK
     private void SpawnBag()
     {
-        Transform pos = RandomPosition();
+        Transform pos = GetRandomPosition();
         GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
 
         if (noGold + oneGold + twoGold + treeGold != 100)
@@ -118,28 +156,38 @@ public class PointAreaManager : MonoBehaviour
     }
     #endregion
 
-    public Transform RandomPosition()
+    public Transform GetRandomPosition()
+    {
+        return RandomPosition(spawnPoint);
+    }
+
+    public Transform GetPlayerRandomPos()
+    {
+        return RandomPosition(spawnPointPlayer);
+    }
+
+    public Transform RandomPosition(List<Transform> listPoint)
     {
         Transform point = null;
         int secuEnfant = 0;
-        while (point == null && secuEnfant != 1000)
+        while (point == null && secuEnfant < 1000)
         {
             RaycastHit hit;
-            int i = Random.Range(0, spawnPoint.Count);
-            Debug.DrawRay(spawnPoint[i].position, spawnPoint[i].up * -1 * 2, Color.yellow, 5.0f);
-            Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
+            int i = Random.Range(0, listPoint.Count);
+            Debug.DrawRay(listPoint[i].position, listPoint[i].up * -1 * 2, Color.yellow, 5.0f);
+            Physics.Raycast(listPoint[i].position, listPoint[i].up * -1, out hit, 2);
 
             if (hit.transform != null)
             {
                 if (hit.transform.tag == "Platform")
-                    point = spawnPoint[i];
+                    point = listPoint[i];
             }
 
             secuEnfant++;
         }
 
 
-        if (secuEnfant == 1000)
+        if (secuEnfant >= 1000)
         {
             Debug.Log("LES GD VOUS FAITES NIMP");
             point = transform;
