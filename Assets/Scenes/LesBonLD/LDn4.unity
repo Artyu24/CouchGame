@@ -11039,6 +11039,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 68512498}
+    - target: {fileID: 175090754317022352, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 2344
+      objectReference: {fileID: 0}
     - target: {fileID: 175090754317022364, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Mesh
@@ -11154,6 +11159,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 604611752}
+    - target: {fileID: 2966781007563227531, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 2090
+      objectReference: {fileID: 0}
     - target: {fileID: 2966781007563227534, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Mesh
@@ -11174,6 +11184,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1629696207}
+    - target: {fileID: 2966781007583593706, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 2084
+      objectReference: {fileID: 0}
     - target: {fileID: 2966781007583593710, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Mesh
@@ -11189,6 +11204,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1229373094}
+    - target: {fileID: 2966781008408032010, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 2087
+      objectReference: {fileID: 0}
     - target: {fileID: 2966781008408032014, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Mesh
@@ -11204,6 +11224,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1322157283}
+    - target: {fileID: 2966781008582432406, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 2081
+      objectReference: {fileID: 0}
     - target: {fileID: 2966781008582432410, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Mesh
@@ -23100,17 +23125,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 2093722691}
   m_VersionIndex: 2271
   m_IsSelectable: 1
-  m_SelectedFaces: 95000000
-  m_SelectedEdges:
-  - a: 596
-    b: 597
-  - a: 598
-    b: 596
-  - a: 597
-    b: 599
-  - a: 599
-    b: 598
-  m_SelectedVertices: 54020000550200005602000057020000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &1906694896
 Transform:
   m_ObjectHideFlags: 0
