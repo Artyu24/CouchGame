@@ -7,11 +7,11 @@ public class PointAreaManager : MonoBehaviour
 {
     public static PointAreaManager instance;
 
-    [HideInInspector]
+    
     public List<Transform> spawnPoint = new List<Transform>();
     public List<Transform> SpawnPoint => spawnPoint;
     
-    [HideInInspector]
+    
     public List<Transform> spawnPointPlayer = new List<Transform>();
     public List<Transform> SpawnPointPlayer => spawnPointPlayer;
 
