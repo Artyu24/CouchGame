@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -9,69 +10,83 @@ public class PlayerManager : MonoBehaviour
 
     #region UI
     public GameObject speBarrePrefab;
-    public List<GameObject> speBarreParentList = new List<GameObject>();
+    //public List<GameObject> speBarreParentList = new List<GameObject>();
     #endregion
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
     [SerializeField] private Transform[] spawnList = new Transform[] { };
     public Transform[] SpawnList => spawnList;
 
+    private GameObject[] interfaceUIPrefab = new GameObject[4];
+    public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
+    
+    private GameObject[] playersInterface = new GameObject[4];
+    public GameObject[] PlayersInterface => playersInterface;
+
+
+    public GameObject canvasUI;
+
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
-    }
-    private void Start()
-    {
-        speBarrePrefab = Resources.Load<GameObject>("SpeChargeBarre");
+        else
+            Destroy(this.gameObject);
+
+        //Find all prefab
+        speBarrePrefab = Resources.Load<GameObject>("UI/SpeChargeBarre");
+        interfaceUIPrefab = Resources.LoadAll<GameObject>("UI/PlayersUI");
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+
+        //Debug.Log("Player count : " + players.Count);
     }
 
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
+        player.tag = "Player";
+        
         manettes.Add(Gamepad.current);
+
+        int id = players.Count;
+
         Player dataPlayer = player.GetComponent<Player>();
-        players.Add(players.Count + 1, dataPlayer);
         dataPlayer.playerID = players.Count;
         dataPlayer.ActualPlayerState = PlayerState.FIGHTING;
-
-        switch (dataPlayer.playerID)
-        {
-            case 1:
-                player.transform.position = spawnList[0].position;
-                GameObject temp1 = Instantiate(speBarrePrefab, speBarreParentList[0].transform);
-                speBarrePrefab = temp1;
-                temp1.name = "SpéChargeBarre " + (1);
-                break;
-            case 2:
-                player.transform.position = spawnList[1].position;
-                GameObject temp2 = Instantiate(speBarrePrefab, speBarreParentList[1].transform);
-                speBarrePrefab = temp2;
-                temp2.name = "SpéChargeBarre " + (2);
-                break;
-            case 3:
-                player.transform.position = spawnList[2].position;
-                GameObject temp3 = Instantiate(speBarrePrefab, speBarreParentList[2].transform);
-                speBarrePrefab = temp3;
-                temp3.name = "SpéChargeBarre " + (3);
-                break;
-            case 4:
-                player.transform.position = spawnList[3].position;
-                GameObject temp4 = Instantiate(speBarrePrefab, speBarreParentList[3].transform);
-                speBarrePrefab = temp4;
-                temp4.name = "SpéChargeBarre " + (4);
-                break;
-            default:
-                break;
-        }
-        player.tag = "Player";
+        
+        //Dict Players
+        players.Add(id, dataPlayer);
+        
+        Init(id, player);
+        
         ScoreManager.instance.UpdateScores();
     }
+
     public Transform RandomSpawn()
     {
         int random = Random.Range(0, spawnList.Length);
         return spawnList[random];
+    }
+
+    public void FindCanvas()
+    {
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+    }
+
+    public void Init(int i, GameObject player)
+    {
+        //player.transform.position = spawnList[i].position;
+
+        //Parent UI par Player
+        GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);
+        playersInterface[i] = playerInterfaceTempo;
+
+        //Text du score par Player
+        ScoreManager.instance.InstantiateScoreText(i);
+
+        //Spé barre par player
+        GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform);
+        speBarreTemp.name = "SpéChargeBarre " + (1);
+        player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
     }
 }

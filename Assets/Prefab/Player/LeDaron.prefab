@@ -264,17 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  interactionCD: 2
-  meteorite: {fileID: 8503794699829721347, guid: eb3588bd443fbe24889136fd5263bde5,
-    type: 3}
-  departChoc: {fileID: 7040533958992175993, guid: 9b6d042ec6d22584c944815493275216,
-    type: 3}
-  departMeteorite: {fileID: 3885025025803279888, guid: 566e0e475f8ac1d4d9c172ec118d24cc,
-    type: 3}
-  chocWave: {fileID: 1043392141120676028, guid: 453d429aac1784d4ba23dbbd7d93a54e,
-    type: 3}
-  chocWaveSprite: {fileID: 2194196379437685399, guid: 703dc40034ca4a441b80ed8139e600fc,
-    type: 3}
 --- !u!114 &181805185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +281,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 3584
-  speBarre: {fileID: 0}
 --- !u!114 &5251401784062500209
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,10 +61,25 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = orientation;
         }
 
+        if (GetComponent<Player>().ActualPlayerState == PlayerState.FLYING)
+        {
+            StartCoroutine(isFlying());   
+            Debug.DrawRay(transform.position, Vector3.down * transform.localScale.y, Color.red, 10f);
+        }
+
         if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
             GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
     }
 
+    IEnumerator isFlying()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, transform.localScale.y + 0.1f);
+        if (isGrounded)
+        {
+            GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+        }
+    }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -171,5 +186,12 @@ public class PlayerMovement : MonoBehaviour
         isInteracting = true;
         yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         isInteracting = false;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draws a 5 unit long red line in front of the object
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.down * (transform.localScale.y + 0.1f));
     }
 }
