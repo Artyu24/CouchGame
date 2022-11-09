@@ -178,9 +178,12 @@ public class CreatePointCircleEditor : Editor
             if (!obj.activeInHierarchy)
                 continue;
 
-            PointAreaManager PAM = obj.GetComponent<PointAreaManager>();
-            if (PAM != null)
-                return PAM;
+            foreach (Transform child in obj.transform)
+            {
+                PointAreaManager PAM = child.GetComponent<PointAreaManager>();
+                if (PAM != null)
+                    return PAM;
+            }
         }
 
         return null;
