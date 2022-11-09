@@ -7159,7 +7159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14938
+  m_Name: pb_Mesh52144
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14046,12 +14046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speBarrePrefab: {fileID: 0}
-  spawnList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   canvasUI: {fileID: 0}
 --- !u!114 &1087649356
 MonoBehaviour:
@@ -14340,6 +14334,7 @@ MonoBehaviour:
   scoreInterrupteur: 5
   middelPointsCooldown: 2
   scorePointArea: 1
+  scoreGoldPointArea: 5
   scoreKill: 10
 --- !u!4 &1166821514
 Transform:
@@ -14813,7 +14808,7 @@ MonoBehaviour:
   - {fileID: 1863333408}
   - {fileID: 399625028}
   - {fileID: 1074267480}
-  fishBag: {fileID: 3918320467840225395, guid: e51dbd57e3a549c439f9702260ddbc2b, type: 3}
+  spawnPointPlayer: []
 --- !u!4 &1296140071
 Transform:
   m_ObjectHideFlags: 0
