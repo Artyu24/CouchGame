@@ -172,6 +172,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
+        FindObjectOfType<AudioManager>().Play("MainTheme");
+
     }
 
     private void Update()
