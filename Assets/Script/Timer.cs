@@ -29,6 +29,8 @@ public class Timer : MonoBehaviour
 
     private GameObject[] medals = new GameObject[3];
     private int numberOfMedal = 3;
+    [SerializeField]
+    private int pointToWin;
     #endregion
 
     private void Awake()
@@ -150,6 +152,14 @@ public class Timer : MonoBehaviour
                 position++;
                 numberOfMedal--;
             }
+            for (int i = 0; i < 4; i++)
+            {
+                if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
+                {
+                    Debug.Log("WE HAVE A WINNER !!!");
+                }
+            }
+            
         }
     }
     private void InstantiateMedals(Transform t, int position)
