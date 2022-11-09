@@ -12,6 +12,7 @@ public class ChocWave : MonoBehaviour
     private void Start()
     {        
         transparence.localScale = new Vector3(0, 0, 0);
+        FindObjectOfType<AudioManager>().Play("ChocWave");
     }
 
     private void Update()
