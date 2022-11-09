@@ -10,16 +10,15 @@ public class PlayerManager : MonoBehaviour
 
     #region UI
     public GameObject speBarrePrefab;
-    //public List<GameObject> speBarreParentList = new List<GameObject>();
-    #endregion
-    public Dictionary<int, Player> players = new Dictionary<int, Player>();
-    public List<Gamepad> manettes = new List<Gamepad>();
-
     private GameObject[] interfaceUIPrefab = new GameObject[4];
     public GameObject[] InterfaceUiPrefab => interfaceUIPrefab;
     
     private GameObject[] playersInterface = new GameObject[4];
     public GameObject[] PlayersInterface => playersInterface;
+    //public List<GameObject> speBarreParentList = new List<GameObject>();
+    #endregion
+    public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public List<Gamepad> manettes = new List<Gamepad>();
 
 
     public GameObject canvasUI;
@@ -45,6 +44,23 @@ public class PlayerManager : MonoBehaviour
         player.tag = "Player";
         
         manettes.Add(Gamepad.current);
+        int xcount = Random.Range(0, 3);
+
+        switch (xcount)
+        {
+            case 0:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn1");
+                break;
+            case 1:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn2");
+                break;
+            case 2:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn3");
+                break;
+            case 3:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn4");
+                break;
+        }
 
         int id = players.Count;
 
@@ -67,8 +83,11 @@ public class PlayerManager : MonoBehaviour
 
     public void Init(int i, GameObject player)
     {
+        //Vider les score de manche pour les joueurs
+        players[i].score = 0;
         //Spawn at point
         player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
+
 
         //Parent UI par Player
         GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);
