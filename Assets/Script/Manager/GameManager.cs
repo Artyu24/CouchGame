@@ -180,8 +180,4 @@ public class GameManager : MonoBehaviour
         cameraScene = Camera.FindObjectOfType<Camera>();
 
     }
-
-    private void Update()
-    {
-    }
 }

@@ -6,6 +6,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     void Awake()
     {
+        this.transform.parent = null;
         DontDestroyOnLoad(this);  
     } 
 }
