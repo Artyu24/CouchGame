@@ -83,12 +83,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        animator.SetFloat("Magnitude", ctx.ReadValue<Vector3>().sqrMagnitude);
-        movementInput = ctx.ReadValue<Vector3>();
+        movementInput = Vector3.zero;
+
         if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
         {
             orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
+            movementInput = ctx.ReadValue<Vector3>();
         }
+        
+        if(movementInput == Vector3.zero)
+            animator.SetBool("Run", false);
+        else
+            animator.SetBool("Run", true);
     }
 
     public void OnRotation(InputAction.CallbackContext context)

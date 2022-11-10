@@ -14,8 +14,6 @@ public class Player : MonoBehaviour
 
     public bool isInvincible = false;
 
-    public MeshRenderer graphics;
-
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
 
@@ -26,8 +24,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //DG.Tweening.Sequence seq = DOTween.Sequence();
-        graphics = GetComponentInChildren<MeshRenderer>();
-        currentColor = graphics.material.color;
         //seq.Append(graphics.material.DOFade(0.2f, 0.5f));
         //seq.Append(graphics.material.DOFade(1, 0.5f));
         //seq.Play();
