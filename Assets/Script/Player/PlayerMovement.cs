@@ -71,6 +71,13 @@ public class PlayerMovement : MonoBehaviour
             GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
     }
 
+    void Update()
+    {
+        transform.GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+        transform.GetChild(0).localPosition = new Vector3(0, -0.9f, 0);
+        Debug.Log(transform.GetChild(0).name);
+    }
+
     IEnumerator isFlying()
     {
         yield return new WaitForSecondsRealtime(0.5f);
@@ -90,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
             orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
             movementInput = ctx.ReadValue<Vector3>();
         }
+        
         
         if(movementInput == Vector3.zero)
             animator.SetBool("Run", false);

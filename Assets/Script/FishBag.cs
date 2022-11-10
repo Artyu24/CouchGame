@@ -102,5 +102,7 @@ public class FishBag : MonoBehaviour
             if (player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
                 player.GetComponent<PlayerAttack>().AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }
+
+
     }
 }

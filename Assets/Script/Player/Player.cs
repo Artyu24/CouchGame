@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     public void HideGuy(bool enable)
     {
         GetComponent<CapsuleCollider>().enabled = enable;
-        GetComponentInChildren<MeshRenderer>().enabled = enable;
+        GetComponent<ChangingColor>().skinedRenderer.enabled = enable;
         GetComponent<Rigidbody>().useGravity = enable;
     }
 }

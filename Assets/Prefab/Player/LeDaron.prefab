@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b9253934b5769408110e6d608b7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 1104321590849395011}
+  skinedRenderer: {fileID: 1104321590849395011}
 --- !u!114 &-6168179640611313348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +357,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1685385915726475693}
     m_Modifications:
+    - target: {fileID: 659492133495247588, guid: cbafd86f7b8a7fb45b3877a5ae27d4de,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7472517816055992185, guid: cbafd86f7b8a7fb45b3877a5ae27d4de,
         type: 3}
       propertyPath: m_RootOrder
