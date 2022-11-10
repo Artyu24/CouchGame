@@ -152,7 +152,7 @@ public class Timer : MonoBehaviour
                 position++;
                 numberOfMedal--;
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
             {
                 if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
                 {
