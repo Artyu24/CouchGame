@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.NormalStrenght;
-        if (ctx.started && canAttack)
+        if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
         {
             int xcount = Random.Range(0, 5);
 
@@ -77,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
         float strenght = GameManager.instance.SpecialStrenght;
-        if (ctx.started && canAttack && currentSpecial == maxSpecial)
+        if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
         {
             effectSpeBarre.SetActive(false);
             currentSpecial = 0;
