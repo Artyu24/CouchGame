@@ -97,7 +97,6 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
-    
     #region Attack
     IEnumerator AttackCoroutine(float _strenght)
     {
@@ -111,9 +110,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(float _strenght)
     {
-        //GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
         if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD)
         {
+            GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
             #region Range
             float it = -GameManager.instance.SideRangeDeg;
             for (int i = 0; i < GameManager.instance.SideRangeDeg * 2; i++)//do all the raycast
@@ -135,6 +134,7 @@ public class PlayerAttack : MonoBehaviour
                     hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                     //Debug.Log(hit.transform.name + " has been hit");
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                    hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
                     hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
                     return;
                 }

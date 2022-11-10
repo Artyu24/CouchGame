@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 4865056626624256745}
   - component: {fileID: 5246684311585358253}
   - component: {fileID: 5246684311585358252}
+  - component: {fileID: 3287437875908933471}
   m_Layer: 0
   m_Name: Center_Igloo
   m_TagString: Untagged
@@ -567,6 +568,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 17
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &3287437875908933471
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246684311585357907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 760ad86c2a179c7499b0ce81acf1f65c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5729420714376040294
 GameObject:
   m_ObjectHideFlags: 0

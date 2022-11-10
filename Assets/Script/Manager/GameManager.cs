@@ -10,18 +10,24 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    
     #region GameManager
+
     [Header("Variables du Game Manager")]
 
     [Tooltip("Temps pour 1 manche en seconde (donc pour une game de 2min30 => 150 sec)")]
     [SerializeField] private float timer;
     [Tooltip("Zone morte des joysticks de la manette")]
     [SerializeField] private float deadZoneController = 0.3f;
-    public static GameManager instance;
+    [SerializeField] private int nbrFishBag = 2;
+    public int NbrFishBag => nbrFishBag;
     private GameState actualGameState = GameState.MENU;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
+
+
     #endregion
     #region Attack
     [Header("Variable de l'Attack")]
