@@ -41,12 +41,11 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
-        player.tag = "Player";
         
         manettes.Add(Gamepad.current);
         int xcount = Random.Range(0, 3);
 
-        switch (xcount)
+        /*switch (xcount)
         {
             case 0:
                 FindObjectOfType<AudioManager>().Play("Spawn/respawn1");
@@ -60,7 +59,7 @@ public class PlayerManager : MonoBehaviour
             case 3:
                 FindObjectOfType<AudioManager>().Play("Spawn/respawn4");
                 break;
-        }
+        }*/
 
         int id = players.Count;
 
@@ -73,6 +72,7 @@ public class PlayerManager : MonoBehaviour
         
         Init(id, player);
         
+        player.tag = "Player";
         ScoreManager.instance.UpdateScores();
     }
 
