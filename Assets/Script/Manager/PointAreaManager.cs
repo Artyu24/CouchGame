@@ -65,7 +65,8 @@ public class PointAreaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawn());
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+            StartCoroutine(Spawn());
     }
 
     //Test

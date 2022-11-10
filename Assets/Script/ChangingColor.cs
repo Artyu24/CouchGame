@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ChangingColor : MonoBehaviour
 {
+    public SkinnedMeshRenderer skinedRenderer;
+
     void Start()
     {
         Player player = GetComponent<Player>();
         Material[] allPlayerMaterial = Resources.LoadAll<Material>("Material_Pingouin");
-        GetComponentInChildren<MeshRenderer>().material = allPlayerMaterial[player.playerID];
+        skinedRenderer.material = allPlayerMaterial[player.playerID];
     }
 }
