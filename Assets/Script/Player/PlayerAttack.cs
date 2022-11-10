@@ -26,11 +26,18 @@ public class PlayerAttack : MonoBehaviour
 
     private Slider speBarreSlider;
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
+    private GameObject effectSpeBarre;
 
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
+
+    private void Start()
+    {
+        effectSpeBarre = transform.GetChild(1).gameObject;
+        effectSpeBarre.SetActive(false);
+    }
 
     #endregion
 
@@ -72,6 +79,7 @@ public class PlayerAttack : MonoBehaviour
         float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack && currentSpecial == maxSpecial)
         {
+            effectSpeBarre.SetActive(false);
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
             int xcount = Random.Range(0, 3);
@@ -191,6 +199,9 @@ public class PlayerAttack : MonoBehaviour
     {
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
+
+        if(currentSpecial == maxSpecial)
+            effectSpeBarre.SetActive(true);
     }
 
     public void HitTag(GameObject _player)
