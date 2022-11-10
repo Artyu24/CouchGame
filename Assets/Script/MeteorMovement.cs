@@ -55,10 +55,9 @@ public class MeteorMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+        FindObjectOfType<AudioManager>().Play("MeteoriteExplosion");
         Instantiate(explos, nextPos, quaternion.identity);
-        Destroy(gameObject);
-        
+        Destroy(gameObject);       
 
     }
 

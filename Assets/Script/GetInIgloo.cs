@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,37 +17,53 @@ public class GetInIgloo : MonoBehaviour
     {
         if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.ACCESS)
         {
-            GameManager GM = GameManager.instance;
-
-            GM.PlayerInMiddle = other.gameObject;
-
-            //On créé les plaques pour faire sortir le joueur
-            for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
-            {
-                Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
-                GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
-                plate.GetComponentInChildren<MeshRenderer>().material.color = GM.ActiveColor;
-                plate.GetComponent<BoxCollider>().enabled = true;
-                GM.EjectPlates.Add(plate);
-            }
-
-            //On cache le joueur qui est rentrer dans l'igloo
+            CenterManager.instance.ActualCenterState = CenterState.USE;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
-            other.GetComponent<Player>().HideGuy(false);
 
-            //Ajoute la couleur et la outline au cercle choisis de base
-            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
-            GM.tabCircle[other.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
-
-            //Gestion du Centre via le Centre Manager
-            CenterManager.instance.ActivateAllBridge();
-
-            //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
-            OnVibrate();
-            StartCoroutine(ShakeCam());
-            
-            playerInMid = other.GetComponent<Player>();
+            GameObject player = other.gameObject;
+            player.transform.DOMove(new Vector3(0, 3, 0), 2);
+            StartCoroutine(InitCenterTime(player));
         }
+    }
+
+    private IEnumerator InitCenterTime(GameObject player)
+    {
+        yield return new WaitForSeconds(2.1f);
+        InitCenter(player);
+        GetComponent<Animator>().SetTrigger("Enter");
+    }
+
+    private void InitCenter(GameObject player)
+    {
+        GameManager GM = GameManager.instance;
+
+        GM.PlayerInMiddle = player.gameObject;
+
+        //On créé les plaques pour faire sortir le joueur
+        for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
+        {
+            Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
+            GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
+            plate.GetComponentInChildren<MeshRenderer>().material.color = GM.ActiveColor;
+            plate.GetComponent<BoxCollider>().enabled = true;
+            GM.EjectPlates.Add(plate);
+        }
+
+        //On cache le joueur qui est rentrer dans l'igloo
+        player.GetComponent<Player>().HideGuy(false);
+
+        //Ajoute la couleur et la outline au cercle choisis de base
+        GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
+        GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
+
+        //Gestion du Centre via le Centre Manager
+        CenterManager.instance.ActivateAllBridge();
+
+        //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
+        OnVibrate();
+        StartCoroutine(ShakeCam());
+
+        playerInMid = player.GetComponent<Player>();
     }
 
     private IEnumerator ShakeCam()
