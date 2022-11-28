@@ -119,7 +119,13 @@ public class PlayerAttack : MonoBehaviour
                     CenterManager.instance.DealDamage();
                     return;
                 }
-
+                if (hit.transform != null && hit.transform.tag == "Bomb")
+                {
+                    hit.transform.GetComponent<Bomb>().PlayerTriggeredBy = gameObject;
+                    hit.transform.GetComponent<Rigidbody>().mass = 10;
+                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght / 2, ForceMode.Impulse);
+                    hit.transform.GetComponent<Bomb>().test();
+                }
                 #endregion
 
                 #region Don't Do To Much
@@ -148,7 +154,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void HitTag(GameObject _player)
     {
-        StartCoroutine(WhoHitMe(_player, 5));
+        StartCoroutine(WhoHitMe(_player, 10));
     }
 
     IEnumerator WhoHitMe(GameObject _player, float _s)
