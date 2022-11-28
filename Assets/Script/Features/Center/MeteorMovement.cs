@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class MeteorMovement : MonoBehaviour
 {
-    [Header("----------Mettre toutes les target pour les météorites----------")]
-    //[SerializeField] Transform[] position;
-    private Vector3 position1 = new Vector3(-6.55f, 0f, 0f);
-    private Vector3 position2 = new Vector3(0f, 0f, -6.55f);
-    private Vector3 position3 = new Vector3(6.55f, 0f, 0f);
-    private Vector3 position4 = new Vector3(0f, 0f, 6.55f);
-    
     Vector3 nextPos;
     public bool explosion = false;
     private GameObject explos;
@@ -29,29 +22,9 @@ public class MeteorMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, nextPos, GameManager.instance.SpeedMeteorite * Time.deltaTime);
         }
     }
-    public void MovePlanete(int i)
+    public void MovePlanete()
     {
-        
-        switch (i)
-        {
-
-            case 1:
-                nextPos = position1;
-                break;
-
-            case 2:
-                nextPos = position2;
-                break;
-
-            case 3:
-                nextPos = position3;
-                break;
-
-            case 4:
-                nextPos = position4;
-                break;
-        }
-        
+        nextPos = PointAreaManager.instance.GetMeteoriteRandomPos().position;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -61,4 +34,5 @@ public class MeteorMovement : MonoBehaviour
 
     }
 
+    
 }

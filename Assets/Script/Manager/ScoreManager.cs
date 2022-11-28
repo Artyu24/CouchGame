@@ -79,10 +79,34 @@ public class ScoreManager : MonoBehaviour
     {
         player.score += points;
 
+        List<Player> tempPlayerListPlayer = new List<Player>();
+        Player playerTemp = null;
+        int bestScore = 0;
+
+        while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
+        {
+            foreach (var p in PlayerManager.instance.players)
+            {
+                if (!tempPlayerListPlayer.Contains(p.Value) && bestScore <= p.Value.score)
+                {
+                    bestScore = p.Value.score;
+                    playerTemp = p.Value;
+                }
+            }
+            tempPlayerListPlayer.Add(playerTemp);
+            bestScore = 0;
+
+        }
+        tempPlayerListPlayer[0].couronne.SetActive(true);
+        for (int i = 1; i < tempPlayerListPlayer.Count; i++)
+        {
+            tempPlayerListPlayer[i].couronne.SetActive(false);
+        }
+
         UpdateScores();
     }
 
-    public void InstantiateScoreText(int p)
+    public void InstantiateScoreText(int p) 
     {
         GameObject scoreTextTemp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayersInterface[p].transform);
         scoreTextTemp.name = "Player " + (p + 1);

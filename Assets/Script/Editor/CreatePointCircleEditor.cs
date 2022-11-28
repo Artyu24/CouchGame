@@ -82,6 +82,7 @@ public class CreatePointCircleEditor : Editor
             soPAM.Update();
             SerializedProperty spawnManagerList = soPAM.FindProperty("spawnPoint");
             SerializedProperty spawnManagerPlayerList = soPAM.FindProperty("spawnPointPlayer");
+            SerializedProperty spawnManagerMeteoriteList = soPAM.FindProperty("spawnPointMeteorite");
 
             if (GUILayout.Button("Création des points"))
             {
@@ -145,6 +146,39 @@ public class CreatePointCircleEditor : Editor
                     spawnManagerPlayerList.ClearArray();
                 }
 
+                #region Spawn Point Meteorite
+
+                EditorGUILayout.BeginVertical();
+                EditorGUILayout.LabelField("-------SPAWN POINT METEORITE-------");
+                EditorGUILayout.BeginHorizontal();
+
+                if (!pointAreaManager.spawnPointMeteorite.Contains(mySource.transform))
+                {
+                    if (GUILayout.Button("AJOUTER"))
+                    {
+                        for (int i = 0; i < spawnPointList.arraySize; i++)
+                        {
+                            Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
+                            spawnManagerMeteoriteList.InsertArrayElementAtIndex(i);
+                            spawnManagerMeteoriteList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
+                        }
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("ENLEVER"))
+                        spawnManagerMeteoriteList.ClearArray();
+
+                    //Pas tout clear mek
+                }
+
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+                
+                #endregion
+
+                #region Spawn Point Player
+
                 EditorGUILayout.BeginVertical();
                 EditorGUILayout.LabelField("-------SPAWN POINT PLAYERS-------");
                 EditorGUILayout.BeginHorizontal();
@@ -175,6 +209,8 @@ public class CreatePointCircleEditor : Editor
 
             soCreaterPointCircle.ApplyModifiedProperties();
             soPAM.ApplyModifiedProperties();
+            
+            #endregion
         }
     }
 

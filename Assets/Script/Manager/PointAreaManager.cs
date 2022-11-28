@@ -11,7 +11,8 @@ public class PointAreaManager : MonoBehaviour
     public List<Transform> spawnPoint = new List<Transform>();
     public List<Transform> SpawnPoint => spawnPoint;
     
-    
+    public List<Transform> spawnPointMeteorite = new List<Transform>();
+
     public List<Transform> spawnPointPlayer = new List<Transform>();
     public List<Transform> SpawnPointPlayer => spawnPointPlayer;
 
@@ -108,6 +109,11 @@ public class PointAreaManager : MonoBehaviour
         int xcount = Random.Range(0, 3);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpawnSound);
         return RandomPosition(spawnPointPlayer);
+    }
+
+    public Transform GetMeteoriteRandomPos()
+    {
+        return RandomPosition(spawnPointMeteorite);
     }
 
     public Transform RandomPosition(List<Transform> listPoint)

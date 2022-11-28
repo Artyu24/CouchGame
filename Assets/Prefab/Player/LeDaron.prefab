@@ -252,6 +252,7 @@ MonoBehaviour:
   isInvincible: 0
   currentColor: {r: 0, g: 0, b: 0, a: 0}
   medals: []
+  couronne: {fileID: 5486783835176151132}
 --- !u!114 &181805183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,5 +651,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: scafandre
       objectReference: {fileID: 0}
+    - target: {fileID: 906128253917194418, guid: 6c4f65094b50a5848a2c3c411450f7ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4f65094b50a5848a2c3c411450f7ed, type: 3}
+--- !u!1 &5486783835176151132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 906128253917194418, guid: 6c4f65094b50a5848a2c3c411450f7ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 4663422487829823726}
+  m_PrefabAsset: {fileID: 0}

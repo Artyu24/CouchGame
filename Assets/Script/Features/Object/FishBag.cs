@@ -35,7 +35,7 @@ public class FishBag : MonoBehaviour
 
     public void Damage(GameObject player)
     {
-        Debug.Log(player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject);
+        //Debug.Log(player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject);
 
         transform.localScale -= new Vector3(transform.localScale.x - (transform.localScale.x/10), transform.localScale.x - (transform.localScale.y / 10), transform.localScale.z - (transform.localScale.x / 10));//Anim
 
