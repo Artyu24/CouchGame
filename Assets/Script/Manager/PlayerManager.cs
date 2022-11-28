@@ -46,7 +46,13 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         
-        manettes.Add(Gamepad.current);
+        manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
+
+        for (int i = 0; i < manettes.Count; i++)
+        {
+            Debug.Log(i + " : " + manettes[i]);
+        }
+
         int xcount = Random.Range(0, 3);
 
         /*switch (xcount)
