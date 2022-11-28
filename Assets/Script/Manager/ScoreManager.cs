@@ -87,5 +87,6 @@ public class ScoreManager : MonoBehaviour
         GameObject scoreTextTemp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayersInterface[p].transform);
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
+        UpdateScores();
     }
 }

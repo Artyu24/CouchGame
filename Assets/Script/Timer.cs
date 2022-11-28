@@ -132,8 +132,8 @@ public class Timer : MonoBehaviour
             {
                 temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
                 scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-                temp.name = "Player " + tempPlayerListPlayer[p].playerID + 1;
-                scoreGeneralPlayerText[p].text = "Player " + tempPlayerListPlayer[p].playerID + 1 + " : ";
+                temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
+                scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
 
                 // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                 for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
@@ -152,7 +152,7 @@ public class Timer : MonoBehaviour
                 position++;
                 numberOfMedal--;
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
             {
                 if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
                 {
