@@ -12,7 +12,8 @@ public class ChocWave : MonoBehaviour
     private void Start()
     {        
         transparence.localScale = new Vector3(0, 0, 0);
-        FindObjectOfType<AudioManager>().Play("ChocWave");
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.ChocWaveSound);
+
     }
 
     private void Update()
@@ -49,27 +50,8 @@ public class ChocWave : MonoBehaviour
                     other.gameObject.GetComponent<Player>().isChockedWaved = true;
                     playerList.Add(other.gameObject.GetComponent<Player>());
                     int xcount = Random.Range(0, 5);
-                    switch (xcount)
-                    {
-                        case 0:
-                            FindObjectOfType<AudioManager>().Play("Hurt1");
-                            break;
-                        case 1:
-                            FindObjectOfType<AudioManager>().Play("Hurt2");
-                            break;
-                        case 2:
-                            FindObjectOfType<AudioManager>().Play("Hurt3");
-                            break;
-                        case 3:
-                            FindObjectOfType<AudioManager>().Play("Hurt4");
-                            break;
-                        case 4:
-                            FindObjectOfType<AudioManager>().Play("Hurt5");
-                            break;
-                        case 5:
-                            FindObjectOfType<AudioManager>().Play("Hurt6");
-                            break;
-                    }
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+
                 }
             }
         }
