@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
     public Color currentColor;
 
     public List<GameObject> medals = new List<GameObject>();
+
+    //public Gamepad playerManette;
 
     private void Start()
     {

@@ -60,10 +60,11 @@ public class GetInIgloo : MonoBehaviour
         CenterManager.instance.ActivateAllBridge();
 
         //pour asdditif, stocker l'offset de la cam (vecteur 3) a chaque update, enlever l'offset, màj l'offset pour le shake et rajouter l'offset après
-        OnVibrate();
+        playerInMid = player.GetComponent<Player>();
+
+        StartCoroutine(OnVibrate());
         StartCoroutine(ShakeCam());
 
-        playerInMid = player.GetComponent<Player>();
     }
 
     private IEnumerator ShakeCam()
@@ -78,13 +79,18 @@ public class GetInIgloo : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         GameManager.instance.CameraScene.transform.localPosition -= offsetCam;
-        foreach (var gamepad in PlayerManager.instance.manettes)
+        /*foreach (var gamepad in PlayerManager.instance.manettes)
         {
             gamepad.SetMotorSpeeds(0.0f, 0.0f);
-        }
+        }*/
     }
-    public void OnVibrate()
+    public IEnumerator OnVibrate()
     {
-        Gamepad.current.SetMotorSpeeds(0.123f, 0.234f);
+        Debug.Log(PlayerManager.instance.manettes[playerInMid.playerID]);
+        PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.123f, 0.234f);
+        //Gamepad.current.SetMotorSpeeds(0.123f, 0.234f);
+        yield return new WaitForSeconds(2);
+        //Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+        PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.0f, 0.0f);
     }
 }
