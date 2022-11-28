@@ -104,6 +104,6 @@ public class PlayerManager : MonoBehaviour
         //Spé barre par player
         GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform.GetChild(1).transform);
         //speBarreTemp.name = "SpéChargeBarre " + (1);
-        //player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
+        player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
     }
 }

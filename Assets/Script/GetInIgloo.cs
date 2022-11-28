@@ -79,18 +79,12 @@ public class GetInIgloo : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         GameManager.instance.CameraScene.transform.localPosition -= offsetCam;
-        /*foreach (var gamepad in PlayerManager.instance.manettes)
-        {
-            gamepad.SetMotorSpeeds(0.0f, 0.0f);
-        }*/
     }
     public IEnumerator OnVibrate()
     {
         Debug.Log(PlayerManager.instance.manettes[playerInMid.playerID]);
         PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.123f, 0.234f);
-        //Gamepad.current.SetMotorSpeeds(0.123f, 0.234f);
         yield return new WaitForSeconds(2);
-        //Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
         PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.0f, 0.0f);
     }
 }
