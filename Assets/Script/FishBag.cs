@@ -42,34 +42,13 @@ public class FishBag : MonoBehaviour
         //Debug.Log("Fish to try : " + nextFish + " next gold fish" + nextGFish);
 
         int xcount = Random.Range(0, 5);
-
-        switch (xcount)
-        {
-            case 0:
-                FindObjectOfType<AudioManager>().Play("Eating1");
-                break;
-            case 1:
-                FindObjectOfType<AudioManager>().Play("Eating2");
-                break;
-            case 2:
-                FindObjectOfType<AudioManager>().Play("Eating3");
-                break;
-            case 3:
-                FindObjectOfType<AudioManager>().Play("Eating4");
-                break;
-            case 4:
-                FindObjectOfType<AudioManager>().Play("Eating5");
-                break;
-            case 5:
-                FindObjectOfType<AudioManager>().Play("Eating6");
-                break;
-        }
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EatingSound);
         Destroy(fish[nextFish].gameObject);
         GameObject fui =  Instantiate(fishToUI, transform.position, Quaternion.identity);
-        Destroy(fui, 1.7f);
+        Destroy(fui, 1.4f);
         fui.GetComponent<MoveToUI>().ui_element_gameobject = player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject;
 
-        StartCoroutine(BarSpéPlus(player));
+        StartCoroutine(BarSpePlus(player));
 
         nextFish++;
 
@@ -82,9 +61,9 @@ public class FishBag : MonoBehaviour
         }
     }
 
-    IEnumerator BarSpéPlus(GameObject player)
+    IEnumerator BarSpePlus(GameObject player)
     {
-        yield return new WaitForSecondsRealtime(1.75f);
+        yield return new WaitForSecondsRealtime(1.4f);
         if (goldenFish.Count > nextGFish && nextFish == goldenFish[nextGFish])//le poisson est goldé
         {
             //Debug.Log("GOLDEEEEEEENNNNNNNN");

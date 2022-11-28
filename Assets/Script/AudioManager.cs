@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+
     
     public static AudioManager instance;
+    
+    private Dictionary<SoundState, List<Sound>> DicoActualSound = new Dictionary<SoundState, List<Sound>>();
+    
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("MainTheme");
+        foreach(Sound sound in sounds)
+        {
+            if (!DicoActualSound.ContainsKey(sound.ActualSound))
+            {
+                DicoActualSound.Add(sound.ActualSound, new List<Sound>());
+            }
+            DicoActualSound[sound.ActualSound].Add(sound);
+        }
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+
 
     }
     void Awake()
@@ -47,5 +62,24 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+    public void PlayRandom(SoundState soundState)
+    {
+        if (DicoActualSound.ContainsKey(soundState))
+        {
+            int i = Random.Range(0, DicoActualSound[soundState].Count);
+
+            Sound s = DicoActualSound[soundState][i];
+            if (s == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found (surement mal ecrit entre le script et sur Unity)");
+                return;
+            }
+            s.source.Play();
+        }
+        else
+        {
+            Debug.LogWarning("PB de son");
+        }   
     }
 }
