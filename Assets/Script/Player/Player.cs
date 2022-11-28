@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     public List<GameObject> medals = new List<GameObject>();
 
+    public GameObject couronne;
+
     //public Gamepad playerManette;
 
     private void Start()
