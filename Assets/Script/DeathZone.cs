@@ -12,22 +12,7 @@ public class DeathZone : MonoBehaviour
             player.ActualPlayerState = PlayerState.DEAD;
             player.Kill();
             int xcount = Random.Range(0, 3);
-
-            switch (xcount)
-            {
-                case 0:
-                    FindObjectOfType<AudioManager>().Play("Fall1");
-                    break;
-                case 1:
-                    FindObjectOfType<AudioManager>().Play("Fall2");
-                    break;
-                case 2:
-                    FindObjectOfType<AudioManager>().Play("Fall3");
-                    break;
-                case 3:
-                    FindObjectOfType<AudioManager>().Play("Fall4");
-                    break;
-            }
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.FallSound);            
         }
     }
 }

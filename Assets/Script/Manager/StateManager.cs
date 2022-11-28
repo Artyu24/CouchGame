@@ -25,3 +25,19 @@ public enum CenterState
     USE,
     REGENERATION
 }
+
+public enum SoundState
+{
+    Music,
+    FallSound,
+    SpawnSound,
+    HurtSound,
+    ChocWaveSound,
+    MeteoriteSound,
+    DisapointedSound,
+    EatingSound,
+    EffortSound,
+    SatisfySound,
+    SpecialSound,
+
+}

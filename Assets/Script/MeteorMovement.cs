@@ -55,7 +55,7 @@ public class MeteorMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        FindObjectOfType<AudioManager>().Play("MeteoriteExplosion");
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
         Instantiate(explos, nextPos, quaternion.identity);
         Destroy(gameObject);       
 
