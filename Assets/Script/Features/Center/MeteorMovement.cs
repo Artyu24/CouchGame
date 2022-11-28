@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MeteorMovement : MonoBehaviour
 {
-    Vector3 nextPos;
+    public Vector3 nextPos;
+    public Vector3 NextPos { get { return nextPos; }set { nextPos = value; } }
     public bool explosion = false;
     private GameObject explos;
-
 
     private void Awake()
     {
@@ -22,10 +22,7 @@ public class MeteorMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, nextPos, GameManager.instance.SpeedMeteorite * Time.deltaTime);
         }
     }
-    public void MovePlanete()
-    {
-        nextPos = PointAreaManager.instance.GetMeteoriteRandomPos().position;
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
