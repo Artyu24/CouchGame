@@ -65,7 +65,8 @@ public class PointAreaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawn());
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+            StartCoroutine(Spawn());
     }
 
     //Test
@@ -163,6 +164,23 @@ public class PointAreaManager : MonoBehaviour
 
     public Transform GetPlayerRandomPos()
     {
+        int xcount = Random.Range(0, 3);
+
+        switch (xcount)
+        {
+            case 0:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn1");
+                break;
+            case 1:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn2");
+                break;
+            case 2:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn3");
+                break;
+            case 3:
+                FindObjectOfType<AudioManager>().Play("Spawn/respawn4");
+                break;
+        }
         return RandomPosition(spawnPointPlayer);
     }
 

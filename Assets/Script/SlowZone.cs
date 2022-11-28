@@ -13,7 +13,8 @@ public class SlowZone : MonoBehaviour
             {
                 other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone;
 
-                FindObjectOfType<AudioManager>().Play("MainTheme");
+                //FindObjectOfType<AudioManager>().Play("MainTheme");
+
 
             }
 

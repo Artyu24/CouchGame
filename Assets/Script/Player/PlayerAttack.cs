@@ -39,7 +39,32 @@ public class PlayerAttack : MonoBehaviour
     {
         float strenght = GameManager.instance.NormalStrenght;
         if (ctx.started && canAttack)
+        {
+            int xcount = Random.Range(0, 5);
+
+            switch (xcount)
+            {
+                case 0:
+                    FindObjectOfType<AudioManager>().Play("Effort1");
+                    break;
+                case 1:
+                    FindObjectOfType<AudioManager>().Play("Effort2");
+                    break;
+                case 2:
+                    FindObjectOfType<AudioManager>().Play("Effort3");
+                    break;
+                case 3:
+                    FindObjectOfType<AudioManager>().Play("Effort4");
+                    break;
+                case 4:
+                    FindObjectOfType<AudioManager>().Play("Effort5");
+                    break;
+                case 5:
+                    FindObjectOfType<AudioManager>().Play("Effort6");
+                    break;
+            }
             StartCoroutine(AttackCoroutine(strenght));
+        }
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
@@ -49,17 +74,35 @@ public class PlayerAttack : MonoBehaviour
         {
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
+            int xcount = Random.Range(0, 3);
+
+            switch (xcount)
+            {
+                case 0:
+                    FindObjectOfType<AudioManager>().Play("Special1");
+                    break;
+                case 1:
+                    FindObjectOfType<AudioManager>().Play("Special2");
+                    break;
+                case 2:
+                    FindObjectOfType<AudioManager>().Play("Special3");
+                    break;
+                case 3:
+                    FindObjectOfType<AudioManager>().Play("Special4");
+                    break;
+
+            }
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
     #endregion
 
-    
     #region Attack
     IEnumerator AttackCoroutine(float _strenght)
     {
         canAttack = false;
         Attack(_strenght);
+
         yield return new WaitForSecondsRealtime(GameManager.instance.AttackCd);
         canAttack = true;
     }
@@ -67,9 +110,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(float _strenght)
     {
-        //GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
         if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD)
         {
+            GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
             #region Range
             float it = -GameManager.instance.SideRangeDeg;
             for (int i = 0; i < GameManager.instance.SideRangeDeg * 2; i++)//do all the raycast
@@ -91,6 +134,7 @@ public class PlayerAttack : MonoBehaviour
                     hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                     //Debug.Log(hit.transform.name + " has been hit");
                     hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                    hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
                     hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
                     return;
                 }
@@ -112,6 +156,29 @@ public class PlayerAttack : MonoBehaviour
                     it += GameManager.instance.SideRangeDeg / GameManager.instance.SideRangeDeg * 4;
                 else
                     break;
+                int xcount = Random.Range(0, 5);
+
+                switch (xcount)
+                {
+                    case 0:
+                        FindObjectOfType<AudioManager>().Play("Hurt1");
+                        break;
+                    case 1:
+                        FindObjectOfType<AudioManager>().Play("Hurt2");
+                        break;
+                    case 2:
+                        FindObjectOfType<AudioManager>().Play("Hurt3");
+                        break;
+                    case 3:
+                        FindObjectOfType<AudioManager>().Play("Hurt4");
+                        break;
+                    case 4:
+                        FindObjectOfType<AudioManager>().Play("Hurt5");
+                        break;
+                    case 5:
+                        FindObjectOfType<AudioManager>().Play("Hurt6");
+                        break;
+                }
                 #endregion
 
             }

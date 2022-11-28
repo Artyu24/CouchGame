@@ -48,7 +48,7 @@ public class CreatePointCircleEditor : Editor
             //Do nothing
         }
 
-        if (mySource == null || myCircle == null)
+        if (mySource == null || myCircle == null || nbrPoint.intValue <= 0)
         {
             EditorGUILayout.HelpBox("Attention, il vous manque des choses !", MessageType.Warning);
             soCreaterPointCircle.ApplyModifiedProperties();
@@ -78,26 +78,29 @@ public class CreatePointCircleEditor : Editor
                 return;
             }
 
-            //SerializedObject soPAM = new SerializedObject(pointAreaManager);
-            //soPAM.Update();
-            //SerializedProperty spawnPointList = soPAM.FindProperty("");
+            SerializedObject soPAM = new SerializedObject(pointAreaManager);
+            soPAM.Update();
+            SerializedProperty spawnManagerList = soPAM.FindProperty("spawnPoint");
+            SerializedProperty spawnManagerPlayerList = soPAM.FindProperty("spawnPointPlayer");
 
             if (GUILayout.Button("Création des points"))
             {
                 if (spawnPointList.arraySize != 0)
                 {
+                    int index = pointAreaManager.SpawnPoint.IndexOf((Transform)spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue);
+                    spawnManagerList.DeleteArrayElementAtIndex(index);
                     for (int i = 0; i < spawnPointList.arraySize; i++)
                     {
                         if (i == 0)
                             continue;
 
                         Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
-                        pointAreaManager.SpawnPoint.Remove(point);
+                        spawnManagerList.DeleteArrayElementAtIndex(index);
                         DestroyImmediate(point.gameObject);
                     }
 
                     spawnPointList.ClearArray();
-                    pointAreaManager.SpawnPointPlayer.Clear();
+                    spawnManagerPlayerList.ClearArray();
                 }
 
                 float deg = 0;
@@ -107,13 +110,18 @@ public class CreatePointCircleEditor : Editor
                 spawnPointList.InsertArrayElementAtIndex(0);
                 spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue = mySource.transform;
 
+                spawnManagerList.InsertArrayElementAtIndex(0);
+                spawnManagerList.GetArrayElementAtIndex(0).objectReferenceValue = mySource.transform;
+
                 for (int i = 1; i < nbrPoint.intValue; i++)
                 {
                     GameObject point = Instantiate(mySource, new Vector3(r * Mathf.Cos(Mathf.Deg2Rad * deg), 1, r * Mathf.Sin(Mathf.Deg2Rad * deg)), Quaternion.identity, myCircle.transform);
                     deg += degSup;
                     spawnPointList.InsertArrayElementAtIndex(i);
                     spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
-                    pointAreaManager.SpawnPoint.Add(point.transform);
+
+                    spawnManagerList.InsertArrayElementAtIndex(i);
+                    spawnManagerList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
                 }
             }
 
@@ -121,18 +129,20 @@ public class CreatePointCircleEditor : Editor
             {
                 if (GUILayout.Button("Destruction des points"))
                 {
+                    int index = pointAreaManager.SpawnPoint.IndexOf((Transform)spawnPointList.GetArrayElementAtIndex(0).objectReferenceValue);
+                    spawnManagerList.DeleteArrayElementAtIndex(index);
                     for (int i = 0; i < spawnPointList.arraySize; i++)
                     {
                         if (i == 0)
                             continue;
 
+                        spawnManagerList.DeleteArrayElementAtIndex(index);
                         Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
-                        pointAreaManager.SpawnPoint.Remove(point);
                         DestroyImmediate(point.gameObject);
                     }
 
                     spawnPointList.ClearArray();
-                    pointAreaManager.SpawnPointPlayer.Clear();
+                    spawnManagerPlayerList.ClearArray();
                 }
 
                 EditorGUILayout.BeginVertical();
@@ -146,14 +156,15 @@ public class CreatePointCircleEditor : Editor
                         for (int i = 0; i < spawnPointList.arraySize; i++)
                         {
                             Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
-                            pointAreaManager.SpawnPointPlayer.Add(point);
+                            spawnManagerPlayerList.InsertArrayElementAtIndex(i);
+                            spawnManagerPlayerList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
                         }
                     }
                 }
                 else
                 {
                     if (GUILayout.Button("ENLEVER"))
-                        pointAreaManager.SpawnPointPlayer.Clear();
+                        spawnManagerPlayerList.ClearArray();
 
                     //Pas tout clear mek
                 }
@@ -163,6 +174,7 @@ public class CreatePointCircleEditor : Editor
             }
 
             soCreaterPointCircle.ApplyModifiedProperties();
+            soPAM.ApplyModifiedProperties();
         }
     }
 

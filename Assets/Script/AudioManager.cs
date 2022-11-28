@@ -9,6 +9,11 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     
     public static AudioManager instance;
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("MainTheme");
+
+    }
     void Awake()
     {
         if(instance == null)
