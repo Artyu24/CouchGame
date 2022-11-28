@@ -15,6 +15,8 @@ public class Sound
     public AudioMixerGroup audioMixer;
     [HideInInspector]
     public AudioSource source;
+    [SerializeField] private SoundState actualSound;
+    public SoundState ActualSound { get { return actualSound; } }
 
     
 }

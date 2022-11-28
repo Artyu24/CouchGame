@@ -47,28 +47,8 @@ public class Explosion : MonoBehaviour
                     other.gameObject.GetComponent<Player>().isChockedWaved = true;
                     playerList.Add(other.gameObject.GetComponent<Player>());
                     int xcount = Random.Range(0, 5);
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
 
-                    switch (xcount)
-                    {
-                        case 0:
-                            FindObjectOfType<AudioManager>().Play("Hurt1");
-                            break;
-                        case 1:
-                            FindObjectOfType<AudioManager>().Play("Hurt2");
-                            break;
-                        case 2:
-                            FindObjectOfType<AudioManager>().Play("Hurt3");
-                            break;
-                        case 3:
-                            FindObjectOfType<AudioManager>().Play("Hurt4");
-                            break;
-                        case 4:
-                            FindObjectOfType<AudioManager>().Play("Hurt5");
-                            break;
-                        case 5:
-                            FindObjectOfType<AudioManager>().Play("Hurt6");
-                            break;
-                    }
                 }
             }
         }
