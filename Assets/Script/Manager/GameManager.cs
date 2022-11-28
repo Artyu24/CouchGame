@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,19 @@ public class GameManager : MonoBehaviour
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
+
+    public GameObject putaindeTargetDeSESMorts;
+
+    public float CDafterTargetAparrition;
+
+    private GameObject meteorite;
+
+    private Vector3 departMeteorite = new Vector3(0, 20, 0);
+
+    public float cdforNewMeteorite;
+
+    bool canMeteorite = true;
+
 
 
     #endregion
@@ -173,11 +187,39 @@ public class GameManager : MonoBehaviour
         {
             tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
+        meteorite = Resources.Load<GameObject>("Meteorite");
+
 
     }
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
 
+        putaindeTargetDeSESMorts.SetActive(false);
+
+    }
+
+    private void Update()
+    {
+        
+    }
+
+
+    public IEnumerator TargetMeteorite()
+    {
+        
+        putaindeTargetDeSESMorts.SetActive(true);
+        yield return new WaitForSeconds(CDafterTargetAparrition);
+        putaindeTargetDeSESMorts.SetActive(false);
+        GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
+        metoto.GetComponent<MeteorMovement>().MovePlanete();
+        StartCoroutine(CDBeforNewMeteorite());
+
+    }
+    public IEnumerator CDBeforNewMeteorite()
+    {
+        canMeteorite = false;
+        yield return new WaitForSeconds(cdforNewMeteorite);
+        canMeteorite = true;
     }
 }
