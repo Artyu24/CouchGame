@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
-    public GameObject TargetForMeteorite;
+    public GameObject putaindeTargetDeSESMorts;
 
     public float CDafterTargetAparrition;
 
@@ -161,6 +161,12 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
+    #region UI
+    public GameObject pausePanel;
+    public GameObject button;
+    //public GameObject optionPanel;
+
+    #endregion
 
     void Awake()
     {
@@ -194,8 +200,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
+    }
 
-        TargetForMeteorite.SetActive(false);
+    public void Update()
+    {
+        if (pausePanel.activeSelf)
+        {
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        putaindeTargetDeSESMorts.SetActive(false);
         StartCoroutine(TargetMeteorite());
 
     }
@@ -204,12 +223,12 @@ public class GameManager : MonoBehaviour
     {
         if(canMeteorite == true)
         {
-            TargetForMeteorite.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position;
-            TargetForMeteorite.SetActive(true);
+            putaindeTargetDeSESMorts.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
+            putaindeTargetDeSESMorts.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
-            TargetForMeteorite.SetActive(false);
+            putaindeTargetDeSESMorts.SetActive(false);
             GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-            metoto.GetComponent<MeteorMovement>().nextPos = TargetForMeteorite.transform.position;
+            metoto.GetComponent<MeteorMovement>().nextPos = putaindeTargetDeSESMorts.transform.position;
             StartCoroutine(CDBeforNewMeteorite());
         }
         
@@ -221,6 +240,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
         StartCoroutine(TargetMeteorite());
-
     }
 }
