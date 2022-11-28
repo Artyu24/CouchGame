@@ -89,13 +89,12 @@ public class PlayerManager : MonoBehaviour
     {
         //Vider les score de manche pour les joueurs
         players[i].score = 0;
+        
         //Spawn at point
         player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
 
-
         //Parent UI par Player
         GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
-        //GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab[i], canvasUI.transform);
         playersInterface[i] = playerInterfaceTempo;
 
         //Text du score par Player
@@ -103,7 +102,7 @@ public class PlayerManager : MonoBehaviour
 
         //Spé barre par player
         GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform.GetChild(1).transform);
-        //speBarreTemp.name = "SpéChargeBarre " + (1);
+        speBarreTemp.name = "SpéChargeBarre " + (1);
         player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
     }
 }
