@@ -122,6 +122,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e48a3083-b23a-47d8-adb2-870aad900e0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,8 +353,25 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""MeteoriteWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2bb5600-98be-478f-9055-d3850a1d5649"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""7201c42d-50a7-48c8-be8d-990420ec0d0c"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -376,6 +402,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_MeteoriteEast = m_Player.FindAction("MeteoriteEast", throwIfNotFound: true);
         m_Player_MeteoriteWest = m_Player.FindAction("MeteoriteWest", throwIfNotFound: true);
         m_Player_ChocWave = m_Player.FindAction("ChocWave", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -470,6 +499,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MeteoriteEast;
     private readonly InputAction m_Player_MeteoriteWest;
     private readonly InputAction m_Player_ChocWave;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -484,6 +514,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @MeteoriteEast => m_Wrapper.m_Player_MeteoriteEast;
         public InputAction @MeteoriteWest => m_Wrapper.m_Player_MeteoriteWest;
         public InputAction @ChocWave => m_Wrapper.m_Player_ChocWave;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -523,6 +554,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChocWave.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
                 @ChocWave.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
                 @ChocWave.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -557,10 +591,38 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChocWave.started += instance.OnChocWave;
                 @ChocWave.performed += instance.OnChocWave;
                 @ChocWave.canceled += instance.OnChocWave;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_CircularSchemeSchemeIndex = -1;
     public InputControlScheme CircularSchemeScheme
     {
@@ -585,5 +647,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMeteoriteEast(InputAction.CallbackContext context);
         void OnMeteoriteWest(InputAction.CallbackContext context);
         void OnChocWave(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
     }
 }

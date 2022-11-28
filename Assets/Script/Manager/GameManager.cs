@@ -161,6 +161,12 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
+    #region UI
+    public GameObject pausePanel;
+    public GameObject button;
+    //public GameObject optionPanel;
+
+    #endregion
 
     void Awake()
     {
@@ -194,7 +200,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
+    }
 
+    public void Update()
+    {
+        if (pausePanel.activeSelf)
+        {
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1.0f;
         putaindeTargetDeSESMorts.SetActive(false);
         StartCoroutine(TargetMeteorite());
 
@@ -221,6 +240,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
         StartCoroutine(TargetMeteorite());
-
     }
 }
