@@ -141,43 +141,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    //public void Meteo1(InputAction.CallbackContext context) 
-    //{
-    //    OnMeteorite(context,1);
-    
-    //}
-    //public void Meteo2(InputAction.CallbackContext context)
-    //{
-    //    OnMeteorite(context, 2);
 
-    //}
-    //public void Meteo3(InputAction.CallbackContext context)
-    //{
-    //    OnMeteorite(context, 3);
-
-    //}
-    //public void Meteo4(InputAction.CallbackContext context)
-    //{
-    //    OnMeteorite(context, 4);
-
-    //}
-
-    //public void OnMeteorite(InputAction.CallbackContext context, int i)
-    //{
-    //    if (player.ActualPlayerState == PlayerState.MIDDLE)
-    //    {
-    //        if (context.performed)
-    //        {
-    //            if (isInteracting == false)
-    //            {
-    //                GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-    //                metoto.GetComponent<MeteorMovement>().MovePlanete();
-    //                StartCoroutine(CooldownForInteraction());
-    //            }
-    //        }
-            
-    //    }
-    //}
     public void OnChocWave(InputAction.CallbackContext context)
     {
         if (player.ActualPlayerState == PlayerState.MIDDLE)
