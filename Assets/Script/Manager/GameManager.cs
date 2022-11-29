@@ -204,10 +204,15 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (pausePanel.activeSelf)
+        if(pausePanel != null)
         {
-            Time.timeScale = 0.0f;
+            if (pausePanel.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+
         }
+        
     }
 
     public void ResumeGame()
