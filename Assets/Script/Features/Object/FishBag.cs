@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class FishBag : MonoBehaviour
 {
-    [SerializeField] public int hp = 11;
+    [SerializeField] public int hp = 1;
     private Animator animator;
     public Transform[] fish;
-    public List<int> goldenFish;
 
     private GameObject fishToUI;
+    public bool isGolden;
 
-    private int nextFish = 0;
-    private int nextGFish = 0;
 
     void Awake()
     {
@@ -26,9 +24,13 @@ public class FishBag : MonoBehaviour
         int children = transform.GetChild(0).childCount;
         for (int i = 0; i < children; ++i)
             fish[i] = transform.GetChild(0).GetChild(i);
-        hp = fish.Length;
+        hp = 1;
         fishToUI = Resources.Load("UI/FishToUI") as GameObject;
         //Debug.Log(fishToUI);
+        if (isGolden)
+        {
+            GetComponentInChildren<Renderer>().material = Resources.Load("GoldenFish") as Material; ;
+        } 
     }
 
     public void Damage(GameObject player)
@@ -42,16 +44,33 @@ public class FishBag : MonoBehaviour
         //Debug.Log("Fish to try : " + nextFish + " next gold fish" + nextGFish);
 
         int xcount = Random.Range(0, 5);
-        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EatingSound);
-        Destroy(fish[nextFish].gameObject);
+
+        switch (xcount)
+        {
+            case 0:
+                FindObjectOfType<AudioManager>().Play("Eating1");
+                break;
+            case 1:
+                FindObjectOfType<AudioManager>().Play("Eating2");
+                break;
+            case 2:
+                FindObjectOfType<AudioManager>().Play("Eating3");
+                break;
+            case 3:
+                FindObjectOfType<AudioManager>().Play("Eating4");
+                break;
+            case 4:
+                FindObjectOfType<AudioManager>().Play("Eating5");
+                break;
+            case 5:
+                FindObjectOfType<AudioManager>().Play("Eating6");
+                break;
+        }
         GameObject fui =  Instantiate(fishToUI, transform.position, Quaternion.identity);
         Destroy(fui, 1.4f);
         fui.GetComponent<MoveToUI>().ui_element_gameobject = player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject;
 
         StartCoroutine(BarSpePlus(player));
-
-        nextFish++;
-
         animator.SetTrigger("SHAKEMETHAT");
 
         if (hp <= 0)
@@ -64,7 +83,7 @@ public class FishBag : MonoBehaviour
     IEnumerator BarSpePlus(GameObject player)
     {
         yield return new WaitForSecondsRealtime(1.4f);
-        if (goldenFish.Count > nextGFish && nextFish == goldenFish[nextGFish])//le poisson est goldé
+        if (isGolden)//le poisson est goldé
         {
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
@@ -72,8 +91,6 @@ public class FishBag : MonoBehaviour
                 player.GetComponent<PlayerAttack>().AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
             if (player.GetComponent<PlayerAttack>().CurrentSpecial > player.GetComponent<PlayerAttack>().maxSpecial)
                 player.GetComponent<PlayerAttack>().CurrentSpecial = 5;
-            nextGFish++;
-
         }
         else//bouh le nul
         {
@@ -81,7 +98,5 @@ public class FishBag : MonoBehaviour
             if (player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
                 player.GetComponent<PlayerAttack>().AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }
-
-
     }
 }

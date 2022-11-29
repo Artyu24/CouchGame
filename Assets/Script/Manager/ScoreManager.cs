@@ -20,7 +20,12 @@ public class ScoreManager : MonoBehaviour
     public int scorePointArea = 1;
     [Tooltip("Point gagner à chaque hit du sac si la sardine est dorée")]
     public int scoreGoldPointArea = 5;
-    [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
+    [Tooltip("POint gagner à chaque kill")] 
+    public int scoreKill = 10;
+
+    [Tooltip("Multiplicateur de score"), SerializeField]
+    private int multiplier;
+
     private bool addMiddleScore = true;
 
     public static ScoreManager instance;
@@ -73,8 +78,18 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int points, Player player)
     {
-        player.score += points;
+        int multi = 1;
+        if (player.Multiplier)
+            multi = multiplier;
 
+        player.score += points * multiplier;
+        
+        ScoreBoardSorting();
+        UpdateScores();
+    }
+
+    private void ScoreBoardSorting()
+    {
         List<Player> tempPlayerListPlayer = new List<Player>();
         Player playerTemp = null;
         int bestScore = 0;
@@ -98,8 +113,6 @@ public class ScoreManager : MonoBehaviour
         {
             tempPlayerListPlayer[i].couronne.SetActive(false);
         }
-
-        UpdateScores();
     }
 
     public void InstantiateScoreText(int p) 
