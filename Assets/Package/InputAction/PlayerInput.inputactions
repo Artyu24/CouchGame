@@ -100,6 +100,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "e48a3083-b23a-47d8-adb2-870aad900e0e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -322,8 +331,25 @@
                     "action": "MeteoriteWest",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2bb5600-98be-478f-9055-d3850a1d5649",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "7201c42d-50a7-48c8-be8d-990420ec0d0c",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [
