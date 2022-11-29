@@ -20,7 +20,12 @@ public class ScoreManager : MonoBehaviour
     public int scorePointArea = 1;
     [Tooltip("Point gagner à chaque hit du sac si la sardine est dorée")]
     public int scoreGoldPointArea = 5;
-    [Tooltip("POint gagner à chaque kill")] public int scoreKill = 10;
+    [Tooltip("POint gagner à chaque kill")] 
+    public int scoreKill = 10;
+
+    [Tooltip("Multiplicateur de score"), SerializeField]
+    private int multiplier;
+
     private bool addMiddleScore = true;
 
     public static ScoreManager instance;
@@ -36,11 +41,9 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         if(scorePlayerText == null || scoreTextPrefab == null)
-        {
             return;
-        }
 
-        if (scoreTextPrefab == null || PlayerManager.instance.InterfaceUiPrefab.Length == 0)
+        if (scoreTextPrefab == null || PlayerManager.instance.InterfaceUiPrefab == null)
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
@@ -49,9 +52,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         if (scorePlayerText == null || scoreTextPrefab == null)
-        {
             return;
-        }
         
         if (GameManager.instance.PlayerInMiddle != null && addMiddleScore)
         {
@@ -71,14 +72,24 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            scorePlayerText[i].text = /*"Player " + (i + 1) + " : " + */PlayerManager.instance.players[i].score.ToString();
         }
     }
 
     public void AddScore(int points, Player player)
     {
-        player.score += points;
+        int multi = 1;
+        if (player.Multiplier)
+            multi = multiplier;
 
+        player.score += points * multiplier;
+        
+        ScoreBoardSorting();
+        UpdateScores();
+    }
+
+    private void ScoreBoardSorting()
+    {
         List<Player> tempPlayerListPlayer = new List<Player>();
         Player playerTemp = null;
         int bestScore = 0;
@@ -102,13 +113,12 @@ public class ScoreManager : MonoBehaviour
         {
             tempPlayerListPlayer[i].couronne.SetActive(false);
         }
-
-        UpdateScores();
     }
 
     public void InstantiateScoreText(int p) 
     {
-        GameObject scoreTextTemp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayersInterface[p].transform);
+        GameObject scoreTextTemp = Instantiate(scoreTextPrefab, PlayerManager.instance.PlayersInterface[p].transform.GetChild(1).transform);//Dangereux si l'ui score change
+
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
         UpdateScores();
