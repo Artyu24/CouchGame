@@ -210,16 +210,30 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (pausePanel.activeSelf)
+        if (pausePanel != null)
         {
-            Time.timeScale = 0.0f;
+            if (pausePanel.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
         }
     }
 
     public void ResumeGame()
     {
-        pausePanel.SetActive(false);
-        Time.timeScale = 1.0f;
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
+        }
     }
 
     public IEnumerator TargetMeteorite()
