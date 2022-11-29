@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     #region Player
 
     [Header("Variables des Players")]
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
     [SerializeField] private float maxMovementSpeed;
     [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
-    public GameObject putaindeTargetDeSESMorts;
+    public GameObject target;
 
     public float CDafterTargetAparrition;
 
@@ -195,8 +194,11 @@ public class GameManager : MonoBehaviour
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
 
-        putaindeTargetDeSESMorts.SetActive(false);
-        StartCoroutine(TargetMeteorite());
+        if (target != null)
+        {
+            target.SetActive(false);
+            StartCoroutine(TargetMeteorite());
+        }
 
     }
 
@@ -204,12 +206,12 @@ public class GameManager : MonoBehaviour
     {
         if(canMeteorite == true)
         {
-            putaindeTargetDeSESMorts.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
-            putaindeTargetDeSESMorts.SetActive(true);
+            target.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
+            target.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
-            putaindeTargetDeSESMorts.SetActive(false);
+            target.SetActive(false);
             GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-            metoto.GetComponent<MeteorMovement>().nextPos = putaindeTargetDeSESMorts.transform.position;
+            metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
             StartCoroutine(CDBeforNewMeteorite());
         }
         

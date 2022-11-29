@@ -61,6 +61,24 @@ public class PointAreaManager : MonoBehaviour
                     return;
             }
         }
+
+        RemoveObjectNullFromList(spawnPoint);
+        RemoveObjectNullFromList(spawnPointMeteorite);
+        RemoveObjectNullFromList(spawnPointPlayer);
+    }
+
+    private void RemoveObjectNullFromList(List<Transform> listTransform)
+    {
+        for (int i = 0; i < listTransform.Count;)
+        {
+            if (listTransform[i] ?? null)
+            {
+                i++;
+                continue;
+            }
+            
+            listTransform.Remove(listTransform[i]);
+        }
     }
 
     // Start is called before the first frame update
