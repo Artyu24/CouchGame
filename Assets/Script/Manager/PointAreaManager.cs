@@ -11,7 +11,8 @@ public class PointAreaManager : MonoBehaviour
     public List<Transform> spawnPoint = new List<Transform>();
     public List<Transform> SpawnPoint => spawnPoint;
     
-    
+    public List<Transform> spawnPointMeteorite = new List<Transform>();
+
     public List<Transform> spawnPointPlayer = new List<Transform>();
     public List<Transform> SpawnPointPlayer => spawnPointPlayer;
 
@@ -65,8 +66,7 @@ public class PointAreaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
-            StartCoroutine(Spawn());
+        StartCoroutine(LaunchFishBag());
     }
 
     //Test
@@ -78,6 +78,15 @@ public class PointAreaManager : MonoBehaviour
     //    Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
     //    Debug.Log(hit.transform.gameObject.name);
     //}
+
+    private IEnumerator LaunchFishBag()
+    {
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+        {
+            StartCoroutine(Spawn());
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 
     public void StartNextSpawn()
     {
@@ -165,23 +174,13 @@ public class PointAreaManager : MonoBehaviour
     public Transform GetPlayerRandomPos()
     {
         int xcount = Random.Range(0, 3);
-
-        switch (xcount)
-        {
-            case 0:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn1");
-                break;
-            case 1:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn2");
-                break;
-            case 2:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn3");
-                break;
-            case 3:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn4");
-                break;
-        }
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpawnSound);
         return RandomPosition(spawnPointPlayer);
+    }
+
+    public Transform GetMeteoriteRandomPos()
+    {
+        return RandomPosition(spawnPointMeteorite);
     }
 
     public Transform RandomPosition(List<Transform> listPoint)

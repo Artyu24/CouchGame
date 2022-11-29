@@ -48,28 +48,7 @@ public class PlayerAttack : MonoBehaviour
         if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
         {
             int xcount = Random.Range(0, 5);
-
-            switch (xcount)
-            {
-                case 0:
-                    FindObjectOfType<AudioManager>().Play("Effort1");
-                    break;
-                case 1:
-                    FindObjectOfType<AudioManager>().Play("Effort2");
-                    break;
-                case 2:
-                    FindObjectOfType<AudioManager>().Play("Effort3");
-                    break;
-                case 3:
-                    FindObjectOfType<AudioManager>().Play("Effort4");
-                    break;
-                case 4:
-                    FindObjectOfType<AudioManager>().Play("Effort5");
-                    break;
-                case 5:
-                    FindObjectOfType<AudioManager>().Play("Effort6");
-                    break;
-            }
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -83,23 +62,7 @@ public class PlayerAttack : MonoBehaviour
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
             int xcount = Random.Range(0, 3);
-
-            switch (xcount)
-            {
-                case 0:
-                    FindObjectOfType<AudioManager>().Play("Special1");
-                    break;
-                case 1:
-                    FindObjectOfType<AudioManager>().Play("Special2");
-                    break;
-                case 2:
-                    FindObjectOfType<AudioManager>().Play("Special3");
-                    break;
-                case 3:
-                    FindObjectOfType<AudioManager>().Play("Special4");
-                    break;
-
-            }
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialSound);
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -165,28 +128,7 @@ public class PlayerAttack : MonoBehaviour
                 else
                     break;
                 int xcount = Random.Range(0, 5);
-
-                switch (xcount)
-                {
-                    case 0:
-                        FindObjectOfType<AudioManager>().Play("Hurt1");
-                        break;
-                    case 1:
-                        FindObjectOfType<AudioManager>().Play("Hurt2");
-                        break;
-                    case 2:
-                        FindObjectOfType<AudioManager>().Play("Hurt3");
-                        break;
-                    case 3:
-                        FindObjectOfType<AudioManager>().Play("Hurt4");
-                        break;
-                    case 4:
-                        FindObjectOfType<AudioManager>().Play("Hurt5");
-                        break;
-                    case 5:
-                        FindObjectOfType<AudioManager>().Play("Hurt6");
-                        break;
-                }
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
                 #endregion
 
             }
