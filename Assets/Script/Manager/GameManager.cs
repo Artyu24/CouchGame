@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     #region Player
 
     [Header("Variables des Players")]
-    [SerializeField] private Transform[] spawnList = new Transform[] { };
     [Tooltip("Vitesse max de d�placement des joueurs")]
     [SerializeField] private float maxMovementSpeed;
     [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
-    public GameObject putaindeTargetDeSESMorts;
+    public GameObject target;
 
     public float CDafterTargetAparrition;
 
@@ -200,35 +199,53 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cameraScene = Camera.FindObjectOfType<Camera>();
+        
+        if (target != null)
+        {
+            target.SetActive(false);
+            StartCoroutine(TargetMeteorite());
+        }
     }
+
 
     public void Update()
     {
-        if (pausePanel.activeSelf)
+        if (pausePanel != null)
         {
-            Time.timeScale = 0.0f;
+            if (pausePanel.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
         }
     }
 
     public void ResumeGame()
     {
-        pausePanel.SetActive(false);
-        Time.timeScale = 1.0f;
-        putaindeTargetDeSESMorts.SetActive(false);
-        StartCoroutine(TargetMeteorite());
-
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
+        }
     }
 
     public IEnumerator TargetMeteorite()
     {
         if(canMeteorite == true)
         {
-            putaindeTargetDeSESMorts.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
-            putaindeTargetDeSESMorts.SetActive(true);
+            target.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
+            target.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
-            putaindeTargetDeSESMorts.SetActive(false);
+            target.SetActive(false);
             GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-            metoto.GetComponent<MeteorMovement>().nextPos = putaindeTargetDeSESMorts.transform.position;
+            metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
             StartCoroutine(CDBeforNewMeteorite());
         }
         

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     public int score = 0;
     public int scoreGeneral = 0;
+    private bool multiplier = false;
+    public bool Multiplier { get => multiplier; set => multiplier = value; }
 
     public bool isChockedWaved = false;
 

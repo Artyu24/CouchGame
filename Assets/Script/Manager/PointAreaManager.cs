@@ -54,13 +54,30 @@ public class PointAreaManager : MonoBehaviour
                     return;
             }
         }
+
+        RemoveObjectNullFromList(spawnPoint);
+        RemoveObjectNullFromList(spawnPointMeteorite);
+        RemoveObjectNullFromList(spawnPointPlayer);
+    }
+
+    private void RemoveObjectNullFromList(List<Transform> listTransform)
+    {
+        for (int i = 0; i < listTransform.Count;)
+        {
+            if (listTransform[i] ?? null)
+            {
+                i++;
+                continue;
+            }
+            
+            listTransform.Remove(listTransform[i]);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
-            StartCoroutine(Spawn());
+        StartCoroutine(LaunchFishBag());
     }
 
     //Test
@@ -72,6 +89,15 @@ public class PointAreaManager : MonoBehaviour
     //    Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
     //    Debug.Log(hit.transform.gameObject.name);
     //}
+
+    private IEnumerator LaunchFishBag()
+    {
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+        {
+            StartCoroutine(Spawn());
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 
     public void StartNextSpawn()
     {
