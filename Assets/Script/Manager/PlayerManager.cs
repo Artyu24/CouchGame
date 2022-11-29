@@ -37,9 +37,12 @@ public class PlayerManager : MonoBehaviour
         speBarrePrefab = Resources.Load<GameObject>("UI/SpeBarreCharge");
         interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
         scoreboardUI = GameObject.FindGameObjectWithTag("Scoreboard");
-        //canvasUI = GameObject.FindGameObjectWithTag("Canvas");
 
         //Debug.Log("Player count : " + players.Count);
+    }
+    public void FindCanvas()
+    {
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     public void AddPlayer()
@@ -86,29 +89,32 @@ public class PlayerManager : MonoBehaviour
         ScoreManager.instance.UpdateScores();
     }
 
-    public void FindCanvas()
-    {
-        canvasUI = GameObject.FindGameObjectWithTag("Canvas");
-    }
 
     public void Init(int i, GameObject player)
     {
-        //Vider les score de manche pour les joueurs
-        players[i].score = 0;
-        
-        //Spawn at point
-        player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
+        if (scoreboardUI != null)
+        {
+            //Vider les score de manche pour les joueurs
+            players[i].score = 0;
 
-        //Parent UI par Player
-        GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
-        playersInterface[i] = playerInterfaceTempo;
+            //Spawn at point
+            player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
 
-        //Text du score par Player
-        ScoreManager.instance.InstantiateScoreText(i);
+            //Parent UI par Player
+            GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
+            playersInterface[i] = playerInterfaceTempo;
 
-        //Spé barre par player
-        GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform.GetChild(1).transform);
-        speBarreTemp.name = "SpéChargeBarre " + (1);
-        player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
+            //Text du score par Player
+            ScoreManager.instance.InstantiateScoreText(i);
+
+            //Spé barre par player
+            GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform.GetChild(1).transform);
+            speBarreTemp.name = "SpéChargeBarre " + (1);
+            player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
+        }
+        else
+        {
+            Debug.Log("Il manque l'UI du scoreboard ou il n'a pas le tag Scoreboard");
+        }
     }
 }
