@@ -16,6 +16,10 @@ public class ObjectManager : MonoBehaviour
     private float cdMultiplier;
     private GameObject multiplierObject;
 
+    [Header("BOMB")]
+    public float timeBeforeExplosion;
+    public int bombStrenght;
+
     private void Awake()
     {
         if (Instance == null)

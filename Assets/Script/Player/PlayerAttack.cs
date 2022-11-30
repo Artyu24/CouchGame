@@ -121,10 +121,11 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hit.transform != null && hit.transform.tag == "Bomb")
                 {
-                    hit.transform.GetComponent<Bomb>().PlayerTriggeredBy = gameObject;
-                    hit.transform.GetComponent<Rigidbody>().mass = 10;
-                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght / 2, ForceMode.Impulse);
-                    hit.transform.GetComponent<Bomb>().test();
+                    hit.transform.GetComponent<Rigidbody>().mass = 1;
+                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject, new Vector3(dir.x, 1, dir.z) * _strenght);
+                    hit.transform.GetComponent<Bomb>().isGrounded = false;
+                    return;
                 }
                 #endregion
 

@@ -3,67 +3,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour, IInteractable
+public class Bomb : MonoBehaviour
 {
     [SerializeField] SphereCollider sphereCollider;
 
     private GameObject playerTriggeredBy;
-    public GameObject PlayerTriggeredBy
-    {
-        get => playerTriggeredBy;
-        set => playerTriggeredBy = value;
-    }
 
-    private bool speedUpAnim = false;
-
-    public void Interact()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void test()
-    {
-        StartCoroutine(Explosion());
-
-    }
+    [SerializeField] private bool speedUpAnim = false;
+    private float speedFactor = 1;
+    public bool isGrounded;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         if(speedUpAnim)
-            GetComponent<Animator>().SetFloat("DetonateSpeed", Time.deltaTime);
+            GetComponent<Animator>().SetFloat("DetonateSpeed", speedFactor); speedFactor += Time.deltaTime;
+
+        if(isGrounded)
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+
     }
 
-    IEnumerator Explosion()
+    public void StartExplosion(GameObject _player, Vector3 _dir)
     {
+        StartCoroutine(Explosion(_player, _dir));
+    }
+
+    IEnumerator Explosion(GameObject _player, Vector3 _dir)
+    {
+        //Debug.LogError("BOOOOOOOOOOOM");
+
         GetComponent<Animator>().SetTrigger("Boom");
         speedUpAnim = true; 
 
+        playerTriggeredBy = _player;
+
+
         yield return new WaitForSecondsRealtime(ObjectManager.Instance.timeBeforeExplosion);
 
-        sphereCollider.gameObject.SetActive(true);
+        sphereCollider.gameObject.SetActive(true); 
+
+        GetComponent<SphereCollider>().enabled = true;
+
         foreach (Transform child in transform)
         {
-            Debug.Log(child.name);
+            child.gameObject.SetActive(false);
         }
         //trigger Particle effect
+        transform.GetChild(2).gameObject.SetActive(true);
+        GetComponent<Rigidbody>().useGravity = false;
         //trigger Sound
 
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
 
-        Debug.Log(playerTriggeredBy);
         Destroy(gameObject);
     }
 
-    public void OnTriggerEnter(Collider hit)
+    public void OnTriggerStay(Collider hit)
     {
         if (hit.transform != null && hit.transform.tag == "Player")
         {
-            Player player = hit.GetComponent<Player>();
-            player.ActualPlayerState = PlayerState.DEAD;
-            player.Kill();
+            PlayerAttack player = hit.GetComponent<PlayerAttack>();
 
-            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, playerTriggeredBy.GetComponent<Player>());
+            Vector3 dir = new Vector3((hit.transform.position.x - transform.position.x), 3, (hit.transform.position.z - transform.position.z)).normalized;
+            hit.attachedRigidbody.AddForce(dir * ObjectManager.Instance.bombStrenght);
+
+            if (hit.gameObject != playerTriggeredBy.gameObject)
+                player.HitTag(playerTriggeredBy);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Platform")
+            StartCoroutine(stopVelocity());
+    }
+
+    IEnumerator stopVelocity()
+    {
+        yield return new WaitForSecondsRealtime(.3f);
+        isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Platform")
+            isGrounded = false;
     }
 }
