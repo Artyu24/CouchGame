@@ -25,6 +25,10 @@ public class ObjectManager : MonoBehaviour
     private float cdSlowZone;
     private GameObject slowZoneObject;
     
+    [Header("BOMB")]
+    public float timeBeforeExplosion;
+    public int bombStrenght;
+
     private void Awake()
     {
         if (Instance == null)
