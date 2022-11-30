@@ -46,6 +46,7 @@ public class Timer : MonoBehaviour
         timerBegin = GameManager.instance.Timer; 
 
         PlayerManager.instance.FindCanvas();
+
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             Debug.Log("Init");

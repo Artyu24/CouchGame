@@ -17,8 +17,7 @@ public class PlayerManager : MonoBehaviour
     private GameObject[] playersInterface = new GameObject[4];
     public GameObject[] PlayersInterface => playersInterface;
 
-    public GameObject canvasUI;
-    public GameObject scoreboardUI;
+    public GameObject canvasUI, scoreboardUI, pausePanel, optionsPanel;
     //public List<GameObject> speBarreParentList = new List<GameObject>();
     #endregion
 
@@ -94,8 +93,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (scoreboardUI != null)
         {
+
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
+
 
             //Spawn at point
             player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;

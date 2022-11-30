@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7534642234813016138}
   - component: {fileID: -1332834367385738243}
   - component: {fileID: -6168179640611313348}
+  - component: {fileID: 3602936588706980327}
   m_Layer: 10
   m_Name: LeDaron
   m_TagString: LostPlayer
@@ -306,9 +307,37 @@ MonoBehaviour:
     m_ActionId: 063a562e-2088-4ce3-8626-f895dc80dc52
     m_ActionName: Player/MeteoriteWest[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e48a3083-b23a-47d8-adb2-870aad900e0e
+      m_Calls:
+      - m_Target: {fileID: 3602936588706980327}
+        m_TargetAssemblyTypeName: UIInputManager, Assembly-CSharp
+        m_MethodName: OpenClosePausePanel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e7441c63-8f68-497d-840c-e949210fd881
     m_ActionName: Player/Pause
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3602936588706980327}
+        m_TargetAssemblyTypeName: UIInputManager, Assembly-CSharp
+        m_MethodName: OpenCloseOptionsPanel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8739c219-b9bc-485f-8e25-2089e942490f
+    m_ActionName: Player/CloseOptionMenu[/DualShock4GamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: CircularScheme
   m_DefaultActionMap: Player
@@ -431,6 +460,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbcd5072aa42d8048b4ae8eb4666cf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3602936588706980327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685385915726475695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6409ee5f8e2ce4e912bd246cc7e60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7800344299586862894

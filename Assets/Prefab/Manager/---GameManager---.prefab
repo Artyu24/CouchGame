@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 367160676615333857}
   - component: {fileID: 367160676615333858}
-  - component: {fileID: 4004228336170970819}
   m_Layer: 0
   m_Name: ---GameManager---
   m_TagString: Untagged
@@ -85,90 +84,7 @@ MonoBehaviour:
   shakePower: 0.05
   shakeDuration: 0.5
   pausePanel: {fileID: 0}
---- !u!114 &4004228336170970819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367160676615333859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: c4a9a6cf1556d95459539531853b36e8,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 673ed9a7-8f5a-4c3a-8f08-81e5f5c87fcf
-    m_ActionName: Player/PlayerMove[/Keyboard/g,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a8f9ebc7-32ae-4696-b1e7-ef24c43d80ef
-    m_ActionName: Player/PlayerAttack[/DualShock4GamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b9a6496e-2367-4aa3-a1e5-0c73429c7f18
-    m_ActionName: Player/PlayerSpecial Attack[/DualShock4GamepadHID/rightShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0485588a-b5ee-4fbc-91a5-7715d7e0a90c
-    m_ActionName: Player/Rotation[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/dpad/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 218dd42a-e25d-495a-800c-88d0f9fad91a
-    m_ActionName: Player/Switch[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/dpad/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9db291d6-ed9f-40d9-882a-9fe9aa028d1e
-    m_ActionName: Player/MeteoriteNorth[/DualShock4GamepadHID/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 56e39e2b-9c2e-419a-9d97-9a17351b5751
-    m_ActionName: Player/MeteoriteSouth[/DualShock4GamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4790957a-f69e-409b-a810-09de049053c9
-    m_ActionName: Player/MeteoriteEast[/DualShock4GamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 063a562e-2088-4ce3-8626-f895dc80dc52
-    m_ActionName: Player/MeteoriteWest[/DualShock4GamepadHID/buttonWest]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 679814ab-779a-4e63-a702-310c790b2e49
-    m_ActionName: Player/ChocWave[/DualShock4GamepadHID/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 367160676615333858}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenClosePausePanel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f7b91c88-11a7-4893-ae17-e06728ba0b99
-    m_ActionName: UI/Pause[/DualShock4GamepadHID/start]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: UIInput
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  pauseFirstButton: {fileID: 0}
+  optionsFirstButton: {fileID: 0}
+  optionsClosedButton: {fileID: 0}
