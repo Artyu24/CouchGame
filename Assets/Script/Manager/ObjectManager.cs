@@ -13,6 +13,9 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private float cdDespawn;
     private List<GameObject> allObjectList = new List<GameObject>();
 
+    [Header("FishBag")]
+    private GameObject fishBag;
+
     [Header("Multiplier"), SerializeField] 
     private float cdMultiplier;
     private GameObject multiplierObject;
@@ -33,6 +36,8 @@ public class ObjectManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
 
+        fishBag = Resources.Load<GameObject>("Features/FishBag");
+
         multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
         speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
         slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
@@ -46,6 +51,7 @@ public class ObjectManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LaunchFishBag());
         StartCoroutine(SpawnObjectStart());
     }
 
@@ -58,6 +64,36 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Fishbag
+    private IEnumerator LaunchFishBag()
+    {
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+        {
+            StartCoroutine(Spawn());
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public void StartNextSpawn()
+    {
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
+        yield return new WaitForSecondsRealtime(2.0f);
+        SpawnBag();
+    }
+
+    private void SpawnBag()
+    {
+        Transform pos = PointAreaManager.instance.GetRandomPosition();
+        GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
+
+        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+    }
     #endregion
 
     #region Multiplier Object

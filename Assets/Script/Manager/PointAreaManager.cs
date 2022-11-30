@@ -19,14 +19,10 @@ public class PointAreaManager : MonoBehaviour
     private Transform[] playerSpawnStart = new Transform[4];
     public Transform[] PlayerSpawnStart => playerSpawnStart;
 
-    private GameObject fishBag;
-
     void Awake()
     {
         if (instance == null)
             instance = this;
-
-        fishBag = Resources.Load<GameObject>("Features/FishBag");
 
         int i = 0;
         foreach (Transform point in spawnPointPlayer)
@@ -73,57 +69,6 @@ public class PointAreaManager : MonoBehaviour
             i++;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(LaunchFishBag());
-    }
-
-    //Test
-    //void Update()
-    //{
-    //    RaycastHit hit;
-    //    int i = 0;
-    //    Debug.DrawRay(spawnPoint[i].position, spawnPoint[i].up * -1 * 2, Color.yellow, 5.0f);
-    //    Physics.Raycast(spawnPoint[i].position, spawnPoint[i].up * -1, out hit, 2);
-    //    Debug.Log(hit.transform.gameObject.name);
-    //}
-
-    private IEnumerator LaunchFishBag()
-    {
-        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
-        {
-            StartCoroutine(Spawn());
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
-    public void StartNextSpawn()
-    {
-        StartCoroutine(Spawn());
-    }
-
-    private IEnumerator Spawn()
-    {
-        yield return new WaitForSecondsRealtime(2.0f);
-        if (spawnPoint.Count == 0 || spawnPoint.Contains(null))
-            Debug.Log("Il manque des spawn Point");
-        else
-        {
-            SpawnBag();
-        }
-    }
-
-    #region BEURK
-    private void SpawnBag()
-    {
-        Transform pos = GetRandomPosition();
-        GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
-
-        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
-    }
-    #endregion
 
     public Transform GetRandomPosition()
     {
