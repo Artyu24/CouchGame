@@ -114,6 +114,11 @@ public class PlayerAttack : MonoBehaviour
                     hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
                 }
+                if (hit.transform != null && hit.transform.tag == "Bumper")//if we hit a Bumper we do things
+                {
+                    hit.transform.GetComponent<RailedBumper>().Interact();
+                    return;
+                }
                 if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
                 {
                     CenterManager.instance.DealDamage();

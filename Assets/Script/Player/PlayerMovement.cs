@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     private Rigidbody rb;
     public Animator animator;
-
     private Vector3 movementInput;
     private Quaternion orientation;
     private float rotation = 0;
@@ -22,31 +21,23 @@ public class PlayerMovement : MonoBehaviour
     public int ActualCircle => actualCircle;
 
     bool isInteracting = false;
+    
+    private float speed;
+    public float Speed { get => speed; set => speed = value; }
 
 
     private GameObject meteorite;
     private Vector3 departChoc = Vector3.zero;
-    private Vector3 departMeteorite = new Vector3(0, 20, 0);
     private GameObject chocWave;
 
-    private float movementSpeed;
 
-
-    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
-
-    //public static PlayerMovement instance;
-
-
-    // Start is called before the first frame update
     void Awake()
     {
-        //if (instance == null)
-        //        instance = this;
-            rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
 
-        MovementSpeed = GameManager.instance.MaxMovementSpeed;
+        speed = GameManager.instance.MoveSpeed;
 
         meteorite = Resources.Load<GameObject>("Meteorite");
         chocWave = Resources.Load<GameObject>("ChocWave");
@@ -57,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
         {
-            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * MovementSpeed);
+            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
             transform.rotation = orientation;
         }
 
@@ -87,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
         }
     }
+
+    #region INPUT
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -157,6 +150,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+    }
+    #endregion
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.GetComponent<IInteractable>() != null)
+            col.GetComponent<IInteractable>().Interact(player);    
     }
 
     public IEnumerator CooldownForInteraction()
