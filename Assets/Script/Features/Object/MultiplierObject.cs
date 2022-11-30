@@ -12,7 +12,7 @@ public class MultiplierObject : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         player.Multiplier = true;
+        ObjectManager.Instance.StopMultiplier(player);
         Destroy(this.gameObject);
-        StartCoroutine(ObjectManager.Instance.StopMultiplier(player));
     }
 }

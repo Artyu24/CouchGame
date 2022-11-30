@@ -79,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    #region INPUT
+
     public void OnMove(InputAction.CallbackContext ctx)
     {
         movementInput = Vector3.zero;
@@ -148,6 +150,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+    }
+    #endregion
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.GetComponent<IInteractable>() != null)
+            col.GetComponent<IInteractable>().Interact(player);    
     }
 
     public IEnumerator CooldownForInteraction()

@@ -17,12 +17,25 @@ public class ObjectManager : MonoBehaviour
     private float cdMultiplier;
     private GameObject multiplierObject;
 
+    [Header("SpeedUp"), SerializeField] 
+    private float cdSpeedUp;
+    private GameObject speedObject;
+
+    [Header("SlowZone"), SerializeField]
+    private float cdSlowZone;
+    private GameObject slowZoneObject;
+    
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
+        multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
+        speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
+        //slowZoneObject = Resources.Load<GameObject>("Features/SpeedUpObject");
+
         allObjectList.Add(multiplierObject);
+        allObjectList.Add(speedObject);
     }
 
     #region Start Spawn
@@ -45,22 +58,47 @@ public class ObjectManager : MonoBehaviour
 
     #region Multiplier Object
 
-    public IEnumerator StopMultiplier(Player player)
+    public void StopMultiplier(Player player)
     {
+        if (player.multiplierCoroutine != null)
+        {
+            StopCoroutine(player.multiplierCoroutine);
+            player.multiplierCoroutine = null;
+        }
+        player.multiplierCoroutine = StartCoroutine(StopMultiplierCD(player));
+    }
+
+    private IEnumerator StopMultiplierCD(Player player)
+    {
+        StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdMultiplier);
         player.Multiplier = false;
-        //Reload
+        player.multiplierCoroutine = null;
     }
 
     #endregion
 
     #region SpeedUpObject
 
-    public IEnumerator StopSpeedUp(PlayerMovement player)
+    public void StopSpeedUp(PlayerMovement player)
     {
-        yield return new WaitForSeconds(cdMultiplier);
+        Player playerData = player.GetComponent<Player>();
+        if (playerData.speedCoroutine != null)
+        {
+            StopCoroutine(playerData.speedCoroutine);
+            playerData.speedCoroutine = null;
+        }
+        playerData.speedCoroutine =  StartCoroutine(StopSpeedUpCD(player, playerData));
+    }
+
+    private IEnumerator StopSpeedUpCD(PlayerMovement player, Player playerData)
+    {
+        Debug.Log("START");
+        StartCoroutine(SpawnObject());
+        yield return new WaitForSeconds(cdSpeedUp);
         player.Speed = GameManager.instance.MoveSpeed;
-        //Reload
+        playerData.speedCoroutine = null;
+        Debug.Log("STOP");
     }
 
     #endregion
@@ -78,6 +116,7 @@ public class ObjectManager : MonoBehaviour
     public IEnumerator DestroyObject(GameObject objet)
     {
         yield return new WaitForSeconds(cdDespawn);
+        StartCoroutine(SpawnObject());
         Destroy(objet);
     }
 

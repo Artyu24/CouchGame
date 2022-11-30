@@ -15,8 +15,8 @@ public class SpeedUpObject : MonoBehaviour, IInteractable
         {
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+            ObjectManager.Instance.StopSpeedUp(playerMovement);
             Destroy(this.gameObject);
-            StartCoroutine(ObjectManager.Instance.StopSpeedUp(playerMovement));
         }
     }
 }
