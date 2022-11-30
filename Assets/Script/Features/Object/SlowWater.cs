@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlowWater : MonoBehaviour
 {
+    private List<PlayerMovement> playersInside = new List<PlayerMovement>();
+
     private void Awake()
     {
         StartCoroutine(ObjectManager.Instance.DestroyObject(gameObject));
@@ -16,13 +18,15 @@ public class SlowWater : MonoBehaviour
             Player playerData = other.gameObject.GetComponent<Player>();
             if (playerData.isInvincible == false)
             {
-                StopAllCoroutines();
                 PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
                 
                 if (playerData.IsSpeedUp)
                     playerMovement.Speed = GameManager.instance.MoveSpeed;
                 else
                     playerMovement.Speed = GameManager.instance.MinMoveSpeed;
+
+                playerData.IsSlow = true;
+                playersInside.Add(playerMovement);
             }
         }
     }
@@ -34,20 +38,29 @@ public class SlowWater : MonoBehaviour
             Player playerData = other.gameObject.GetComponent<Player>();
             if (playerData.isInvincible == false)
             {
-                StartCoroutine(TimeSlowByWater(playerData));
+                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+                playersInside.Remove(playerMovement);
+                
+                if (playerData.IsSpeedUp)
+                    playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+                else
+                    playerMovement.Speed = GameManager.instance.MoveSpeed;
+
+                playerData.IsSlow = false;
             }
         }
     }
 
-    public IEnumerator TimeSlowByWater(Player playerData)
+    private void OnDestroy()
     {
-        yield return new WaitForSeconds(GameManager.instance.SlowDuration);
+        foreach (PlayerMovement playerMovement in playersInside)
+        {
+            Player playerData = playerMovement.GetComponent<Player>();
 
-        PlayerMovement playerMovement = playerData.gameObject.GetComponent<PlayerMovement>();
-
-        if (playerData.IsSpeedUp)
-            playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
-        else
-            playerMovement.Speed = GameManager.instance.MoveSpeed;
+            if (playerData.IsSpeedUp)
+                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+            else
+                playerMovement.Speed = GameManager.instance.MoveSpeed;
+        }
     }
 }

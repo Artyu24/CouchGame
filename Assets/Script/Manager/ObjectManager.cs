@@ -92,14 +92,19 @@ public class ObjectManager : MonoBehaviour
             StopCoroutine(playerData.speedCoroutine);
             playerData.speedCoroutine = null;
         }
-        playerData.speedCoroutine =  StartCoroutine(StopSpeedUpCD(player, playerData));
+        playerData.speedCoroutine = StartCoroutine(StopSpeedUpCD(player, playerData));
     }
 
     private IEnumerator StopSpeedUpCD(PlayerMovement player, Player playerData)
     {
         StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdSpeedUp);
-        player.Speed = GameManager.instance.MoveSpeed;
+        if(playerData.IsSlow)
+            player.Speed = GameManager.instance.MinMoveSpeed;
+        else
+            player.Speed = GameManager.instance.MoveSpeed;
+        
+        playerData.IsSpeedUp = false;
         playerData.speedCoroutine = null;
     }
 

@@ -150,16 +150,28 @@ public class PointAreaManager : MonoBehaviour
         {
             RaycastHit hit;
             int i = Random.Range(0, listPoint.Count);
-            Debug.DrawRay(listPoint[i].position, listPoint[i].up * -1 * 2, Color.yellow, 5.0f);
-            Physics.Raycast(listPoint[i].position, listPoint[i].up * -1, out hit, 2);
 
-            if (hit.transform != null)
+            bool isGood = true;
+            for (int j = -30; j < 360; j += 30)
             {
-                if (hit.transform.tag == "Platform")
-                    point = listPoint[i];
+                Vector3 origin = new Vector3(listPoint[i].position.x, listPoint[i].position.y + 1, listPoint[i].position.z);
+                Debug.DrawRay(origin, listPoint[i].up * -1 * 4, Color.green, 5.0f);
+                Physics.Raycast(origin, listPoint[i].up * -1, out hit, 4);
+
+                if (hit.transform == null)
+                    isGood = false;
+                else if (hit.transform.tag != "Platform")
+                    isGood = false;
+
+                listPoint[i].eulerAngles = new Vector3(20, j, 0);
             }
 
-            secuEnfant++;
+            listPoint[i].eulerAngles = Vector3.zero;
+
+            if (isGood)
+                point = listPoint[i];
+            else
+                secuEnfant++;
         }
 
 
