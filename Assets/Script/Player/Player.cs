@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
 
     #region Boost / Malus
     private bool multiplier = false;
+    private bool isSpeedUp = false;
     public bool Multiplier { get => multiplier; set => multiplier = value; }
+    public bool IsSpeedUp { get => isSpeedUp; set => isSpeedUp = value; }
 
     public Coroutine speedCoroutine;
     public Coroutine multiplierCoroutine;

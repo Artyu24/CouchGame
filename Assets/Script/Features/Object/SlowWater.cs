@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class SlowWater : MonoBehaviour
 {
+    private void Awake()
+    {
+        StartCoroutine(ObjectManager.Instance.DestroyObject(gameObject));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            Player playerData = other.gameObject.GetComponent<Player>();
+            if (playerData.isInvincible == false)
             {
                 StopAllCoroutines();
-                other.gameObject.GetComponent<PlayerMovement>().Speed = GameManager.instance.MinMoveSpeed;
+                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+                
+                if (playerData.IsSpeedUp)
+                    playerMovement.Speed = GameManager.instance.MoveSpeed;
+                else
+                    playerMovement.Speed = GameManager.instance.MinMoveSpeed;
             }
         }
     }
@@ -20,16 +31,23 @@ public class SlowWater : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            Player playerData = other.gameObject.GetComponent<Player>();
+            if (playerData.isInvincible == false)
             {
-                StartCoroutine(TimeSlowByWater(other));
+                StartCoroutine(TimeSlowByWater(playerData));
             }
         }
     }
 
-    public IEnumerator TimeSlowByWater(Collider other)
+    public IEnumerator TimeSlowByWater(Player playerData)
     {
         yield return new WaitForSeconds(GameManager.instance.SlowDuration);
-        other.gameObject.GetComponent<PlayerMovement>().Speed = GameManager.instance.MoveSpeed;
+
+        PlayerMovement playerMovement = playerData.gameObject.GetComponent<PlayerMovement>();
+
+        if (playerData.IsSpeedUp)
+            playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+        else
+            playerMovement.Speed = GameManager.instance.MoveSpeed;
     }
 }

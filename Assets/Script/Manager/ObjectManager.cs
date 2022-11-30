@@ -22,7 +22,6 @@ public class ObjectManager : MonoBehaviour
     private GameObject speedObject;
 
     [Header("SlowZone"), SerializeField]
-    private float cdSlowZone;
     private GameObject slowZoneObject;
     
     [Header("BOMB")]
@@ -36,10 +35,11 @@ public class ObjectManager : MonoBehaviour
 
         multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
         speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
-        //slowZoneObject = Resources.Load<GameObject>("Features/SpeedUpObject");
+        slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
 
         allObjectList.Add(multiplierObject);
         allObjectList.Add(speedObject);
+        allObjectList.Add(slowZoneObject);
     }
 
     #region Start Spawn
@@ -97,12 +97,10 @@ public class ObjectManager : MonoBehaviour
 
     private IEnumerator StopSpeedUpCD(PlayerMovement player, Player playerData)
     {
-        Debug.Log("START");
         StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdSpeedUp);
         player.Speed = GameManager.instance.MoveSpeed;
         playerData.speedCoroutine = null;
-        Debug.Log("STOP");
     }
 
     #endregion
