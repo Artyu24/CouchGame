@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
     #endregion
     #region UI
     public GameObject pausePanel;
-    public GameObject button;
+    bool isOpen = false;
     //public GameObject optionPanel;
 
     #endregion
@@ -212,14 +212,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void Update()
+    public void OpenClosePausePanel(InputAction.CallbackContext ctx)
     {
         if (pausePanel != null)
         {
-            if (pausePanel.activeSelf)
+            if (ctx.started && !isOpen)
             {
                 Time.timeScale = 0.0f;
+                pausePanel.SetActive(true);
+            }
+            if (ctx.started && isOpen)
+            {
+                Time.timeScale = 1.0f;
+                pausePanel.SetActive(false);
             }
         }
         else
@@ -230,15 +235,8 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(false);
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
-        }
+        pausePanel.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     public IEnumerator TargetMeteorite()

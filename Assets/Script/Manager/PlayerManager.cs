@@ -49,12 +49,12 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         
-        manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
+        //manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
 
-        for (int i = 0; i < manettes.Count; i++)
+        /*for (int i = 0; i < manettes.Count; i++)
         {
             Debug.Log(i + " : " + manettes[i]);
-        }
+        }*/
 
         int xcount = Random.Range(0, 3);
 

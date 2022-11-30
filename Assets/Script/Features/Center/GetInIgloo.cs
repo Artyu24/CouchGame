@@ -82,9 +82,17 @@ public class GetInIgloo : MonoBehaviour
     }
     public IEnumerator OnVibrate()
     {
-        Debug.Log(PlayerManager.instance.manettes[playerInMid.playerID]);
-        PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.123f, 0.234f);
+        //Debug.Log(PlayerManager.instance.manettes[playerInMid.playerID]);
+        //PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.123f, 0.234f);
+        for (int i = 0; i < Gamepad.all.Count; i++)
+        {
+            Gamepad.all[i].SetMotorSpeeds(0.123f, 0.234f);
+        }
         yield return new WaitForSeconds(2);
         PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.0f, 0.0f);
+        for (int i = 0; i < Gamepad.all.Count; i++)
+        {
+            Gamepad.all[i].SetMotorSpeeds(0.0f, 0.0f);
+        }
     }
 }
