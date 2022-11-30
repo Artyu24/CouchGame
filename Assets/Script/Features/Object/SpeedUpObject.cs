@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpObject : MonoBehaviour, IInteractable
+public class SpeedUpObject : MonoBehaviour, IPickable
 {
     private void Awake()
     {

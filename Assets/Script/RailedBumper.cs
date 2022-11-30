@@ -26,7 +26,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if(sensNormal == true)
+        transform.LookAt(igloo);
+        if (sensNormal == true)
         {
             timeCounter += Time.deltaTime * speedAiguilleMontre;
 
@@ -34,7 +35,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
             float z = Mathf.Sin(timeCounter) * position;
 
             transform.position = new Vector3(x, gameObject.transform.position.y, z);
-            transform.LookAt(igloo);
+            Debug.Log("<0");
 
         }
         if(sensInverse == true)
@@ -45,18 +46,19 @@ public class RailedBumper : MonoBehaviour, IInteractable
             float z = Mathf.Sin(timeCounter) * position;
 
             transform.position = new Vector3(x, gameObject.transform.position.y, z);
-            transform.LookAt(igloo);
+            Debug.Log(">0");
+
         }
-        
+
     }
 
     public void Interact(Player player = null)
     {
-        if(player.transform.position.y - gameObject.transform.position.y < 0)
+        if(player.transform.position.y - gameObject.transform.position.z > 0)
         {
             StartCoroutine(ForSensNoramal());
         }
-        if (player.transform.position.y - gameObject.transform.position.y > 0)
+        if (player.transform.position.y - gameObject.transform.position.z < 0)
         {
             StartCoroutine(ForSensInverse());
         }

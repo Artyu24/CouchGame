@@ -113,12 +113,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
-                }
-                if (hit.transform != null && hit.transform.tag == "Bumper")//if we hit a Bumper we do things
-                {
-                    hit.transform.GetComponent<RailedBumper>().Interact();
-                    return;
-                }
+                }                
                 if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
                 {
                     CenterManager.instance.DealDamage();
@@ -131,6 +126,12 @@ public class PlayerAttack : MonoBehaviour
                     hit.transform.GetComponent<Bomb>().StartExplosion(gameObject, new Vector3(dir.x, 1, dir.z) * _strenght);
                     hit.transform.GetComponent<Bomb>().isGrounded = false;
                     return;
+                }
+
+                if(hit.transform != null)
+                {
+                    if (hit.transform.GetComponent<IInteractable>() != null)
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                 }
                 #endregion
 
