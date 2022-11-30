@@ -50,7 +50,7 @@ public class Bomb : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         //trigger Particle effect
-        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<Rigidbody>().useGravity = false;
         //trigger Sound
 
