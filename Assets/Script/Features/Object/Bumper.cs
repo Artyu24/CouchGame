@@ -12,7 +12,7 @@ public class Bumper : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Vector3 push = (other.transform.position - capsulCollider.transform.position).normalized;
-            other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForce);
+            other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceBumper);
             other.gameObject.GetComponent<Player>().isChockedWaved = true;
             playerList.Add(other.gameObject.GetComponent<Player>());
             int xcount = Random.Range(0, 5);

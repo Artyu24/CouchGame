@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
+    [Header("Variables des Meteorite")]
+    [SerializeField] private float pushForceBumper = 1.5f;
+    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
+
+
     public GameObject target;
 
     public float CDafterTargetAparrition;
