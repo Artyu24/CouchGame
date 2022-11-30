@@ -115,11 +115,7 @@ public class GameManager : MonoBehaviour
     public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
 
 
-    public float MovSpeedSlowZone => movSpeedSlowZone;
-    public float MaxMovementSpeed => maxMovementSpeed;
-    public float RespawnDelay => respawnDelay;
-    public int InvincibleDelay => invincibleDelay;
-    public float SlowDuration => slowDuration;
+
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
     
