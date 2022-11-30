@@ -64,13 +64,13 @@ public class PointAreaManager : MonoBehaviour
     {
         for (int i = 0; i < listTransform.Count;)
         {
-            if (listTransform[i] ?? null)
+            if (!listTransform[i])
             {
-                i++;
+                listTransform.Remove(listTransform[i]);
                 continue;
             }
             
-            listTransform.Remove(listTransform[i]);
+            i++;
         }
     }
 
