@@ -155,8 +155,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.GetComponent<IInteractable>() != null)
-            col.GetComponent<IInteractable>().Interact(player);    
+        if (col.GetComponent<IPickable>() != null)
+            col.GetComponent<IPickable>().Interact(player);    
     }
 
     public IEnumerator CooldownForInteraction()
