@@ -85,11 +85,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pushForceExplosion = 1.5f;
     public float PushForceExplosion { get => pushForceExplosion; private set => pushForceExplosion = value; }
     [SerializeField] private float speedMeteorite = 1.5f;
-    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
-
-    [Header("Variables des Meteorite")]
-    [SerializeField] private float pushForceBumper = 1.5f;
-    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
+    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }   
 
 
     public GameObject target;
@@ -103,6 +99,11 @@ public class GameManager : MonoBehaviour
     public float cdforNewMeteorite;
 
     bool canMeteorite = true;
+
+
+    [Header("Variables des Bumper")]
+    [SerializeField] private float pushForceBumper = 1.5f;
+    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
 
 
     public float MovSpeedSlowZone => movSpeedSlowZone;
@@ -245,7 +246,9 @@ public class GameManager : MonoBehaviour
     {
         if(canMeteorite == true)
         {
-            target.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
+            Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
+            target.transform.position = randomPos.position;
+            target.transform.parent = randomPos.parent;
             target.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
             target.SetActive(false);
