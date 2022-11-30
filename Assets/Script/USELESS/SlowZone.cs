@@ -11,7 +11,7 @@ public class SlowZone : MonoBehaviour
         {
             if(other.gameObject.GetComponent<Player>().isInvincible == false)
             {
-                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone;
+                other.gameObject.GetComponent<PlayerMovement>().Speed = GameManager.instance.MinMoveSpeed;
 
                 //FindObjectOfType<AudioManager>().Play("MainTheme");
 
@@ -28,7 +28,7 @@ public class SlowZone : MonoBehaviour
         {
             if(other.gameObject.GetComponent<Player>().isInvincible == false)
             {
-                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
+                other.gameObject.GetComponent<PlayerMovement>().Speed = GameManager.instance.MaxMoveSpeed;
 
             }
 

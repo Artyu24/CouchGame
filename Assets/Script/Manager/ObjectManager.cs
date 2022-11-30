@@ -9,7 +9,8 @@ public class ObjectManager : MonoBehaviour
 
     [Header("General"), SerializeField]
     private int itemPossible;
-    [SerializeField] private float cdGeneral;
+    [SerializeField] private float cdSpawn;
+    [SerializeField] private float cdDespawn;
     private List<GameObject> allObjectList = new List<GameObject>();
 
     [Header("Multiplier"), SerializeField] 
@@ -53,14 +54,31 @@ public class ObjectManager : MonoBehaviour
 
     #endregion
 
-    #region Spawn Gestion
+    #region SpeedUpObject
+
+    public IEnumerator StopSpeedUp(PlayerMovement player)
+    {
+        yield return new WaitForSeconds(cdMultiplier);
+        player.Speed = GameManager.instance.MoveSpeed;
+        //Reload
+    }
+
+    #endregion
+
+    #region Spawn / Despawn Gestion
 
     private IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(cdGeneral);
+        yield return new WaitForSeconds(cdSpawn);
         int random = Random.Range(0, allObjectList.Count);
         Transform pos = PointAreaManager.instance.GetRandomPosition();
         Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
+    }
+
+    public IEnumerator DestroyObject(GameObject objet)
+    {
+        yield return new WaitForSeconds(cdDespawn);
+        Destroy(objet);
     }
 
     #endregion
