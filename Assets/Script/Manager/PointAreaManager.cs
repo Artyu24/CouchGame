@@ -21,13 +21,6 @@ public class PointAreaManager : MonoBehaviour
 
     private GameObject fishBag;
 
-
-    [Header("Temporaire")] 
-    private int noGold = 1;
-    private int oneGold = 1;
-    private int twoGold = 1;
-    private int treeGold = 97;
-
     void Awake()
     {
         if (instance == null)
@@ -128,59 +121,7 @@ public class PointAreaManager : MonoBehaviour
         Transform pos = GetRandomPosition();
         GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
 
-        if (noGold + oneGold + twoGold + treeGold != 100)
-            Debug.Log("LES PROBA SONT PAS BONNE ({noGold + oneGold + twoGold + treeGold} c'est pas 100%)");
-
-        int _g = Random.Range(0, 100);
-        if (_g < noGold)
-        {
-            //Debug.Log("0 / " + _g);
-            bag.GetComponent<FishBag>().goldenFish.Add(999);
-        }
-        else if(_g < noGold + oneGold)
-        {
-            //Debug.Log("1 / " + _g);
-            int firstGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-
-            bag.transform.GetChild(0).GetChild(firstGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-            bag.GetComponent<FishBag>().goldenFish.Add(firstGFish);
-        }
-        else if (_g < noGold + oneGold + twoGold)
-        {
-            //Debug.Log("2 / " + _g);
-            int firstGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            int secondGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            while (secondGFish == firstGFish)
-                secondGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-
-            bag.transform.GetChild(0).GetChild(firstGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-            bag.transform.GetChild(0).GetChild(secondGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-
-            bag.GetComponent<FishBag>().goldenFish.Add(firstGFish);
-            bag.GetComponent<FishBag>().goldenFish.Add(secondGFish);
-        }
-        else
-        {
-            //Debug.Log("3 / " + _g);
-            int firstGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            int secondGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            while (secondGFish == firstGFish)
-                secondGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            int thirdGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-            while(thirdGFish == secondGFish || thirdGFish == firstGFish)
-                thirdGFish = Random.Range(0, bag.transform.GetChild(0).childCount);
-
-            bag.transform.GetChild(0).GetChild(firstGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-            bag.transform.GetChild(0).GetChild(secondGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-            bag.transform.GetChild(0).GetChild(thirdGFish).GetComponent<MeshRenderer>().material = Resources.Load("GoldenFish") as Material;
-
-            bag.GetComponent<FishBag>().goldenFish.Add(firstGFish);
-            bag.GetComponent<FishBag>().goldenFish.Add(secondGFish);
-            bag.GetComponent<FishBag>().goldenFish.Add(thirdGFish);
-        }
-
-        bag.GetComponent<FishBag>().goldenFish.Sort();
-
+        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
     }
     #endregion
 
