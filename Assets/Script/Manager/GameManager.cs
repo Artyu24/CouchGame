@@ -96,6 +96,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float speedMeteorite = 1.5f;
     public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
 
+    [Header("Variables des Meteorite")]
+    [SerializeField] private float pushForceBumper = 1.5f;
+    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
+
+
     public GameObject target;
 
     public float CDafterTargetAparrition;
@@ -216,16 +221,30 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (pausePanel.activeSelf)
+        if (pausePanel != null)
         {
-            Time.timeScale = 0.0f;
+            if (pausePanel.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
         }
     }
 
     public void ResumeGame()
     {
-        pausePanel.SetActive(false);
-        Time.timeScale = 1.0f;
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
+        }
     }
 
     public IEnumerator TargetMeteorite()
