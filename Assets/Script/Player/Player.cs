@@ -10,11 +10,16 @@ public class Player : MonoBehaviour
 
     public int score = 0;
     public int scoreGeneral = 0;
+
+    #region Boost / Malus
     private bool multiplier = false;
     public bool Multiplier { get => multiplier; set => multiplier = value; }
 
-    public bool isChockedWaved = false;
+    public Coroutine speedCoroutine;
+    public Coroutine multiplierCoroutine;
+    #endregion
 
+    public bool isChockedWaved = false;
     public bool isInvincible = false;
 
     private PlayerState actualPlayerState = PlayerState.INIT;
@@ -23,7 +28,6 @@ public class Player : MonoBehaviour
     public Color currentColor;
 
     public List<GameObject> medals = new List<GameObject>();
-
     public GameObject couronne;
 
     //public Gamepad playerManette;
