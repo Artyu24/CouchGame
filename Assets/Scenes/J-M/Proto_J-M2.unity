@@ -5629,9 +5629,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: PREFAB_GENERAL
       objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522152, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522152, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2966781007563227531, guid: 8e20f36eac6b6e44799cc004650ee951,
@@ -13079,6 +13104,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407997054}
     m_Modifications:
+    - target: {fileID: 5650868367745486450, guid: de81e2a46b915f048b65ffa40ea6c3d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 9222056193418607204, guid: de81e2a46b915f048b65ffa40ea6c3d8,
         type: 3}
       propertyPath: m_RootOrder
@@ -13138,6 +13168,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BumperBetter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222056193418607205, guid: de81e2a46b915f048b65ffa40ea6c3d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222056193418607205, guid: de81e2a46b915f048b65ffa40ea6c3d8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bumper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de81e2a46b915f048b65ffa40ea6c3d8, type: 3}
