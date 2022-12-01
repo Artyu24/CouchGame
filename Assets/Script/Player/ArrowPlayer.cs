@@ -19,7 +19,7 @@ public class ArrowPlayer : MonoBehaviour
         texte.GetComponent<Text>().color = flecheColor[GetComponentInParent<Player>().playerID];
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
         fleche.transform.position = cam.WorldToScreenPoint(screenPos);
