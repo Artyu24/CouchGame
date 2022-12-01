@@ -114,6 +114,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pushForceBumper = 1.5f;
     public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
 
+
+
+
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
     
     #endregion

@@ -90,7 +90,7 @@ public class ObjectManager : MonoBehaviour
     private void SpawnBag()
     {
         Transform pos = PointAreaManager.instance.GetRandomPosition();
-        GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
+        GameObject bag = Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
 
         bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
     }

@@ -38,6 +38,11 @@ public enum SoundState
     EatingSound,
     EffortSound,
     SatisfySound,
-    SpecialSound,
-
+    SpecialVoiceSound,
+    ChargedSpecialSound,
+    PunchSpecialSound,
+    LoopSpecialSound,
+    NormalPunchSound,
+    BeingHitSound,
+    FootstepsSound,
 }

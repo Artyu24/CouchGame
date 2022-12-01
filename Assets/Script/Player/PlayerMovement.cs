@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
         transform.GetChild(0).localPosition = new Vector3(0, -0.9f, 0);
+        transform.GetChild(3).localPosition -= movementInput;
         //Debug.Log(transform.GetChild(0).name);
     }
 
