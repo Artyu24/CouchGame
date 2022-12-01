@@ -89,7 +89,7 @@ public class GetInIgloo : MonoBehaviour
             Gamepad.all[i].SetMotorSpeeds(0.123f, 0.234f);
         }
         yield return new WaitForSeconds(2);
-        PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.0f, 0.0f);
+        //PlayerManager.instance.manettes[playerInMid.playerID].SetMotorSpeeds(0.0f, 0.0f);
         for (int i = 0; i < Gamepad.all.Count; i++)
         {
             Gamepad.all[i].SetMotorSpeeds(0.0f, 0.0f);

@@ -102,6 +102,7 @@ public class CenterManager : MonoBehaviour
     {
         healthPoint--;
         shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        //shieldEffect.visualEffectAsset.
         if(healthPoint <= 0)
             DesactivateShield();
     }

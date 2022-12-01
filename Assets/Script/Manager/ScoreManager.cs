@@ -64,6 +64,7 @@ public class ScoreManager : MonoBehaviour
     {
         addMiddleScore = false;
         AddScore(scoreMiddle, GameManager.instance.PlayerInMiddle.GetComponent<Player>());
+        Debug.Log(GameManager.instance.PlayerInMiddle.GetComponent<Player>());
         yield return new WaitForSeconds(middelPointsCooldown);
         addMiddleScore = true;
     }
@@ -82,8 +83,10 @@ public class ScoreManager : MonoBehaviour
         if (player.Multiplier)
             multi = multiplier;
 
-        player.score += points * multiplier;
+        player.score += points * multi;
         
+        Debug.Log(player.score);
+
         ScoreBoardSorting();
         UpdateScores();
     }
