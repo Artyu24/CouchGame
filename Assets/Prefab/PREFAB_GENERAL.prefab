@@ -5653,8 +5653,93 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
+      propertyPath: timer
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: pushForce
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: radiusMax
+      value: 9.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: nbrFishBag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: growingSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: maxMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: minMoveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: interactionCD
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: normalStrenght
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: speedMeteorite
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: specialStrenght
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: cdforNewMeteorite
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: pushForceExplosion
+      value: 950
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: radiusMaxExplosion
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
       propertyPath: tabCircle.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: growingSpeedExplossion
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: CDafterTargetAparrition
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333859, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
@@ -5676,6 +5761,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 175090755445885864}
     m_Modifications:
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: cdSpawn
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: cdDespawn
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: cdSpeedUp
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: cdMultiplier
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7683268478225541625, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
         type: 3}
       propertyPath: m_RootOrder
