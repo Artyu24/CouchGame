@@ -30,15 +30,16 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
-    [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
+    [Tooltip("La partie sur le cotï¿½ en Degrï¿½ (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
+
+
 
     private void Start()
     {
         effectSpeBarre = transform.GetChild(1).gameObject;
         effectSpeBarre.SetActive(false);
     }
-
     #endregion
 
     #region InputSysteme
@@ -49,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
         {
             int xcount = Random.Range(0, 5);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
-            StartCoroutine(AttackCoroutine(strenght));
+            StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
         }
     }
 
@@ -62,20 +63,24 @@ public class PlayerAttack : MonoBehaviour
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
             int xcount = Random.Range(0, 3);
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialSound);
-            StartCoroutine(AttackCoroutine(strenght));
+            StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
+
         }
     }
     #endregion
 
     #region Attack
-    IEnumerator AttackCoroutine(float _strenght)
+    IEnumerator AttackCoroutine(float _strenght, GameObject _poisson)
     {
         canAttack = false;
         Attack(_strenght);
 
+        _poisson.GetComponent<Animator>().SetTrigger("Smash");
+
         yield return new WaitForSecondsRealtime(GameManager.instance.AttackCd);
         canAttack = true;
+        // Ici on mange des gauffres, hï¿½ ouai
     }
 
 
@@ -91,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
                 RaycastHit hit;
                 #region Raycast Calcul
                 //next 5 lines calcul the right angle and do the raycast
-                middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ça marche plus faut faire le transform.TransformDirection après les calcules
+                middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ï¿½a marche plus faut faire le transform.TransformDirection aprï¿½s les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
                 Debug.DrawRay((new Vector3(dir.x / 2.5f,0,dir.z / 2.5f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
@@ -111,27 +116,23 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
                 {
+
+                    Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
                     hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
-                }                
+                }
                 if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
                 {
                     CenterManager.instance.DealDamage();
                     return;
                 }
-                if (hit.transform != null && hit.transform.tag == "Bomb")
+                if (hit.transform != null && hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
                 {
                     hit.transform.GetComponent<Rigidbody>().mass = 1;
                     hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject, new Vector3(dir.x, 1, dir.z) * _strenght);
+                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
                     hit.transform.GetComponent<Bomb>().isGrounded = false;
                     return;
-                }
-
-                if(hit.transform != null)
-                {
-                    if (hit.transform.GetComponent<IInteractable>() != null)
-                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                 }
                 #endregion
 

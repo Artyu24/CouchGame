@@ -174,12 +174,10 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
-    
-    #region UI
-    public GameObject pausePanel;
-    public GameObject button;
-    //public GameObject optionPanel;
 
+    #region UI
+    public GameObject pausePanel, optionsPanel;
+    public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion
 
     void Awake()
@@ -219,35 +217,6 @@ public class GameManager : MonoBehaviour
         {
             target.SetActive(false);
             StartCoroutine(TargetMeteorite());
-        }
-    }
-
-
-    public void Update()
-    {
-        if (pausePanel != null)
-        {
-            if (pausePanel.activeSelf)
-            {
-                Time.timeScale = 0.0f;
-            }
-        }
-        else
-        {
-            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
-        }
-    }
-
-    public void ResumeGame()
-    {
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(false);
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
         }
     }
 
