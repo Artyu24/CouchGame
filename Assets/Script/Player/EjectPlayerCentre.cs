@@ -16,8 +16,10 @@ public class EjectPlayerCentre : MonoBehaviour
         {
             GameManager.instance.ejectPlatesActive++;
             bc.enabled = false;
-            GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
+            //GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreInterrupteur, other.GetComponent<Player>());
+
+            GetComponent<Animator>().SetTrigger("Press");
 
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
