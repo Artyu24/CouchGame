@@ -20,6 +20,7 @@ public class FishBag : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(isGolden);
         fish = new Transform[transform.GetChild(0).childCount];
         int children = transform.GetChild(0).childCount;
         for (int i = 0; i < children; ++i)
@@ -45,7 +46,7 @@ public class FishBag : MonoBehaviour
 
         int xcount = Random.Range(0, 5);
 
-        Debug.LogError("JM ICI LE SON FRERO T ES BO");
+        //Debug.LogError("JM ICI LE SON FRERO T ES BO");
         
         switch (xcount)
         {
@@ -84,6 +85,7 @@ public class FishBag : MonoBehaviour
 
     IEnumerator BarSpePlus(GameObject player)
     {
+        Debug.Log("Is In");
         yield return new WaitForSecondsRealtime(1.4f);
         PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
 
@@ -91,6 +93,7 @@ public class FishBag : MonoBehaviour
         {
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
+            Debug.Log(ScoreManager.instance.scorePointArea);
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
                 playerAttack.AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
             if (playerAttack.CurrentSpecial > playerAttack.maxSpecial)
@@ -99,6 +102,7 @@ public class FishBag : MonoBehaviour
         else//bouh le nul
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
+            Debug.Log(ScoreManager.instance.scorePointArea);
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
                 playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }
