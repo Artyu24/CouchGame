@@ -16,6 +16,7 @@ public class ArrowPlayer : MonoBehaviour
         //Debug.Log(GetComponentInParent<Player>().playerID);
         fleche.GetComponent<Image>().color = flecheColor[GetComponentInParent<Player>().playerID];
         texte.GetComponent<Text>().text = "J" + (GetComponentInParent<Player>().playerID+1);
+        texte.GetComponent<Text>().color = flecheColor[GetComponentInParent<Player>().playerID];
     }
 
     void Update()
