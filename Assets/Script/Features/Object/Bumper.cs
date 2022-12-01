@@ -6,7 +6,7 @@ public class Bumper : MonoBehaviour
 {
     public CapsuleCollider capsulCollider;
     private List<Player> playerList = new List<Player>();
-
+    public Animator m_Animator;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -15,8 +15,15 @@ public class Bumper : MonoBehaviour
             other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceBumper);
             other.gameObject.GetComponent<Player>().isChockedWaved = true;
             playerList.Add(other.gameObject.GetComponent<Player>());
-            int xcount = Random.Range(0, 5);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+            StartCoroutine(PlayAnim());
         }
+    }
+
+    public IEnumerator PlayAnim()
+    {
+        m_Animator.SetBool("Bumped", true);
+        yield return new WaitForSeconds(0.583f);
+        m_Animator.SetBool("Bumped", false);
     }
 }

@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
-    [Tooltip("La partie sur le coté en Degré (prendre en compte x2 pour l'amplitude total)")]
+    [Tooltip("La partie sur le cotï¿½ en Degrï¿½ (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
     private void Start()
@@ -62,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
             int xcount = Random.Range(0, 3);
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialSound);
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
             StartCoroutine(AttackCoroutine(strenght));
         }
     }
@@ -91,7 +91,7 @@ public class PlayerAttack : MonoBehaviour
                 RaycastHit hit;
                 #region Raycast Calcul
                 //next 5 lines calcul the right angle and do the raycast
-                middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ça marche plus faut faire le transform.TransformDirection après les calcules
+                middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si ï¿½a marche plus faut faire le transform.TransformDirection aprï¿½s les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
                 Debug.DrawRay((new Vector3(dir.x / 2.5f,0,dir.z / 2.5f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
@@ -113,13 +113,26 @@ public class PlayerAttack : MonoBehaviour
                 {
                     hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
-                }
+                }                
                 if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
                 {
                     CenterManager.instance.DealDamage();
                     return;
                 }
+                if (hit.transform != null && hit.transform.tag == "Bomb")
+                {
+                    hit.transform.GetComponent<Rigidbody>().mass = 1;
+                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject, new Vector3(dir.x, 1, dir.z) * _strenght);
+                    hit.transform.GetComponent<Bomb>().isGrounded = false;
+                    return;
+                }
 
+                if(hit.transform != null)
+                {
+                    if (hit.transform.GetComponent<IInteractable>() != null)
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                }
                 #endregion
 
                 #region Don't Do To Much
@@ -148,7 +161,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void HitTag(GameObject _player)
     {
-        StartCoroutine(WhoHitMe(_player, 5));
+        StartCoroutine(WhoHitMe(_player, 10));
     }
 
     IEnumerator WhoHitMe(GameObject _player, float _s)
