@@ -25,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private Slider speBarreSlider;
+    public Gradient speBarreGradient;
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
     private GameObject effectSpeBarre;
 
