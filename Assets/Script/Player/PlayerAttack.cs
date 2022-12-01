@@ -116,6 +116,8 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
                 {
+
+                    Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
                     hit.transform.GetComponent<FishBag>().Damage(gameObject);
                     return;
                 }

@@ -44,19 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a3e3af94f4b3f4faaa3095315063c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 150
+  timer: 50
   deadZoneController: 0.3
+  nbrFishBag: 2
   range: 1.5
   sideRangeDeg: 30
   normalStrenght: 11
   specialStrenght: 30
   attackCd: 1
   interactionCD: 1.5
-  spawnList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxMovementSpeed: 4
   movSpeedSlowZone: 0
   respawnDelay: 2
@@ -69,8 +65,15 @@ MonoBehaviour:
   growingSpeedExplossion: 1.5
   pushForceExplosion: 1.5
   speedMeteorite: 1.5
+  pushForceBumper: 1.5
+  target: {fileID: 0}
+  CDafterTargetAparrition: 0
+  cdforNewMeteorite: 0
   circleRotationSpeed: 32.2
-  tabCircle: []
+  tabCircle:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   circleBlockList: []
   colorCircleChoose: {r: 0.8784314, g: 0.69803923, b: 0.70980394, a: 1}
   numberOfPlate: 3
@@ -80,3 +83,8 @@ MonoBehaviour:
   cameraScene: {fileID: 0}
   shakePower: 0.05
   shakeDuration: 0.5
+  pausePanel: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  pauseFirstButton: {fileID: 0}
+  optionsFirstButton: {fileID: 0}
+  optionsClosedButton: {fileID: 0}
