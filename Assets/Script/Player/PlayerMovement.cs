@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Unity.Mathematics;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Playables;
@@ -15,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     private Rigidbody rb;
     public Animator animator;
+
     private Vector3 movementInput;
     private Quaternion orientation;
     private float rotation = 0;
+    private bool switchDone = false;
     private int actualCircle;
     public int ActualCircle => actualCircle;
 
@@ -44,22 +48,23 @@ public class PlayerMovement : MonoBehaviour
         chocWave = Resources.Load<GameObject>("ChocWave");
     }
 
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GetComponent<Player>().ActualPlayerState == PlayerState.FIGHTING)
+        if (player.ActualPlayerState == PlayerState.FIGHTING)
         {
             rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
             transform.rotation = orientation;
         }
 
-        if (GetComponent<Player>().ActualPlayerState == PlayerState.FLYING)
+        if (player.ActualPlayerState == PlayerState.FLYING)
         {
             StartCoroutine(isFlying());   
             Debug.DrawRay(transform.position, Vector3.down * transform.localScale.y, Color.red, 10f);
         }
 
-        if (GetComponent<Player>().ActualPlayerState == PlayerState.MIDDLE)
+        if (player.ActualPlayerState == PlayerState.MIDDLE)
             GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
     }
 
@@ -85,81 +90,78 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        movementInput = Vector3.zero;
+        movementInput = ctx.ReadValue<Vector3>();
 
-        if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
+        if (player.ActualPlayerState == PlayerState.FIGHTING)
         {
-            orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
-            movementInput = ctx.ReadValue<Vector3>();
-        }
+            if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
+            {
+                orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
+            }
 
-        if(movementInput == Vector3.zero)
-            animator.SetBool("Run", false);
-        else
-            animator.SetBool("Run", true);
+            if(movementInput == Vector3.zero)
+                animator.SetBool("Run", false);
+            else
+                animator.SetBool("Run", true);
+        }
     }
 
     public void OnCircleMovement(InputAction.CallbackContext ctx)
     {
+        movementInput = ctx.ReadValue<Vector3>();
+
         if (player.ActualPlayerState == PlayerState.MIDDLE)
         {
-            Vector3 value = ctx.ReadValue<Vector3>();
+            rotation = 0;
 
-            if (Math.Abs(value.x) > Math.Abs(value.y))
+            if (Math.Abs(movementInput.x) > Math.Abs(movementInput.z))
             {
                 //Rotation
-                if (ctx.performed)
+                if (Math.Abs(movementInput.x) > 0.9f && Math.Abs(movementInput.z) <= 0.2f)
                 {
-
+                    if (ctx.performed)
+                    {
+                        if (movementInput.x < 0)
+                            rotation = -1;
+                        else
+                            rotation = 1;
+                    }
                 }
             }
             else
             {
                 //Switch
-                if (ctx.started)
+                if (Math.Abs(movementInput.x) <= 0.2f && Math.Abs(movementInput.z) > 0.9f)
                 {
+                    if (!switchDone)
+                    {
+                        switchDone = true;
 
+                        GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = false;
+                        GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
+
+                        float nextCircle = 0;
+                        if (movementInput.z < 0)
+                            nextCircle = -1;
+                        else
+                            nextCircle = 1;
+
+                        if (actualCircle + nextCircle < 0)
+                            actualCircle = GameManager.instance.tabCircle.Count - 1;
+                        else if (actualCircle + nextCircle > GameManager.instance.tabCircle.Count - 1)
+                            actualCircle = 0;
+                        else
+                            actualCircle += (int)nextCircle;
+
+                        GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = true;
+                        GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
+                    }
                 }
-            }
-        }
-    }
-
-    public void OnRotation(InputAction.CallbackContext context)
-    {
-        if (player.ActualPlayerState == PlayerState.MIDDLE)
-        {
-            if (context.performed)
-            {
-                rotation = context.ReadValue<float>();
-            }
-            else
-                rotation = 0;
-        }
-    }
-
-    public void OnSwitchCircle(InputAction.CallbackContext context)
-    {
-        if (player.ActualPlayerState == PlayerState.MIDDLE)
-        {
-            if (context.started)
-            {
-                GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
-
-                float nextCircle = context.ReadValue<float>();
-                if (actualCircle + nextCircle < 0)
-                    actualCircle = GameManager.instance.tabCircle.Count - 1;
-                else if (actualCircle + nextCircle > GameManager.instance.tabCircle.Count - 1)
-                    actualCircle = 0;
                 else
-                    actualCircle += (int)nextCircle;
-
-                GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
+                    switchDone = false;
             }
         }
     }
-    
 
     public void OnChocWave(InputAction.CallbackContext context)
     {
