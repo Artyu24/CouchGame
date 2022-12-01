@@ -121,6 +121,8 @@ public class ScoreManager : MonoBehaviour
 
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
+        //Debug.Log(PlayerManager.instance.players[p].GetComponent<Player>().currentColor);
+        //scorePlayerText[p].color = PlayerManager.instance.players[p].GetComponent<Player>().currentColor;
         UpdateScores();
     }
 }

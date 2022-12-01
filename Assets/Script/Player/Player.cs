@@ -37,8 +37,10 @@ public class Player : MonoBehaviour
 
     //public Gamepad playerManette;
 
-    private void Start()
+    private void Awake()
     {
+        currentColor = GetComponentInChildren<ArrowPlayer>().flecheColor[playerID];
+        //Debug.Log(currentColor);
         //DG.Tweening.Sequence seq = DOTween.Sequence();
         //seq.Append(graphics.material.DOFade(0.2f, 0.5f));
         //seq.Append(graphics.material.DOFade(1, 0.5f));

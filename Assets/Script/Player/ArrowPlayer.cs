@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArrowPlayer : MonoBehaviour
 {
-    private Color[] flecheColor = new Color[4] { Color.blue, Color.red, Color.yellow, Color.green };
+    public Color[] flecheColor = new Color[4] { Color.blue, Color.red, Color.yellow, Color.green };
     public GameObject fleche, texte;
     public float offsetArrow = 2;
     Camera cam;
