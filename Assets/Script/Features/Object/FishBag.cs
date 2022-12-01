@@ -20,7 +20,6 @@ public class FishBag : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(isGolden);
         fish = new Transform[transform.GetChild(0).childCount];
         int children = transform.GetChild(0).childCount;
         for (int i = 0; i < children; ++i)
@@ -73,38 +72,15 @@ public class FishBag : MonoBehaviour
         Destroy(fui, 1.4f);
         fui.GetComponent<MoveToUI>().ui_element_gameobject = player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject;
 
-        StartCoroutine(BarSpePlus(player));
+        ObjectManager.Instance.CallBarSpePlus(player, isGolden);
         animator.SetTrigger("SHAKEMETHAT");
 
         if (hp <= 0)
         {
-            Destroy(gameObject);
             ObjectManager.Instance.StartNextSpawn();
+            Destroy(gameObject);
         }
     }
 
-    IEnumerator BarSpePlus(GameObject player)
-    {
-        Debug.Log("Is In");
-        yield return new WaitForSecondsRealtime(1.4f);
-        PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
-
-        if (isGolden)//le poisson est goldé
-        {
-            //Debug.Log("GOLDEEEEEEENNNNNNNN");
-            ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
-            Debug.Log(ScoreManager.instance.scorePointArea);
-            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
-                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
-            if (playerAttack.CurrentSpecial > playerAttack.maxSpecial)
-                playerAttack.CurrentSpecial = 5;
-        }
-        else//bouh le nul
-        {
-            ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
-            Debug.Log(ScoreManager.instance.scorePointArea);
-            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
-                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
-        }
-    }
+    
 }

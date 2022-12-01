@@ -94,6 +94,37 @@ public class ObjectManager : MonoBehaviour
 
         bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
     }
+    
+    public void CallBarSpePlus(GameObject player, bool isGolden)
+    {
+        StartCoroutine(BarSpePlus(player, isGolden));
+    }
+
+    private IEnumerator BarSpePlus(GameObject player, bool isGolden)
+    {
+        Debug.Log("Is In " + isGolden);
+        yield return new WaitForSecondsRealtime(1.4f);
+        PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
+        Debug.Log("Is In timing " + isGolden);
+
+        if (isGolden)//le poisson est goldé
+        {
+            Debug.Log(ScoreManager.instance.scorePointArea);
+            //Debug.Log("GOLDEEEEEEENNNNNNNN");
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
+            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
+                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
+            if (playerAttack.CurrentSpecial > playerAttack.maxSpecial)
+                playerAttack.CurrentSpecial = 5;
+        }
+        else//bouh le nul
+        {
+            ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
+            Debug.Log(ScoreManager.instance.scorePointArea);
+            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
+                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
+        }
+    }
     #endregion
 
     #region Multiplier Object
