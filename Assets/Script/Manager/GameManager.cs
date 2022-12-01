@@ -220,7 +220,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public IEnumerator TargetMeteorite()
     {
         if(canMeteorite == true)

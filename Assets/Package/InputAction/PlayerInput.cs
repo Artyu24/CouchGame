@@ -256,7 +256,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Positive"",
                     ""id"": ""5ece3899-b8a7-457a-9610-7c5bcc45b5fe"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -267,7 +267,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Negative"",
                     ""id"": ""e8bfd145-f3b4-46e7-8ec6-a4cf6572143d"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -289,7 +289,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""e5c31516-0ca4-4687-bd51-8509964445e6"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
@@ -300,7 +300,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""d65bdaef-d64d-4d02-82e2-2541e6cd914c"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<XInputController>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""CircularScheme"",
