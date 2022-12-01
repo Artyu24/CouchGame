@@ -126,7 +126,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""e48a3083-b23a-47d8-adb2-870aad900e0e"",
+                    ""id"": ""e7441c63-8f68-497d-840c-e949210fd881"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Option"",
+                    ""type"": ""Button"",
+                    ""id"": ""8739c219-b9bc-485f-8e25-2089e942490f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -356,12 +365,23 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f2bb5600-98be-478f-9055-d3850a1d5649"",
+                    ""id"": ""e34ac8b5-3bc5-4a37-bd5a-78b530a5d38e"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""UIInput"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1fcbc8b6-142d-4182-9bdb-fad2ac1cee96"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Option"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -385,6 +405,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIInput"",
+            ""bindingGroup"": ""UIInput"",
+            ""devices"": []
         }
     ]
 }");
@@ -403,6 +428,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_MeteoriteWest = m_Player.FindAction("MeteoriteWest", throwIfNotFound: true);
         m_Player_ChocWave = m_Player.FindAction("ChocWave", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Option = m_Player.FindAction("Option", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
@@ -500,6 +526,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MeteoriteWest;
     private readonly InputAction m_Player_ChocWave;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Option;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -515,6 +542,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @MeteoriteWest => m_Wrapper.m_Player_MeteoriteWest;
         public InputAction @ChocWave => m_Wrapper.m_Player_ChocWave;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Option => m_Wrapper.m_Player_Option;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -557,6 +585,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Option.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOption;
+                @Option.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOption;
+                @Option.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOption;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -594,6 +625,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Option.started += instance.OnOption;
+                @Option.performed += instance.OnOption;
+                @Option.canceled += instance.OnOption;
             }
         }
     }
@@ -632,6 +666,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_CircularSchemeSchemeIndex];
         }
     }
+    private int m_UIInputSchemeIndex = -1;
+    public InputControlScheme UIInputScheme
+    {
+        get
+        {
+            if (m_UIInputSchemeIndex == -1) m_UIInputSchemeIndex = asset.FindControlSchemeIndex("UIInput");
+            return asset.controlSchemes[m_UIInputSchemeIndex];
+        }
+    }
     public interface ICircleActions
     {
     }
@@ -648,6 +691,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMeteoriteWest(InputAction.CallbackContext context);
         void OnChocWave(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnOption(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

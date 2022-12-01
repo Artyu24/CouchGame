@@ -104,7 +104,16 @@
                 {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "e48a3083-b23a-47d8-adb2-870aad900e0e",
+                    "id": "e7441c63-8f68-497d-840c-e949210fd881",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Option",
+                    "type": "Button",
+                    "id": "8739c219-b9bc-485f-8e25-2089e942490f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -334,12 +343,23 @@
                 },
                 {
                     "name": "",
-                    "id": "f2bb5600-98be-478f-9055-d3850a1d5649",
+                    "id": "e34ac8b5-3bc5-4a37-bd5a-78b530a5d38e",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "UIInput",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fcbc8b6-142d-4182-9bdb-fad2ac1cee96",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Option",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -363,6 +383,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "UIInput",
+            "bindingGroup": "UIInput",
+            "devices": []
         }
     ]
 }
