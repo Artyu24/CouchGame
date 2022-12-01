@@ -102,14 +102,11 @@ public class ObjectManager : MonoBehaviour
 
     private IEnumerator BarSpePlus(GameObject player, bool isGolden)
     {
-        Debug.Log("Is In " + isGolden);
         yield return new WaitForSecondsRealtime(1.4f);
         PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
-        Debug.Log("Is In timing " + isGolden);
 
         if (isGolden)//le poisson est goldé
         {
-            Debug.Log(ScoreManager.instance.scorePointArea);
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
@@ -120,7 +117,6 @@ public class ObjectManager : MonoBehaviour
         else//bouh le nul
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
-            Debug.Log(ScoreManager.instance.scorePointArea);
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
                 playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }
