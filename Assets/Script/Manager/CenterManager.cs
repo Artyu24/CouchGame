@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
-public class CenterManager : MonoBehaviour
+public class CenterManager : MonoBehaviour, IInteractable
 {
     public static CenterManager instance;
 
@@ -49,7 +49,7 @@ public class CenterManager : MonoBehaviour
     private void ActivateShield()
     {
         healthPoint = maxHealthPoint;
-        GetComponent<SphereCollider>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
         //Activer le bo shield
         shieldEffect.Play();
         StartCoroutine(StopShieldAnimation());
@@ -63,7 +63,7 @@ public class CenterManager : MonoBehaviour
 
     private void DesactivateShield()
     {
-        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
         actualCenterState = CenterState.ACCESS;
         //Détruire le bo shield
         shieldEffect.pause = false;
@@ -97,19 +97,18 @@ public class CenterManager : MonoBehaviour
         ActivateShield();
         StartCoroutine(ResetBridge());
     }
-
-    public void DealDamage()
-    {
-        healthPoint--;
-        shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
-        //shieldEffect.visualEffectAsset.
-        if(healthPoint <= 0)
-            DesactivateShield();
-    }
-
     private IEnumerator ResetBridge()
     {
         yield return new WaitForSeconds(TimeBtwNextCenter);
         ActivateRandomBridge();
+    }
+
+    public void Interact(Player player = null)
+    {
+        healthPoint--;
+        shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        //shieldEffect.visualEffectAsset.
+        if (healthPoint <= 0)
+            DesactivateShield();
     }
 }

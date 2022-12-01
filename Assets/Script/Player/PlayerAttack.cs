@@ -104,35 +104,38 @@ public class PlayerAttack : MonoBehaviour
                 #endregion
 
                 #region HitCondition
-                if (hit.transform != null && hit.transform.tag == "Player")//if we hit a player we push him
-                {
-                    //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
-                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    //Debug.Log(hit.transform.name + " has been hit");
-                    hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
-                    hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
-                    hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
-                {
 
-                    Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
-                    hit.transform.GetComponent<FishBag>().Damage(gameObject);
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
+                if (hit.transform != null)
                 {
-                    CenterManager.instance.DealDamage();
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
-                {
-                    hit.transform.GetComponent<Rigidbody>().mass = 1;
-                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
-                    hit.transform.GetComponent<Bomb>().isGrounded = false;
-                    return;
+                    if (hit.transform.tag == "Player")//if we hit a player we push him
+                    {
+                        //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
+                        hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                        //Debug.Log(hit.transform.name + " has been hit");
+                        hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                        hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
+                        hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
+                        return;
+                    }
+                    if (hit.transform.tag == "FishBag")//if we hit a FishBag we do things
+                    {
+
+                        Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
+                        hit.transform.GetComponent<FishBag>().Damage(gameObject);
+                        return;
+                    }
+                    if (hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
+                    {
+                        hit.transform.GetComponent<Rigidbody>().mass = 1;
+                        hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                        hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
+                        hit.transform.GetComponent<Bomb>().isGrounded = false;
+                        return;
+                    }
+
+                    if(hit.transform.GetComponent<IInteractable>() != null)
+                        hit.transform.GetComponent<IInteractable>().Interact();
+
                 }
                 #endregion
 
