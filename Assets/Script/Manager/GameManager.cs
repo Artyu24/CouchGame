@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
 
     #endregion
+    
     #region Attack
     [Header("Variable de l'Attack")]
 
@@ -55,20 +56,28 @@ public class GameManager : MonoBehaviour
     public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
 
     #endregion
+    
     #region Player
 
     [Header("Variables des Players")]
-    [Tooltip("Vitesse max de d�placement des joueurs")]
-    [SerializeField] private float maxMovementSpeed;
-    [Tooltip("Vitesse de d�placement des joueurs dans la slowZone")]
-    [SerializeField] private float movSpeedSlowZone;
-    [Tooltip("Temps du respawn des players en seconde")]
-    [SerializeField] private float respawnDelay = 2;
-    [Tooltip("Temps invincibilité des players apres le respawn en seconde")]
-    [SerializeField] private int invincibleDelay = 2;
-    [Tooltip("Temps de slow des players apres zone slow en seconde")]
-    [SerializeField] private float slowDuration = 2;
-    //private Dictionary<Player, int> playersScoreGenerals = new Dictionary<Player, int>();
+    [Tooltip("Vitesse normal de d�placement des joueurs"), SerializeField] private float moveSpeed;
+    [Tooltip("Vitesse max de d�placement des joueurs"), SerializeField] private float maxMoveSpeed;
+    [Tooltip("Vitesse min de d�placement des joueurs"), SerializeField] private float minMoveSpeed;
+    [Tooltip("Temps du respawn des players en seconde"), SerializeField] private float respawnDelay = 2;
+    [Tooltip("Temps invincibilité apres le respawn en seconde"), SerializeField] private int invincibleDelay = 2;
+    [Tooltip("Temps de slow des players apres zone slow en seconde"), SerializeField] private float slowDuration = 2;
+
+    public float MoveSpeed => moveSpeed;
+    public float MinMoveSpeed => minMoveSpeed;
+    public float MaxMoveSpeed => maxMoveSpeed;
+    public float RespawnDelay => respawnDelay;
+    public int InvincibleDelay => invincibleDelay;
+    public float SlowDuration => slowDuration;
+    
+    #endregion
+
+    #region ChocWave & Meteorite
+
     [Header("Variables des ChocWave")]
     [SerializeField] private float radiusMax = 1.5f;
     public float RadiusMax { get => radiusMax; private set => radiusMax = value; }
@@ -85,11 +94,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pushForceExplosion = 1.5f;
     public float PushForceExplosion { get => pushForceExplosion; private set => pushForceExplosion = value; }
     [SerializeField] private float speedMeteorite = 1.5f;
-    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }
-
-    [Header("Variables des Meteorite")]
-    [SerializeField] private float pushForceBumper = 1.5f;
-    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
+    public float SpeedMeteorite { get => speedMeteorite; private set => speedMeteorite = value; }   
 
 
     public GameObject target;
@@ -105,15 +110,17 @@ public class GameManager : MonoBehaviour
     bool canMeteorite = true;
 
 
-    public float MovSpeedSlowZone => movSpeedSlowZone;
-    public float MaxMovementSpeed => maxMovementSpeed;
-    public float RespawnDelay => respawnDelay;
-    public int InvincibleDelay => invincibleDelay;
-    public float SlowDuration => slowDuration;
+    [Header("Variables des Bumper")]
+    [SerializeField] private float pushForceBumper = 1.5f;
+    public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
+
+
+
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
-
+    
     #endregion
+
     #region Circles
     [Header("Variables des Anneaux")]
 
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
     public Color ColorCircleChoose => colorCircleChoose;
     public List<Color> TabMaterialColor => tabMaterialColor;
     #endregion
+    
     #region EjectPlates
     [Header("Variables des EjectPlates")]
 
@@ -148,6 +156,7 @@ public class GameManager : MonoBehaviour
 
 
     #endregion
+    
     #region Middle
     [Header("Variable de l'Igloo")]
 
@@ -165,6 +174,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
+    
     #region UI
     public GameObject pausePanel;
     public GameObject button;
@@ -245,7 +255,9 @@ public class GameManager : MonoBehaviour
     {
         if(canMeteorite == true)
         {
-            target.transform.position = PointAreaManager.instance.GetMeteoriteRandomPos().position; 
+            Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
+            target.transform.position = randomPos.position;
+            target.transform.parent = randomPos.parent;
             target.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
             target.SetActive(false);

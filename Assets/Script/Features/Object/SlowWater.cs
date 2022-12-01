@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SlowWater : MonoBehaviour
 {
+    private List<PlayerMovement> playersInside = new List<PlayerMovement>();
+
+    private void Awake()
+    {
+        StartCoroutine(ObjectManager.Instance.DestroyObject(gameObject));
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            Player playerData = other.gameObject.GetComponent<Player>();
+            if (playerData.isInvincible == false)
             {
-                other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MovSpeedSlowZone;
+                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+                
+                if (playerData.IsSpeedUp)
+                    playerMovement.Speed = GameManager.instance.MoveSpeed;
+                else
+                    playerMovement.Speed = GameManager.instance.MinMoveSpeed;
 
+                playerData.IsSlow = true;
+                playersInside.Add(playerMovement);
             }
         }
     }
@@ -21,17 +35,32 @@ public class SlowWater : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(other.gameObject.GetComponent<Player>().isInvincible == false)
+            Player playerData = other.gameObject.GetComponent<Player>();
+            if (playerData.isInvincible == false)
             {
-                StartCoroutine(TimeSlowByWater(other));
+                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+                playersInside.Remove(playerMovement);
+                
+                if (playerData.IsSpeedUp)
+                    playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+                else
+                    playerMovement.Speed = GameManager.instance.MoveSpeed;
+
+                playerData.IsSlow = false;
             }
-            
         }
     }
 
-    public IEnumerator TimeSlowByWater(Collider other)
+    private void OnDestroy()
     {
-        yield return new WaitForSeconds(GameManager.instance.SlowDuration);
-        other.gameObject.GetComponent<PlayerMovement>().MovementSpeed = GameManager.instance.MaxMovementSpeed;
+        foreach (PlayerMovement playerMovement in playersInside)
+        {
+            Player playerData = playerMovement.GetComponent<Player>();
+
+            if (playerData.IsSpeedUp)
+                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+            else
+                playerMovement.Speed = GameManager.instance.MoveSpeed;
+        }
     }
 }

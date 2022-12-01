@@ -9,25 +9,49 @@ public class ObjectManager : MonoBehaviour
 
     [Header("General"), SerializeField]
     private int itemPossible;
-    [SerializeField] private float cdGeneral;
+    [SerializeField] private float cdSpawn;
+    [SerializeField] private float cdDespawn;
     private List<GameObject> allObjectList = new List<GameObject>();
+
+    [Header("FishBag")]
+    private GameObject fishBag;
 
     [Header("Multiplier"), SerializeField] 
     private float cdMultiplier;
     private GameObject multiplierObject;
+
+    [Header("SpeedUp"), SerializeField] 
+    private float cdSpeedUp;
+    private GameObject speedObject;
+
+    [Header("SlowZone"), SerializeField]
+    private GameObject slowZoneObject;
+    
+    [Header("BOMB")]
+    public float timeBeforeExplosion;
+    public int bombStrenght;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
+        fishBag = Resources.Load<GameObject>("Features/FishBag");
+
+        multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
+        speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
+        slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
+
         allObjectList.Add(multiplierObject);
+        allObjectList.Add(speedObject);
+        allObjectList.Add(slowZoneObject);
     }
 
     #region Start Spawn
 
     private void Start()
     {
+        StartCoroutine(LaunchFishBag());
         StartCoroutine(SpawnObjectStart());
     }
 
@@ -42,25 +66,101 @@ public class ObjectManager : MonoBehaviour
 
     #endregion
 
+    #region Fishbag
+    private IEnumerator LaunchFishBag()
+    {
+        for (int i = 0; i < GameManager.instance.NbrFishBag; i++)
+        {
+            StartCoroutine(Spawn());
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public void StartNextSpawn()
+    {
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
+        yield return new WaitForSecondsRealtime(2.0f);
+        SpawnBag();
+    }
+
+    private void SpawnBag()
+    {
+        Transform pos = PointAreaManager.instance.GetRandomPosition();
+        GameObject bag = Instantiate(fishBag, pos.position, new Quaternion(-45f, 180f, 0, 0), pos.parent);
+
+        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+    }
+    #endregion
+
     #region Multiplier Object
 
-    public IEnumerator StopMultiplier(Player player)
+    public void StopMultiplier(Player player)
     {
+        if (player.multiplierCoroutine != null)
+        {
+            StopCoroutine(player.multiplierCoroutine);
+            player.multiplierCoroutine = null;
+        }
+        player.multiplierCoroutine = StartCoroutine(StopMultiplierCD(player));
+    }
+
+    private IEnumerator StopMultiplierCD(Player player)
+    {
+        StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdMultiplier);
         player.Multiplier = false;
-        //Reload
+        player.multiplierCoroutine = null;
     }
 
     #endregion
 
-    #region Spawn Gestion
+    #region SpeedUpObject
+
+    public void StopSpeedUp(PlayerMovement player)
+    {
+        Player playerData = player.GetComponent<Player>();
+        if (playerData.speedCoroutine != null)
+        {
+            StopCoroutine(playerData.speedCoroutine);
+            playerData.speedCoroutine = null;
+        }
+        playerData.speedCoroutine = StartCoroutine(StopSpeedUpCD(player, playerData));
+    }
+
+    private IEnumerator StopSpeedUpCD(PlayerMovement player, Player playerData)
+    {
+        StartCoroutine(SpawnObject());
+        yield return new WaitForSeconds(cdSpeedUp);
+        if(playerData.IsSlow)
+            player.Speed = GameManager.instance.MinMoveSpeed;
+        else
+            player.Speed = GameManager.instance.MoveSpeed;
+        
+        playerData.IsSpeedUp = false;
+        playerData.speedCoroutine = null;
+    }
+
+    #endregion
+
+    #region Spawn / Despawn Gestion
 
     private IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(cdGeneral);
+        yield return new WaitForSeconds(cdSpawn);
         int random = Random.Range(0, allObjectList.Count);
         Transform pos = PointAreaManager.instance.GetRandomPosition();
         Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
+    }
+
+    public IEnumerator DestroyObject(GameObject objet)
+    {
+        yield return new WaitForSeconds(cdDespawn);
+        StartCoroutine(SpawnObject());
+        Destroy(objet);
     }
 
     #endregion
