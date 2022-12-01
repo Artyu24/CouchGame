@@ -61,55 +61,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Rotation"",
-                    ""type"": ""Button"",
+                    ""name"": ""CircleMovement"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""0485588a-b5ee-4fbc-91a5-7715d7e0a90c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Switch"",
-                    ""type"": ""Button"",
-                    ""id"": ""218dd42a-e25d-495a-800c-88d0f9fad91a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MeteoriteNorth"",
-                    ""type"": ""Button"",
-                    ""id"": ""9db291d6-ed9f-40d9-882a-9fe9aa028d1e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MeteoriteSouth"",
-                    ""type"": ""Button"",
-                    ""id"": ""56e39e2b-9c2e-419a-9d97-9a17351b5751"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MeteoriteEast"",
-                    ""type"": ""Button"",
-                    ""id"": ""4790957a-f69e-409b-a810-09de049053c9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MeteoriteWest"",
-                    ""type"": ""Button"",
-                    ""id"": ""063a562e-2088-4ce3-8626-f895dc80dc52"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -234,83 +189,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Rotation_Circle"",
-                    ""id"": ""de36052b-3bc0-4919-8f70-a0cfb0583d65"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""5ece3899-b8a7-457a-9610-7c5bcc45b5fe"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""CircularScheme"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Negative"",
-                    ""id"": ""e8bfd145-f3b4-46e7-8ec6-a4cf6572143d"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""CircularScheme"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Switch_Circle"",
-                    ""id"": ""e2aa9cef-3a0e-4c6c-a80e-990bd31ce729"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Switch"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""e5c31516-0ca4-4687-bd51-8509964445e6"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""CircularScheme"",
-                    ""action"": ""Switch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""d65bdaef-d64d-4d02-82e2-2541e6cd914c"",
-                    ""path"": ""<XInputController>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""CircularScheme"",
-                    ""action"": ""Switch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9194bcd4-9c4a-4a2c-b77c-97be63814d1c"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MeteoriteNorth"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": """",
                     ""id"": ""b32aa6c7-d599-450c-bee3-7a10daa37b6c"",
                     ""path"": ""<Gamepad>/buttonEast"",
@@ -318,39 +196,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ChocWave"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""079317b9-3631-47df-bc15-c67091a9562d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MeteoriteSouth"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""085401e0-65fc-4bb6-8e83-520ed15a7680"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MeteoriteEast"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""18dc9006-3253-4000-af50-3635032e710a"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MeteoriteWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -364,6 +209,160 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""47dba8bd-bfc3-45ad-8a69-387f127323b0"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fb8120f2-e43d-4809-b54e-93c931fddd54"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c2d628ee-757d-46be-9017-9d97fe89ff8f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8fa6b59c-7d24-4b54-baa3-801e46041572"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""708039c2-34cf-4ab3-ab62-597ed16e0dc4"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4189b4b4-caa9-4ac4-b8dd-fb09ed356847"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""1824d1bf-7b6f-46b3-8d9e-d39aaf745a88"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""9987691e-e3e1-4661-9243-7d36acffe112"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""68217dce-25ad-4d88-8d4e-fad060da7049"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6f9ccd5f-7c53-409f-9283-abc86aca9024"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""82f237ee-d4ec-4f8b-be5a-567f5eb3ddd9"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""9b4cc40d-ccc0-4de7-94f0-1550b058f70e"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""028fbf7c-636b-4fb9-a707-5a258c0ca10a"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""4c337fd6-5aac-4bea-9761-14c1ae4b9733"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""CircleMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -395,12 +394,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
         m_Player_PlayerAttack = m_Player.FindAction("PlayerAttack", throwIfNotFound: true);
         m_Player_PlayerSpecialAttack = m_Player.FindAction("PlayerSpecial Attack", throwIfNotFound: true);
-        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
-        m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
-        m_Player_MeteoriteNorth = m_Player.FindAction("MeteoriteNorth", throwIfNotFound: true);
-        m_Player_MeteoriteSouth = m_Player.FindAction("MeteoriteSouth", throwIfNotFound: true);
-        m_Player_MeteoriteEast = m_Player.FindAction("MeteoriteEast", throwIfNotFound: true);
-        m_Player_MeteoriteWest = m_Player.FindAction("MeteoriteWest", throwIfNotFound: true);
+        m_Player_CircleMovement = m_Player.FindAction("CircleMovement", throwIfNotFound: true);
         m_Player_ChocWave = m_Player.FindAction("ChocWave", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
@@ -492,12 +486,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerMove;
     private readonly InputAction m_Player_PlayerAttack;
     private readonly InputAction m_Player_PlayerSpecialAttack;
-    private readonly InputAction m_Player_Rotation;
-    private readonly InputAction m_Player_Switch;
-    private readonly InputAction m_Player_MeteoriteNorth;
-    private readonly InputAction m_Player_MeteoriteSouth;
-    private readonly InputAction m_Player_MeteoriteEast;
-    private readonly InputAction m_Player_MeteoriteWest;
+    private readonly InputAction m_Player_CircleMovement;
     private readonly InputAction m_Player_ChocWave;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
@@ -507,12 +496,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
         public InputAction @PlayerAttack => m_Wrapper.m_Player_PlayerAttack;
         public InputAction @PlayerSpecialAttack => m_Wrapper.m_Player_PlayerSpecialAttack;
-        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
-        public InputAction @Switch => m_Wrapper.m_Player_Switch;
-        public InputAction @MeteoriteNorth => m_Wrapper.m_Player_MeteoriteNorth;
-        public InputAction @MeteoriteSouth => m_Wrapper.m_Player_MeteoriteSouth;
-        public InputAction @MeteoriteEast => m_Wrapper.m_Player_MeteoriteEast;
-        public InputAction @MeteoriteWest => m_Wrapper.m_Player_MeteoriteWest;
+        public InputAction @CircleMovement => m_Wrapper.m_Player_CircleMovement;
         public InputAction @ChocWave => m_Wrapper.m_Player_ChocWave;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -533,24 +517,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PlayerSpecialAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
                 @PlayerSpecialAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
                 @PlayerSpecialAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerSpecialAttack;
-                @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
-                @Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
-                @Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
-                @MeteoriteNorth.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteNorth;
-                @MeteoriteNorth.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteNorth;
-                @MeteoriteNorth.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteNorth;
-                @MeteoriteSouth.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteSouth;
-                @MeteoriteSouth.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteSouth;
-                @MeteoriteSouth.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteSouth;
-                @MeteoriteEast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteEast;
-                @MeteoriteEast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteEast;
-                @MeteoriteEast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteEast;
-                @MeteoriteWest.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteWest;
-                @MeteoriteWest.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteWest;
-                @MeteoriteWest.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeteoriteWest;
+                @CircleMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleMovement;
+                @CircleMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleMovement;
+                @CircleMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleMovement;
                 @ChocWave.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
                 @ChocWave.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
                 @ChocWave.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChocWave;
@@ -570,24 +539,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PlayerSpecialAttack.started += instance.OnPlayerSpecialAttack;
                 @PlayerSpecialAttack.performed += instance.OnPlayerSpecialAttack;
                 @PlayerSpecialAttack.canceled += instance.OnPlayerSpecialAttack;
-                @Rotation.started += instance.OnRotation;
-                @Rotation.performed += instance.OnRotation;
-                @Rotation.canceled += instance.OnRotation;
-                @Switch.started += instance.OnSwitch;
-                @Switch.performed += instance.OnSwitch;
-                @Switch.canceled += instance.OnSwitch;
-                @MeteoriteNorth.started += instance.OnMeteoriteNorth;
-                @MeteoriteNorth.performed += instance.OnMeteoriteNorth;
-                @MeteoriteNorth.canceled += instance.OnMeteoriteNorth;
-                @MeteoriteSouth.started += instance.OnMeteoriteSouth;
-                @MeteoriteSouth.performed += instance.OnMeteoriteSouth;
-                @MeteoriteSouth.canceled += instance.OnMeteoriteSouth;
-                @MeteoriteEast.started += instance.OnMeteoriteEast;
-                @MeteoriteEast.performed += instance.OnMeteoriteEast;
-                @MeteoriteEast.canceled += instance.OnMeteoriteEast;
-                @MeteoriteWest.started += instance.OnMeteoriteWest;
-                @MeteoriteWest.performed += instance.OnMeteoriteWest;
-                @MeteoriteWest.canceled += instance.OnMeteoriteWest;
+                @CircleMovement.started += instance.OnCircleMovement;
+                @CircleMovement.performed += instance.OnCircleMovement;
+                @CircleMovement.canceled += instance.OnCircleMovement;
                 @ChocWave.started += instance.OnChocWave;
                 @ChocWave.performed += instance.OnChocWave;
                 @ChocWave.canceled += instance.OnChocWave;
@@ -640,12 +594,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnPlayerMove(InputAction.CallbackContext context);
         void OnPlayerAttack(InputAction.CallbackContext context);
         void OnPlayerSpecialAttack(InputAction.CallbackContext context);
-        void OnRotation(InputAction.CallbackContext context);
-        void OnSwitch(InputAction.CallbackContext context);
-        void OnMeteoriteNorth(InputAction.CallbackContext context);
-        void OnMeteoriteSouth(InputAction.CallbackContext context);
-        void OnMeteoriteEast(InputAction.CallbackContext context);
-        void OnMeteoriteWest(InputAction.CallbackContext context);
+        void OnCircleMovement(InputAction.CallbackContext context);
         void OnChocWave(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
