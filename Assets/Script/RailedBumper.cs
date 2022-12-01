@@ -18,8 +18,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
     bool sensInverse = false;
     private void Start()
     {
-        speedAiguilleMontre = 2;
-        speedInverseAiguilleMontre = -2;
+        speedAiguilleMontre = GameManager.instance.SpeedBumper;
+        speedInverseAiguilleMontre = -GameManager.instance.SpeedBumper;
         speedHitBySuperStrenght = 2;
         position = gameObject.transform.position.x;
     }
@@ -85,13 +85,13 @@ public class RailedBumper : MonoBehaviour, IInteractable
     public IEnumerator ForSensNoramal()
     {
         sensNormal = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensNormal = false;
     }
     public IEnumerator ForSensInverse()
     {
         sensInverse = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensInverse = false;
     }
 }
