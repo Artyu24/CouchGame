@@ -45,6 +45,8 @@ public class FishBag : MonoBehaviour
 
         int xcount = Random.Range(0, 5);
 
+        Debug.LogError("JM ICI LE SON FRERO T ES BO");
+        
         switch (xcount)
         {
             case 0:
@@ -76,27 +78,29 @@ public class FishBag : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
-            PointAreaManager.instance.StartNextSpawn();
+            ObjectManager.Instance.StartNextSpawn();
         }
     }
 
     IEnumerator BarSpePlus(GameObject player)
     {
         yield return new WaitForSecondsRealtime(1.4f);
+        PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
+
         if (isGolden)//le poisson est goldé
         {
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
-            if (player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
-                player.GetComponent<PlayerAttack>().AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
-            if (player.GetComponent<PlayerAttack>().CurrentSpecial > player.GetComponent<PlayerAttack>().maxSpecial)
-                player.GetComponent<PlayerAttack>().CurrentSpecial = 5;
+            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
+                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
+            if (playerAttack.CurrentSpecial > playerAttack.maxSpecial)
+                playerAttack.CurrentSpecial = 5;
         }
         else//bouh le nul
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
-            if (player.GetComponent<PlayerAttack>().CurrentSpecial < player.GetComponent<PlayerAttack>().maxSpecial)
-                player.GetComponent<PlayerAttack>().AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
+            if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
+                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }
     }
 }
