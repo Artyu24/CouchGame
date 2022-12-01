@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ArrowPlayer : MonoBehaviour
 {
     private Color[] flecheColor = new Color[4] { Color.blue, Color.red, Color.yellow, Color.green };
-    public GameObject fleche;
+    public GameObject fleche, texte;
     public float offsetArrow = 2;
     Camera cam;
 
@@ -15,6 +15,7 @@ public class ArrowPlayer : MonoBehaviour
         cam = GameManager.instance.CameraScene;
         //Debug.Log(GetComponentInParent<Player>().playerID);
         fleche.GetComponent<Image>().color = flecheColor[GetComponentInParent<Player>().playerID];
+        texte.GetComponent<Text>().text = "J" + (GetComponentInParent<Player>().playerID+1);
     }
 
     void Update()
