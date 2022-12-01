@@ -229,10 +229,10 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0.0f;
             }
         }
-        else
-        {
-            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
-        }
+        //else
+        //{
+        //    Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
+        //}
     }
 
     public void ResumeGame()

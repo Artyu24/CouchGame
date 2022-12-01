@@ -98,7 +98,11 @@ public class PlayerManager : MonoBehaviour
             players[i].score = 0;
 
             //Spawn at point
-            player.transform.position = PointAreaManager.instance.PlayerSpawnStart[i].position;
+            Transform posSpawn = PointAreaManager.instance.PlayerSpawnStart[i];
+            if(posSpawn)
+                player.transform.position = posSpawn.position;
+            else
+                player.transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
 
             //Parent UI par Player
             GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
