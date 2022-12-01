@@ -114,11 +114,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pushForceBumper = 1.5f;
     public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
 
+    [SerializeField] private float bumperMovementDistance = 0.5f;
+    public float BumperMovementDistance { get => bumperMovementDistance; private set => bumperMovementDistance = value; }
+
+    [SerializeField] private float speedBumper = 2f;
+    public float SpeedBumper { get => speedBumper; private set => speedBumper = value; }
+
 
 
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
-    
+
     #endregion
 
     #region Circles
@@ -174,12 +180,10 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInMiddle { get => playerInMiddle; set => playerInMiddle = value; }
 
     #endregion
-    
-    #region UI
-    public GameObject pausePanel;
-    public GameObject button;
-    //public GameObject optionPanel;
 
+    #region UI
+    public GameObject pausePanel, optionsPanel;
+    public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion
 
     void Awake()
@@ -219,35 +223,6 @@ public class GameManager : MonoBehaviour
         {
             target.SetActive(false);
             StartCoroutine(TargetMeteorite());
-        }
-    }
-
-
-    public void Update()
-    {
-        if (pausePanel != null)
-        {
-            if (pausePanel.activeSelf)
-            {
-                Time.timeScale = 0.0f;
-            }
-        }
-        //else
-        //{
-        //    Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
-        //}
-    }
-
-    public void ResumeGame()
-    {
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(false);
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Debug.Log("Le panel pause n'a pas était référencé dans le gamemanager");
         }
     }
 

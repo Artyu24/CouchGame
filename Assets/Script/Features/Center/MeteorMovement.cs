@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeteorMovement : MonoBehaviour
 {
     public Vector3 nextPos;
+    Vector3 explosionPose;
     public Vector3 NextPos { get { return nextPos; }set { nextPos = value; } }
     public bool explosion = false;
     private GameObject explos;
@@ -25,8 +26,9 @@ public class MeteorMovement : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        explosionPose = new Vector3(nextPos.x, nextPos.y - 1, nextPos.z);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
-        Instantiate(explos, nextPos, quaternion.identity);
+        Instantiate(explos, explosionPose, quaternion.identity);
         Destroy(gameObject);       
 
     }

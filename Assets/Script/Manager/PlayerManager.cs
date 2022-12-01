@@ -17,8 +17,7 @@ public class PlayerManager : MonoBehaviour
     private GameObject[] playersInterface = new GameObject[4];
     public GameObject[] PlayersInterface => playersInterface;
 
-    public GameObject canvasUI;
-    public GameObject scoreboardUI;
+    public GameObject canvasUI, scoreboardUI, pausePanel, optionsPanel;
     //public List<GameObject> speBarreParentList = new List<GameObject>();
     #endregion
 
@@ -49,12 +48,12 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
         
-        manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
+        //manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
 
-        for (int i = 0; i < manettes.Count; i++)
+        /*for (int i = 0; i < manettes.Count; i++)
         {
             Debug.Log(i + " : " + manettes[i]);
-        }
+        }*/
 
         int xcount = Random.Range(0, 3);
 
@@ -94,6 +93,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (scoreboardUI != null)
         {
+
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
 
