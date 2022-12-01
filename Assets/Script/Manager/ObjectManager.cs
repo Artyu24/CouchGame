@@ -24,7 +24,7 @@ public class ObjectManager : MonoBehaviour
     private float cdSpeedUp;
     private GameObject speedObject;
 
-    [Header("SlowZone"), SerializeField]
+    [Header("SlowZone")]
     private GameObject slowZoneObject;
     
     [Header("BOMB")]
