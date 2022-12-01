@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
         transform.GetChild(0).localPosition = new Vector3(0, -0.9f, 0);
+        transform.GetChild(3).localPosition -= movementInput;
         //Debug.Log(transform.GetChild(0).name);
     }
 
@@ -90,12 +92,36 @@ public class PlayerMovement : MonoBehaviour
             orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
             movementInput = ctx.ReadValue<Vector3>();
         }
-        
-        
+
         if(movementInput == Vector3.zero)
             animator.SetBool("Run", false);
         else
             animator.SetBool("Run", true);
+    }
+
+    public void OnCircleMovement(InputAction.CallbackContext ctx)
+    {
+        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        {
+            Vector3 value = ctx.ReadValue<Vector3>();
+
+            if (Math.Abs(value.x) > Math.Abs(value.y))
+            {
+                //Rotation
+                if (ctx.performed)
+                {
+
+                }
+            }
+            else
+            {
+                //Switch
+                if (ctx.started)
+                {
+
+                }
+            }
+        }
     }
 
     public void OnRotation(InputAction.CallbackContext context)

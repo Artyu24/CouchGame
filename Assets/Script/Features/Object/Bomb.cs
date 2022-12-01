@@ -24,12 +24,12 @@ public class Bomb : MonoBehaviour
 
     }
 
-    public void StartExplosion(GameObject _player, Vector3 _dir)
+    public void StartExplosion(GameObject _player)
     {
-        StartCoroutine(Explosion(_player, _dir));
+        StartCoroutine(Explosion(_player));
     }
 
-    IEnumerator Explosion(GameObject _player, Vector3 _dir)
+    IEnumerator Explosion(GameObject _player)
     {
         //Debug.LogError("BOOOOOOOOOOOM");
 
@@ -50,7 +50,7 @@ public class Bomb : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         //trigger Particle effect
-        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<Rigidbody>().useGravity = false;
         //trigger Sound
 
