@@ -14,6 +14,7 @@ public class ObjectManager : MonoBehaviour
     private List<GameObject> allObjectList = new List<GameObject>();
 
     [Header("FishBag")]
+    [SerializeField] private int goldenRate = 50;
     private GameObject fishBag;
 
     [Header("Multiplier"), SerializeField] 
@@ -92,7 +93,7 @@ public class ObjectManager : MonoBehaviour
         Transform pos = PointAreaManager.instance.GetRandomPosition();
         GameObject bag = Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
 
-        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+        bool i = Random.Range(0, 100) <= goldenRate ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
     }
     
     public void CallBarSpePlus(GameObject player, bool isGolden)

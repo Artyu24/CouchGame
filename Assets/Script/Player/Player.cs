@@ -52,6 +52,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator RespawnDelay()
     {
+
+        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
+        {
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
+            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
+        }
         yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
 
         isInvincible = true;
@@ -68,11 +74,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
         isInvincible = false;
 
-        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
-        {
-            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
-            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
-        }
     }
 
     public void HideGuy(bool enable)
