@@ -73,6 +73,8 @@ public class PlayerAttack : MonoBehaviour
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
 
+
+
         }
     }
     #endregion
@@ -180,8 +182,12 @@ public class PlayerAttack : MonoBehaviour
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
 
-        if(currentSpecial >= maxSpecial)
+        if(currentSpecial >= maxSpecial && !effectSpeBarre.activeInHierarchy)
+        {
             effectSpeBarre.SetActive(true);
+            //SpecialIsCharged
+
+        }
     }
 
     public void HitTag(GameObject _player)
