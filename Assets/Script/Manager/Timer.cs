@@ -62,7 +62,7 @@ public class Timer : MonoBehaviour
             //PrintGeneralScoreWindow();
         }
 
-        if (PlayerManager.instance.players.Count >= 1 && !scoreWindowRoundIsActive)
+        if (PlayerManager.instance.players.Count >= 2 && !scoreWindowRoundIsActive)
         {
             GameManager.instance.Timer -= Time.deltaTime;
             minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);

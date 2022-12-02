@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = /*"Player " + (i + 1) + " : " + */PlayerManager.instance.players[i].score.ToString();
+            scorePlayerText[i].text = PlayerManager.instance.players[i].score.ToString();
         }
     }
 
