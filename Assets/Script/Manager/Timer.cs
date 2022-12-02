@@ -101,7 +101,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            timerText.text = "WHEN STARTING BRO";
+            timerText.text = "START";
         }
     }
     private void PrintScoreWindow()
