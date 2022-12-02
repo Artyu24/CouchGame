@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,9 @@ public class ScoreManager : MonoBehaviour
     private int multiplier;
 
     private bool addMiddleScore = true;
+    [SerializeField]
+    private GameObject scoreBoard;
+    List<RectTransform> PlayerListSortByScore = new List<RectTransform>();
 
     public static ScoreManager instance;
 
@@ -108,6 +112,16 @@ public class ScoreManager : MonoBehaviour
             bestScore = 0;
 
         }
+
+
+        for (int i = 0; i < tempPlayerListPlayer.Count; i++)
+        {
+            Debug.Log(tempPlayerListPlayer[i].playerID);
+            PlayerListSortByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(tempPlayerListPlayer[i].playerID).GetComponent<RectTransform>());
+            Debug.Log(PlayerListSortByScore[i]);
+            //scoreBoard.GetComponent<Transform>().GetChild(i).SetSiblingIndex(i);
+        }
+
         tempPlayerListPlayer[0].couronne.SetActive(true);
         for (int i = 1; i < tempPlayerListPlayer.Count; i++)
         {
