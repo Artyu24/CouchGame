@@ -105,10 +105,7 @@ public class PlayerAttack : MonoBehaviour
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
                 Debug.DrawRay((new Vector3(dir.x / 3f,0,dir.z / 3f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
-                Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
-
-                ParticleSystem PS =  Instantiate(playerHit, hit.point, Quaternion.identity);
-                Destroy(PS, .5f);
+                Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);                
                 #endregion
 
                 #region HitCondition
@@ -137,7 +134,7 @@ public class PlayerAttack : MonoBehaviour
                         hit.transform.GetComponent<Rigidbody>().mass = 1;
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
-                        hit.transform.GetComponent<IInteractable>().Interact();
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                         return;
                     }
 
@@ -154,6 +151,8 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 int xcount = Random.Range(0, 5);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+                ParticleSystem PS = Instantiate(playerHit, hit.point, Quaternion.identity);
+                Destroy(PS, .2f);
                 #endregion
 
             }
