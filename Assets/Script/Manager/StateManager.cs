@@ -5,6 +5,8 @@ using UnityEngine;
 public enum GameState
 {
     MENU,
+    WAIT,
+    INIT,
     INGAME,
     PAUSED
 }
