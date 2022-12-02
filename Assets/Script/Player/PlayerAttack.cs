@@ -125,6 +125,7 @@ public class PlayerAttack : MonoBehaviour
                         hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
                         hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
                         HitParticle(hit.point);
+                        FindObjectOfType<AudioManager>().PlayRandom(SoundState.HitSound);
                         return;
                     }
                     if (hit.transform.tag == "FishBag")//if we hit a FishBag we do things
@@ -161,7 +162,6 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 int xcount = Random.Range(0, 5);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.HitSound);
                 
                 #endregion
 
