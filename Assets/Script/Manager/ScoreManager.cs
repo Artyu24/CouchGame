@@ -96,6 +96,7 @@ public class ScoreManager : MonoBehaviour
     private void ScoreBoardSorting()
     {
         List<Player> tempPlayerListPlayer = new List<Player>();
+        PlayerListSortByScore.Clear();
         Player playerTemp = null;
         int bestScore = 0;
 
