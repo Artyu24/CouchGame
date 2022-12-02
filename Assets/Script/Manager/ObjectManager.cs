@@ -126,15 +126,13 @@ public class ObjectManager : MonoBehaviour
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
-                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scoreGoldPointArea);
-            if (playerAttack.CurrentSpecial > playerAttack.maxSpecial)
-                playerAttack.CurrentSpecial = 5;
+                playerAttack.AddSpeBarrePoint(playerAttack.maxSpecial - playerAttack.CurrentSpecial);
         }
         else//bouh le nul
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
-                playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
+                playerAttack.AddSpeBarrePoint(1);
         }
     }
     #endregion

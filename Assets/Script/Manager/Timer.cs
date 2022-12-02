@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,6 +59,7 @@ public class Timer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
+            StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
         
@@ -65,6 +67,7 @@ public class Timer : MonoBehaviour
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
             {
+                GameManager.instance.ActualGameState = GameState.ENDROUND;
                 PrintScoreWindow();
                 //PrintGeneralScoreWindow();
             }
@@ -92,14 +95,18 @@ public class Timer : MonoBehaviour
                 CameraManager.Instance.ChangeCamera();
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+                StartCoroutine(GameManager.instance.TargetMeteorite());
+                
             }
 
             timerCountDown -= Time.deltaTime;
-            seconds = Mathf.FloorToInt(timerCountDown % 60f);
+            seconds = Mathf.FloorToInt(timerCountDown + 1 % 60f);
             
             if (timerCountDown >= 0.0f)
             {
-                timerText.text = seconds.ToString("00");
+                timerText.text = seconds.ToString("0");
+
             }
             else
             {
@@ -114,7 +121,7 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)
@@ -200,7 +207,11 @@ public class Timer : MonoBehaviour
     private void InstantiateMedals(Transform t, int position)
     {
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
-        temp2. GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
+        //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
+        Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
+        Tween b = temp2.transform.DOScale(new Vector3(1, 1), 0.5f);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(a).Append(b).SetLoops(-1);
         PlayerManager.instance.players[position].medals.Add(medals[Mathf.Abs(position)]);
     }
 
@@ -210,4 +221,6 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
     }
+
+    
 }

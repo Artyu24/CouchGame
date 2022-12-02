@@ -8,7 +8,8 @@ public enum GameState
     WAIT,
     INIT,
     INGAME,
-    PAUSED
+    PAUSED,
+    ENDROUND
 }
 
 public enum PlayerState
@@ -47,4 +48,11 @@ public enum SoundState
     NormalPunchSound,
     BeingHitSound,
     FootstepsSound,
+    Timer,
+    StepSound,
+    HitSound,
+    NormalPunch,
+    SpecialPunchHit,
+    SpecialChargedId,
+    SpecialChargedLoop,
 }

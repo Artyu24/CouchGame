@@ -25,7 +25,6 @@ public class AudioManager : MonoBehaviour
             }
             DicoActualSound[sound.ActualSound].Add(sound);
         }
-        FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
 
 
     }
@@ -62,6 +61,18 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found (surement mal ecrit entre le script et sur Unity)");
+            return;
+        }
+        s.source.Stop();
     }
     public void PlayRandom(SoundState soundState)
     {

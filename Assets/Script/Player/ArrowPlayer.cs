@@ -21,7 +21,15 @@ public class ArrowPlayer : MonoBehaviour
 
     void Update()
     {
-        Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
-        fleche.transform.position = cam.WorldToScreenPoint(screenPos);
+        if(GameManager.instance.ActualGameState == GameState.ENDROUND)
+        {
+            fleche.SetActive(false);
+            texte.SetActive(false);
+        }
+        else
+        {
+            Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
+            fleche.transform.position = cam.WorldToScreenPoint(screenPos);
+        }
     }
 }

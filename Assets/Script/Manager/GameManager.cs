@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
         if (target != null)
         {
             target.SetActive(false);
-            StartCoroutine(TargetMeteorite());
+            //StartCoroutine(TargetMeteorite());
         }
     }
 
@@ -245,5 +245,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
         StartCoroutine(TargetMeteorite());
+    }
+
+    public IEnumerator TimerSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Five");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("Four");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("Three");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("Two");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("One");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("Fight");
+
     }
 }
