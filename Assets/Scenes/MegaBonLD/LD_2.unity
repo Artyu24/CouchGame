@@ -19964,6 +19964,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: levelName
+      value: LD_1
+      objectReference: {fileID: 0}
     - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -19978,6 +19983,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978500863223018146, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 869403501190501469, guid: c4720ddec51b7e443a85d50df6bbd460,
+        type: 3}
+    - target: {fileID: 1978500863223018146, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 2966781007563227531, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
