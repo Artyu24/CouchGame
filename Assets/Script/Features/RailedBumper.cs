@@ -12,12 +12,13 @@ public class RailedBumper : MonoBehaviour, IInteractable
     float speedInverseAiguilleMontre;
     float speedHitBySuperStrenght;
     float position;
-    public Transform igloo;
+    Vector3 igloo;
 
     bool sensNormal = false;
     bool sensInverse = false;
     private void Start()
     {
+        igloo = new Vector3(0, 0, 0);
         speedAiguilleMontre = GameManager.instance.SpeedBumper;
         speedInverseAiguilleMontre = -GameManager.instance.SpeedBumper;
         speedHitBySuperStrenght = 2;

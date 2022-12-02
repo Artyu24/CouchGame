@@ -5848,27 +5848,27 @@ PrefabInstance:
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002004312
+      value: -0.000000020043123
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: 0.000000013798283
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002004312
+      value: -0.000000020043123
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: 0.000000013798283
       objectReference: {fileID: 0}
     - target: {fileID: 7384015260233415145, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7390697551993900178, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -6205,6 +6205,11 @@ PrefabInstance:
       propertyPath: spawnPointMeteorite.Array.data[15]
       value: 
       objectReference: {fileID: 1959720290}
+    - target: {fileID: 8958008123730402613, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
 --- !u!1 &572213439
@@ -6907,38 +6912,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!95 &1078492353 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9222056193400787763, guid: de81e2a46b915f048b65ffa40ea6c3d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222056193790944651}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1128241426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9222056193418607205, guid: de81e2a46b915f048b65ffa40ea6c3d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222056193790944651}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1128241431 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 1091634011460973178, guid: de81e2a46b915f048b65ffa40ea6c3d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222056193790944651}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1128241432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128241426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8836f66f9c00bd4c9e9f43752ec09e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capsulCollider: {fileID: 1128241431}
-  m_Animator: {fileID: 1078492353}
 --- !u!1 &1151382580
 GameObject:
   m_ObjectHideFlags: 0
