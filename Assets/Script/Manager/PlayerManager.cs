@@ -86,6 +86,11 @@ public class PlayerManager : MonoBehaviour
         
         player.tag = "Player";
         ScoreManager.instance.UpdateScores();
+
+        CameraManager.Instance.AddPlayerTarget(player.transform, dataPlayer.playerID + 1);
+
+        if(players.Count >= 1)
+            CameraManager.Instance.ChangeCamera();
     }
 
 
