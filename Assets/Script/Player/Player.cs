@@ -52,6 +52,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator RespawnDelay()
     {
+
+        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
+        {
+            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
+            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
+        }
         yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
         //Debug.Log("Invincible");
         
@@ -68,25 +74,11 @@ public class Player : MonoBehaviour
         seq.Append(a).Append(b).SetLoops(10);
 
 
-
-
-
-
-
-
-
-
-
         //StartCoroutine(InvincibilityFlash());
         yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
         //Debug.Log(" plus Invincible");
         isInvincible = false;
 
-        if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
-        {
-            ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
-            gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
-        }
     }
 
     //public IEnumerator InvincibilityFlash()
