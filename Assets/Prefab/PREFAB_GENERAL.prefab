@@ -5421,7 +5421,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6467971187212665536}
-  m_LocalRotation: {x: 0.5670488, y: -0.00000002004312, z: 0.00000001379828, w: 0.8236842}
+  m_LocalRotation: {x: 0.5670488, y: 0.000000020043123, z: -0.000000013798283, w: 0.8236842}
   m_LocalPosition: {x: 0, y: 12.72, z: -6.8100004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5597,7 +5597,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384015259377065167}
-  m_LocalRotation: {x: 0.5670488, y: 0.000000020043114, z: -0.000000013798276, w: 0.8236842}
+  m_LocalRotation: {x: 0.5670488, y: 0.000000020043123, z: -0.000000013798283, w: 0.8236842}
   m_LocalPosition: {x: 0, y: 12.72, z: -6.8100004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5671,7 +5671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -6692,9 +6692,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
-      propertyPath: roundScoreTextPrefab
+      propertyPath: ppWindowRound.Array.data[0]
       value: 
-      objectReference: {fileID: 6026816814468351564, guid: 1319d673b8876214e8bf32aba64168e5,
+      objectReference: {fileID: 21300000, guid: 251d62523352a804587a4f62b7f97360,
+        type: 3}
+    - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
+        type: 3}
+      propertyPath: ppWindowRound.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 13ca86d173b409c44a07437108cc1aa6,
+        type: 3}
+    - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
+        type: 3}
+      propertyPath: ppWindowRound.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9cdc359943ba3fe4a8440e8a3429583a,
+        type: 3}
+    - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
+        type: 3}
+      propertyPath: ppWindowRound.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 55855bf045e74954f944fa355bfe955a,
         type: 3}
     - target: {fileID: 3011877825736816100, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
@@ -6726,12 +6744,6 @@ PrefabInstance:
 --- !u!224 &175090754217831461 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2728313911226112681, guid: 7c447ba96b9b3624e93b82b3ad906524,
-    type: 3}
-  m_PrefabInstance: {fileID: 2860602773718201996}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7366330948293681174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4722184639311681178, guid: 7c447ba96b9b3624e93b82b3ad906524,
     type: 3}
   m_PrefabInstance: {fileID: 2860602773718201996}
   m_PrefabAsset: {fileID: 0}
@@ -6894,14 +6906,45 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
         type: 3}
+      propertyPath: scoreKill
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
       propertyPath: multiplier
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
         type: 3}
-      propertyPath: scoreBoard
+      propertyPath: scoreMiddle
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: scorePointArea
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: emptyCourroneUI
       value: 
-      objectReference: {fileID: 7366330948293681174}
+      objectReference: {fileID: 21300000, guid: 29584e8864829e6469936129c9da6689,
+        type: 3}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: scoreInterrupteur
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: scoreGoldPointArea
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: middelPointsCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5328547949275961221, guid: ed451f23e1cc1ca4caac910aa5461ede,
         type: 3}
       propertyPath: m_RootOrder

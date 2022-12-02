@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
     private int multiplier;
 
     private bool addMiddleScore = true;
+    public Sprite courroneUI, emptyCourroneUI;
     [SerializeField]
     private GameObject scoreBoard;
     List<RectTransform> PlayerListSortByScore = new List<RectTransform>();
@@ -116,17 +117,22 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < tempPlayerListPlayer.Count; i++)
         {
-            Debug.Log(tempPlayerListPlayer[i].playerID);
             PlayerListSortByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(tempPlayerListPlayer[i].playerID).GetComponent<RectTransform>());
-            Debug.Log(PlayerListSortByScore[i]);
+            //Debug.Log(PlayerListSortByScore[i]);
             //scoreBoard.GetComponent<Transform>().GetChild(i).SetSiblingIndex(i);
         }
 
         tempPlayerListPlayer[0].couronne.SetActive(true);
+        PlayerListSortByScore[0].GetChild(0).GetChild(0).GetComponent<Image>().sprite = courroneUI;
         for (int i = 1; i < tempPlayerListPlayer.Count; i++)
         {
             tempPlayerListPlayer[i].couronne.SetActive(false);
         }
+        for (int i = 0; i < PlayerListSortByScore.Count; i++)
+        {
+            PlayerListSortByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
+        }
+
     }
 
     public void InstantiateScoreText(int p) 

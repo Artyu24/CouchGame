@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
     private bool scoreWindowGeneralIsActive = false;
 
     [SerializeField] private GameObject scoreWindowRound, scoreWindowGeneral;
+    [SerializeField] private Sprite[] ppWindowRound = new Sprite[4];
     [SerializeField] private GameObject textParentRound, textParentGeneral;
     public GameObject roundScoreTextPrefab, generalScoreTextPrefab; 
 
@@ -115,6 +116,7 @@ public class Timer : MonoBehaviour
         {
             GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
             scorePlayerText[p] = temp.GetComponentInChildren<Text>();
+            temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
             temp.name = "Player " + (p + 1);
         }
 
