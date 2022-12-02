@@ -167,7 +167,7 @@ public class PlayerAttack : MonoBehaviour
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
 
-        if(currentSpecial == maxSpecial)
+        if(currentSpecial >= maxSpecial)
             effectSpeBarre.SetActive(true);
     }
 
