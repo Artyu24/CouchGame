@@ -112,6 +112,7 @@ public class PlayerManager : MonoBehaviour
 
             //Parent UI par Player
             GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
+            playerInterfaceTempo.name = "JUI " + (i+1);
             playersInterface[i] = playerInterfaceTempo;
             playersInterface[i].GetComponentInChildren<Image>().sprite = interfaceUIPrefabPP[i];
 
