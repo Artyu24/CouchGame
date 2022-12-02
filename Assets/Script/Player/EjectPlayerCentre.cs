@@ -25,6 +25,7 @@ public class EjectPlayerCentre : MonoBehaviour
             {
                 EjectPlayer();
                 CenterManager.instance.DesactivateAllBridge();
+                CameraManager.Instance.ChangeCamera();
             }
         }
     }

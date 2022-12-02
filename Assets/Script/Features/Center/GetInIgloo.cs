@@ -17,6 +17,8 @@ public class GetInIgloo : MonoBehaviour
     {
         if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.ACCESS)
         {
+            CameraManager.Instance.ChangeCamera();
+
             CenterManager.instance.ActualCenterState = CenterState.USE;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
 
