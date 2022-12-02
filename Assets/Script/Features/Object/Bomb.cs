@@ -24,8 +24,9 @@ public class Bomb : MonoBehaviour, IInteractable
 
     }
 
-    public void Interact(Player player = null)
+    public void Interact(Player player)
     {
+        Debug.Log(player);
         StartCoroutine(Explosion(player.gameObject));
     }
    
