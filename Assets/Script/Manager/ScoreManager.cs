@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,10 @@ public class ScoreManager : MonoBehaviour
     private int multiplier;
 
     private bool addMiddleScore = true;
+    public Sprite courroneUI, emptyCourroneUI;
+    [SerializeField]
+    private GameObject scoreBoard;
+    List<RectTransform> PlayerListSortByScore = new List<RectTransform>();
 
     public static ScoreManager instance;
 
@@ -64,7 +69,6 @@ public class ScoreManager : MonoBehaviour
     {
         addMiddleScore = false;
         AddScore(scoreMiddle, GameManager.instance.PlayerInMiddle.GetComponent<Player>());
-        Debug.Log(GameManager.instance.PlayerInMiddle.GetComponent<Player>());
         yield return new WaitForSeconds(middelPointsCooldown);
         addMiddleScore = true;
     }
@@ -73,7 +77,7 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            scorePlayerText[i].text = /*"Player " + (i + 1) + " : " + */PlayerManager.instance.players[i].score.ToString();
+            scorePlayerText[i].text = PlayerManager.instance.players[i].score.ToString();
         }
     }
 
@@ -84,8 +88,6 @@ public class ScoreManager : MonoBehaviour
             multi = multiplier;
 
         player.score += points * multi;
-        
-        Debug.Log(player.score);
 
         ScoreBoardSorting();
         UpdateScores();
@@ -111,11 +113,24 @@ public class ScoreManager : MonoBehaviour
             bestScore = 0;
 
         }
+
+
+        for (int i = 0; i < tempPlayerListPlayer.Count; i++)
+        {
+            PlayerListSortByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(tempPlayerListPlayer[i].playerID).GetComponent<RectTransform>());
+        }
+
         tempPlayerListPlayer[0].couronne.SetActive(true);
+        PlayerListSortByScore[0].GetChild(0).GetChild(0).GetComponent<Image>().sprite = courroneUI;
         for (int i = 1; i < tempPlayerListPlayer.Count; i++)
         {
             tempPlayerListPlayer[i].couronne.SetActive(false);
         }
+        for (int i = 0; i < PlayerListSortByScore.Count; i++)
+        {
+            PlayerListSortByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
+        }
+
     }
 
     public void InstantiateScoreText(int p) 
@@ -124,6 +139,8 @@ public class ScoreManager : MonoBehaviour
 
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
+        //Debug.Log(PlayerManager.instance.players[p].GetComponent<Player>().currentColor);
+        //scorePlayerText[p].color = PlayerManager.instance.players[p].GetComponent<Player>().currentColor;
         UpdateScores();
     }
 }

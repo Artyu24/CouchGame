@@ -14,6 +14,7 @@ public class ObjectManager : MonoBehaviour
     private List<GameObject> allObjectList = new List<GameObject>();
 
     [Header("FishBag")]
+    [SerializeField] private int goldenRate = 50;
     private GameObject fishBag;
 
     [Header("Multiplier"), SerializeField] 
@@ -26,10 +27,17 @@ public class ObjectManager : MonoBehaviour
 
     [Header("SlowZone")]
     private GameObject slowZoneObject;
-    
+
     [Header("BOMB")]
     public float timeBeforeExplosion;
     public int bombStrenght;
+    private GameObject bomb;
+
+    [Header("Item Percentage"), SerializeField]
+    private int percentMultiplier = 1;
+    [SerializeField] private int percentSpeedUp = 1;
+    [SerializeField] private int percentSlowZone = 1;
+    [SerializeField] private int percentBomb = 1;
 
     private void Awake()
     {
@@ -41,15 +49,23 @@ public class ObjectManager : MonoBehaviour
         multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
         speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
         slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
+        bomb = Resources.Load<GameObject>("Features/Bomb");
 
-        allObjectList.Add(multiplierObject);
-        allObjectList.Add(speedObject);
-        allObjectList.Add(slowZoneObject);
+        SetPercentObject(multiplierObject, percentMultiplier);
+        SetPercentObject(speedObject, percentSpeedUp);
+        SetPercentObject(slowZoneObject, percentSlowZone);
+        SetPercentObject(bomb, percentBomb);
+    }
+
+    private void SetPercentObject(GameObject objet, int percent)
+    {
+        for (int i = 0; i < percent; i++)
+            allObjectList.Add(objet);    
     }
 
     #region Start Spawn
 
-    private void Start()
+    public void InitSpawnAll()
     {
         StartCoroutine(LaunchFishBag());
         StartCoroutine(SpawnObjectStart());
@@ -92,7 +108,7 @@ public class ObjectManager : MonoBehaviour
         Transform pos = PointAreaManager.instance.GetRandomPosition();
         GameObject bag = Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
 
-        bool i = Random.Range(0, 100) % 2 == 0 ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+        bool i = Random.Range(0, 100) <= goldenRate ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
     }
     
     public void CallBarSpePlus(GameObject player, bool isGolden)
@@ -102,14 +118,11 @@ public class ObjectManager : MonoBehaviour
 
     private IEnumerator BarSpePlus(GameObject player, bool isGolden)
     {
-        Debug.Log("Is In " + isGolden);
         yield return new WaitForSecondsRealtime(1.4f);
         PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
-        Debug.Log("Is In timing " + isGolden);
 
         if (isGolden)//le poisson est goldé
         {
-            Debug.Log(ScoreManager.instance.scorePointArea);
             //Debug.Log("GOLDEEEEEEENNNNNNNN");
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreGoldPointArea, player.GetComponent<Player>());
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
@@ -120,7 +133,6 @@ public class ObjectManager : MonoBehaviour
         else//bouh le nul
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scorePointArea, player.GetComponent<Player>());
-            Debug.Log(ScoreManager.instance.scorePointArea);
             if (playerAttack.CurrentSpecial < playerAttack.maxSpecial)
                 playerAttack.AddSpeBarrePoint(ScoreManager.instance.scorePointArea);
         }

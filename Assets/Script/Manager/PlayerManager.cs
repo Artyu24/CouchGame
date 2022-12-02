@@ -9,9 +9,11 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     #region UI
-    public GameObject speBarrePrefab;
+    public GameObject[] speBarrePrefabs = new GameObject[4];
     [SerializeField]
     private GameObject interfaceUIPrefab;
+    [SerializeField]
+    private Sprite[] interfaceUIPrefabPP = new Sprite[4];
     public GameObject InterfaceUiPrefab => interfaceUIPrefab;
     
     private GameObject[] playersInterface = new GameObject[4];
@@ -33,7 +35,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(this.gameObject);
 
         //Find all prefab
-        speBarrePrefab = Resources.Load<GameObject>("UI/SpeBarreCharge");
+        speBarrePrefabs = Resources.LoadAll<GameObject>("UI/SpeBarreCharge");
         interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
         scoreboardUI = GameObject.FindGameObjectWithTag("Scoreboard");
 
@@ -86,6 +88,11 @@ public class PlayerManager : MonoBehaviour
         
         player.tag = "Player";
         ScoreManager.instance.UpdateScores();
+
+        CameraManager.Instance.AddPlayerTarget(player.transform, dataPlayer.playerID + 1);
+
+        if (players.Count >= 2 && GameManager.instance.ActualGameState == GameState.WAIT)
+            GameManager.instance.ActualGameState = GameState.INIT;
     }
 
 
@@ -93,7 +100,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (scoreboardUI != null)
         {
-
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
 
@@ -106,13 +112,15 @@ public class PlayerManager : MonoBehaviour
 
             //Parent UI par Player
             GameObject playerInterfaceTempo = Instantiate(interfaceUIPrefab, scoreboardUI.transform);
+            playerInterfaceTempo.name = "JUI " + (i+1);
             playersInterface[i] = playerInterfaceTempo;
+            playersInterface[i].GetComponentInChildren<Image>().sprite = interfaceUIPrefabPP[i];
 
             //Text du score par Player
             ScoreManager.instance.InstantiateScoreText(i);
 
             //Spé barre par player
-            GameObject speBarreTemp = Instantiate(speBarrePrefab, playerInterfaceTempo.transform.GetChild(1).transform);
+            GameObject speBarreTemp = Instantiate(speBarrePrefabs[i], playerInterfaceTempo.transform.GetChild(1).transform);
             speBarreTemp.name = "SpéChargeBarre " + (1);
             player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
         }

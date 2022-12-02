@@ -24,7 +24,10 @@ public class PlayerAttack : MonoBehaviour
         set => playerHitedBy = value;
     }
 
+    private ParticleSystem playerHit;
+
     private Slider speBarreSlider;
+    public Gradient speBarreGradient;
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
     private GameObject effectSpeBarre;
 
@@ -39,6 +42,8 @@ public class PlayerAttack : MonoBehaviour
     {
         effectSpeBarre = transform.GetChild(1).gameObject;
         effectSpeBarre.SetActive(false);
+        playerHit = Resources.Load<ParticleSystem>("Features/Hit");
+        Debug.Log(playerHit);
     }
     #endregion
 
@@ -99,40 +104,46 @@ public class PlayerAttack : MonoBehaviour
                 middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si �a marche plus faut faire le transform.TransformDirection apr�s les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-                Debug.DrawRay((new Vector3(dir.x / 2.5f,0,dir.z / 2.5f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
-                Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
+                Debug.DrawRay((new Vector3(dir.x / 3f,0,dir.z / 3f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
+                Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);                
                 #endregion
 
                 #region HitCondition
-                if (hit.transform != null && hit.transform.tag == "Player")//if we hit a player we push him
-                {
-                    //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
-                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    //Debug.Log(hit.transform.name + " has been hit");
-                    hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
-                    hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
-                    hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "FishBag")//if we hit a FishBag we do things
-                {
 
-                    Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
-                    hit.transform.GetComponent<FishBag>().Damage(gameObject);
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "Shield")//if we hit the shield, he loose HP
+                if (hit.transform != null)
                 {
-                    CenterManager.instance.DealDamage();
-                    return;
-                }
-                if (hit.transform != null && hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
-                {
-                    hit.transform.GetComponent<Rigidbody>().mass = 1;
-                    hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                    hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
-                    hit.transform.GetComponent<Bomb>().isGrounded = false;
-                    return;
+                    if (hit.transform.tag == "Player")//if we hit a player we push him
+                    {
+                        //Vector3 hitDir = new Vector3(hit.transform.position.x - transform.position.x, 0, hit.transform.position.z - transform.position.z);
+                        hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                        //Debug.Log(hit.transform.name + " has been hit");
+                        hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
+                        hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
+                        hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
+                        return;
+                    }
+                    if (hit.transform.tag == "FishBag")//if we hit a FishBag we do things
+                    {
+
+                        //Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
+                        hit.transform.GetComponent<FishBag>().Damage(gameObject);
+                        return;
+                    }
+                    if (hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
+                    {
+                        hit.transform.GetComponent<Rigidbody>().mass = 1;
+                        hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                        hit.transform.GetComponent<Bomb>().isGrounded = false;
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                        return;
+                    }
+
+                    if (hit.transform.GetComponent<IInteractable>() != null)
+                    {
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                        return;
+                    }
+
                 }
                 #endregion
 
@@ -143,6 +154,8 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 int xcount = Random.Range(0, 5);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+                ParticleSystem PS = Instantiate(playerHit, hit.point, Quaternion.identity);
+                Destroy(PS, .2f);
                 #endregion
 
             }
@@ -156,7 +169,7 @@ public class PlayerAttack : MonoBehaviour
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
 
-        if(currentSpecial == maxSpecial)
+        if(currentSpecial >= maxSpecial)
             effectSpeBarre.SetActive(true);
     }
 

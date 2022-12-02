@@ -23,14 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float deadZoneController = 0.3f;
     [SerializeField] private int nbrFishBag = 2;
     public int NbrFishBag => nbrFishBag;
-    private GameState actualGameState = GameState.MENU;
+    private GameState actualGameState = GameState.WAIT;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
-
-
-
-
 
     #endregion
     
@@ -114,11 +110,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pushForceBumper = 1.5f;
     public float PushForceBumper { get => pushForceBumper; private set => pushForceBumper = value; }
 
+    [SerializeField] private float bumperMovementDistance = 0.5f;
+    public float BumperMovementDistance { get => bumperMovementDistance; private set => bumperMovementDistance = value; }
+
+    [SerializeField] private float speedBumper = 2f;
+    public float SpeedBumper { get => speedBumper; private set => speedBumper = value; }
+
 
 
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
-    
+
     #endregion
 
     #region Circles
