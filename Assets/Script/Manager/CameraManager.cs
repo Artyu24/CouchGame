@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         targetAllPlayer.m_Targets = new CinemachineTargetGroup.Target[5];
-        targetAllPlayer.m_Targets[0] = CreateNewTarget(AudioManager.instance.transform, 0.5f, 0.2f);
+        targetAllPlayer.m_Targets[0] = CreateNewTarget(AudioManager.instance.transform, 1f, 0.2f);
     }
 
     private CinemachineTargetGroup.Target CreateNewTarget(Transform t, float weight, float radius)
@@ -36,6 +36,11 @@ public class CameraManager : MonoBehaviour
     public void AddPlayerTarget(Transform playerTransform, int id)
     {
         targetAllPlayer.m_Targets[id] = CreateNewTarget(playerTransform, 1, radiusPlayer);
+    }
+
+    public void RemovePlayerTarget(int id)
+    {
+        targetAllPlayer.m_Targets[id] = new CinemachineTargetGroup.Target();
     }
 
     public void ChangeCamera()
