@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
         set => playerHitedBy = value;
     }
 
-    private ParticleSystem playerHit;
+    private GameObject playerHit;
 
     private Slider speBarreSlider;
     public Gradient speBarreGradient;
@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     {
         effectSpeBarre = transform.GetChild(1).gameObject;
         effectSpeBarre.SetActive(false);
-        playerHit = Resources.Load<ParticleSystem>("Features/Hit");
+        playerHit = Resources.Load<GameObject>("Features/Hit");
         Debug.Log(playerHit);
     }
     #endregion
@@ -120,13 +120,14 @@ public class PlayerAttack : MonoBehaviour
                         hit.transform.GetComponent<PlayerAttack>().HitTag(gameObject);
                         hit.transform.GetComponent<PlayerMovement>().animator.SetTrigger("Hit");
                         hit.transform.GetComponent<Player>().ActualPlayerState = PlayerState.FLYING;
+                        HitParticle(hit.point);
                         return;
                     }
                     if (hit.transform.tag == "FishBag")//if we hit a FishBag we do things
                     {
-
                         //Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
                         hit.transform.GetComponent<FishBag>().Damage(gameObject);
+                        HitParticle(hit.point);
                         return;
                     }
                     if (hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
@@ -135,12 +136,14 @@ public class PlayerAttack : MonoBehaviour
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
                         hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                        HitParticle(hit.point);
                         return;
                     }
 
                     if (hit.transform.GetComponent<IInteractable>() != null)
                     {
                         hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                        HitParticle(hit.point); 
                         return;
                     }
 
@@ -154,8 +157,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 int xcount = Random.Range(0, 5);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
-                ParticleSystem PS = Instantiate(playerHit, hit.point, Quaternion.identity);
-                Destroy(PS, .2f);
+                
                 #endregion
 
             }
@@ -163,6 +165,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     #endregion
+
+    private void HitParticle(Vector3 _pos)
+    {
+        GameObject PS = Instantiate(playerHit, _pos, Quaternion.identity);
+        Destroy(PS, 2f);
+    }
 
     public void AddSpeBarrePoint(int _point)
     {
