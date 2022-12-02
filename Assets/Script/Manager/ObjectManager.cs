@@ -29,9 +29,9 @@ public class ObjectManager : MonoBehaviour
     private GameObject slowZoneObject;
 
     [Header("BOMB")]
-    private GameObject bomb;
     public float timeBeforeExplosion;
     public int bombStrenght;
+    private GameObject bomb;
 
     [Header("Item Percentage"), SerializeField]
     private int percentMultiplier = 1;
