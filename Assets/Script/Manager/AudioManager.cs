@@ -25,7 +25,6 @@ public class AudioManager : MonoBehaviour
             }
             DicoActualSound[sound.ActualSound].Add(sound);
         }
-        FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
 
 
     }

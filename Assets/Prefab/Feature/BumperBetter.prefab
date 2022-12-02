@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7994393107977113395}
   - component: {fileID: 1091634011460973178}
   - component: {fileID: 4095980427026884869}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BumperBetter
-  m_TagString: Untagged
+  m_TagString: Bumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9222056193418607205}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6342e-10, y: 0.7, z: 5}
   m_LocalScale: {x: 0.7327924, y: 0.2084524, z: 0.7327924}
   m_ConstrainProportionsScale: 0
@@ -139,6 +139,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bumper
       objectReference: {fileID: 0}
+    - target: {fileID: 3571558910884994383, guid: 431b80bdc20be944a81197d7dd32b2ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3571558910884994416, guid: 431b80bdc20be944a81197d7dd32b2ae,
         type: 3}
       propertyPath: m_Animator
@@ -219,7 +224,9 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3571558910884994416, guid: 431b80bdc20be944a81197d7dd32b2ae, type: 3}
+    - {fileID: 3571558910884994417, guid: 431b80bdc20be944a81197d7dd32b2ae, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 431b80bdc20be944a81197d7dd32b2ae, type: 3}
 --- !u!4 &5650868367745486409 stripped
 Transform:

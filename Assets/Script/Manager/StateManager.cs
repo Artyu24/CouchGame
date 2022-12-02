@@ -47,4 +47,11 @@ public enum SoundState
     NormalPunchSound,
     BeingHitSound,
     FootstepsSound,
+    Timer,
+    StepSound,
+    HitSound,
+    NormalPunch,
+    SpecialPunchHit,
+    SpecialChargedId,
+    SpecialChargedLoop,
 }
