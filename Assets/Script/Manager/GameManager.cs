@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Two");
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("One");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
 
     }
