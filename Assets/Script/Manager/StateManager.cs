@@ -8,7 +8,8 @@ public enum GameState
     WAIT,
     INIT,
     INGAME,
-    PAUSED
+    PAUSED,
+    ENDROUND
 }
 
 public enum PlayerState
