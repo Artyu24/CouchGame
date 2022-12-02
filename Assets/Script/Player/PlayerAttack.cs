@@ -136,8 +136,8 @@ public class PlayerAttack : MonoBehaviour
                     {
                         hit.transform.GetComponent<Rigidbody>().mass = 1;
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                        hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
+                        hit.transform.GetComponent<IInteractable>().Interact();
                         return;
                     }
 
