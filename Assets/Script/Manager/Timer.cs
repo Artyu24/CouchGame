@@ -84,6 +84,7 @@ public class Timer : MonoBehaviour
             if (timerCountDown <= 0)
             {
                 CameraManager.Instance.ChangeCamera();
+                ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
             }
 
@@ -101,7 +102,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            timerText.text = "WHEN STARTING BRO";
+            timerText.text = "START";
         }
     }
     private void PrintScoreWindow()
@@ -113,12 +114,13 @@ public class Timer : MonoBehaviour
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)
         {
             GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
-            scorePlayerText[p] = temp.GetComponent<Text>();
+            scorePlayerText[p] = temp.GetComponentInChildren<Text>();
             temp.name = "Player " + (p + 1);
         }
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
+            Debug.Log(PlayerManager.instance.players[i].score);
             scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
         }
     }
