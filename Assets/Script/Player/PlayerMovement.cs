@@ -85,7 +85,8 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, transform.localScale.y + 0.1f);
         if (isGrounded)
         {
-            GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+            if(player.ActualPlayerState != PlayerState.MIDDLE)
+                player.ActualPlayerState = PlayerState.FIGHTING;
         }
     }
 

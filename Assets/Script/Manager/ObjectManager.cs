@@ -53,7 +53,7 @@ public class ObjectManager : MonoBehaviour
 
     #region Start Spawn
 
-    private void Start()
+    public void InitSpawnAll()
     {
         StartCoroutine(LaunchFishBag());
         StartCoroutine(SpawnObjectStart());

@@ -84,6 +84,7 @@ public class Timer : MonoBehaviour
             if (timerCountDown <= 0)
             {
                 CameraManager.Instance.ChangeCamera();
+                ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
             }
 
@@ -101,7 +102,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            timerText.text = "WHEN STARTING BRO";
+            timerText.text = "START";
         }
     }
     private void PrintScoreWindow()
