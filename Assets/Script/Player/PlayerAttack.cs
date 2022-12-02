@@ -24,6 +24,8 @@ public class PlayerAttack : MonoBehaviour
         set => playerHitedBy = value;
     }
 
+    private ParticleSystem playerHit;
+
     private Slider speBarreSlider;
     public Gradient speBarreGradient;
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
@@ -40,6 +42,8 @@ public class PlayerAttack : MonoBehaviour
     {
         effectSpeBarre = transform.GetChild(1).gameObject;
         effectSpeBarre.SetActive(false);
+        playerHit = Resources.Load<ParticleSystem>("Features/Hit");
+        Debug.Log(playerHit);
     }
     #endregion
 
@@ -100,8 +104,11 @@ public class PlayerAttack : MonoBehaviour
                 middleDirAngle = Mathf.Atan2(transform.TransformDirection(Vector3.forward).z, transform.TransformDirection(Vector3.forward).x);//si �a marche plus faut faire le transform.TransformDirection apr�s les calcules
                 float angle = middleDirAngle - Mathf.Deg2Rad * it;
                 Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-                Debug.DrawRay((new Vector3(dir.x / 2.5f,0,dir.z / 2.5f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
+                Debug.DrawRay((new Vector3(dir.x / 3f,0,dir.z / 3f) + transform.localPosition), dir * GameManager.instance.Range, Color.blue, 5.0f);
                 Physics.Raycast((new Vector3(dir.x / 3, 0, dir.z / 3) + transform.localPosition), dir, out hit, GameManager.instance.Range,layerMask);
+
+                ParticleSystem PS =  Instantiate(playerHit, hit.point, Quaternion.identity);
+                Destroy(PS, .5f);
                 #endregion
 
                 #region HitCondition
@@ -121,7 +128,7 @@ public class PlayerAttack : MonoBehaviour
                     if (hit.transform.tag == "FishBag")//if we hit a FishBag we do things
                     {
 
-                        Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
+                        //Debug.Log(hit.transform.GetComponent<FishBag>().isGolden);
                         hit.transform.GetComponent<FishBag>().Damage(gameObject);
                         return;
                     }
@@ -129,8 +136,8 @@ public class PlayerAttack : MonoBehaviour
                     {
                         hit.transform.GetComponent<Rigidbody>().mass = 1;
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                        hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
+                        hit.transform.GetComponent<IInteractable>().Interact();
                         return;
                     }
 

@@ -52,55 +52,30 @@ public class Player : MonoBehaviour
 
     private IEnumerator RespawnDelay()
     {
-        yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
-        //Debug.Log("Invincible");
-        
-        isInvincible = true;
-        actualPlayerState = PlayerState.FIGHTING;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
-
-
-
-        Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
-        Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);
-        Sequence seq = DOTween.Sequence();
-        seq.Append(a).Append(b).SetLoops(10);
-
-
-
-
-
-
-
-
-
-
-
-        //StartCoroutine(InvincibilityFlash());
-        yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
-        //Debug.Log(" plus Invincible");
-        isInvincible = false;
 
         if (gameObject.GetComponent<PlayerAttack>().PlayerHitedBy != null)
         {
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreKill, gameObject.GetComponent<PlayerAttack>().PlayerHitedBy.GetComponent<Player>());
             gameObject.GetComponent<PlayerAttack>().PlayerHitedBy = null;
         }
+        yield return new WaitForSeconds(GameManager.instance.RespawnDelay);
+
+        isInvincible = true;
+        actualPlayerState = PlayerState.FIGHTING;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
+        CameraManager.Instance.AddPlayerTarget(transform, playerID + 1);
+
+        Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
+        Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(a).Append(b).SetLoops(10);
+
+        yield return new WaitForSeconds(GameManager.instance.InvincibleDelay);
+        isInvincible = false;
+
     }
 
-    //public IEnumerator InvincibilityFlash()
-    //{
-    //    while (isInvincible)
-    //    {
-    //        graphics.material.color = new Color(1f,1f,1f,0f);
-    //        yield return new WaitForSeconds(0.2f);
-    //        graphics.material.color = currentColor; 
-    //        yield return new WaitForSeconds(0.2f);
-
-
-    //    }
-    //}
     public void HideGuy(bool enable)
     {
         GetComponent<CapsuleCollider>().enabled = enable;

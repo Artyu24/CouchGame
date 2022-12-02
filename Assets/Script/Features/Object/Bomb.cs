@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Bomb : MonoBehaviour, IInteractable
 {
     [SerializeField] SphereCollider sphereCollider;
 
@@ -24,11 +24,11 @@ public class Bomb : MonoBehaviour
 
     }
 
-    public void StartExplosion(GameObject _player)
+    public void Interact(Player player = null)
     {
-        StartCoroutine(Explosion(_player));
+        StartCoroutine(Explosion(player.gameObject));
     }
-
+   
     IEnumerator Explosion(GameObject _player)
     {
         //Debug.LogError("BOOOOOOOOOOOM");
@@ -89,4 +89,5 @@ public class Bomb : MonoBehaviour
         if (collision.transform.tag == "Platform")
             isGrounded = false;
     }
+
 }
