@@ -33,6 +33,12 @@ public class ObjectManager : MonoBehaviour
     public float timeBeforeExplosion;
     public int bombStrenght;
 
+    [Header("Item Percentage"), SerializeField]
+    private int percentMultiplier = 1;
+    [SerializeField] private int percentSpeedUp = 1;
+    [SerializeField] private int percentSlowZone = 1;
+    [SerializeField] private int percentBomb = 1;
+
     private void Awake()
     {
         if (Instance == null)
@@ -45,10 +51,16 @@ public class ObjectManager : MonoBehaviour
         slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
         bomb = Resources.Load<GameObject>("Features/Bomb");
 
-        allObjectList.Add(multiplierObject);
-        allObjectList.Add(speedObject);
-        allObjectList.Add(slowZoneObject);
-        allObjectList.Add(bomb);
+        SetPercentObject(multiplierObject, percentMultiplier);
+        SetPercentObject(speedObject, percentSpeedUp);
+        SetPercentObject(slowZoneObject, percentSlowZone);
+        SetPercentObject(bomb, percentBomb);
+    }
+
+    private void SetPercentObject(GameObject objet, int percent)
+    {
+        for (int i = 0; i < percent; i++)
+            allObjectList.Add(objet);    
     }
 
     #region Start Spawn
