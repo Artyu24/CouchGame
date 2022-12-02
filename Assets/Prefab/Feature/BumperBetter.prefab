@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9222056193418607227}
   - component: {fileID: 7994393107977113395}
   - component: {fileID: 1091634011460973178}
+  - component: {fileID: 4095980427026884869}
   m_Layer: 0
   m_Name: BumperBetter
   m_TagString: Untagged
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b096289efa58de14a8192d629f5e34a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  igloo: {fileID: 0}
 --- !u!136 &1091634011460973178
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -113,6 +113,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &4095980427026884869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222056193418607205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8836f66f9c00bd4c9e9f43752ec09e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capsulCollider: {fileID: 1091634011460973178}
+  m_Animator: {fileID: 9222056193400787763}
 --- !u!1001 &9222056193400787773
 PrefabInstance:
   m_ObjectHideFlags: 0
