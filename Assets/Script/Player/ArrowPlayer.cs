@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArrowPlayer : MonoBehaviour
 {
-    private Color[] flecheColor = new Color[4] { Color.blue, Color.red, Color.yellow, Color.green };
+    public Color[] flecheColor = new Color[4] { Color.blue, Color.red, Color.yellow, Color.green };
     public GameObject fleche, texte;
     public float offsetArrow = 2;
     Camera cam;
@@ -19,7 +19,7 @@ public class ArrowPlayer : MonoBehaviour
         texte.GetComponent<Text>().color = flecheColor[GetComponentInParent<Player>().playerID];
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
         fleche.transform.position = cam.WorldToScreenPoint(screenPos);

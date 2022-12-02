@@ -10,6 +10,7 @@ public class DeathZone : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
             player.ActualPlayerState = PlayerState.DEAD;
+            CameraManager.Instance.RemovePlayerTarget(player.playerID + 1);
             player.Kill();
             int xcount = Random.Range(0, 3);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.FallSound);            
