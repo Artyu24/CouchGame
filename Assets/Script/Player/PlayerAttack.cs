@@ -142,7 +142,7 @@ public class PlayerAttack : MonoBehaviour
                     }
 
                     if(hit.transform.GetComponent<IInteractable>() != null)
-                        hit.transform.GetComponent<IInteractable>().Interact();
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
 
                 }
                 #endregion
