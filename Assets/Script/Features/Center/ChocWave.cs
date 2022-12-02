@@ -51,6 +51,8 @@ public class ChocWave : MonoBehaviour
                     playerList.Add(other.gameObject.GetComponent<Player>());
                     int xcount = Random.Range(0, 5);
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.HitSound);
+
 
                 }
             }

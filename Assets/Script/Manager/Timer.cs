@@ -58,6 +58,7 @@ public class Timer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
+            StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
         
@@ -93,14 +94,18 @@ public class Timer : MonoBehaviour
                 CameraManager.Instance.ChangeCamera();
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+                StartCoroutine(GameManager.instance.TargetMeteorite());
+                
             }
 
             timerCountDown -= Time.deltaTime;
-            seconds = Mathf.FloorToInt(timerCountDown % 60f);
+            seconds = Mathf.FloorToInt(timerCountDown + 1 % 60f);
             
             if (timerCountDown >= 0.0f)
             {
-                timerText.text = seconds.ToString("00");
+                timerText.text = seconds.ToString("0");
+
             }
             else
             {
@@ -211,4 +216,6 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
     }
+
+    
 }
