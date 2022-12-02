@@ -66,6 +66,7 @@ public class Timer : MonoBehaviour
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
             {
+                GameManager.instance.ActualGameState = GameState.ENDROUND;
                 PrintScoreWindow();
                 //PrintGeneralScoreWindow();
             }
@@ -86,7 +87,7 @@ public class Timer : MonoBehaviour
                 timerText.text = "00 : 00";
             }
         }
-        else if (GameManager.instance.ActualGameState == GameState.INIT)
+        if (GameManager.instance.ActualGameState == GameState.INIT)
         {
             if (timerCountDown <= 0)
             {
@@ -119,7 +120,7 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)

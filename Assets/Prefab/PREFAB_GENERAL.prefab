@@ -6693,6 +6693,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
         type: 3}
+      propertyPath: roundScoreTextPrefab
+      value: 
+      objectReference: {fileID: 6026816814468351564, guid: 1a85fa117ff7ba14f8bf6cb6b85b6651,
+        type: 3}
+    - target: {fileID: 3011877825736816099, guid: 7c447ba96b9b3624e93b82b3ad906524,
+        type: 3}
       propertyPath: ppWindowRound.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 251d62523352a804587a4f62b7f97360,
@@ -6745,6 +6751,12 @@ PrefabInstance:
 --- !u!224 &175090754217831461 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2728313911226112681, guid: 7c447ba96b9b3624e93b82b3ad906524,
+    type: 3}
+  m_PrefabInstance: {fileID: 2860602773718201996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7366330948293681174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4722184639311681178, guid: 7c447ba96b9b3624e93b82b3ad906524,
     type: 3}
   m_PrefabInstance: {fileID: 2860602773718201996}
   m_PrefabAsset: {fileID: 0}
@@ -6912,9 +6924,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
         type: 3}
+      propertyPath: courroneUI
+      value: 
+      objectReference: {fileID: 21300000, guid: f6461da0cd3ff864b868a2286bb5bdc0,
+        type: 3}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
       propertyPath: multiplier
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
+        type: 3}
+      propertyPath: scoreBoard
+      value: 
+      objectReference: {fileID: 7366330948293681174}
     - target: {fileID: 5328547949275961220, guid: ed451f23e1cc1ca4caac910aa5461ede,
         type: 3}
       propertyPath: scoreMiddle
