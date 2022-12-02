@@ -6239,6 +6239,11 @@ PrefabInstance:
       objectReference: {fileID: 7384015259377065155}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
+      propertyPath: speedBumper
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
       propertyPath: growingSpeed
       value: 7
       objectReference: {fileID: 0}
@@ -6266,6 +6271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speedMeteorite
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: pushForceBumper
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
