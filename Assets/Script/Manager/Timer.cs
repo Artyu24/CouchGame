@@ -56,6 +56,11 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GameManager.instance.ActualGameState = GameState.INIT;
+        }
+        
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
