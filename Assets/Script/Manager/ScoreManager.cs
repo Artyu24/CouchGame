@@ -126,7 +126,7 @@ public class ScoreManager : MonoBehaviour
         {
             tempPlayerListPlayer[i].couronne.SetActive(false);
         }
-        for (int i = 0; i < PlayerListSortByScore.Count; i++)
+        for (int i = 1; i < PlayerListSortByScore.Count; i++)
         {
             PlayerListSortByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
         }
