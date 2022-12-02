@@ -55,6 +55,7 @@ public class PlayerAttack : MonoBehaviour
         {
             int xcount = Random.Range(0, 5);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
             StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
         }
     }
@@ -70,6 +71,7 @@ public class PlayerAttack : MonoBehaviour
             int xcount = Random.Range(0, 3);
             StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
 
         }
     }
@@ -157,6 +159,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 int xcount = Random.Range(0, 5);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.HitSound);
                 
                 #endregion
 
