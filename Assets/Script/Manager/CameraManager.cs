@@ -15,7 +15,6 @@ public class CameraManager : MonoBehaviour
     {
         if(Instance == null)
             Instance = this;
-
     }
 
     private void Start()
@@ -35,12 +34,32 @@ public class CameraManager : MonoBehaviour
 
     public void AddPlayerTarget(Transform playerTransform, int id)
     {
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        {
+            bool anybody = true;
+            for (int i = 1; i < 5; i++)
+            {
+                if (targetAllPlayer.m_Targets[i].weight != 0)
+                    anybody = false;
+            }
+            
+            if(anybody)
+                ChangeCamera();
+        }
+
         targetAllPlayer.m_Targets[id] = CreateNewTarget(playerTransform, 1, radiusPlayer);
     }
 
     public void RemovePlayerTarget(int id)
     {
         targetAllPlayer.m_Targets[id] = new CinemachineTargetGroup.Target();
+
+        for (int i = 1; i < 5; i++)
+        {
+            if (targetAllPlayer.m_Targets[i].weight != 0)
+                return;
+        }
+        ChangeCamera();
     }
 
     public void ChangeCamera()
@@ -49,6 +68,5 @@ public class CameraManager : MonoBehaviour
             playerCamera.SetActive(false);
         else
             playerCamera.SetActive(true);
-        
     }
 }
