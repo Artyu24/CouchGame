@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,7 +87,7 @@ public class Timer : MonoBehaviour
                 timerText.text = "00 : 00";
             }
         }
-        if (GameManager.instance.ActualGameState == GameState.INIT)
+        else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
             if (timerCountDown <= 0)
             {
@@ -201,7 +202,11 @@ public class Timer : MonoBehaviour
     private void InstantiateMedals(Transform t, int position)
     {
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
-        temp2. GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
+        //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
+        Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
+        Tween b = temp2.transform.DOScale(new Vector3(1, 1), 0.5f);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(a).Append(b).SetLoops(-1);
         PlayerManager.instance.players[position].medals.Add(medals[Mathf.Abs(position)]);
     }
 
