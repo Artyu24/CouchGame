@@ -8,14 +8,15 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     #region Timer
-
     private Text timerText;
     private Text timerSet;
 
-    private float timerBegin;
+    private float timerCountDown = 5;
+
     private int minutes, seconds;
     public string levelName;
     #endregion
+
     #region Scoreboard
     private bool scoreWindowRoundIsActive = false;
     private bool scoreWindowGeneralIsActive = false;
@@ -43,8 +44,6 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        timerBegin = GameManager.instance.Timer; 
-
         PlayerManager.instance.FindCanvas();
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
@@ -56,29 +55,56 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            PrintScoreWindow();
-            //PrintGeneralScoreWindow();
-        }
+            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
+            {
+                PrintScoreWindow();
+                //PrintGeneralScoreWindow();
+            }
 
-        if (PlayerManager.instance.players.Count >= 2 && !scoreWindowRoundIsActive)
-        {
-            GameManager.instance.Timer -= Time.deltaTime;
-            minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
-            seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
-        }
+            if (!scoreWindowRoundIsActive)
+            {
+                GameManager.instance.Timer -= Time.deltaTime;
+                minutes = Mathf.FloorToInt(GameManager.instance.Timer / 60f);
+                seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
+            }
 
-        if (GameManager.instance.Timer >= 0.0f)
+            if (GameManager.instance.Timer >= 0.0f)
+            {
+                timerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
+            }
+            else
+            {
+                timerText.text = "00 : 00";
+            }
+        }
+        else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
-            timerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
+            if (timerCountDown <= 0)
+            {
+                CameraManager.Instance.ChangeCamera();
+                ObjectManager.Instance.InitSpawnAll();
+                GameManager.instance.ActualGameState = GameState.INGAME;
+            }
+
+            timerCountDown -= Time.deltaTime;
+            seconds = Mathf.FloorToInt(timerCountDown % 60f);
+            
+            if (timerCountDown >= 0.0f)
+            {
+                timerText.text = seconds.ToString("00");
+            }
+            else
+            {
+                timerText.text = "0";
+            }
         }
         else
         {
-            timerText.text = "00 : 00";
+            timerText.text = "START";
         }
     }
-
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
@@ -88,12 +114,13 @@ public class Timer : MonoBehaviour
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)
         {
             GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
-            scorePlayerText[p] = temp.GetComponent<Text>();
+            scorePlayerText[p] = temp.GetComponentInChildren<Text>();
             temp.name = "Player " + (p + 1);
         }
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
+            Debug.Log(PlayerManager.instance.players[i].score);
             scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
         }
     }

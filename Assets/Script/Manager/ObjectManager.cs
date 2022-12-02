@@ -27,8 +27,9 @@ public class ObjectManager : MonoBehaviour
 
     [Header("SlowZone")]
     private GameObject slowZoneObject;
-    
+
     [Header("BOMB")]
+    private GameObject bomb;
     public float timeBeforeExplosion;
     public int bombStrenght;
 
@@ -42,15 +43,17 @@ public class ObjectManager : MonoBehaviour
         multiplierObject = Resources.Load<GameObject>("Features/MultiplierObject");
         speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
         slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
+        bomb = Resources.Load<GameObject>("Features/Bomb");
 
         allObjectList.Add(multiplierObject);
         allObjectList.Add(speedObject);
         allObjectList.Add(slowZoneObject);
+        allObjectList.Add(bomb);
     }
 
     #region Start Spawn
 
-    private void Start()
+    public void InitSpawnAll()
     {
         StartCoroutine(LaunchFishBag());
         StartCoroutine(SpawnObjectStart());
