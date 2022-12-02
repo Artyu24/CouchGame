@@ -23,14 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float deadZoneController = 0.3f;
     [SerializeField] private int nbrFishBag = 2;
     public int NbrFishBag => nbrFishBag;
-    private GameState actualGameState = GameState.MENU;
+    private GameState actualGameState = GameState.WAIT;
     public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
     public float Timer { get => timer; set => timer = value; }
     public float DeadZoneController => deadZoneController;
-
-
-
-
 
     #endregion
     

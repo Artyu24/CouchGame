@@ -52,20 +52,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (player.ActualPlayerState == PlayerState.FIGHTING)
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
-            transform.rotation = orientation;
-        }
+            if (player.ActualPlayerState == PlayerState.FIGHTING)
+            {
+                rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime * speed);
+                transform.rotation = orientation;
+            }
 
-        if (player.ActualPlayerState == PlayerState.FLYING)
-        {
-            StartCoroutine(isFlying());   
-            Debug.DrawRay(transform.position, Vector3.down * transform.localScale.y, Color.red, 10f);
-        }
+            if (player.ActualPlayerState == PlayerState.FLYING)
+            {
+                StartCoroutine(isFlying());   
+                Debug.DrawRay(transform.position, Vector3.down * transform.localScale.y, Color.red, 10f);
+            }
 
-        if (player.ActualPlayerState == PlayerState.MIDDLE)
-            GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
+            if (player.ActualPlayerState == PlayerState.MIDDLE)
+                GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
+        }
     }
 
     void Update()
@@ -82,7 +85,8 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, transform.localScale.y + 0.1f);
         if (isGrounded)
         {
-            GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+            if(player.ActualPlayerState != PlayerState.MIDDLE)
+                player.ActualPlayerState = PlayerState.FIGHTING;
         }
     }
 

@@ -51,35 +51,23 @@ public class RailedBumper : MonoBehaviour, IInteractable
     }
 
     public void Interact(Player player = null)
-    {
-        if(gameObject.transform.position.x < 0)
+    {      
+        Vector3 playerOrient = player.transform.forward;
+        Vector3 bumperOrient = transform.right;
+        playerOrient.y = 0;
+        bumperOrient.y = 0;
+        playerOrient.Normalize();
+        bumperOrient.Normalize();
+        float dotResult = Vector3.Dot(playerOrient, bumperOrient);
+        if(dotResult > 0)
         {
-            if (player.transform.position.z > gameObject.transform.position.z)
-            {
-                StartCoroutine(ForSensNoramal());
-                Debug.Log("Sensnormal");
-            }
-            if (player.transform.position.z < gameObject.transform.position.z)
-            {
-                StartCoroutine(ForSensInverse());
-                Debug.Log("SensInverse");
-            }
-        }
-        if(gameObject.transform.position.x > 0)
-        {
-            if (player.transform.position.z < gameObject.transform.position.z)
-            {
-                StartCoroutine(ForSensNoramal());
-                Debug.Log("Sensnormal");
-            }
-            if (player.transform.position.z > gameObject.transform.position.z)
-            {
-                StartCoroutine(ForSensInverse());
-                Debug.Log("SensInverse");
-            }
-        }
-        
+            StartCoroutine(ForSensNoramal());
 
+        }
+        else
+        {
+            StartCoroutine(ForSensInverse());
+        }
     }
 
     public IEnumerator ForSensNoramal()

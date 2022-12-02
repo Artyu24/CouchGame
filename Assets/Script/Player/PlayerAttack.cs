@@ -136,13 +136,13 @@ public class PlayerAttack : MonoBehaviour
                     {
                         hit.transform.GetComponent<Rigidbody>().mass = 1;
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                        hit.transform.GetComponent<Bomb>().StartExplosion(gameObject);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
+                        hit.transform.GetComponent<IInteractable>().Interact();
                         return;
                     }
 
                     if(hit.transform.GetComponent<IInteractable>() != null)
-                        hit.transform.GetComponent<IInteractable>().Interact();
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
 
                 }
                 #endregion
@@ -167,7 +167,7 @@ public class PlayerAttack : MonoBehaviour
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
 
-        if(currentSpecial == maxSpecial)
+        if(currentSpecial >= maxSpecial)
             effectSpeBarre.SetActive(true);
     }
 

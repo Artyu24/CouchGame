@@ -46,28 +46,8 @@ public class FishBag : MonoBehaviour
         int xcount = Random.Range(0, 5);
 
         //Debug.LogError("JM ICI LE SON FRERO T ES BO");
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EatingSound);
         
-        switch (xcount)
-        {
-            case 0:
-                FindObjectOfType<AudioManager>().Play("Eating1");
-                break;
-            case 1:
-                FindObjectOfType<AudioManager>().Play("Eating2");
-                break;
-            case 2:
-                FindObjectOfType<AudioManager>().Play("Eating3");
-                break;
-            case 3:
-                FindObjectOfType<AudioManager>().Play("Eating4");
-                break;
-            case 4:
-                FindObjectOfType<AudioManager>().Play("Eating5");
-                break;
-            case 5:
-                FindObjectOfType<AudioManager>().Play("Eating6");
-                break;
-        }
         GameObject fui =  Instantiate(fishToUI, transform.position, Quaternion.identity);
         Destroy(fui, 1.4f);
         fui.GetComponent<MoveToUI>().ui_element_gameobject = player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject;
