@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class WarpSpeedScriptTut : MonoBehaviour
+public class HyperSpeedEffect : MonoBehaviour
 {
     public VisualEffect warpSeedVFX;
     public MeshRenderer cylinder;

@@ -11025,7 +11025,7 @@ PrefabInstance:
     - target: {fileID: 175090755911361948, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: terrain.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 175090755911361948, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -11057,6 +11057,11 @@ PrefabInstance:
       propertyPath: terrain.Array.data[5]
       value: 
       objectReference: {fileID: 1288403578}
+    - target: {fileID: 175090755911361948, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: terrain.Array.data[6]
+      value: 
+      objectReference: {fileID: 1766185654}
     - target: {fileID: 175090755920810649, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -18433,6 +18438,12 @@ Transform:
   m_Father: {fileID: 1157355467}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1766185654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3475365475857795956, guid: 8e20f36eac6b6e44799cc004650ee951,
+    type: 3}
+  m_PrefabInstance: {fileID: 699341941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1828465539
 GameObject:
   m_ObjectHideFlags: 0
