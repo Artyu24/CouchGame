@@ -232,9 +232,16 @@ public class GameManager : MonoBehaviour
             target.SetActive(true);
             yield return new WaitForSeconds(CDafterTargetAparrition);
             target.SetActive(false);
-            GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-            metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
-            StartCoroutine(CDBeforNewMeteorite());
+            if (ActualGameState == GameState.INGAME)
+            {
+                GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
+                metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
+                StartCoroutine(CDBeforNewMeteorite());
+            }
+            else
+            {
+                canMeteorite = false;
+            }
         }
         
 
