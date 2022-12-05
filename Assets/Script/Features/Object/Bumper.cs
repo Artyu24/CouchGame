@@ -13,8 +13,6 @@ public class Bumper : MonoBehaviour
         {
             Vector3 push = (other.transform.position - capsulCollider.transform.position).normalized;
             other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceBumper);
-            other.gameObject.GetComponent<Player>().isChockedWaved = true;
-            playerList.Add(other.gameObject.GetComponent<Player>());
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
             StartCoroutine(PlayAnim());
         }
