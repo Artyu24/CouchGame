@@ -10200,12 +10200,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc5228f21811851499c6b3d67bf879f8, type: 3}
---- !u!1 &1017328691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3846265874759643215, guid: cc5228f21811851499c6b3d67bf879f8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1017328690}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162525550
 GameObject:
   m_ObjectHideFlags: 0
@@ -14951,11 +14945,6 @@ PrefabInstance:
       objectReference: {fileID: 1558848477}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1017328691}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
       propertyPath: maxMovementSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -15387,12 +15376,12 @@ PrefabInstance:
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000020043123
+      value: -0.000000020043117
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000013798283
+      value: 0.00000001379828
       objectReference: {fileID: 0}
     - target: {fileID: 5651840039763955990, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -15447,12 +15436,12 @@ PrefabInstance:
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000020043123
+      value: -0.000000020043117
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000013798283
+      value: 0.00000001379828
       objectReference: {fileID: 0}
     - target: {fileID: 7390697551993900178, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
