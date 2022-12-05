@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class WarpSpeedScriptTut : MonoBehaviour
+public class HyperSpeedEffect : MonoBehaviour
 {
     public VisualEffect warpSeedVFX;
     public MeshRenderer cylinder;
@@ -21,7 +21,7 @@ public class WarpSpeedScriptTut : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // a la fin du niveau
+        if (GameManager.instance.ActualGameState == GameState.ENDROUND && !warpActive) // a la fin du niveau
         {
             warpActive = true;
             StartCoroutine(ActivateParticules());
