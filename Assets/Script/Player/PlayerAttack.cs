@@ -31,6 +31,9 @@ public class PlayerAttack : MonoBehaviour
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
     private GameObject effectSpeBarre;
 
+    [SerializeField] public bool bumperIsCharged;
+    public bool BumperIsCharged { get => bumperIsCharged; set => bumperIsCharged = value; }
+
     [Header("Range")]
     [SerializeField] private LayerMask layerMask;
     [Tooltip("La partie sur le cot� en Degr� (prendre en compte x2 pour l'amplitude total)")]
@@ -65,6 +68,7 @@ public class PlayerAttack : MonoBehaviour
         float strenght = GameManager.instance.SpecialStrenght;
         if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
         {
+            bumperIsCharged = true;
             effectSpeBarre.SetActive(false);
             currentSpecial = 0;
             speBarreSlider.value = currentSpecial;
