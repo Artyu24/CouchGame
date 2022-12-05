@@ -16,18 +16,15 @@ public class SlowWater : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Player playerData = other.gameObject.GetComponent<Player>();
-            if (playerData.isInvincible == false)
-            {
-                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
                 
-                if (playerData.IsSpeedUp)
-                    playerMovement.Speed = GameManager.instance.MoveSpeed;
-                else
-                    playerMovement.Speed = GameManager.instance.MinMoveSpeed;
+            if (playerData.IsSpeedUp)
+                playerMovement.Speed = GameManager.instance.MoveSpeed;
+            else
+                playerMovement.Speed = GameManager.instance.MinMoveSpeed;
 
-                playerData.IsSlow = true;
-                playersInside.Add(playerMovement);
-            }
+            playerData.IsSlow = true;
+            playersInside.Add(playerMovement);
         }
     }
 
@@ -36,18 +33,15 @@ public class SlowWater : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Player playerData = other.gameObject.GetComponent<Player>();
-            if (playerData.isInvincible == false)
-            {
-                PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
-                playersInside.Remove(playerMovement);
-                
-                if (playerData.IsSpeedUp)
-                    playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
-                else
-                    playerMovement.Speed = GameManager.instance.MoveSpeed;
+            PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            
+            if (playerData.IsSpeedUp)
+                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+            else
+                playerMovement.Speed = GameManager.instance.MoveSpeed;
 
-                playerData.IsSlow = false;
-            }
+            playerData.IsSlow = false;
+            playersInside.Remove(playerMovement);
         }
     }
 
