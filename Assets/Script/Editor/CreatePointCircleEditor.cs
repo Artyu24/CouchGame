@@ -83,6 +83,7 @@ public class CreatePointCircleEditor : Editor
             SerializedProperty spawnManagerList = soPAM.FindProperty("spawnPoint");
             SerializedProperty spawnManagerPlayerList = soPAM.FindProperty("spawnPointPlayer");
             SerializedProperty spawnManagerMeteoriteList = soPAM.FindProperty("spawnPointMeteorite");
+            SerializedProperty spawnManagerBombList = soPAM.FindProperty("spawnPointBomb");
 
             if (GUILayout.Button("Création des points"))
             {
@@ -144,73 +145,16 @@ public class CreatePointCircleEditor : Editor
 
                     spawnPointList.ClearArray();
                     spawnManagerPlayerList.ClearArray();
+                    spawnManagerMeteoriteList.ClearArray();
                 }
 
-                #region Spawn Point Meteorite
-
-                EditorGUILayout.BeginVertical();
-                EditorGUILayout.LabelField("-------SPAWN POINT METEORITE-------");
-                EditorGUILayout.BeginHorizontal();
-
-                if (!pointAreaManager.spawnPointMeteorite.Contains(mySource.transform))
-                {
-                    if (GUILayout.Button("AJOUTER"))
-                    {
-                        for (int i = 0; i < spawnPointList.arraySize; i++)
-                        {
-                            Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
-                            spawnManagerMeteoriteList.InsertArrayElementAtIndex(i);
-                            spawnManagerMeteoriteList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
-                        }
-                    }
-                }
-                else
-                {
-                    if (GUILayout.Button("ENLEVER"))
-                        spawnManagerMeteoriteList.ClearArray();
-
-                    //Pas tout clear mek
-                }
-
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.EndVertical();
-                
-                #endregion
-
-                #region Spawn Point Player
-
-                EditorGUILayout.BeginVertical();
-                EditorGUILayout.LabelField("-------SPAWN POINT PLAYERS-------");
-                EditorGUILayout.BeginHorizontal();
-
-                if (!pointAreaManager.SpawnPointPlayer.Contains(mySource.transform))
-                {
-                    if (GUILayout.Button("AJOUTER"))
-                    {
-                        for (int i = 0; i < spawnPointList.arraySize; i++)
-                        {
-                            Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
-                            spawnManagerPlayerList.InsertArrayElementAtIndex(i);
-                            spawnManagerPlayerList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
-                        }
-                    }
-                }
-                else
-                {
-                    if (GUILayout.Button("ENLEVER"))
-                        spawnManagerPlayerList.ClearArray();
-
-                    //Pas tout clear mek
-                }
-
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.EndVertical();
+                CreateSpawnPointField(spawnPointList, pointAreaManager.spawnPointMeteorite, mySource, spawnManagerMeteoriteList, "METEORITE");
+                CreateSpawnPointField(spawnPointList, pointAreaManager.spawnPointBomb, mySource, spawnManagerBombList, "BOMB");
+                CreateSpawnPointField(spawnPointList, pointAreaManager.SpawnPointPlayer, mySource, spawnManagerPlayerList, "PLAYER");
             }
 
             soCreaterPointCircle.ApplyModifiedProperties();
             soPAM.ApplyModifiedProperties();
-            
-            #endregion
         }
     }
 
@@ -235,5 +179,36 @@ public class CreatePointCircleEditor : Editor
         }
 
         return null;
+    }
+
+    private void CreateSpawnPointField(SerializedProperty spawnPointList, List<Transform> listTransformPAM, GameObject mySource, SerializedProperty actualList, string objectName)
+    {
+        EditorGUILayout.BeginVertical();
+        EditorGUILayout.LabelField("-------SPAWN POINT " + objectName + "-------");
+        EditorGUILayout.BeginHorizontal();
+
+        if (!listTransformPAM.Contains(mySource.transform))
+        {
+            if (GUILayout.Button("AJOUTER"))
+            {
+                for (int i = 0; i < spawnPointList.arraySize; i++)
+                {
+                    Transform point = (Transform)spawnPointList.GetArrayElementAtIndex(i).objectReferenceValue;
+                    actualList.InsertArrayElementAtIndex(i);
+                    actualList.GetArrayElementAtIndex(i).objectReferenceValue = point.transform;
+                }
+            }
+        }
+        else
+        {
+            if (GUILayout.Button("ENLEVER"))
+                actualList.ClearArray();
+
+            //Pas tout clear mek
+        }
+
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
+
     }
 }
