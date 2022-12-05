@@ -65,7 +65,7 @@ public class Timer : MonoBehaviour
         
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
+            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Length != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
                 //add un temps mort de 2 secs pour que toute les anims se finissent
