@@ -68,42 +68,8 @@ public class Timer : MonoBehaviour
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
-                //add un temps mort de 2 secs pour que toute les anims se finissent
-
-
-                //anim de départ du terrain
-                //recup les objets origines de la hierachie dans une liste
-
-                List<GameObject> rootObjects = new List<GameObject>();
-                Scene scene = SceneManager.GetActiveScene();
-                scene.GetRootGameObjects(rootObjects);
-
-                GameManager.instance.CameraScene.gameObject.transform.parent = null;
-                for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-                {
-                    PlayerManager.instance.players[i].HideGuy(false);
-
-                    CameraManager.Instance.RemovePlayerTarget(i+1);
-                }
-
-                Sequence mySequence = DOTween.Sequence();
-                mySequence.Append(rootObjects[0].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
-
-                for (int i = 1; i < rootObjects.Count; i++)
-                {
-                    mySequence.Join(rootObjects[i].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
-                }
-
-                mySequence.onComplete += () => 
-                {
-                    for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
-                    {
-                        ScoreManager.instance.terrain[i].SetActive(false);
-                    }
-                    ScoreManager.instance.hyperSpeed.SetActive(true);
-                    PrintScoreWindow();
-                };
-                
+                PrintScoreWindow();
+                //PrintGeneralScoreWindow();
             }
 
             if (!scoreWindowRoundIsActive)
@@ -155,7 +121,6 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        scoreWindowRound.GetComponent<RectTransform>().DOMoveY(500, 2);
         //Time.timeScale = 0;
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 

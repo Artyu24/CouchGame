@@ -80,13 +80,8 @@ public class Player : MonoBehaviour
 
     public void HideGuy(bool enable)
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
         GetComponent<CapsuleCollider>().enabled = enable;
         GetComponent<ChangingColor>().skinedRenderer.enabled = enable;
-        rb.useGravity = enable;
-        rb.velocity = Vector3.zero;
-        
-        rb.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
-        // cacher les particules
+        GetComponent<Rigidbody>().useGravity = enable;
     }
 }
