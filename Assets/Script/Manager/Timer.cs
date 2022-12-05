@@ -68,8 +68,13 @@ public class Timer : MonoBehaviour
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
+                for (int i = 0; i < ScoreManager.instance.terrain.Length; i++)
+                {
+                    ScoreManager.instance.terrain[i].SetActive(false);
+                    //PlayerManager.instance.players[i].GetComponent<GameObject>().SetActive(false);
+                }
+                ScoreManager.instance.hyperSpeed.SetActive(true);
                 PrintScoreWindow();
-                //PrintGeneralScoreWindow();
             }
 
             if (!scoreWindowRoundIsActive)

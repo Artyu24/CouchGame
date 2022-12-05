@@ -21,7 +21,7 @@ public class WarpSpeedScriptTut : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // a la fin du niveau
+        if (GameManager.instance.ActualGameState == GameState.ENDROUND) // a la fin du niveau
         {
             warpActive = true;
             StartCoroutine(ActivateParticules());
