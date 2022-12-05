@@ -6350,6 +6350,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
         type: 3}
+      propertyPath: goldenRate
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: percentBomb
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
       propertyPath: bombStrenght
       value: 100
       objectReference: {fileID: 0}
@@ -6360,8 +6370,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
         type: 3}
+      propertyPath: itemPossible
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: percentSpeedUp
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: percentSlowZone
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
+      propertyPath: percentMultiplier
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683268478225541624, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
+        type: 3}
       propertyPath: timeBeforeExplosion
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7683268478225541625, guid: 118f9e64ce4c4df48ab1cc86b7b54e57,
         type: 3}
