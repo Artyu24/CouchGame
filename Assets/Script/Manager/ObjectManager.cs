@@ -193,7 +193,13 @@ public class ObjectManager : MonoBehaviour
     {
         yield return new WaitForSeconds(cdSpawn);
         int random = Random.Range(0, allObjectList.Count);
-        Transform pos = PointAreaManager.instance.GetRandomPosition();
+
+        Transform pos = transform;
+        if (!allObjectList[random].GetComponent<Bomb>())
+            pos = PointAreaManager.instance.GetRandomPosition();
+        else
+            pos = PointAreaManager.instance.GetBombRandomPos();
+
         Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
     }
 

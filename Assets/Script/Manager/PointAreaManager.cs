@@ -13,6 +13,8 @@ public class PointAreaManager : MonoBehaviour
     
     public List<Transform> spawnPointMeteorite = new List<Transform>();
 
+    public List<Transform> spawnPointBomb = new List<Transform>();
+
     public List<Transform> spawnPointPlayer = new List<Transform>();
     public List<Transform> SpawnPointPlayer => spawnPointPlayer;
 
@@ -23,6 +25,11 @@ public class PointAreaManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        RemoveObjectNullFromList(spawnPoint);
+        RemoveObjectNullFromList(spawnPointMeteorite);
+        RemoveObjectNullFromList(spawnPointBomb);
+        RemoveObjectNullFromList(spawnPointPlayer);
 
         int i = 0;
         foreach (Transform point in spawnPointPlayer)
@@ -51,9 +58,6 @@ public class PointAreaManager : MonoBehaviour
             }
         }
 
-        RemoveObjectNullFromList(spawnPoint);
-        RemoveObjectNullFromList(spawnPointMeteorite);
-        RemoveObjectNullFromList(spawnPointPlayer);
     }
 
     private void RemoveObjectNullFromList(List<Transform> listTransform)
@@ -80,6 +84,11 @@ public class PointAreaManager : MonoBehaviour
         int xcount = Random.Range(0, 3);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpawnSound);
         return RandomPosition(spawnPointPlayer);
+    }
+
+    public Transform GetBombRandomPos()
+    {
+        return RandomPosition(spawnPointMeteorite);
     }
 
     public Transform GetMeteoriteRandomPos()
