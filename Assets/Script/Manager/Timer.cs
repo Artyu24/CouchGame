@@ -155,8 +155,8 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        scoreWindowRound.GetComponent<RectTransform>().DOMoveY(500, 2);
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
+        scoreWindowRound.GetComponent<RectTransform>().DOMoveY(500, 2);
 
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)
         {
@@ -174,14 +174,14 @@ public class Timer : MonoBehaviour
     }
 
     public void PrintGeneralScoreWindow()
-    {
+    {/*
         Sequence mySequence = DOTween.Sequence();
-        scoreWindowRoundIsActive = false;
         mySequence.Append(scoreWindowRound.GetComponent<RectTransform>().DOMoveY(1500, 2));
         mySequence.onComplete += () =>
         {
+        };*/
+            scoreWindowRoundIsActive = false;  
             scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-        };
         
         if (!scoreWindowGeneralIsActive)
         {
@@ -257,13 +257,13 @@ public class Timer : MonoBehaviour
 
     public void ReloadScene()
     {
-        Sequence mySequence = DOTween.Sequence();
+        /*Sequence mySequence = DOTween.Sequence();
         scoreWindowGeneralIsActive = false;
         mySequence.Append(scoreWindowGeneral.GetComponent<RectTransform>().DOMoveY(1500, 2));
         mySequence.onComplete += () =>
         {
             scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
-        };
+        };*/
 
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
         Time.timeScale = 1;
