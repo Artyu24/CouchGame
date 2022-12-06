@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
 
     [SerializeField] private GameObject scoreWindowRound, scoreWindowGeneral;
     [SerializeField] private Sprite[] ppWindowRound = new Sprite[4];
+    [SerializeField] private Sprite[] backgroundWindowRound = new Sprite[4];
     [SerializeField] private GameObject textParentRound, textParentGeneral;
     public GameObject roundScoreTextPrefab, generalScoreTextPrefab; 
 
@@ -154,9 +155,11 @@ public class Timer : MonoBehaviour
     }
     private void PrintScoreWindow()
     {
+        Debug.Log("WTFFFFFFFFF");
         scoreWindowRoundIsActive = true;
+        scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
+        //Time.timeScale = 0;
         scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-        scoreWindowRound.GetComponent<RectTransform>().DOMoveY(500, 2);
 
         for (int p = 0; p < PlayerManager.instance.players.Count; p++)
         {
@@ -174,20 +177,20 @@ public class Timer : MonoBehaviour
     }
 
     public void PrintGeneralScoreWindow()
-    {/*
-        Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(scoreWindowRound.GetComponent<RectTransform>().DOMoveY(1500, 2));
-        mySequence.onComplete += () =>
+    {
+        Sequence mySequence2 = DOTween.Sequence();
+        mySequence2.Append(scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(1000, 2));
+        mySequence2.onComplete += () =>
         {
-        };*/
-            scoreWindowRoundIsActive = false;  
+            scoreWindowRoundIsActive = false;
             scoreWindowRound.SetActive(scoreWindowRoundIsActive);
+        };
         
         if (!scoreWindowGeneralIsActive)
         {
             scoreWindowGeneralIsActive = true;
-            scoreWindowGeneral.GetComponent<RectTransform>().DOMoveY(500, 2);
             scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
+            scoreWindowGeneral.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
             List<Player> tempPlayerListPlayer = new List<Player>();
             int position = 0;
 
@@ -214,6 +217,8 @@ public class Timer : MonoBehaviour
             {
                 temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
                 scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                 temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                 scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
 
@@ -257,14 +262,6 @@ public class Timer : MonoBehaviour
 
     public void ReloadScene()
     {
-        /*Sequence mySequence = DOTween.Sequence();
-        scoreWindowGeneralIsActive = false;
-        mySequence.Append(scoreWindowGeneral.GetComponent<RectTransform>().DOMoveY(1500, 2));
-        mySequence.onComplete += () =>
-        {
-            scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
-        };*/
-
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
         Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
