@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     public float CDafterTargetAparrition;
 
+    public float launchMeteorite;
+
     private GameObject meteorite;
 
     private Vector3 departMeteorite = new Vector3(0, 20, 0);
@@ -220,6 +222,7 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
+        target.transform.localScale = new Vector3(0f, 0f, 0f);
     }
 
     public IEnumerator TargetMeteorite()
@@ -227,16 +230,31 @@ public class GameManager : MonoBehaviour
         if(canMeteorite == true)
         {
             Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
-            target.transform.position = randomPos.position;
+            Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y - 0.95f, randomPos.position.z);
+            target.transform.position = tagetPosSol;
             target.transform.parent = randomPos.parent;
-            target.SetActive(true);
-            yield return new WaitForSeconds(CDafterTargetAparrition);
-            target.SetActive(false);
-            GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
-            metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
-            StartCoroutine(CDBeforNewMeteorite());
+            StartCoroutine(TargetCD());
+            yield return new WaitForSeconds(launchMeteorite);
+            if (ActualGameState == GameState.INGAME)
+            {
+                GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
+                metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
+                StartCoroutine(CDBeforNewMeteorite());
+            }
+            else
+            {
+                canMeteorite = false;
+            }
         }
         
+
+    }
+
+    public IEnumerator TargetCD()
+    {
+        target.SetActive(true);
+        yield return new WaitForSeconds(CDafterTargetAparrition);
+        target.SetActive(false);
 
     }
     public IEnumerator CDBeforNewMeteorite()
@@ -244,6 +262,7 @@ public class GameManager : MonoBehaviour
         canMeteorite = false;
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
+        target.transform.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(TargetMeteorite());
     }
 
@@ -261,5 +280,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
 
+    }
+
+    private void Update()
+    {
+        if (target.activeSelf == true)
+        {
+            if (target.transform.localScale.x < 0.23f)
+            {
+                target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
+            }
+        }
     }
 }

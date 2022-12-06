@@ -26,7 +26,7 @@ public class MeteorMovement : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        explosionPose = new Vector3(nextPos.x, nextPos.y - 1, nextPos.z);
+        explosionPose = new Vector3(nextPos.x, nextPos.y, nextPos.z);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
         Instantiate(explos, explosionPose, quaternion.identity);
         Destroy(gameObject);       
