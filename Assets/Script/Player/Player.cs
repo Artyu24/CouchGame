@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -80,13 +81,16 @@ public class Player : MonoBehaviour
 
     public void HideGuy(bool enable)
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
         GetComponent<CapsuleCollider>().enabled = enable;
         GetComponent<ChangingColor>().skinedRenderer.enabled = enable;
+        Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = enable;
-        rb.velocity = Vector3.zero;
-        
-        rb.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
+        if(!enable)
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        else
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        //rb.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
         // cacher les particules
     }
 }
