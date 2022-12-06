@@ -32,6 +32,8 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void EjectPlayer()
     {
+        CenterPoint.Instance.PointToUIF();
+
         GameManager GM = GameManager.instance;
 
         GM.PlayerInMiddle.transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
