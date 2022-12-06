@@ -155,6 +155,7 @@ public class Timer : MonoBehaviour
     }
     private void PrintScoreWindow()
     {
+        Debug.Log("WTFFFFFFFFF");
         scoreWindowRoundIsActive = true;
         scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
         //Time.timeScale = 0;
