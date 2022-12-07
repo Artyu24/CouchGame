@@ -31,6 +31,9 @@ public class ScoreManager : MonoBehaviour
     public Sprite courroneUI, emptyCourroneUI;
     [SerializeField]
     private GameObject scoreBoard;
+    Sequence swapPlayerSequence;
+
+    private List<Vector3> positionUIScoreInOrder = new List<Vector3>();
 
     public GameObject hyperSpeed;
     public List<GameObject> terrain = new List<GameObject>();
@@ -59,7 +62,6 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
-
     }
 
     void Update()
@@ -105,11 +107,13 @@ public class ScoreManager : MonoBehaviour
 
     private void ScoreBoardSorting()
     {
-        List<Vector3> positionUIScoreInOrder = new List<Vector3>();
-        for(int i = 0; i < PlayerManager.instance.players.Count; ++i)
+        if (positionUIScoreInOrder.Count == 0)
         {
-            RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
-            positionUIScoreInOrder.Add(playerRankGUITransform.position);
+            for (int i = 0; i < PlayerManager.instance.players.Count; ++i)
+            {
+                RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
+                positionUIScoreInOrder.Add(playerRankGUITransform.position);
+            }
         }
 
         int bestScore = int.MinValue;
@@ -142,26 +146,36 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-
         scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = false;
 
-        Sequence sequence = DOTween.Sequence();
+        if (swapPlayerSequence != null && swapPlayerSequence.IsPlaying())
+        {
+            swapPlayerSequence.Kill();
+        }
+        swapPlayerSequence = DOTween.Sequence();
+
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
             var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], 1);
             if (i == 0)
             {
-                sequence.Append(tween);
+                swapPlayerSequence.Append(tween);
             } else
             {
-                sequence.Join(tween);
+                swapPlayerSequence.Join(tween);
             }
-            
         }
-        sequence.onComplete += () =>
+        swapPlayerSequence.onComplete += () =>
         {
+            for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
+            {
+                playersRankGUISortedByScore[i].SetParent(null);
+            }
+            for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
+            {
+                playersRankGUISortedByScore[i].SetParent(scoreBoard.transform);
+            }
             scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = true;
-            //reordonner les enfants
         };
 
             playersSortedByScore[0].couronne.SetActive(true);
