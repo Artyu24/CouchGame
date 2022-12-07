@@ -20,6 +20,8 @@ public class GetInIgloo : MonoBehaviour
             CenterManager.instance.ActualCenterState = CenterState.USE;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
 
+            CenterPoint.Instance.SetUp(other.GetComponent<Player>());
+
             GameObject player = other.gameObject;
             player.transform.DOMove(new Vector3(0, 3, 0), 2);
             StartCoroutine(InitCenterTime(player));
@@ -28,7 +30,7 @@ public class GetInIgloo : MonoBehaviour
 
     private IEnumerator InitCenterTime(GameObject player)
     {
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(2f);
         InitCenter(player);
         GetComponent<Animator>().SetTrigger("Enter");
     }
@@ -51,11 +53,15 @@ public class GetInIgloo : MonoBehaviour
         }
 
         //On cache le joueur qui est rentrer dans l'igloo
+        player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear);
         player.GetComponent<Player>().HideGuy(false);
 
         //Ajoute la couleur et la outline au cercle choisis de base
-        GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponent<Outline>().enabled = true;
-        GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponent<MeshRenderer>().material.color = GM.ColorCircleChoose;
+        if (GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<Outline>() != null)
+        {
+            GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<Outline>().enabled = true;
+            GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<MeshRenderer>().material.color = GM.ColorCircleChoose;
+        }
 
         //Gestion du Centre via le Centre Manager
         CenterManager.instance.ActivateAllBridge();
