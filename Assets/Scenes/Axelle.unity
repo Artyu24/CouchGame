@@ -21165,6 +21165,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13bf4bdb7904f9c4aa1a045f4ad3cc03, type: 3}
+--- !u!1001 &587783086563107424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 771754311559595676, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_Name
+      value: Bumper
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.606738
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7852564
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.4561706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130354248606982379, guid: 3d07a83d7cf77064083b1c578675918f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d07a83d7cf77064083b1c578675918f, type: 3}
 --- !u!1 &668527965465853734
 GameObject:
   m_ObjectHideFlags: 0
@@ -22303,6 +22372,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 19.8792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 19.8792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 19.8792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.93
       objectReference: {fileID: 0}
@@ -22314,7 +22398,7 @@ PrefabInstance:
     - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.79916096
+      value: -14.12
       objectReference: {fileID: 0}
     - target: {fileID: 6103916431760820248, guid: ca7deabebfce1df4b914de8ad9df32a1,
         type: 3}
