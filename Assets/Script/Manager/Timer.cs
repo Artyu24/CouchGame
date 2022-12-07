@@ -102,17 +102,14 @@ public class Timer : MonoBehaviour
                 {
                     for(int i = 0; i < ScoreManager.instance.terrain.Count; i++)
                     {
-                        for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
-                        {
-                            if (ScoreManager.instance.terrain[i])
-                            {
-                                ScoreManager.instance.terrain[i].SetActive(false);
-                            }
+                        if (ScoreManager.instance.terrain[i]) 
+                        { 
+                            ScoreManager.instance.terrain[i].SetActive(false);
                         }
-                        ScoreManager.instance.hyperSpeed.SetActive(true);
-                        PrintScoreWindow();
-
                     }
+                    
+                    ScoreManager.instance.hyperSpeed.SetActive(true);
+                    PrintScoreWindow();
                 };
                 
             }
