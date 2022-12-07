@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
         if(canMeteorite == true)
         {
             Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
-            Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y - 0.90f, randomPos.position.z);
+            Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y, randomPos.position.z);
             target.transform.position = tagetPosSol;
             target.transform.parent = randomPos.parent;
             StartCoroutine(TargetCD());
