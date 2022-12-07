@@ -207,11 +207,11 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject circle in tabCircle)
         {
-            if(circle.GetComponentInChildren<MeshRenderer>() != null)
-                tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
-
         meteorite = Resources.Load<GameObject>("Meteorite");
+
+
     }
     private void Start()
     {

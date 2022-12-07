@@ -242,6 +242,44 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 56396654}
     m_Modifications:
+    - target: {fileID: 1802410051, guid: 420a644ab15e00b4aad53efc5af9ff77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02328939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802410051, guid: 420a644ab15e00b4aad53efc5af9ff77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033301369821335952, guid: 420a644ab15e00b4aad53efc5af9ff77,
+        type: 3}
+      propertyPath: m_Name
+      value: Circle_3_Mesh
+      objectReference: {fileID: 0}
     - target: {fileID: 7481714239279791043, guid: 420a644ab15e00b4aad53efc5af9ff77,
         type: 3}
       propertyPath: m_Name
@@ -306,7 +344,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 420a644ab15e00b4aad53efc5af9ff77, type: 3}
 --- !u!4 &64624803 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7827172423826973049, guid: 420a644ab15e00b4aad53efc5af9ff77,
+  m_CorrespondingSourceObject: {fileID: 368405336451730218, guid: 420a644ab15e00b4aad53efc5af9ff77,
     type: 3}
   m_PrefabInstance: {fileID: 64624802}
   m_PrefabAsset: {fileID: 0}
