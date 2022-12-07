@@ -2528,6 +2528,11 @@ PrefabInstance:
       objectReference: {fileID: 1558848477}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
+      propertyPath: timer
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
       propertyPath: tabCircle.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2671,6 +2676,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1559062524097406302, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 166.7856
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559062524097406302, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 166.7856
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559062524097406302, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 166.7856
+      objectReference: {fileID: 0}
     - target: {fileID: 1978500863223018146, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2767,15 +2787,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4046328346600373018, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 154.6741
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046328346600373018, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 154.6741
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046328346600373018, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 154.6741
+      objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000020043117
+      value: -0.000000020043114
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: 0.000000013798276
       objectReference: {fileID: 0}
     - target: {fileID: 5651840039763955990, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2795,7 +2830,7 @@ PrefabInstance:
     - target: {fileID: 5651840040037360002, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.87
+      value: -11.01
       objectReference: {fileID: 0}
     - target: {fileID: 5651840040037360002, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2805,7 +2840,7 @@ PrefabInstance:
     - target: {fileID: 5651840040037360002, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.12
+      value: -4.82
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2835,12 +2870,12 @@ PrefabInstance:
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000020043117
+      value: -0.000000020043114
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: 0.000000013798276
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -3727,6 +3762,11 @@ PrefabInstance:
       propertyPath: spawnPointMeteorite.Array.data[15]
       value: 
       objectReference: {fileID: 1298176941}
+    - target: {fileID: 8832502211835895503, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: itemPossible
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
 --- !u!4 &1840520866 stripped
