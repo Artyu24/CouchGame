@@ -20,8 +20,6 @@ public class GetInIgloo : MonoBehaviour
             CenterManager.instance.ActualCenterState = CenterState.USE;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
 
-            CenterPoint.Instance.SetUp(other.GetComponent<Player>());
-
             GameObject player = other.gameObject;
             player.transform.DOMove(new Vector3(0, 3, 0), 2);
             StartCoroutine(InitCenterTime(player));

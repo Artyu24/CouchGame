@@ -52,6 +52,13 @@ public class Player : MonoBehaviour
         StartCoroutine(RespawnDelay());
     }
 
+    public void PauseGame()
+    {
+        Debug.Log("coucou c'est pause");
+        Time.timeScale = 0;
+
+    }
+
     private IEnumerator RespawnDelay()
     {
 

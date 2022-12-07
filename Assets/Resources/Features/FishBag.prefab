@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3228860025302468188}
   - component: {fileID: 3228860025302468189}
   - component: {fileID: 7601453647227636219}
+  - component: {fileID: 5834974773456773855}
   m_Layer: 11
   m_Name: FishBag
   m_TagString: FishBag
@@ -62,8 +63,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4818232, y: 0.8, z: 0.37}
-  m_Center: {x: -0.01033029, y: 0.21193549, z: 0}
+  m_Size: {x: 0.6062664, y: 1.0533283, z: 0.09672141}
+  m_Center: {x: -0.0028879046, y: 0.33859953, z: -0.038548432}
 --- !u!54 &3228860025302468189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100,6 +101,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5834974773456773855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228860025302468178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6318644, y: 0.5012008, z: 0.8782565}
+  m_Center: {x: -0.0023294091, y: 0.24070412, z: -0.06087175}
 --- !u!1 &6488012469880903532
 GameObject:
   m_ObjectHideFlags: 0

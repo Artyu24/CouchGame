@@ -19,8 +19,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
     bool attackCharged = false;
 
 
-    bool sensNormal;
-    bool sensInverse;
+    bool sensNormal = false;
+    bool sensInverse = false;
     private void Start()
     {
         igloo = new Vector3(0, 0, 0);
@@ -46,8 +46,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
         }
         if (sensInverse == true)
         {
-          timeCounter += Time.deltaTime * speed;              
-        }        
+            timeCounter += Time.deltaTime * speed;
+        }
         else
         {
             timeCounter += Time.deltaTime * 0;
@@ -58,15 +58,18 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         transform.position = new Vector3(x, gameObject.transform.position.y, z);
 
+
         if (playerAttack.GetComponent<PlayerAttack>().bumperIsCharged == true)
-        {
-            attackCharged = true;
-        }
+            if (playerAttack.bumperIsCharged == true)
+            {
+                attackCharged = true;
+            }
+
 
     }
 
     public void Interact(Player player = null)
-    {     
+    {
         Vector3 playerOrient = player.transform.forward;
         Vector3 bumperOrient = transform.right;
         playerOrient.y = 0;
@@ -75,7 +78,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
         bumperOrient.Normalize();
         float dotResult = Vector3.Dot(playerOrient, bumperOrient);
 
-        if(dotResult > 0)
+        if (dotResult > 0)
         {
             if (attackCharged == true)
             {
@@ -99,7 +102,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
         }
         else
         {
-            if(attackCharged == true)
+            if (attackCharged == true)
             {
                 speed = speedHitBySuperStrenght;
                 sensInverse = true;
@@ -124,7 +127,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensNormal = false;
-        attackCharged = false;      
+        attackCharged = false;
         Debug.Log("Sens normal coroutine false");
 
     }
@@ -132,7 +135,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensInverse = false;
-        attackCharged = false;     
+        attackCharged = false;
         Debug.Log("Sens inverse coroutine false");
 
     }
