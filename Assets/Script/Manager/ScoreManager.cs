@@ -105,10 +105,7 @@ public class ScoreManager : MonoBehaviour
 
     private void ScoreBoardSorting()
     {
-        List<Player> playersSortedByScore = new List<Player>();
-        List<RectTransform> playersRankGUISortedByScore = new List<RectTransform>();
         List<Vector3> positionUIScoreInOrder = new List<Vector3>();
-
         for(int i = 0; i < PlayerManager.instance.players.Count; ++i)
         {
             RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
@@ -117,6 +114,7 @@ public class ScoreManager : MonoBehaviour
 
         int bestScore = int.MinValue;
         Player playerWithBestScore = null;
+        List<Player> playersSortedByScore = new List<Player>(); //list des players trié par score
         while (playersSortedByScore.Count < PlayerManager.instance.players.Count)
         {
             foreach (var p in PlayerManager.instance.players)
@@ -129,13 +127,19 @@ public class ScoreManager : MonoBehaviour
             }
             playersSortedByScore.Add(playerWithBestScore);
             bestScore = int.MinValue;
-
         }
 
+        List<RectTransform> playersRankGUISortedByScore = new List<RectTransform>(); //list des UI (score/speBarre/pp)
+        PlayerUIInfo[] playerUIInfos = scoreBoard.GetComponentsInChildren<PlayerUIInfo>();
         for (int i = 0; i < playersSortedByScore.Count; i++)
         {
-            playersRankGUISortedByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(playersSortedByScore[i].playerID).GetComponent<RectTransform>());
-            //Debug.Log(PlayerListSortByScore[i]);
+            foreach (var playerUIInfo in playerUIInfos)
+            {
+                if (playerUIInfo.PlayerID == playersSortedByScore[i].playerID)
+                {
+                    playersRankGUISortedByScore.Add(playerUIInfo.GetComponent<RectTransform>());
+                }
+            }
         }
 
         for (int i = 0; i < playersRankGUISortedByScore.Count; i++)

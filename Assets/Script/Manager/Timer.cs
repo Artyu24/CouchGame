@@ -225,6 +225,8 @@ public class Timer : MonoBehaviour
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
+                    //Coroutine pour faire apparaitre les oeufs
+
                     // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {
