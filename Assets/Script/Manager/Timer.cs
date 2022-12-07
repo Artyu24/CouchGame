@@ -16,6 +16,8 @@ public class Timer : MonoBehaviour
 
     private int minutes, seconds;
     public string levelName;
+    [SerializeField]
+    private string leaderBoardScene = "LeaderBoard";
     #endregion
 
     #region Scoreboard
@@ -35,7 +37,6 @@ public class Timer : MonoBehaviour
     private int numberOfMedal = 3;
     [SerializeField]
     private int pointToWin = 10;
-    private string leaderBoardScene = "LeaderBoard";
     #endregion
 
     private void Awake()
@@ -241,14 +242,7 @@ public class Timer : MonoBehaviour
                     position++;
                     numberOfMedal--;
                 }
-                for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-                {
-                    if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
-                    {
-                        SceneManager.LoadScene(leaderBoardScene);
-                        Debug.Log("WE HAVE A WINNER !!!");
-                    }
-                }
+                
             };
 
         }
@@ -268,6 +262,17 @@ public class Timer : MonoBehaviour
     {
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
         Time.timeScale = 1;
-        SceneManager.LoadScene(levelName);
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
+            {
+                SceneManager.LoadScene(leaderBoardScene);
+                Debug.Log("WE HAVE A WINNER !!!");
+            }
+            else
+            {
+                SceneManager.LoadScene(levelName); 
+            }
+        }
     }
 }

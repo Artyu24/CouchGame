@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LeaderBoard : MonoBehaviour
 {
-    public List<GameObject> spawnPoints = new List<GameObject>();
+    public List<Transform> spawnPoints = new List<Transform>();
 
     public static LeaderBoard Instance;
 
@@ -19,8 +19,7 @@ public class LeaderBoard : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            //PlayerManager.instance.players[i].transform = spawnPoints[i].transform;
+            PlayerManager.instance.players[i].transform.position = spawnPoints[i].position;
         }
-        
     }
 }
