@@ -115,8 +115,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float bumperMovementDistance = 0.5f;
     public float BumperMovementDistance { get => bumperMovementDistance; private set => bumperMovementDistance = value; }
 
+    [SerializeField] private float bumperMovementDistanceCharged = 0.5f;
+    public float BumperMovementDistanceCharged { get => bumperMovementDistanceCharged; private set => bumperMovementDistanceCharged = value; }
+
     [SerializeField] private float speedBumper = 2f;
     public float SpeedBumper { get => speedBumper; private set => speedBumper = value; }
+
+    [SerializeField] private float speedBumperCharged = 2f;
+    public float SpeedBumperCharged { get => speedBumperCharged; private set => speedBumperCharged = value; }
 
 
 
