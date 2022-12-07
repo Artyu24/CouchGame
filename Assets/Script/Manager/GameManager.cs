@@ -56,11 +56,11 @@ public class GameManager : MonoBehaviour
     #region Player
 
     [Header("Variables des Players")]
-    [Tooltip("Vitesse normal de d�placement des joueurs"), SerializeField] private float moveSpeed;
-    [Tooltip("Vitesse max de d�placement des joueurs"), SerializeField] private float maxMoveSpeed;
-    [Tooltip("Vitesse min de d�placement des joueurs"), SerializeField] private float minMoveSpeed;
+    [Tooltip("Vitesse normal de deplacement des joueurs"), SerializeField] private float moveSpeed;
+    [Tooltip("Vitesse max de deplacement des joueurs"), SerializeField] private float maxMoveSpeed;
+    [Tooltip("Vitesse min de deplacement des joueurs"), SerializeField] private float minMoveSpeed;
     [Tooltip("Temps du respawn des players en seconde"), SerializeField] private float respawnDelay = 2;
-    [Tooltip("Temps invincibilité apres le respawn en seconde"), SerializeField] private int invincibleDelay = 2;
+    [Tooltip("Temps invincibilite apres le respawn en seconde"), SerializeField] private int invincibleDelay = 2;
     [Tooltip("Temps de slow des players apres zone slow en seconde"), SerializeField] private float slowDuration = 2;
 
     public float MoveSpeed => moveSpeed;
@@ -152,9 +152,9 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Liste des plaques d'ejection du player au centre")]
     private List<GameObject> ejectPlates = new List<GameObject>();
-    [Tooltip("Nombre de plaques à activer pour eject le joueur au centre")]
+    [Tooltip("Nombre de plaques a activer pour eject le joueur au centre")]
     [SerializeField] private int numberOfPlate = 3;
-    [Tooltip("Couleur que prend la zone quand elle est activée")]
+    [Tooltip("Couleur que prend la zone quand elle est activee")]
     [SerializeField] private Color activatedColor;
     [Tooltip("Couleur que prend la zone quand elle est spawn")]
     [SerializeField]  private Color activeColor;
@@ -209,11 +209,11 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject circle in tabCircle)
         {
-            tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            if(circle.GetComponentInChildren<MeshRenderer>() != null)
+                tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
         }
+
         meteorite = Resources.Load<GameObject>("Meteorite");
-
-
     }
     private void Start()
     {
@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
+        target.transform.localScale = new Vector3(0f, 0f, 0f);
     }
 
     public IEnumerator TargetMeteorite()
@@ -263,6 +264,7 @@ public class GameManager : MonoBehaviour
         canMeteorite = false;
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
+        target.transform.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(TargetMeteorite());
     }
 
@@ -282,5 +284,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
+    private void Update()
+    {
+        if (target.activeSelf == true)
+        {
+            if (target.transform.localScale.x < 0.23f)
+            {
+                target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
+            }
+        }
+    }
 }
