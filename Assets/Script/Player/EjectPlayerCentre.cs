@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,16 @@ using UnityEngine;
 public class EjectPlayerCentre : MonoBehaviour
 {
     private BoxCollider bc;
+    public GameObject cable;
     private void Start()
     {
         bc = GetComponent<BoxCollider>();
+    }
+
+    private void Update()
+    {
+        if (cable != null)
+            cable.transform.DODynamicLookAt(Vector3.zero, .5f, AxisConstraint.Y);
     }
 
     public void OnTriggerEnter(Collider other)
