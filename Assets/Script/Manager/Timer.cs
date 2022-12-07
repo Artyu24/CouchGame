@@ -245,7 +245,6 @@ public class Timer : MonoBehaviour
                 
             };
 
-            }
             
         }
     }
