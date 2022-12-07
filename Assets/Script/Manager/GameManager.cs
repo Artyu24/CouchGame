@@ -185,6 +185,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region UI
+    [Header("UI"), SerializeField] 
+    private Transform ui;
+    public Transform Ui => ui;
+
     public GameObject pausePanel, optionsPanel;
     public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion
