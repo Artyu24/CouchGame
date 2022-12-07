@@ -207,11 +207,11 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject circle in tabCircle)
         {
-            if(circle.GetComponentInChildren<MeshRenderer>() != null)
-                tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
         }
-
         meteorite = Resources.Load<GameObject>("Meteorite");
+
+
     }
     private void Start()
     {
@@ -222,7 +222,6 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-        target.transform.localScale = new Vector3(0f, 0f, 0f);
     }
 
     public IEnumerator TargetMeteorite()
@@ -262,7 +261,6 @@ public class GameManager : MonoBehaviour
         canMeteorite = false;
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
-        target.transform.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(TargetMeteorite());
     }
 
@@ -282,14 +280,5 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (target.activeSelf == true)
-        {
-            if (target.transform.localScale.x < 0.23f)
-            {
-                target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
-            }
-        }
-    }
+    
 }

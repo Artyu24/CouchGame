@@ -32,8 +32,6 @@ public class EjectPlayerCentre : MonoBehaviour
 
     public void EjectPlayer()
     {
-        CenterPoint.Instance.PointToUIF();
-
         GameManager GM = GameManager.instance;
 
         GM.PlayerInMiddle.transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
@@ -42,11 +40,8 @@ public class EjectPlayerCentre : MonoBehaviour
 
         for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
         {
-            if (GM.tabCircle[i].GetComponentInChildren<Outline>() != null)
-            {
-                GM.tabCircle[i].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
-                GM.tabCircle[i].GetComponentInChildren<Outline>().enabled = false;
-            }
+            GM.tabCircle[i].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[i];
+            GM.tabCircle[i].GetComponent<Outline>().enabled = false;
         }
 
         GM.ejectPlatesActive = 0;
@@ -57,5 +52,6 @@ public class EjectPlayerCentre : MonoBehaviour
         GM.EjectPlates.Clear();
 
         GM.PlayerInMiddle = null;
+        Debug.Log("Player au centre éjecté !");
     }
 }

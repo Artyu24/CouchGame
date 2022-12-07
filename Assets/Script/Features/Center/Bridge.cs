@@ -7,7 +7,7 @@ public class Bridge : MonoBehaviour
 {
     public void ActivateBridge()
     {
-        transform.DOScaleZ(0.5f, 5f);
+        transform.DOScaleZ(1, 5f);
     }
 
     public void DesactivateBridge()
