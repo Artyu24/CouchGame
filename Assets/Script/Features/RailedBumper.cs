@@ -18,6 +18,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
     PlayerAttack playerAttack;
     bool attackCharged = false;
 
+    public float strenghtPlayerAttack;
+
 
     bool sensNormal = false;
     bool sensInverse = false;
@@ -58,15 +60,14 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         transform.position = new Vector3(x, gameObject.transform.position.y, z);
 
-        if (playerAttack.bumperIsCharged == true)
-        {
-            attackCharged = true;
-        }
+        
 
     }
 
     public void Interact(Player player = null)
     {
+        attackCharged = strenghtPlayerAttack > GameManager.instance.NormalStrenght;
+
         Vector3 playerOrient = player.transform.forward;
         Vector3 bumperOrient = transform.right;
         playerOrient.y = 0;
