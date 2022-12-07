@@ -34,7 +34,8 @@ public class Timer : MonoBehaviour
     private GameObject[] medals = new GameObject[3];
     private int numberOfMedal = 3;
     [SerializeField]
-    private int pointToWin;
+    private int pointToWin = 10;
+    private string leaderBoardScene = "LeaderBoard";
     #endregion
 
     private void Awake()
@@ -155,7 +156,6 @@ public class Timer : MonoBehaviour
     }
     private void PrintScoreWindow()
     {
-        Debug.Log("WTFFFFFFFFF");
         scoreWindowRoundIsActive = true;
         scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
         //Time.timeScale = 0;
@@ -185,68 +185,72 @@ public class Timer : MonoBehaviour
             scoreWindowRoundIsActive = false;
             scoreWindowRound.SetActive(scoreWindowRoundIsActive);
         };
-        
         if (!scoreWindowGeneralIsActive)
         {
             scoreWindowGeneralIsActive = true;
             scoreWindowGeneral.SetActive(scoreWindowGeneralIsActive);
-            scoreWindowGeneral.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
-            List<Player> tempPlayerListPlayer = new List<Player>();
-            int position = 0;
-
-            Player playerTemp = null;
-            int bestScore = 0;
-
-            // Rangage des joueurs par score
-            while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
+            Sequence mySequence3 = DOTween.Sequence();
+            mySequence3.Append(scoreWindowGeneral.GetComponent<RectTransform>().DOAnchorPosY(0, 2));
+            mySequence3.onComplete += () =>
             {
-                foreach (var player in PlayerManager.instance.players)
+
+                List<Player> tempPlayerListPlayer = new List<Player>();
+                int position = 0;
+
+                Player playerTemp = null;
+                int bestScore = 0;
+
+                // Rangage des joueurs par score
+                while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
                 {
-                    if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
+                    foreach (var player in PlayerManager.instance.players)
                     {
-                        bestScore = player.Value.score;
-                        playerTemp = player.Value;
+                        if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
+                        {
+                            bestScore = player.Value.score;
+                            playerTemp = player.Value;
+                        }
+                    }
+                    tempPlayerListPlayer.Add(playerTemp);
+                    bestScore = 0;
+                }
+
+                GameObject temp = null;
+                for (int p = 0; p < tempPlayerListPlayer.Count; p++)
+                {
+                    temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
+                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                    temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                    temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
+                    temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
+                    scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
+                    // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
+                    for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
+                    {
+                        GameObject test = Instantiate(PlayerManager.instance.players[p].medals[p], temp.transform);
+                    }
+                    for (int i = 0; i < numberOfMedal; i++)
+                    {
+                        if (tempPlayerListPlayer[p].score > 0)
+                        {
+                            //Anim d'apparition
+                            InstantiateMedals(temp.transform, position);
+                            PlayerManager.instance.players[p].scoreGeneral++;
+                        }
+                    }
+                    position++;
+                    numberOfMedal--;
+                }
+                for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+                {
+                    if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
+                    {
+                        SceneManager.LoadScene(leaderBoardScene);
+                        Debug.Log("WE HAVE A WINNER !!!");
                     }
                 }
-                tempPlayerListPlayer.Add(playerTemp);
-                bestScore = 0;
-            }
+            };
 
-            GameObject temp = null;
-            for (int p = 0; p < tempPlayerListPlayer.Count; p++)
-            {
-                temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-                scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-                temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
-                temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
-                temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
-                scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
-
-                // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
-                for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
-                {
-                    GameObject test = Instantiate(PlayerManager.instance.players[p].medals[p], temp.transform);
-                }
-                for (int i = 0; i < numberOfMedal; i++)
-                {
-                    if (tempPlayerListPlayer[p].score > 0)
-                    {
-                        //Anim d'apparition
-                        InstantiateMedals(temp.transform, position);
-                        PlayerManager.instance.players[p].scoreGeneral++;
-                    }
-                }
-                position++;
-                numberOfMedal--;
-            }
-            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-            {
-                if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
-                {
-                    Debug.Log("WE HAVE A WINNER !!!");
-                }
-            }
-            
         }
     }
     private void InstantiateMedals(Transform t, int position)
@@ -266,6 +270,4 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
     }
-
-    
 }

@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
     public float RespawnDelay => respawnDelay;
     public int InvincibleDelay => invincibleDelay;
     public float SlowDuration => slowDuration;
+
+    private List<GameObject> playersList = new List<GameObject>(); // remplir à la fin du lobby
+    public List<GameObject> PlayersList => playersList;
     
     #endregion
 

@@ -106,6 +106,8 @@ public class PlayerManager : MonoBehaviour
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
 
+            players[i].name = "Player " + i;
+
             //Spawn at point
             Transform posSpawn = PointAreaManager.instance.PlayerSpawnStart[i];
             if(posSpawn)

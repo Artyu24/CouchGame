@@ -31,7 +31,6 @@ public class ScoreManager : MonoBehaviour
     public Sprite courroneUI, emptyCourroneUI;
     [SerializeField]
     private GameObject scoreBoard;
-    List<RectTransform> PlayerListSortByScore = new List<RectTransform>();
 
     public GameObject hyperSpeed;
     public GameObject[] terrain;
@@ -55,6 +54,7 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
+
     }
 
     void Update()
@@ -98,43 +98,60 @@ public class ScoreManager : MonoBehaviour
 
     private void ScoreBoardSorting()
     {
-        List<Player> tempPlayerListPlayer = new List<Player>();
-        PlayerListSortByScore.Clear();
-        Player playerTemp = null;
-        int bestScore = 0;
+        List<Player> playersSortedByScore = new List<Player>();
+        List<RectTransform> playersRankGUISortedByScore = new List<RectTransform>();
+        List<Vector3> positionUIScoreInOrder = new List<Vector3>();
 
-        while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
+        for(int i = 0; i < PlayerManager.instance.players.Count; ++i)
+        {
+            RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
+            positionUIScoreInOrder.Add(playerRankGUITransform.position);
+        }
+
+        int bestScore = int.MinValue;
+        Player playerWithBestScore = null;
+        while (playersSortedByScore.Count < PlayerManager.instance.players.Count)
         {
             foreach (var p in PlayerManager.instance.players)
             {
-                if (!tempPlayerListPlayer.Contains(p.Value) && bestScore <= p.Value.score)
+                if (!playersSortedByScore.Contains(p.Value) && p.Value.score > bestScore)
                 {
                     bestScore = p.Value.score;
-                    playerTemp = p.Value;
+                    playerWithBestScore = p.Value;
                 }
             }
-            tempPlayerListPlayer.Add(playerTemp);
-            bestScore = 0;
+            playersSortedByScore.Add(playerWithBestScore);
+            bestScore = int.MinValue;
 
         }
 
-
-        for (int i = 0; i < tempPlayerListPlayer.Count; i++)
+        for (int i = 0; i < playersSortedByScore.Count; i++)
         {
-            PlayerListSortByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(tempPlayerListPlayer[i].playerID).GetComponent<RectTransform>());
+            playersRankGUISortedByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(playersSortedByScore[i].playerID).GetComponent<RectTransform>());
             //Debug.Log(PlayerListSortByScore[i]);
         }
 
-        tempPlayerListPlayer[0].couronne.SetActive(true);
-        for (int i = 1; i < tempPlayerListPlayer.Count; i++)
+        for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
         {
-            tempPlayerListPlayer[i].couronne.SetActive(false);
+            playersRankGUISortedByScore[i].parent = null;
         }
 
-        PlayerListSortByScore[0].GetChild(0).GetChild(0).GetComponent<Image>().sprite = courroneUI;
-        for (int i = 1; i < PlayerListSortByScore.Count; i++)
+        for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
-            PlayerListSortByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
+            playersRankGUISortedByScore[i].position = positionUIScoreInOrder[i];
+            playersRankGUISortedByScore[i].parent = scoreBoard.transform;
+        }
+
+        playersSortedByScore[0].couronne.SetActive(true);
+        for (int i = 1; i < playersSortedByScore.Count; i++)
+        {
+            playersSortedByScore[i].couronne.SetActive(false);
+        }
+
+        playersRankGUISortedByScore[0].GetChild(0).GetChild(0).GetComponent<Image>().sprite = courroneUI;
+        for (int i = 1; i < playersRankGUISortedByScore.Count; i++)
+        {
+            playersRankGUISortedByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
         }
 
     }
