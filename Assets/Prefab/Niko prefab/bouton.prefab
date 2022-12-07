@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 1341450765972361626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.402, y: 0.049999475, z: -4.4504967}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9090132931242637882}
   - {fileID: 3489620640381943938}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7667514444309634398}
   - component: {fileID: 8714151319863200101}
   m_Layer: 0
-  m_Name: Circle.001
+  m_Name: RedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,8 +127,9 @@ GameObject:
   - component: {fileID: 9090132931242637882}
   - component: {fileID: 3187312202874015417}
   - component: {fileID: 7743219514793825204}
+  - component: {fileID: 2706021428783551436}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,3 +200,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2706021428783551436
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251950165051781659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2124705421725058983, guid: 180ccfef11d58584587b7107d0e6e04b, type: 3}

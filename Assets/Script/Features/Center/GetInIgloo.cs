@@ -39,6 +39,8 @@ public class GetInIgloo : MonoBehaviour
     {
         GameManager GM = GameManager.instance;
 
+        GameObject _pipe = Resources.Load<GameObject>("Features/CableShield");
+
         GM.PlayerInMiddle = player.gameObject;
 
         //On créé les inérupteurs pour faire sortir le joueur
@@ -49,7 +51,10 @@ public class GetInIgloo : MonoBehaviour
             plate.GetComponent<BoxCollider>().enabled = true;
             GM.EjectPlates.Add(plate);
 
-
+            Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.5f);
+            GameObject p = Instantiate(_pipe, _pos, Quaternion.identity);
+            p.transform.parent = plate.transform;
+            plate.transform.GetComponent<EjectPlayerCentre>().cable = p;
         }
 
         //On cache le joueur qui est rentrer dans l'igloo
