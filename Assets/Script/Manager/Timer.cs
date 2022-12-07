@@ -84,19 +84,11 @@ public class Timer : MonoBehaviour
                 GameManager.instance.CameraScene.gameObject.transform.parent = null;
                 for (int i = 0; i < PlayerManager.instance.players.Count; i++)
                 {
-                    PlayerManager.instance.players[i].HideGuy(false);
+                    //PlayerManager.instance.players[i].HideGuy(false);
                     CameraManager.Instance.RemovePlayerTarget(i+1);
                 }
 
                 CameraManager.Instance.ActivateHyperSpace();
-                for (int i = 0; i < ScoreManager.instance.terrain.Count; i++)
-                {
-                    if (ScoreManager.instance.terrain[i])
-                    {
-                        ScoreManager.instance.terrain[i].SetActive(false);
-                    }
-                }
-
                 ScoreManager.instance.hyperSpeed.SetActive(true);
                 PrintScoreWindow();
             }
