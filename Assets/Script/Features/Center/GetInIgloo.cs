@@ -30,7 +30,7 @@ public class GetInIgloo : MonoBehaviour
 
     private IEnumerator InitCenterTime(GameObject player)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.99f);
         InitCenter(player);
         GetComponent<Animator>().SetTrigger("Enter");
     }
