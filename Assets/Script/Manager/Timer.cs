@@ -245,6 +245,8 @@ public class Timer : MonoBehaviour
                 
             };
 
+            }
+            
         }
     }
     private void InstantiateMedals(Transform t, int position)
