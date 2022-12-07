@@ -68,13 +68,13 @@ public class Timer : MonoBehaviour
         
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Length != 0)
+            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
                 //add un temps mort de 2 secs pour que toute les anims se finissent
 
 
-                //anim de départ du terrain
+                //anim de dï¿½part du terrain
                 //recup les objets origines de la hierachie dans une liste
 
                 List<GameObject> rootObjects = new List<GameObject>();
@@ -100,7 +100,7 @@ public class Timer : MonoBehaviour
 
                 mySequence.onComplete += () => 
                 {
-                    if (ScoreManager.instance.terrain != null)
+                    for(int i = 0; i < ScoreManager.instance.terrain.Count; i++)
                     {
                         for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
                         {
@@ -187,6 +187,11 @@ public class Timer : MonoBehaviour
                 scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
             }
 
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+            {
+                //Debug.Log(PlayerManager.instance.players[i].score);
+                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            }
         }
     }
 
@@ -238,6 +243,8 @@ public class Timer : MonoBehaviour
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
+                    //Coroutine pour faire apparaitre les oeufs
+
                     // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {

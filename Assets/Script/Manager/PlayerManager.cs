@@ -106,7 +106,8 @@ public class PlayerManager : MonoBehaviour
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
 
-            players[i].name = "Player " + i;
+            //changer le nom dans la hierarchie
+            players[i].name = "Player " + (i+1);
 
             //Spawn at point
             Transform posSpawn = PointAreaManager.instance.PlayerSpawnStart[i];
@@ -120,6 +121,7 @@ public class PlayerManager : MonoBehaviour
             playerInterfaceTempo.name = "JUI " + (i+1);
             playersInterface[i] = playerInterfaceTempo;
             playersInterface[i].GetComponentInChildren<Image>().sprite = interfaceUIPrefabPP[i];
+            playersInterface[i].GetComponent<PlayerUIInfo>().PlayerID = (i);
 
             //Text du score par Player
             ScoreManager.instance.InstantiateScoreText(i);
@@ -128,6 +130,7 @@ public class PlayerManager : MonoBehaviour
             GameObject speBarreTemp = Instantiate(speBarrePrefabs[i], playerInterfaceTempo.transform.GetChild(1).transform);
             speBarreTemp.name = "SpéChargeBarre " + (1);
             player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
+            player.GetComponent<PlayerAttack>().SpeBarreSlider.value = 0;
         }
         else
         {
