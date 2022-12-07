@@ -148,8 +148,12 @@ public class PlayerAttack : MonoBehaviour
                         HitParticle(hit.point);
                         return;
                     }
+                    if (hit.transform.tag == "Bumper")// if we hit a bumper it push it and trigger it
+                    {
+                        hit.transform.GetComponent<RailedBumper>().strenghtPlayerAttack = _strenght;
+                    }
 
-                    if (hit.transform.GetComponent<IInteractable>() != null)
+                        if (hit.transform.GetComponent<IInteractable>() != null)
                     {
                         hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                         HitParticle(hit.point); 

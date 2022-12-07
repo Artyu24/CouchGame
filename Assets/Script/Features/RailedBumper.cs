@@ -18,6 +18,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
     PlayerAttack playerAttack;
     bool attackCharged = false;
 
+    public float strenghtPlayerAttack;
+
 
     bool sensNormal = false;
     bool sensInverse = false;
@@ -26,8 +28,8 @@ public class RailedBumper : MonoBehaviour, IInteractable
         igloo = new Vector3(0, 0, 0);
         speedAiguilleMontre = GameManager.instance.SpeedBumper;
         speedInverseAiguilleMontre = -GameManager.instance.SpeedBumper;
-        speedHitBySuperStrenght = 2;
-        speedHitBySuperStreghtInverse = -2;
+        speedHitBySuperStrenght = -GameManager.instance.SpeedBumperCharged;
+        speedHitBySuperStreghtInverse = GameManager.instance.SpeedBumperCharged;
         position = gameObject.transform.position.x;
         playerAttack = GetComponent<PlayerAttack>();
     }
@@ -58,18 +60,14 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         transform.position = new Vector3(x, gameObject.transform.position.y, z);
 
-
-        if (playerAttack.GetComponent<PlayerAttack>().bumperIsCharged == true)
-            if (playerAttack.bumperIsCharged == true)
-            {
-                attackCharged = true;
-            }
-
+        
 
     }
 
     public void Interact(Player player = null)
     {
+        attackCharged = strenghtPlayerAttack > GameManager.instance.NormalStrenght;
+
         Vector3 playerOrient = player.transform.forward;
         Vector3 bumperOrient = transform.right;
         playerOrient.y = 0;
@@ -85,8 +83,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
                 speed = speedHitBySuperStreghtInverse;
                 sensNormal = true;
 
-                StartCoroutine(ForSensNoramal());
-                Debug.Log("1");
+                StartCoroutine(ForSensNoramalCharged());
 
             }
             else
@@ -95,7 +92,6 @@ public class RailedBumper : MonoBehaviour, IInteractable
                 sensNormal = true;
 
                 StartCoroutine(ForSensNoramal());
-                Debug.Log("2");
 
             }
 
@@ -107,8 +103,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
                 speed = speedHitBySuperStrenght;
                 sensInverse = true;
 
-                StartCoroutine(ForSensInverse());
-                Debug.Log("3");
+                StartCoroutine(ForSensInverseCharged());
 
             }
             else
@@ -117,7 +112,6 @@ public class RailedBumper : MonoBehaviour, IInteractable
                 sensInverse = true;
 
                 StartCoroutine(ForSensInverse());
-                Debug.Log("4");
 
             }
         }
@@ -128,15 +122,23 @@ public class RailedBumper : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensNormal = false;
         attackCharged = false;
-        Debug.Log("Sens normal coroutine false");
-
+    }
+    public IEnumerator ForSensNoramalCharged()
+    {
+        yield return new WaitForSeconds(GameManager.instance.BumperMovementDistanceCharged);
+        sensNormal = false;
+        attackCharged = false;
     }
     public IEnumerator ForSensInverse()
     {
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
         sensInverse = false;
         attackCharged = false;
-        Debug.Log("Sens inverse coroutine false");
-
+    }
+    public IEnumerator ForSensInverseCharged()
+    {
+        yield return new WaitForSeconds(GameManager.instance.BumperMovementDistanceCharged);
+        sensInverse = false;
+        attackCharged = false;
     }
 }
