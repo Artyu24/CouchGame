@@ -1271,6 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
+      propertyPath: ui
+      value: 
+      objectReference: {fileID: 175090754217831461}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
       propertyPath: timer
       value: 50
       objectReference: {fileID: 0}
@@ -2910,11 +2915,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 9222056193418607204, guid: de81e2a46b915f048b65ffa40ea6c3d8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9222056193418607204, guid: de81e2a46b915f048b65ffa40ea6c3d8,
         type: 3}

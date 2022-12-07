@@ -21,7 +21,7 @@ public class Bumper : MonoBehaviour
     public IEnumerator PlayAnim()
     {
         m_Animator.SetBool("Bumped", true);
-        yield return new WaitForSeconds(0.583f);
+        yield return new WaitForSeconds(0.667f);
         m_Animator.SetBool("Bumped", false);
     }
 }
