@@ -230,19 +230,7 @@ MonoBehaviour:
     m_ActionId: 679814ab-779a-4e63-a702-310c790b2e49
     m_ActionName: Player/ChocWave[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 181805186}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: PauseGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: e48a3083-b23a-47d8-adb2-870aad900e0e
     m_ActionName: Player/Pause[/DualShock4GamepadHID/start,/DualShock4GamepadHID1/start,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
@@ -326,7 +314,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  bumperIsCharged: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 3584

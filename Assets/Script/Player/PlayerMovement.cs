@@ -140,8 +140,11 @@ public class PlayerMovement : MonoBehaviour
                     {
                         switchDone = true;
 
-                        GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = false;
-                        GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
+                        if (GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>())
+                        {
+                            GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>().enabled = false;
+                            GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.TabMaterialColor[actualCircle];
+                        }
 
                         float nextCircle = 0;
                         if (movementInput.z < 0)
@@ -156,8 +159,11 @@ public class PlayerMovement : MonoBehaviour
                         else
                             actualCircle += (int)nextCircle;
 
-                        GameManager.instance.tabCircle[actualCircle].GetComponent<Outline>().enabled = true;
-                        GameManager.instance.tabCircle[actualCircle].GetComponent<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
+                        if (GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>())
+                        {
+                            GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>().enabled = true;
+                            GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
+                        }
                     }
                 }
                 else
