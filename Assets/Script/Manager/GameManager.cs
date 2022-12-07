@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region UI
+    [Header("UI")]
     public GameObject pausePanel, optionsPanel;
     public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion

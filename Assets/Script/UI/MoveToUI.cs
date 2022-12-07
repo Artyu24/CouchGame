@@ -15,10 +15,15 @@ public class MoveToUI : MonoBehaviour
 
     void MoveToUi()
     {
-        Vector3 screenPoint = ui_element_gameobject.transform.position + new Vector3(0, 0, 5);
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPoint);
+        Vector3 screenPoint = ui_element_gameobject.GetComponent<RectTransform>().position + new Vector3(0, 30);
 
-        transform.DOJump(worldPos, 1, 1, 2.0f).SetEase(Ease.InOutBack);
+        Tween a = transform.DOJump(screenPoint, 1, 1, 1.4f).SetEase(Ease.InOutCirc);
+        Tween b = GetComponent<RectTransform>().DOScale(new Vector3(0.5f, 0.5f), 1.4f);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(a).Join(b).OnComplete(() => Destroy(gameObject));
+
+
+        //Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPoint);
     }
 
 }

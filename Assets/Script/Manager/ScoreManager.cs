@@ -135,13 +135,13 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
         {
-            playersRankGUISortedByScore[i].parent = null;
+            playersRankGUISortedByScore[i].SetParent(null);
         }
 
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
             playersRankGUISortedByScore[i].position = positionUIScoreInOrder[i];
-            playersRankGUISortedByScore[i].parent = scoreBoard.transform;
+            playersRankGUISortedByScore[i].SetParent(scoreBoard.transform);
         }
 
         playersSortedByScore[0].couronne.SetActive(true);
