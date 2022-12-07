@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
     public float RespawnDelay => respawnDelay;
     public int InvincibleDelay => invincibleDelay;
     public float SlowDuration => slowDuration;
+
+    private List<GameObject> playersList = new List<GameObject>(); // remplir à la fin du lobby
+    public List<GameObject> PlayersList => playersList;
     
     #endregion
 
@@ -224,7 +227,6 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-        target.transform.localScale = new Vector3(0f, 0f, 0f);
     }
 
     public IEnumerator TargetMeteorite()
@@ -232,7 +234,7 @@ public class GameManager : MonoBehaviour
         if(canMeteorite == true)
         {
             Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
-            Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y - 0.95f, randomPos.position.z);
+            Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y, randomPos.position.z);
             target.transform.position = tagetPosSol;
             target.transform.parent = randomPos.parent;
             StartCoroutine(TargetCD());
@@ -264,7 +266,6 @@ public class GameManager : MonoBehaviour
         canMeteorite = false;
         yield return new WaitForSeconds(cdforNewMeteorite);
         canMeteorite = true;
-        target.transform.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(TargetMeteorite());
     }
 
@@ -284,14 +285,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (target.activeSelf == true)
-        {
-            if (target.transform.localScale.x < 0.23f)
-            {
-                target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (target.activeSelf == true)
+    //    {
+    //        if (target.transform.localScale.x < 0.23f)
+    //        {
+    //            target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
+    //        }
+    //    }
+    //}
 }
