@@ -48,7 +48,7 @@ public class FishBag : MonoBehaviour
         //Debug.LogError("JM ICI LE SON FRERO T ES BO");
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.EatingSound);
         
-        GameObject fui =  Instantiate(fishToUI, Camera.main.WorldToScreenPoint(transform.position), Quaternion.identity, GameManager.instance.Ui);
+        GameObject fui =  Instantiate(fishToUI, Camera.main.WorldToScreenPoint(transform.position), Quaternion.identity, PlayerManager.instance.canvasUI.transform);
         fui.GetComponent<MoveToUI>().ui_element_gameobject = player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject;
 
         ObjectManager.Instance.CallBarSpePlus(player, isGolden);
