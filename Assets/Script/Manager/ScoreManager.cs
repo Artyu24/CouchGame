@@ -71,9 +71,7 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator AddScoreFromMiddle()
     {
         addMiddleScore = false;
-        //AddScore(scoreMiddle, GameManager.instance.PlayerInMiddle.GetComponent<Player>());
-        //StartCoroutine(CenterPoint.instance.PopPointText());
-        CenterPoint.Instance.Test();
+        AddScore(scoreMiddle, GameManager.instance.PlayerInMiddle.GetComponent<Player>());
         yield return new WaitForSeconds(middelPointsCooldown);
         addMiddleScore = true;
     }
