@@ -50,7 +50,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         if (playerAttack.bumperIsCharged == true)
         {
-            attackCharged = true;
+            //attackCharged = true;
         }
 
     }
