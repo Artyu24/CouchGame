@@ -81,8 +81,6 @@ public class Timer : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 scene.GetRootGameObjects(rootObjects);
 
-                Debug.Log("ping");
-
                 GameManager.instance.CameraScene.gameObject.transform.parent = null;
                 for (int i = 0; i < PlayerManager.instance.players.Count; i++)
                 {
@@ -90,28 +88,17 @@ public class Timer : MonoBehaviour
                     CameraManager.Instance.RemovePlayerTarget(i+1);
                 }
 
-                Sequence mySequence = DOTween.Sequence();
-                mySequence.Append(rootObjects[0].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
-
-                for (int i = 1; i < rootObjects.Count; i++)
+                CameraManager.Instance.ActivateHyperSpace();
+                for (int i = 0; i < ScoreManager.instance.terrain.Count; i++)
                 {
-                    mySequence.Join(rootObjects[i].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
+                    if (ScoreManager.instance.terrain[i])
+                    {
+                        ScoreManager.instance.terrain[i].SetActive(false);
+                    }
                 }
 
-                mySequence.onComplete += () => 
-                {
-                    for(int i = 0; i < ScoreManager.instance.terrain.Count; i++)
-                    {
-                        if (ScoreManager.instance.terrain[i]) 
-                        { 
-                            ScoreManager.instance.terrain[i].SetActive(false);
-                        }
-                    }
-                    
-                    ScoreManager.instance.hyperSpeed.SetActive(true);
-                    PrintScoreWindow();
-                };
-                
+                ScoreManager.instance.hyperSpeed.SetActive(true);
+                PrintScoreWindow();
             }
 
             if (!scoreWindowRoundIsActive)

@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject playerCamera, hyperSpaceCamera;
     [SerializeField] private CinemachineTargetGroup targetAllPlayer;
     [SerializeField] private float radiusPlayer = 2;
 
@@ -68,5 +68,10 @@ public class CameraManager : MonoBehaviour
             playerCamera.SetActive(false);
         else
             playerCamera.SetActive(true);
+    }
+
+    public void ActivateHyperSpace()
+    {
+        hyperSpaceCamera.SetActive(true);
     }
 }

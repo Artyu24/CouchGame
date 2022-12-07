@@ -53,34 +53,40 @@ public class PlayerAttack : MonoBehaviour
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
+        if (player != null)
         {
-            float strenght = GameManager.instance.NormalStrenght;
-            if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
+            if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
             {
-                int xcount = Random.Range(0, 5);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
-                StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
+                float strenght = GameManager.instance.NormalStrenght;
+                if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
+                {
+                    int xcount = Random.Range(0, 5);
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
+                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
+                }
             }
         }
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
-        if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
+        if (player != null)
         {
-            float strenght = GameManager.instance.SpecialStrenght;
-            if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
+            if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
             {
-                bumperIsCharged = true;
-                effectSpeBarre.SetActive(false);
-                currentSpecial = 0;
-                speBarreSlider.value = currentSpecial;
-                int xcount = Random.Range(0, 3);
-                StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
+                float strenght = GameManager.instance.SpecialStrenght;
+                if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
+                {
+                    bumperIsCharged = true;
+                    effectSpeBarre.SetActive(false);
+                    currentSpecial = 0;
+                    speBarreSlider.value = currentSpecial;
+                    int xcount = Random.Range(0, 3);
+                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
+                    FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
+                }
             }
         }
     }

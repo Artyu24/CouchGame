@@ -2534,6 +2534,36 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 6.96
       objectReference: {fileID: 0}
+    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_Transitions.m_BlendHint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932026400263180967, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932026400263180967, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Style
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065153, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_RequiresOpaqueTextureOption
@@ -3284,7 +3314,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7475349486253705663, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
+    - {fileID: 4833120205445618983, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
 --- !u!1 &1888086358
 GameObject:
