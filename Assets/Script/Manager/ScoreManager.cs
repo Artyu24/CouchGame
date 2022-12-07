@@ -1,6 +1,6 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -142,18 +142,29 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
-        {
-            playersRankGUISortedByScore[i].parent = null;
-        }
 
+        scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = false;
+
+        Sequence sequence = DOTween.Sequence();
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
-            playersRankGUISortedByScore[i].position = positionUIScoreInOrder[i];
-            playersRankGUISortedByScore[i].parent = scoreBoard.transform;
+            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], 1);
+            if (i == 0)
+            {
+                sequence.Append(tween);
+            } else
+            {
+                sequence.Join(tween);
+            }
+            
         }
+        sequence.onComplete += () =>
+        {
+            scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = true;
+            //reordonner les enfants
+        };
 
-        playersSortedByScore[0].couronne.SetActive(true);
+            playersSortedByScore[0].couronne.SetActive(true);
         for (int i = 1; i < playersSortedByScore.Count; i++)
         {
             playersSortedByScore[i].couronne.SetActive(false);
