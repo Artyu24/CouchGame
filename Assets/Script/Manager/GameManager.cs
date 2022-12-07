@@ -155,10 +155,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int ejectPlatesActive = 0;
     public List<GameObject> EjectPlates => ejectPlates;
     public int NumberOfPlate => numberOfPlate;
-    public Color ActivatedColor => activatedColor;
-    public Color ActiveColor => activeColor;
-
-
     #endregion
     
     #region Middle
@@ -207,7 +203,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject circle in tabCircle)
         {
-            tabMaterialColor.Add(circle.GetComponent<MeshRenderer>().material.color);
+            tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
         }
         meteorite = Resources.Load<GameObject>("Meteorite");
 
