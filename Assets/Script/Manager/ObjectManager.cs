@@ -105,10 +105,14 @@ public class ObjectManager : MonoBehaviour
 
     private void SpawnBag()
     {
-        Transform pos = PointAreaManager.instance.GetRandomPosition();
-        GameObject bag = Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        {
+            Transform pos = PointAreaManager.instance.GetRandomPosition();
+            GameObject bag = Instantiate(fishBag, pos.position, Quaternion.identity, pos.parent);
 
-        bool i = Random.Range(0, 100) <= goldenRate ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+            bool i = Random.Range(0, 100) <= goldenRate ? bag.GetComponent<FishBag>().isGolden = true : bag.GetComponent<FishBag>().isGolden = false;
+        }
+
     }
     
     public void CallBarSpePlus(GameObject player, bool isGolden)
@@ -192,15 +196,19 @@ public class ObjectManager : MonoBehaviour
     private IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(cdSpawn);
-        int random = Random.Range(0, allObjectList.Count);
+        
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        {
+            int random = Random.Range(0, allObjectList.Count);
 
-        Transform pos = transform;
-        if (!allObjectList[random].GetComponent<Bomb>())
-            pos = PointAreaManager.instance.GetRandomPosition();
-        else
-            pos = PointAreaManager.instance.GetBombRandomPos();
+            Transform pos = transform;
+            if (!allObjectList[random].GetComponent<Bomb>())
+                pos = PointAreaManager.instance.GetRandomPosition();
+            else
+                pos = PointAreaManager.instance.GetBombRandomPos();
 
-        Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
+            Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
+        }
     }
 
     public IEnumerator DestroyObject(GameObject objet)

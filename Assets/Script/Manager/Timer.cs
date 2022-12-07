@@ -81,11 +81,12 @@ public class Timer : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 scene.GetRootGameObjects(rootObjects);
 
+                Debug.Log("ping");
+
                 GameManager.instance.CameraScene.gameObject.transform.parent = null;
                 for (int i = 0; i < PlayerManager.instance.players.Count; i++)
                 {
                     PlayerManager.instance.players[i].HideGuy(false);
-
                     CameraManager.Instance.RemovePlayerTarget(i+1);
                 }
 
@@ -99,12 +100,19 @@ public class Timer : MonoBehaviour
 
                 mySequence.onComplete += () => 
                 {
-                    for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
+                    if (ScoreManager.instance.terrain != null)
                     {
-                        ScoreManager.instance.terrain[i].SetActive(false);
+                        for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
+                        {
+                            if (ScoreManager.instance.terrain[i])
+                            {
+                                ScoreManager.instance.terrain[i].SetActive(false);
+                            }
+                        }
+                        ScoreManager.instance.hyperSpeed.SetActive(true);
+                        PrintScoreWindow();
+
                     }
-                    ScoreManager.instance.hyperSpeed.SetActive(true);
-                    PrintScoreWindow();
                 };
                 
             }
@@ -158,22 +166,27 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
-        //Time.timeScale = 0;
-        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-
-        for (int p = 0; p < PlayerManager.instance.players.Count; p++)
+        
+        if (scoreWindowRound != null)
         {
-            GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
-            scorePlayerText[p] = temp.GetComponentInChildren<Text>();
-            temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
-            temp.name = "Player " + (p + 1);
-        }
+            scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
+            //Time.timeScale = 0;
+            scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        {
-            Debug.Log(PlayerManager.instance.players[i].score);
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            for (int p = 0; p < PlayerManager.instance.players.Count; p++)
+            {
+                GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
+                scorePlayerText[p] = temp.GetComponentInChildren<Text>();
+                temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                temp.name = "Player " + (p + 1);
+            }
+
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+            {
+                Debug.Log(PlayerManager.instance.players[i].score);
+                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            }
+
         }
     }
 

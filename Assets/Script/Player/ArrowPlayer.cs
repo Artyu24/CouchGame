@@ -21,7 +21,7 @@ public class ArrowPlayer : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.instance.ActualGameState == GameState.ENDROUND)
+        if(GameManager.instance.ActualGameState == GameState.ENDROUND && fleche.activeInHierarchy)
         {
             fleche.SetActive(false);
             texte.SetActive(false);

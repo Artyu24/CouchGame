@@ -24,6 +24,8 @@ public class PlayerAttack : MonoBehaviour
         set => playerHitedBy = value;
     }
 
+    private Player player;
+
     private GameObject playerHit;
 
     private Slider speBarreSlider;
@@ -39,46 +41,47 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("La partie sur le cot� en Degr� (prendre en compte x2 pour l'amplitude total)")]
     private float middleDirAngle;
 
-
-
     private void Start()
     {
         effectSpeBarre = transform.GetChild(1).gameObject;
         effectSpeBarre.SetActive(false);
+        player = GetComponent<Player>();
         playerHit = Resources.Load<GameObject>("Features/Hit");
-        Debug.Log(playerHit);
     }
     #endregion
 
     #region InputSysteme
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        float strenght = GameManager.instance.NormalStrenght;
-        if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
+        if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            int xcount = Random.Range(0, 5);
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
-            StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
+            float strenght = GameManager.instance.NormalStrenght;
+            if (ctx.started && canAttack && GameManager.instance.PlayerInMiddle != this.gameObject)
+            {
+                int xcount = Random.Range(0, 5);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
+                StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
+            }
         }
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
-        float strenght = GameManager.instance.SpecialStrenght;
-        if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
+        if ((player.ActualPlayerState == PlayerState.FIGHTING || player.ActualPlayerState == PlayerState.FLYING) && GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            bumperIsCharged = true;
-            effectSpeBarre.SetActive(false);
-            currentSpecial = 0;
-            speBarreSlider.value = currentSpecial;
-            int xcount = Random.Range(0, 3);
-            StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
-
-
-
+            float strenght = GameManager.instance.SpecialStrenght;
+            if (ctx.started && canAttack && currentSpecial == maxSpecial && GameManager.instance.PlayerInMiddle != this.gameObject)
+            {
+                bumperIsCharged = true;
+                effectSpeBarre.SetActive(false);
+                currentSpecial = 0;
+                speBarreSlider.value = currentSpecial;
+                int xcount = Random.Range(0, 3);
+                StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
+            }
         }
     }
     #endregion
@@ -99,7 +102,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(float _strenght)
     {
-        if (GetComponent<Player>().ActualPlayerState != PlayerState.DEAD)
+        if (player.ActualPlayerState != PlayerState.DEAD)
         {
             GetComponent<PlayerMovement>().animator.SetTrigger("Attack");
             #region Range

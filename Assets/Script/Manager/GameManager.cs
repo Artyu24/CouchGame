@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TargetMeteorite()
     {
-        if(canMeteorite == true)
+        if(canMeteorite == true && actualGameState == GameState.INGAME)
         {
             Transform randomPos = PointAreaManager.instance.GetMeteoriteRandomPos();
             Vector3 tagetPosSol = new Vector3(randomPos.position.x, randomPos.position.y, randomPos.position.z);
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
             target.transform.parent = randomPos.parent;
             StartCoroutine(TargetCD());
             yield return new WaitForSeconds(launchMeteorite);
-            if (ActualGameState == GameState.INGAME)
+            if (actualGameState == GameState.INGAME)
             {
                 GameObject metoto = Instantiate(meteorite, departMeteorite, quaternion.identity);
                 metoto.GetComponent<MeteorMovement>().nextPos = target.transform.position;
