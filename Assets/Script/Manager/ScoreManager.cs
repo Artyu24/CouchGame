@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
     private GameObject scoreBoard;
 
     public GameObject hyperSpeed;
-    public GameObject[] terrain;
+    public List<GameObject> terrain = new List<GameObject>();
     
     public static ScoreManager instance;
 
@@ -47,6 +47,11 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
+        {
+            terrain.Add(GameManager.instance.tabCircle[i]);
+        }
+
         if(scorePlayerText == null || scoreTextPrefab == null)
             return;
 
