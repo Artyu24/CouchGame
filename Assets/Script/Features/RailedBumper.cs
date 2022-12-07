@@ -58,13 +58,10 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         transform.position = new Vector3(x, gameObject.transform.position.y, z);
 
-
-        if (playerAttack.GetComponent<PlayerAttack>().bumperIsCharged == true)
-            if (playerAttack.bumperIsCharged == true)
-            {
-                attackCharged = true;
-            }
-
+        if (playerAttack.bumperIsCharged == true)
+        {
+            attackCharged = true;
+        }
 
     }
 
