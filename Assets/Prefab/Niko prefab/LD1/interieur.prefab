@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8210220207320205320}
   - component: {fileID: 379889838}
   - component: {fileID: 379889837}
+  - component: {fileID: 379889836}
   m_Layer: 0
   m_Name: interieur
   m_TagString: Platform
@@ -117,3 +118,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &379889836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7705786193851558365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05381c879d76543bf13f5541b883fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstEmpty: {fileID: 0}
+  circleParent: {fileID: 7705786193851558365}
+  nbrSpawnPoint: 16
+  spawnPointList: []

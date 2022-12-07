@@ -16,11 +16,10 @@ public class RailedBumper : MonoBehaviour, IInteractable
     float speed;
     Vector3 igloo;
     PlayerAttack playerAttack;
-    bool attackCharged = false;
 
 
-    bool sensNormal;
-    bool sensInverse;
+    bool sensNormal = false;
+    bool sensInverse = false;
     private void Start()
     {
         igloo = new Vector3(0, 0, 0);
@@ -40,18 +39,9 @@ public class RailedBumper : MonoBehaviour, IInteractable
         {
             timeCounter += Time.deltaTime * speed;
         }
-        else
-        {
-            timeCounter += Time.deltaTime * 0;
-        }
         if (sensInverse == true)
         {
           timeCounter += Time.deltaTime * speed;              
-        }        
-        else
-        {
-            timeCounter += Time.deltaTime * 0;
-
         }
         float x = Mathf.Cos(timeCounter) * position;
         float z = Mathf.Sin(timeCounter) * position;
@@ -77,63 +67,47 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
         if(dotResult > 0)
         {
-            if (attackCharged == true)
+            if (playerAttack.BumperIsCharged == true)
             {
                 speed = speedHitBySuperStreghtInverse;
-                sensNormal = true;
-
                 StartCoroutine(ForSensNoramal());
-                Debug.Log("1");
-
-            }
-            else
-            {
-                speed = speedAiguilleMontre;
-                sensNormal = true;
-
-                StartCoroutine(ForSensNoramal());
-                Debug.Log("2");
-
-            }
-
-        }
-        else
-        {
-            if(attackCharged == true)
-            {
-                speed = speedHitBySuperStrenght;
-                sensInverse = true;
-
-                StartCoroutine(ForSensInverse());
-                Debug.Log("3");
 
             }
             else
             {
                 speed = speedInverseAiguilleMontre;
-                sensInverse = true;
+                StartCoroutine(ForSensNoramal());   
+            }
 
+        }
+        else
+        {
+            if(playerAttack.BumperIsCharged == true)
+            {
+                speed = speedHitBySuperStrenght;
                 StartCoroutine(ForSensInverse());
-                Debug.Log("4");
 
+            }
+            else
+            {
+                speed = speedAiguilleMontre;
+                StartCoroutine(ForSensNoramal());
             }
         }
     }
 
     public IEnumerator ForSensNoramal()
     {
+        sensNormal = true;
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
+        playerAttack.BumperIsCharged = false;
         sensNormal = false;
-        attackCharged = false;      
-        Debug.Log("Sens normal coroutine false");
-
     }
     public IEnumerator ForSensInverse()
     {
+        sensInverse = true;
         yield return new WaitForSeconds(GameManager.instance.BumperMovementDistance);
+        playerAttack.BumperIsCharged = false;
         sensInverse = false;
-        attackCharged = false;     
-        Debug.Log("Sens inverse coroutine false");
-
     }
 }
