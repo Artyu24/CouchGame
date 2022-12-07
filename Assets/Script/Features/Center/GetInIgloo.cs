@@ -39,14 +39,15 @@ public class GetInIgloo : MonoBehaviour
 
         GM.PlayerInMiddle = player.gameObject;
 
-        //On créé les plaques pour faire sortir le joueur
+        //On créé les inérupteurs pour faire sortir le joueur
         for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
         {
             Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
             GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
-            plate.GetComponentInChildren<MeshRenderer>().material.color = GM.ActiveColor;
             plate.GetComponent<BoxCollider>().enabled = true;
             GM.EjectPlates.Add(plate);
+
+
         }
 
         //On cache le joueur qui est rentrer dans l'igloo

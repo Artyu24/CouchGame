@@ -155,10 +155,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int ejectPlatesActive = 0;
     public List<GameObject> EjectPlates => ejectPlates;
     public int NumberOfPlate => numberOfPlate;
-    public Color ActivatedColor => activatedColor;
-    public Color ActiveColor => activeColor;
-
-
     #endregion
     
     #region Middle
