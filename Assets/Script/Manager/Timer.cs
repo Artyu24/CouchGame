@@ -15,7 +15,8 @@ public class Timer : MonoBehaviour
     private float timerCountDown = 5;
 
     private int minutes, seconds;
-    public string levelName;
+    [SerializeField]
+    private string nextSceneID;
     [SerializeField]
     private string leaderBoardScene = "LeaderBoard";
     #endregion
@@ -159,7 +160,7 @@ public class Timer : MonoBehaviour
 
             for (int i = 0; i < PlayerManager.instance.players.Count; i++)
             {
-                Debug.Log(PlayerManager.instance.players[i].score);
+                //Debug.Log(PlayerManager.instance.players[i].score);
                 scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
             }
 
@@ -261,6 +262,7 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
+            Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
                 SceneManager.LoadScene(leaderBoardScene);
@@ -268,7 +270,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(levelName); 
+                SceneManager.LoadScene(nextSceneID); 
             }
         }
     }
