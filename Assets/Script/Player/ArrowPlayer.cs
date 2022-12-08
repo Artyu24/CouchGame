@@ -12,7 +12,6 @@ public class ArrowPlayer : MonoBehaviour
 
     private void Start()
     {
-        cam = GameManager.instance.CameraScene;
         //Debug.Log(GetComponentInParent<Player>().playerID);
         fleche.GetComponent<Image>().color = flecheColor[GetComponentInParent<Player>().playerID];
         texte.GetComponent<Text>().text = "J" + (GetComponentInParent<Player>().playerID+1);
@@ -21,6 +20,11 @@ public class ArrowPlayer : MonoBehaviour
 
     void Update()
     {
+        if (cam == null)
+        {
+            cam = GameManager.instance.CameraScene;
+        }
+
         if(GameManager.instance.ActualGameState == GameState.ENDROUND && fleche.activeInHierarchy)
         {
             fleche.SetActive(false);
