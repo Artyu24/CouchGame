@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ArrowPlayer : MonoBehaviour
@@ -22,15 +23,18 @@ public class ArrowPlayer : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.instance.ActualGameState == GameState.ENDROUND && fleche.activeInHierarchy)
+        if (SceneManager.GetActiveScene().name != "Leaderboard")
         {
-            fleche.SetActive(false);
-            texte.SetActive(false);
-        }
-        else
-        {
-            Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
-            fleche.transform.position = cam.WorldToScreenPoint(screenPos);
+            if (GameManager.instance.ActualGameState == GameState.ENDROUND && fleche.activeInHierarchy)
+            {
+                fleche.SetActive(false);
+                texte.SetActive(false);
+            }
+            else
+            {
+                Vector3 screenPos = new Vector3(transform.position.x, transform.position.y + offsetArrow, transform.position.z);
+                fleche.transform.position = cam.WorldToScreenPoint(screenPos);
+            }
         }
     }
 }
