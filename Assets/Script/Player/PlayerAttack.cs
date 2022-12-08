@@ -150,7 +150,8 @@ public class PlayerAttack : MonoBehaviour
                     }
                     if (hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
                     {
-                        hit.transform.GetComponent<Rigidbody>().mass = 1;
+                        hit.transform.GetComponentInParent<Rigidbody>().mass = 1;
+                        Debug.LogError(hit.transform.GetComponentInParent<Rigidbody>().mass);
                         hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
                         hit.transform.GetComponent<Bomb>().isGrounded = false;
                         hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
