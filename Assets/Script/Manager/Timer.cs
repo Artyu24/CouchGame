@@ -54,7 +54,7 @@ public class Timer : MonoBehaviour
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            Debug.Log("Init");
+            Debug.Log(PlayerManager.instance.players[i].name + " : " + PlayerManager.instance.players[i].medals.Count);
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
     }
@@ -270,7 +270,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(nextSceneID); 
+                SceneManager.LoadScene(nextSceneID);
             }
         }
     }
