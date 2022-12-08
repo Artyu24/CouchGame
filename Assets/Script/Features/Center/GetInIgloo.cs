@@ -24,6 +24,7 @@ public class GetInIgloo : MonoBehaviour
             CenterPoint.Instance.SetUp(other.GetComponent<Player>());
 
             GameObject player = other.gameObject;
+            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             player.transform.DOMove(new Vector3(0, 3, 0), 2).onComplete += () =>
             {
                 InitCenter(player);
@@ -35,8 +36,12 @@ public class GetInIgloo : MonoBehaviour
     private void InitCenter(GameObject player)
     {
         //On cache le joueur qui est rentrer dans l'igloo
-        player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear).OnComplete(() => player.GetComponent<Player>().HideGuy(false));
-        
+        player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear).onComplete += () =>
+        {
+            player.transform.position = Vector3.zero;
+            player.GetComponent<Player>().HideGuy(false);
+        };
+
         GameManager GM = GameManager.instance;
 
         GameObject _pipe = Resources.Load<GameObject>("Features/CableShield");
