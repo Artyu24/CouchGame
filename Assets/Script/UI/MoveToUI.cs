@@ -20,7 +20,10 @@ public class MoveToUI : MonoBehaviour
         Tween a = transform.DOJump(screenPoint, 1, 1, 1.4f).SetEase(Ease.InOutCirc);
         Tween b = GetComponent<RectTransform>().DOScale(new Vector3(0.5f, 0.5f), 1.4f);
         Sequence seq = DOTween.Sequence();
-        seq.Append(a).Join(b).OnComplete(() => Destroy(gameObject));
+        seq.Append(a).Join(b).onComplete += () =>
+        {
+            Destroy(gameObject);
+        };
 
 
         //Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPoint);

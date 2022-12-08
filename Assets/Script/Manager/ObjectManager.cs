@@ -207,6 +207,8 @@ public class ObjectManager : MonoBehaviour
             else
                 pos = PointAreaManager.instance.GetBombRandomPos();
 
+            pos.position = new Vector3(pos.position.x, pos.position.y - 0.5f, pos.position.z);
+
             Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
         }
     }
