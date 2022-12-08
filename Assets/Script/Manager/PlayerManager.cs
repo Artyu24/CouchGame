@@ -34,16 +34,13 @@ public class PlayerManager : MonoBehaviour
         else
             Destroy(this.gameObject);
 
-        //Find all prefab
-        speBarrePrefabs = Resources.LoadAll<GameObject>("UI/SpeBarreCharge");
-        interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
-        scoreboardUI = GameObject.FindGameObjectWithTag("Scoreboard");
 
         //Debug.Log("Player count : " + players.Count);
     }
     public void FindCanvas()
     {
         canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+        FindPrefabs();
     }
 
     public void AddPlayer()
@@ -96,6 +93,16 @@ public class PlayerManager : MonoBehaviour
             GameManager.instance.ActualGameState = GameState.INIT;
             StartCoroutine(GameManager.instance.TimerSound());
         }
+    }
+
+    private void FindPrefabs()
+    {
+        //Find all prefab
+        speBarrePrefabs = Resources.LoadAll<GameObject>("UI/SpeBarreCharge");
+        interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
+        scoreboardUI = canvasUI.transform.GetChild(0).GetChild(1).gameObject;
+        pausePanel = canvasUI.transform.GetChild(3).gameObject; 
+        optionsPanel = canvasUI.transform.GetChild(4).gameObject; 
     }
 
 
