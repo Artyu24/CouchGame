@@ -20,10 +20,7 @@ public class FishBag : MonoBehaviour
 
     void Start()
     {
-        fish = new Transform[transform.GetChild(0).childCount];
-        int children = transform.GetChild(0).childCount;
-        for (int i = 0; i < children; ++i)
-            fish[i] = transform.GetChild(0).GetChild(i);
+        transform.GetChild(1).gameObject.SetActive(false);
         hp = 1;
         fishToUI = Resources.Load("UI/FishToUI") as GameObject;
         //Debug.Log(fishToUI);
@@ -35,14 +32,7 @@ public class FishBag : MonoBehaviour
 
     public void Damage(GameObject player)
     {
-        //Debug.Log(player.GetComponent<PlayerAttack>().SpeBarreSlider.gameObject);
-
-        //transform.localScale -= new Vector3(transform.localScale.x - (transform.localScale.x/10), transform.localScale.x - (transform.localScale.y / 10), transform.localScale.z - (transform.localScale.x / 10));//Anim
-
         hp--;
-
-        //Debug.Log("Fish to try : " + nextFish + " next gold fish" + nextGFish);
-
         int xcount = Random.Range(0, 5);
 
         //Debug.LogError("JM ICI LE SON FRERO T ES BO");
@@ -56,8 +46,11 @@ public class FishBag : MonoBehaviour
 
         if (hp <= 0)
         {
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.layer = 0;
+            Destroy(gameObject, 1.0f);
             ObjectManager.Instance.StartNextSpawn();
-            Destroy(gameObject);
         }
     }
 
