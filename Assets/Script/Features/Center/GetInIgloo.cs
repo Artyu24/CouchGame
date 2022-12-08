@@ -9,6 +9,7 @@ public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
     [SerializeField] private GameObject platePref;
+    private Animator anim; 
 
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
     public void OnTriggerEnter(Collider other)
@@ -23,20 +24,19 @@ public class GetInIgloo : MonoBehaviour
             CenterPoint.Instance.SetUp(other.GetComponent<Player>());
 
             GameObject player = other.gameObject;
-            player.transform.DOMove(new Vector3(0, 3, 0), 2);
-            StartCoroutine(InitCenterTime(player));
+            player.transform.DOMove(new Vector3(0, 3, 0), 2).onComplete += () =>
+            {
+                InitCenter(player);
+                GetComponent<Animator>().SetTrigger("Enter");
+            };
         }
-    }
-
-    private IEnumerator InitCenterTime(GameObject player)
-    {
-        yield return new WaitForSeconds(1.99f);
-        InitCenter(player);
-        GetComponent<Animator>().SetTrigger("Enter");
     }
 
     private void InitCenter(GameObject player)
     {
+        //On cache le joueur qui est rentrer dans l'igloo
+        player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear).OnComplete(() => player.GetComponent<Player>().HideGuy(false));
+        
         GameManager GM = GameManager.instance;
 
         GameObject _pipe = Resources.Load<GameObject>("Features/CableShield");
@@ -57,9 +57,6 @@ public class GetInIgloo : MonoBehaviour
             plate.transform.GetComponent<EjectPlayerCentre>().cable = p;
         }
 
-        //On cache le joueur qui est rentrer dans l'igloo
-        player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear);
-        player.GetComponent<Player>().HideGuy(false);
 
         //Ajoute la couleur et la outline au cercle choisis de base
         if (GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<Outline>() != null)
