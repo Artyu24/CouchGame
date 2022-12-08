@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6685848279907613519}
   m_Layer: 0
-  m_Name: CableShield
+  m_Name: CableShieldDone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,6 +39,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6685848279907613519}
     m_Modifications:
+    - target: {fileID: 5799607953346563105, guid: aec197163128e224db26ea56fb4915b1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d45f9ccc6f650f41975c8f55ac0f3d3, type: 2}
     - target: {fileID: 6433653683445469057, guid: aec197163128e224db26ea56fb4915b1,
         type: 3}
       propertyPath: m_Name
