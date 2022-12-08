@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4294170987755215165}
   m_Layer: 11
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4294170988026945827}
   m_Layer: 11
   m_Name: BOOMParticle
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5107,6 +5107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 84514502283763311, guid: f3282250e3a277e4c9988d51fee40811,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bomb
       objectReference: {fileID: 0}
     - target: {fileID: 2577071447657018836, guid: f3282250e3a277e4c9988d51fee40811,
         type: 3}
