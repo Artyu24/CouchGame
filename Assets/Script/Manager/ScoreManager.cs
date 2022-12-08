@@ -37,7 +37,10 @@ public class ScoreManager : MonoBehaviour
 
     public GameObject hyperSpeed;
     public List<GameObject> terrain = new List<GameObject>();
-    
+
+    [SerializeField]
+    private float speedTweenSwap = 1.0f;
+
     public static ScoreManager instance;
 
     void Awake()
@@ -156,7 +159,9 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
-            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], 1);
+            float t = ((positionUIScoreInOrder[i] - playersRankGUISortedByScore[i].position).magnitude / speedTweenSwap);
+            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], t); 
+
             if (i == 0)
             {
                 swapPlayerSequence.Append(tween);
@@ -167,6 +172,7 @@ public class ScoreManager : MonoBehaviour
         }
         swapPlayerSequence.onComplete += () =>
         {
+            //nouvelle sequence shakeFirstPlayer
             for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
             {
                 playersRankGUISortedByScore[i].SetParent(null);

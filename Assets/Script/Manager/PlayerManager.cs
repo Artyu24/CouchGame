@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
+    [HideInInspector]
     public List<Player> playersSortedByScore = new List<Player>();
 
 
