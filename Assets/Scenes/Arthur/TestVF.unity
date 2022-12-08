@@ -2177,7 +2177,7 @@ PrefabInstance:
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: timer
-      value: 5
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2274,11 +2274,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PREFAB_GENERAL
       objectReference: {fileID: 0}
-    - target: {fileID: 204200904872038713, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1023587080910456488, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2348,11 +2343,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 18.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2346394063852975183, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860602774224934101, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2536,16 +2526,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
-      propertyPath: m_Transitions.m_BlendHint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914993042933877418, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
       propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -2553,11 +2533,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932026400263180967, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: m_DefaultBlend.m_Time
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -3299,14 +3274,7 @@ PrefabInstance:
       propertyPath: spawnPointMeteorite.Array.data[31]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8761656886743107653, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7475349486253705663, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
-    - {fileID: 4833120205445618983, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e20f36eac6b6e44799cc004650ee951, type: 3}
 --- !u!1 &1888086358
 GameObject:
