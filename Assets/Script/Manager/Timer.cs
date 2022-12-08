@@ -73,25 +73,12 @@ public class Timer : MonoBehaviour
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
                 //add un temps mort de 2 secs pour que toute les anims se finissent
-
+                StartCoroutine(FinishAllActions());
 
                 //anim de d�part du terrain
                 //recup les objets origines de la hierachie dans une liste
 
-                List<GameObject> rootObjects = new List<GameObject>();
-                Scene scene = SceneManager.GetActiveScene();
-                scene.GetRootGameObjects(rootObjects);
-
-                GameManager.instance.CameraScene.gameObject.transform.parent = null;
-                for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-                {
-                    //PlayerManager.instance.players[i].HideGuy(false);
-                    CameraManager.Instance.RemovePlayerTarget(i+1);
-                }
-
-                CameraManager.Instance.ActivateHyperSpace();
-                ScoreManager.instance.hyperSpeed.SetActive(true);
-                PrintScoreWindow();
+                
             }
 
             if (!scoreWindowRoundIsActive)
@@ -139,6 +126,28 @@ public class Timer : MonoBehaviour
         {
             timerText.text = "START";
         }
+    }
+
+    private IEnumerator FinishAllActions()
+    {
+        EjectPlayerCentre.EjectPlayer();
+
+        yield return new WaitForSeconds(2); 
+
+        List<GameObject> rootObjects = new List<GameObject>();
+        Scene scene = SceneManager.GetActiveScene();
+        scene.GetRootGameObjects(rootObjects);
+
+        GameManager.instance.CameraScene.gameObject.transform.parent = null;
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            //PlayerManager.instance.players[i].HideGuy(false);
+            CameraManager.Instance.RemovePlayerTarget(i + 1);
+        }
+
+        CameraManager.Instance.ActivateHyperSpace();
+        ScoreManager.instance.hyperSpeed.SetActive(true);
+        PrintScoreWindow();
     }
     private void PrintScoreWindow()
     {

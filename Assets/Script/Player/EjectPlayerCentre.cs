@@ -48,7 +48,7 @@ public class EjectPlayerCentre : MonoBehaviour
         }
     }
 
-    public void EjectPlayer()
+    static public void EjectPlayer()
     {
         CenterPoint.Instance.PointToUIF();
 
