@@ -15,7 +15,8 @@ public class Timer : MonoBehaviour
     private float timerCountDown = 5;
 
     private int minutes, seconds;
-    public string levelName;
+    [SerializeField]
+    private int nextSceneID;
     [SerializeField]
     private string leaderBoardScene = "LeaderBoard";
     #endregion
@@ -53,7 +54,7 @@ public class Timer : MonoBehaviour
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            Debug.Log("Init");
+            Debug.Log(PlayerManager.instance.players[i].name + " : " + PlayerManager.instance.players[i].medals.Count);
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
     }
@@ -68,13 +69,13 @@ public class Timer : MonoBehaviour
         
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
-            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Length != 0)
+            if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
                 //add un temps mort de 2 secs pour que toute les anims se finissent
 
 
-                //anim de départ du terrain
+                //anim de dï¿½part du terrain
                 //recup les objets origines de la hierachie dans une liste
 
                 List<GameObject> rootObjects = new List<GameObject>();
@@ -84,29 +85,13 @@ public class Timer : MonoBehaviour
                 GameManager.instance.CameraScene.gameObject.transform.parent = null;
                 for (int i = 0; i < PlayerManager.instance.players.Count; i++)
                 {
-                    PlayerManager.instance.players[i].HideGuy(false);
-
+                    //PlayerManager.instance.players[i].HideGuy(false);
                     CameraManager.Instance.RemovePlayerTarget(i+1);
                 }
 
-                Sequence mySequence = DOTween.Sequence();
-                mySequence.Append(rootObjects[0].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
-
-                for (int i = 1; i < rootObjects.Count; i++)
-                {
-                    mySequence.Join(rootObjects[i].transform.DOScale(new Vector3(0.0001f, 0.0001f, 0.0001f), 2));
-                }
-
-                mySequence.onComplete += () => 
-                {
-                    for(int i = 0; i < ScoreManager.instance.terrain.Length; i++)
-                    {
-                        ScoreManager.instance.terrain[i].SetActive(false);
-                    }
-                    ScoreManager.instance.hyperSpeed.SetActive(true);
-                    PrintScoreWindow();
-                };
-                
+                CameraManager.Instance.ActivateHyperSpace();
+                ScoreManager.instance.hyperSpeed.SetActive(true);
+                PrintScoreWindow();
             }
 
             if (!scoreWindowRoundIsActive)
@@ -158,22 +143,32 @@ public class Timer : MonoBehaviour
     private void PrintScoreWindow()
     {
         scoreWindowRoundIsActive = true;
-        scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
-        //Time.timeScale = 0;
-        scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-
-        for (int p = 0; p < PlayerManager.instance.players.Count; p++)
+        
+        if (scoreWindowRound != null)
         {
-            GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
-            scorePlayerText[p] = temp.GetComponentInChildren<Text>();
-            temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
-            temp.name = "Player " + (p + 1);
-        }
+            scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
+            //Time.timeScale = 0;
+            scoreWindowRound.SetActive(scoreWindowRoundIsActive);
 
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        {
-            Debug.Log(PlayerManager.instance.players[i].score);
-            scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            for (int p = 0; p < PlayerManager.instance.players.Count; p++)
+            {
+                GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
+                scorePlayerText[p] = temp.GetComponentInChildren<Text>();
+                temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                temp.name = "Player " + (p + 1);
+            }
+
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+            {
+                //Debug.Log(PlayerManager.instance.players[i].score);
+                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            }
+
+            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+            {
+                //Debug.Log(PlayerManager.instance.players[i].score);
+                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
+            }
         }
     }
 
@@ -221,10 +216,12 @@ public class Timer : MonoBehaviour
                 {
                     temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
                     scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-                    temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                    temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
+                    //Coroutine pour faire apparaitre les oeufs
+
                     // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {
@@ -265,14 +262,15 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
+            Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadScene(leaderBoardScene);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadScene(levelName); 
+                SceneManager.LoadSceneAsync(nextSceneID);
             }
         }
     }

@@ -1,6 +1,6 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,9 +31,12 @@ public class ScoreManager : MonoBehaviour
     public Sprite courroneUI, emptyCourroneUI;
     [SerializeField]
     private GameObject scoreBoard;
+    Sequence swapPlayerSequence;
+
+    private List<Vector3> positionUIScoreInOrder = new List<Vector3>();
 
     public GameObject hyperSpeed;
-    public GameObject[] terrain;
+    public List<GameObject> terrain = new List<GameObject>();
     
     public static ScoreManager instance;
 
@@ -47,6 +50,11 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
+        {
+            terrain.Add(GameManager.instance.tabCircle[i]);
+        }
+
         if(scorePlayerText == null || scoreTextPrefab == null)
             return;
 
@@ -54,7 +62,6 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("La liste de parent pour les score est vide OU le prefab de score est vide !");
         }
-
     }
 
     void Update()
@@ -100,18 +107,18 @@ public class ScoreManager : MonoBehaviour
 
     private void ScoreBoardSorting()
     {
-        List<Player> playersSortedByScore = new List<Player>();
-        List<RectTransform> playersRankGUISortedByScore = new List<RectTransform>();
-        List<Vector3> positionUIScoreInOrder = new List<Vector3>();
-
-        for(int i = 0; i < PlayerManager.instance.players.Count; ++i)
+        if (positionUIScoreInOrder.Count == 0)
         {
-            RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
-            positionUIScoreInOrder.Add(playerRankGUITransform.position);
+            for (int i = 0; i < PlayerManager.instance.players.Count; ++i)
+            {
+                RectTransform playerRankGUITransform = scoreBoard.GetComponent<Transform>().GetChild(i).GetComponent<RectTransform>();
+                positionUIScoreInOrder.Add(playerRankGUITransform.position);
+            }
         }
 
         int bestScore = int.MinValue;
         Player playerWithBestScore = null;
+        List<Player> playersSortedByScore = new List<Player>(); //list des players trié par score
         while (playersSortedByScore.Count < PlayerManager.instance.players.Count)
         {
             foreach (var p in PlayerManager.instance.players)
@@ -124,27 +131,54 @@ public class ScoreManager : MonoBehaviour
             }
             playersSortedByScore.Add(playerWithBestScore);
             bestScore = int.MinValue;
-
         }
 
+        List<RectTransform> playersRankGUISortedByScore = new List<RectTransform>(); //list des UI (score/speBarre/pp)
+        PlayerUIInfo[] playerUIInfos = scoreBoard.GetComponentsInChildren<PlayerUIInfo>();
         for (int i = 0; i < playersSortedByScore.Count; i++)
         {
-            playersRankGUISortedByScore.Add(scoreBoard.GetComponent<Transform>().GetChild(playersSortedByScore[i].playerID).GetComponent<RectTransform>());
-            //Debug.Log(PlayerListSortByScore[i]);
+            foreach (var playerUIInfo in playerUIInfos)
+            {
+                if (playerUIInfo.PlayerID == playersSortedByScore[i].playerID)
+                {
+                    playersRankGUISortedByScore.Add(playerUIInfo.GetComponent<RectTransform>());
+                }
+            }
         }
 
-        for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
+        scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = false;
+
+        if (swapPlayerSequence != null && swapPlayerSequence.IsPlaying())
         {
-            playersRankGUISortedByScore[i].SetParent(null);
+            swapPlayerSequence.Kill();
         }
+        swapPlayerSequence = DOTween.Sequence();
 
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
-            playersRankGUISortedByScore[i].position = positionUIScoreInOrder[i];
-            playersRankGUISortedByScore[i].SetParent(scoreBoard.transform);
+            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], 1);
+            if (i == 0)
+            {
+                swapPlayerSequence.Append(tween);
+            } else
+            {
+                swapPlayerSequence.Join(tween);
+            }
         }
+        swapPlayerSequence.onComplete += () =>
+        {
+            for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
+            {
+                playersRankGUISortedByScore[i].SetParent(null);
+            }
+            for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
+            {
+                playersRankGUISortedByScore[i].SetParent(scoreBoard.transform);
+            }
+            scoreBoard.GetComponent<VerticalLayoutGroup>().enabled = true;
+        };
 
-        playersSortedByScore[0].couronne.SetActive(true);
+            playersSortedByScore[0].couronne.SetActive(true);
         for (int i = 1; i < playersSortedByScore.Count; i++)
         {
             playersSortedByScore[i].couronne.SetActive(false);
@@ -155,7 +189,7 @@ public class ScoreManager : MonoBehaviour
         {
             playersRankGUISortedByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
         }
-
+        PlayerManager.instance.playersSortedByScore= playersSortedByScore;
     }
 
     public void InstantiateScoreText(int p) 

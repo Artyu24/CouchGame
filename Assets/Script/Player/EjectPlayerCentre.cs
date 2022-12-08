@@ -1,13 +1,25 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EjectPlayerCentre : MonoBehaviour
 {
     private BoxCollider bc;
+    public GameObject cable;
+    private Material cableDone;
+
     private void Start()
     {
         bc = GetComponent<BoxCollider>();
+        cableDone = Resources.Load<Material>("holoMat 1");
+    }
+
+    private void Update()
+    {
+        if (cable != null)
+            cable.transform.DODynamicLookAt(Vector3.zero, .5f, AxisConstraint.Y);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -20,6 +32,12 @@ public class EjectPlayerCentre : MonoBehaviour
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreInterrupteur, other.GetComponent<Player>());
 
             GetComponent<Animator>().SetTrigger("Press");
+
+            //Material mat = cable.transform.GetChild(0).GetComponent<Material>();
+            //mat.SetColor("_MainColor", Color.green);
+
+            cable.transform.GetChild(0).GetComponent<MeshRenderer>().material = cableDone;
+
 
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {

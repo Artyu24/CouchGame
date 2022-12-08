@@ -18,7 +18,7 @@ public class MeteorMovement : MonoBehaviour
     }
     void Update()
     {
-        if(nextPos != null)
+        if(nextPos != null && GameManager.instance.ActualGameState == GameState.INGAME)
         {
             transform.position = Vector3.MoveTowards(transform.position, nextPos, GameManager.instance.SpeedMeteorite * Time.deltaTime);
         }
@@ -27,10 +27,12 @@ public class MeteorMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         explosionPose = new Vector3(nextPos.x, nextPos.y, nextPos.z);
-        FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
-        Instantiate(explos, explosionPose, quaternion.identity);
-        Destroy(gameObject);       
-
+        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        {
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.MeteoriteSound);
+            Instantiate(explos, explosionPose, quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 
     

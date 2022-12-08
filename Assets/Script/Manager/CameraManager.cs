@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject playerCamera, hyperSpaceCamera;
     [SerializeField] private CinemachineTargetGroup targetAllPlayer;
     [SerializeField] private float radiusPlayer = 2;
 
@@ -19,6 +19,8 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        hyperSpaceCamera.SetActive(false);
+
         targetAllPlayer.m_Targets = new CinemachineTargetGroup.Target[5];
         targetAllPlayer.m_Targets[0] = CreateNewTarget(AudioManager.instance.transform, 1f, 0.2f);
     }
@@ -68,5 +70,10 @@ public class CameraManager : MonoBehaviour
             playerCamera.SetActive(false);
         else
             playerCamera.SetActive(true);
+    }
+
+    public void ActivateHyperSpace()
+    {
+        hyperSpaceCamera.SetActive(true);
     }
 }

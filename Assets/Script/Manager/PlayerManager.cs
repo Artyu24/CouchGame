@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public List<Gamepad> manettes = new List<Gamepad>();
+    public List<Player> playersSortedByScore = new List<Player>();
 
 
     private void Awake()
@@ -34,16 +35,13 @@ public class PlayerManager : MonoBehaviour
         else
             Destroy(this.gameObject);
 
-        //Find all prefab
-        speBarrePrefabs = Resources.LoadAll<GameObject>("UI/SpeBarreCharge");
-        interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
-        scoreboardUI = GameObject.FindGameObjectWithTag("Scoreboard");
 
         //Debug.Log("Player count : " + players.Count);
     }
     public void FindCanvas()
     {
         canvasUI = GameObject.FindGameObjectWithTag("Canvas");
+        FindPrefabs();
     }
 
     public void AddPlayer()
@@ -98,6 +96,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void FindPrefabs()
+    {
+        //Find all prefab
+        speBarrePrefabs = Resources.LoadAll<GameObject>("UI/SpeBarreCharge");
+        interfaceUIPrefab = Resources.Load<GameObject>("UI/PlayersUI/JUI");
+        scoreboardUI = canvasUI.transform.GetChild(0).GetChild(1).gameObject;
+        pausePanel = canvasUI.transform.GetChild(3).gameObject; 
+        optionsPanel = canvasUI.transform.GetChild(4).gameObject; 
+    }
+
 
     public void Init(int i, GameObject player)
     {
@@ -106,7 +114,8 @@ public class PlayerManager : MonoBehaviour
             //Vider les score de manche pour les joueurs
             players[i].score = 0;
 
-            players[i].name = "Player " + i;
+            //changer le nom dans la hierarchie
+            players[i].name = "Player " + (i+1);
 
             //Spawn at point
             Transform posSpawn = PointAreaManager.instance.PlayerSpawnStart[i];
@@ -120,6 +129,7 @@ public class PlayerManager : MonoBehaviour
             playerInterfaceTempo.name = "JUI " + (i+1);
             playersInterface[i] = playerInterfaceTempo;
             playersInterface[i].GetComponentInChildren<Image>().sprite = interfaceUIPrefabPP[i];
+            playersInterface[i].GetComponent<PlayerUIInfo>().PlayerID = (i);
 
             //Text du score par Player
             ScoreManager.instance.InstantiateScoreText(i);
@@ -128,6 +138,7 @@ public class PlayerManager : MonoBehaviour
             GameObject speBarreTemp = Instantiate(speBarrePrefabs[i], playerInterfaceTempo.transform.GetChild(1).transform);
             speBarreTemp.name = "SpéChargeBarre " + (1);
             player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
+            player.GetComponent<PlayerAttack>().SpeBarreSlider.value = 0;
         }
         else
         {

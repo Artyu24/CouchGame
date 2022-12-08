@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector3>();
 
-        if (player.ActualPlayerState == PlayerState.FIGHTING)
+        if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
             {
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector3>();
 
-        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        if (player.ActualPlayerState == PlayerState.MIDDLE && GameManager.instance.ActualGameState == GameState.INGAME)
         {
             rotation = 0;
 
@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnChocWave(InputAction.CallbackContext context)
     {
-        if (player.ActualPlayerState == PlayerState.MIDDLE)
+        if (player.ActualPlayerState == PlayerState.MIDDLE && GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (context.performed)
             {
