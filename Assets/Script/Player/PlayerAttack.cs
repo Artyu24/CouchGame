@@ -150,11 +150,15 @@ public class PlayerAttack : MonoBehaviour
                     }
                     if (hit.transform.tag == "Bomb")// if we hit a bomb it push it and trigger it
                     {
-                        hit.transform.GetComponentInParent<Rigidbody>().mass = 1;
-                        hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
-                        hit.transform.GetComponent<Bomb>().isGrounded = false;
-                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
-                        HitParticle(hit.point);
+                        Bomb bomb = hit.transform.GetComponent<Bomb>();
+                        if (!bomb.IsExploded)
+                        {
+                            hit.transform.GetComponentInParent<Rigidbody>().mass = 1;
+                            hit.rigidbody.AddForce(new Vector3(dir.x, 1, dir.z) * _strenght, ForceMode.Impulse);
+                            bomb.isGrounded = false;
+                            hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
+                            HitParticle(hit.point);
+                        }
                         return;
                     }
                     if (hit.transform.tag == "Bumper")// if we hit a bumper it push it and trigger it
@@ -162,7 +166,7 @@ public class PlayerAttack : MonoBehaviour
                         hit.transform.GetComponent<RailedBumper>().strenghtPlayerAttack = _strenght;
                     }
 
-                        if (hit.transform.GetComponent<IInteractable>() != null)
+                    if (hit.transform.GetComponent<IInteractable>() != null)
                     {
                         hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                         HitParticle(hit.point); 
