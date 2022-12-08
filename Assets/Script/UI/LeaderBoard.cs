@@ -19,7 +19,7 @@ public class LeaderBoard : MonoBehaviour
     {
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            PlayerManager.instance.players[i].transform.position = spawnPoints[i].position;
+            PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
         }
     }
 }

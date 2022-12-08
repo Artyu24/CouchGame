@@ -216,7 +216,7 @@ public class Timer : MonoBehaviour
                 {
                     temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
                     scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
-                    temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
+                    temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
