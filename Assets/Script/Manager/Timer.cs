@@ -15,7 +15,8 @@ public class Timer : MonoBehaviour
     private float timerCountDown = 5;
 
     private int minutes, seconds;
-    public string levelName;
+    [SerializeField]
+    private int nextSceneID;
     [SerializeField]
     private string leaderBoardScene = "LeaderBoard";
     #endregion
@@ -53,7 +54,7 @@ public class Timer : MonoBehaviour
 
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            Debug.Log("Init");
+            Debug.Log(PlayerManager.instance.players[i].name + " : " + PlayerManager.instance.players[i].medals.Count);
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
     }
@@ -159,7 +160,7 @@ public class Timer : MonoBehaviour
 
             for (int i = 0; i < PlayerManager.instance.players.Count; i++)
             {
-                Debug.Log(PlayerManager.instance.players[i].score);
+                //Debug.Log(PlayerManager.instance.players[i].score);
                 scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
             }
 
@@ -261,14 +262,15 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
+            Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadScene(leaderBoardScene);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadScene(levelName); 
+                SceneManager.LoadSceneAsync(nextSceneID);
             }
         }
     }
