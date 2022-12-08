@@ -5,6 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -46,6 +47,24 @@ public class Player : MonoBehaviour
         //seq.Append(graphics.material.DOFade(0.2f, 0.5f));
         //seq.Append(graphics.material.DOFade(1, 0.5f));
         //seq.Play();
+    }
+
+    private void Start()
+    {/*
+        InitCam();*/
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) => 
+        {
+            InitCam();
+        };
+    }
+
+    private void InitCam()
+    {
+        if (SceneManager.GetActiveScene().name != "Leaderboard")
+        {
+            GetComponent<ArrowPlayer>().cam = GameManager.instance.CameraScene;
+        }
+        CameraManager.Instance.AddPlayerTarget(transform, (playerID+1));
     }
 
     public void Kill()
