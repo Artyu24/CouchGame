@@ -54,9 +54,7 @@ public class EjectPlayerCentre : MonoBehaviour
 
         GameManager GM = GameManager.instance;
 
-        GM.PlayerInMiddle.transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
-        GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-        GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+        GM.PlayerInMiddle.GetComponent<Player>().ActivateRespawnEffect();
 
         for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
         {

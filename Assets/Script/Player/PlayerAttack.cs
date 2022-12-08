@@ -29,9 +29,9 @@ public class PlayerAttack : MonoBehaviour
     private GameObject playerHit;
 
     private Slider speBarreSlider;
-    public Gradient speBarreGradient;
     public Slider SpeBarreSlider { get => speBarreSlider; set => speBarreSlider = value; }
     private GameObject effectSpeBarre;
+    public GameObject EffectSpeBarre => effectSpeBarre;
 
     [SerializeField] public bool bumperIsCharged;
     public bool BumperIsCharged { get => bumperIsCharged; set => bumperIsCharged = value; }
@@ -202,8 +202,12 @@ public class PlayerAttack : MonoBehaviour
     {
         currentSpecial += _point;
         speBarreSlider.value = currentSpecial;
+        ActivateEffectSpeBarre();
+    }
 
-        if(currentSpecial >= maxSpecial && !effectSpeBarre.activeInHierarchy)
+    public void ActivateEffectSpeBarre()
+    {
+        if (currentSpecial >= maxSpecial && !effectSpeBarre.activeInHierarchy)
         {
             effectSpeBarre.SetActive(true);
             //SpecialIsCharged

@@ -217,7 +217,6 @@ public class ObjectManager : MonoBehaviour
                 pos = PointAreaManager.instance.GetBombRandomPos();
 
             PointAreaManager.instance.DictInUse[pos] = true;
-            pos.position = new Vector3(pos.position.x, pos.position.y, pos.position.z);
 
             GameObject obj = allObjectList[random];
             if (!obj.GetComponent<SlowWater>())
@@ -230,6 +229,7 @@ public class ObjectManager : MonoBehaviour
             }
             else
             {
+                pos.position = new Vector3(pos.position.x, pos.position.y - 0.4f, pos.position.z);
                 Instantiate(obj, pos.position, Quaternion.identity, pos.parent);
             }
             PointAreaManager.instance.DictInUse[pos] = false;
