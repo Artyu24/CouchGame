@@ -130,7 +130,10 @@ public class Timer : MonoBehaviour
 
     private IEnumerator FinishAllActions()
     {
-        EjectPlayerCentre.EjectPlayer();
+        if (GameManager.instance.PlayerInMiddle != null)
+        {
+            EjectPlayerCentre.EjectPlayer();
+        }
 
         yield return new WaitForSeconds(2); 
 
@@ -147,7 +150,7 @@ public class Timer : MonoBehaviour
 
         CameraManager.Instance.ActivateHyperSpace();
         ScoreManager.instance.hyperSpeed.SetActive(true);
-        PrintScoreWindow();
+        PrintGeneralScoreWindow();
     }
     private void PrintScoreWindow()
     {
