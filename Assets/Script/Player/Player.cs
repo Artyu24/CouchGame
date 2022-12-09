@@ -5,7 +5,6 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
