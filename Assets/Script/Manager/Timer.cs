@@ -69,7 +69,6 @@ public class Timer : MonoBehaviour
         {
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
-            StartCoroutine(GameManager.instance.TimerVisu());
         }
 
 

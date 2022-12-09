@@ -284,6 +284,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TimerSound()
     {
+        StartCoroutine(TimerVisu());
         FindObjectOfType<AudioManager>().Play("Five");
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Four");
