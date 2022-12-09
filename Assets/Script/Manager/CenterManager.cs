@@ -18,6 +18,7 @@ public class CenterManager : MonoBehaviour, IInteractable
     private int healthPoint;
     [SerializeField] private int maxHealthPoint = 10;
     [SerializeField] private VisualEffect shieldEffect;
+    [SerializeField] private BoxCollider col;
 
     void Awake()
     {
@@ -64,9 +65,12 @@ public class CenterManager : MonoBehaviour, IInteractable
     private void DesactivateShield()
     {
         GetComponent<BoxCollider>().enabled = false;
+        col.enabled = false;
         actualCenterState = CenterState.ACCESS;
         //Détruire le bo shield
         shieldEffect.pause = false;
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldDestroyedSound);
+
     }
 
     private void ActivateRandomBridge()
@@ -107,8 +111,11 @@ public class CenterManager : MonoBehaviour, IInteractable
     {
         healthPoint--;
         shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldAttackedSound);
+
         //shieldEffect.visualEffectAsset.
         if (healthPoint <= 0)
             DesactivateShield();
+
     }
 }

@@ -12,14 +12,15 @@ public class PointAreaManager : MonoBehaviour
     public List<Transform> SpawnPoint => spawnPoint;
     
     public List<Transform> spawnPointMeteorite = new List<Transform>();
-
     public List<Transform> spawnPointBomb = new List<Transform>();
-
     public List<Transform> spawnPointPlayer = new List<Transform>();
     public List<Transform> SpawnPointPlayer => spawnPointPlayer;
 
     private Transform[] playerSpawnStart = new Transform[4];
     public Transform[] PlayerSpawnStart => playerSpawnStart;
+
+    private Dictionary<Transform, bool> dictInUse = new Dictionary<Transform, bool>();
+    public Dictionary<Transform, bool> DictInUse => dictInUse;
 
     void Awake()
     {
@@ -58,6 +59,10 @@ public class PointAreaManager : MonoBehaviour
             }
         }
 
+        foreach (Transform point in SpawnPoint)
+        {
+            dictInUse.Add(point, false);
+        }
     }
 
     private void RemoveObjectNullFromList(List<Transform> listTransform)
@@ -106,21 +111,28 @@ public class PointAreaManager : MonoBehaviour
             int i = Random.Range(0, listPoint.Count);
 
             bool isGood = true;
-            for (int j = -30; j < 360; j += 30)
+            if (!dictInUse[listPoint[i]])
             {
-                Vector3 origin = new Vector3(listPoint[i].position.x, listPoint[i].position.y + 1, listPoint[i].position.z);
-                Debug.DrawRay(origin, listPoint[i].up * -1 * 4, Color.green, 5.0f);
-                Physics.Raycast(origin, listPoint[i].up * -1, out hit, 4);
+                for (int j = -30; j < 360; j += 30)
+                {
+                    Vector3 origin = new Vector3(listPoint[i].position.x, listPoint[i].position.y + 1, listPoint[i].position.z);
+                    Debug.DrawRay(origin, listPoint[i].up * -1 * 4, Color.green, 5.0f);
+                    Physics.Raycast(origin, listPoint[i].up * -1, out hit, 4);
 
-                if (hit.transform == null)
-                    isGood = false;
-                else if (hit.transform.tag != "Platform")
-                    isGood = false;
+                    if (hit.transform == null)
+                        isGood = false;
+                    else if (hit.transform.tag != "Platform")
+                        isGood = false;
 
-                listPoint[i].eulerAngles = new Vector3(20, j, 0);
+                    listPoint[i].eulerAngles = new Vector3(20, j, 0);
+                }
+
+                listPoint[i].eulerAngles = Vector3.zero;
             }
-
-            listPoint[i].eulerAngles = Vector3.zero;
+            else
+            {
+                isGood = false;
+            }
 
             if (isGood)
                 point = listPoint[i];

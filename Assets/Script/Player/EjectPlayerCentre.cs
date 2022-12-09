@@ -48,15 +48,16 @@ public class EjectPlayerCentre : MonoBehaviour
         }
     }
 
-    public void EjectPlayer()
+    static public void EjectPlayer()
     {
         CenterPoint.Instance.PointToUIF();
 
         GameManager GM = GameManager.instance;
 
-        GM.PlayerInMiddle.transform.position = PointAreaManager.instance.GetPlayerRandomPos().position;
-        GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-        GM.PlayerInMiddle.GetComponent<Player>().HideGuy(true);
+        GM.PlayerInMiddle.GetComponent<Player>().ActivateRespawnEffect();
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EjectPlayerIglooSound);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.DisapointedSound);
+
 
         for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
         {

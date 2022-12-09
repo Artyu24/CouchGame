@@ -115,11 +115,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9cf7671cccc8d4683d6e2ece6ff667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speBarrePrefab: {fileID: 0}
-  spawnList:
+  speBarrePrefabs:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  interfaceUIPrefab: {fileID: 0}
+  interfaceUIPrefabPP:
+  - {fileID: 21300000, guid: 251d62523352a804587a4f62b7f97360, type: 3}
+  - {fileID: 21300000, guid: 13ca86d173b409c44a07437108cc1aa6, type: 3}
+  - {fileID: 21300000, guid: 9cdc359943ba3fe4a8440e8a3429583a, type: 3}
+  - {fileID: 21300000, guid: 55855bf045e74954f944fa355bfe955a, type: 3}
   canvasUI: {fileID: 0}
+  scoreboardUI: {fileID: 0}
+  pausePanel: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  playersSortedByScore: []

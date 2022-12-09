@@ -18,7 +18,10 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private int nextSceneID;
     [SerializeField]
-    private string leaderBoardScene = "LeaderBoard";
+    private string leaderBoardScene = "Leaderboard";
+
+    bool fiveSecondLeft;
+    bool canBePlay = true;
     #endregion
 
     #region Scoreboard
@@ -66,32 +69,29 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
-        
+
+
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
                 //add un temps mort de 2 secs pour que toute les anims se finissent
-
+                StartCoroutine(FinishAllActions());
 
                 //anim de d�part du terrain
                 //recup les objets origines de la hierachie dans une liste
 
-                List<GameObject> rootObjects = new List<GameObject>();
-                Scene scene = SceneManager.GetActiveScene();
-                scene.GetRootGameObjects(rootObjects);
-
-                GameManager.instance.CameraScene.gameObject.transform.parent = null;
-                for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+                
+            }
+            if (GameManager.instance.Timer <= 7f)
+            {                
+                fiveSecondLeft = true;
+                if(canBePlay == true)
                 {
-                    //PlayerManager.instance.players[i].HideGuy(false);
-                    CameraManager.Instance.RemovePlayerTarget(i+1);
+                    StartCoroutine(FiveSecond());
                 }
 
-                CameraManager.Instance.ActivateHyperSpace();
-                ScoreManager.instance.hyperSpeed.SetActive(true);
-                PrintScoreWindow();
             }
 
             if (!scoreWindowRoundIsActive)
@@ -118,6 +118,7 @@ public class Timer : MonoBehaviour
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
                 
             }
@@ -139,6 +140,48 @@ public class Timer : MonoBehaviour
         {
             timerText.text = "START";
         }
+    }
+    public IEnumerator FiveSecond()
+    {
+        if(fiveSecondLeft == true)
+        {
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.CountdownFinal5sSound);
+            yield return new WaitForSeconds(1f);
+            fiveSecondLeft = false;
+            canBePlay = false;
+        }
+
+    }
+    
+        
+    
+    private IEnumerator FinishAllActions()
+    {
+        FindObjectOfType<AudioManager>().Stop(SoundState.Music);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.WinSound);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EndPublicSound);
+
+        if (GameManager.instance.PlayerInMiddle != null)
+        {
+            EjectPlayerCentre.EjectPlayer();
+        }
+
+        yield return new WaitForSeconds(2); 
+
+        List<GameObject> rootObjects = new List<GameObject>();
+        Scene scene = SceneManager.GetActiveScene();
+        scene.GetRootGameObjects(rootObjects);
+
+        GameManager.instance.CameraScene.gameObject.transform.parent = null;
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            //PlayerManager.instance.players[i].HideGuy(false);
+            CameraManager.Instance.RemovePlayerTarget(i + 1);
+        }
+
+        CameraManager.Instance.ActivateHyperSpace();
+        ScoreManager.instance.hyperSpeed.SetActive(true);
+        PrintGeneralScoreWindow();
     }
     private void PrintScoreWindow()
     {
@@ -232,7 +275,7 @@ public class Timer : MonoBehaviour
                         if (tempPlayerListPlayer[p].score > 0)
                         {
                             //Anim d'apparition
-                            InstantiateMedals(temp.transform, position);
+                            StartCoroutine(InstantiateMedals(temp.transform, position, i));
                             PlayerManager.instance.players[p].scoreGeneral++;
                         }
                     }
@@ -245,8 +288,9 @@ public class Timer : MonoBehaviour
             
         }
     }
-    private void InstantiateMedals(Transform t, int position)
+    private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
+        yield return new WaitForSeconds(p);
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
         //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
@@ -265,12 +309,12 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadSceneAsync(leaderBoardScene);
+                SceneManager.LoadSceneAsync(nextSceneID);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadSceneAsync(nextSceneID);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
             }
         }
     }

@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
@@ -139,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
+    [SerializeField] private List<GameObject> allCircleList;
     public List<GameObject> tabCircle;
     public List<GameObject> circleBlockList;
 
@@ -190,32 +193,39 @@ public class GameManager : MonoBehaviour
     public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion
 
+
+
+
+    
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
-        /*else
-            Destroy(this.gameObject);*/
-
-        for (int i = 0; i < tabCircle.Count; i++)
+        
+        if (SceneManager.GetActiveScene().name != "LobbyV1_Working")
         {
-            if (tabCircle[i] == null)
-                tabCircle.Remove(tabCircle[i]);
-        }
+            for (int i = 0; i < tabCircle.Count; i++)
+            {
+                if (tabCircle[i] == null)
+                    tabCircle.Remove(tabCircle[i]);
+            }
 
-        if (tabCircle.Count == 0)
-        {
-            Debug.Log("NO PLATFORM ON GAME");
-            return;
-        }
+            if (tabCircle.Count == 0)
+            {
+                Debug.Log("NO PLATFORM ON GAME");
+                return;
+            }
 
-        foreach (GameObject circle in tabCircle)
-        {
-            if(circle.GetComponentInChildren<MeshRenderer>() != null)
-                tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            foreach (GameObject circle in tabCircle)
+            {
+
+                if (circle.GetComponentInChildren<MeshRenderer>() != null)
+                    tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            }
         }
+        
 
         meteorite = Resources.Load<GameObject>("Meteorite");
     }
@@ -228,7 +238,9 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
+        
     }
+  
 
     public IEnumerator TargetMeteorite()
     {
@@ -283,17 +295,21 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("One");
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
-
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.BeginingPublicSound);
     }
 
-    //private void Update()
-    //{
-    //    if (target.activeSelf == true)
-    //    {
-    //        if (target.transform.localScale.x < 0.23f)
-    //        {
-    //            target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
-    //        }
-    //    }
-    //}
+    public IEnumerator CircleWaveEffect()
+    {
+        if (allCircleList.Count != 0)
+        {
+            foreach (GameObject circle in allCircleList)
+            {
+                circle.transform.DOJump(transform.position, 1, 1, 1);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+    }
+
+
 }

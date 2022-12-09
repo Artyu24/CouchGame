@@ -37,7 +37,10 @@ public class ScoreManager : MonoBehaviour
 
     public GameObject hyperSpeed;
     public List<GameObject> terrain = new List<GameObject>();
-    
+
+    [SerializeField]
+    private float speedTweenSwap = 1.0f;
+
     public static ScoreManager instance;
 
     void Awake()
@@ -80,7 +83,7 @@ public class ScoreManager : MonoBehaviour
         addMiddleScore = false;
         //AddScore(scoreMiddle, GameManager.instance.PlayerInMiddle.GetComponent<Player>());
         //StartCoroutine(CenterPoint.instance.PopPointText());
-        CenterPoint.Instance.Test();
+        CenterPoint.Instance.PopPoint();
         yield return new WaitForSeconds(middelPointsCooldown);
         addMiddleScore = true;
     }
@@ -156,7 +159,9 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < positionUIScoreInOrder.Count; i++)
         {
-            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], 1);
+            float t = ((positionUIScoreInOrder[i] - playersRankGUISortedByScore[i].position).magnitude / speedTweenSwap);
+            var tween = playersRankGUISortedByScore[i].DOMove(positionUIScoreInOrder[i], t); 
+
             if (i == 0)
             {
                 swapPlayerSequence.Append(tween);
@@ -167,6 +172,10 @@ public class ScoreManager : MonoBehaviour
         }
         swapPlayerSequence.onComplete += () =>
         {
+            //nouvelle sequence shakeFirstPlayer
+            //Sequence shakeFirstPlayer = DOTween.Sequence();
+            //shakeFirstPlayer.Append(playersRankGUISortedByScore[0].DORotate());
+            
             for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
             {
                 playersRankGUISortedByScore[i].SetParent(null);

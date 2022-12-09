@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Bomb : MonoBehaviour, IInteractable
 {
@@ -11,9 +12,15 @@ public class Bomb : MonoBehaviour, IInteractable
 
     [SerializeField] private bool speedUpAnim = false;
     private float speedFactor = 1;
+    private bool isExploded;
+    public bool IsExploded => isExploded;
     public bool isGrounded;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        StartCoroutine(AutoExplosion());
+    }
+
     void Update()
     {
         if(speedUpAnim)
@@ -32,32 +39,69 @@ public class Bomb : MonoBehaviour, IInteractable
    
     IEnumerator Explosion(GameObject _player)
     {
-        //Debug.LogError("BOOOOOOOOOOOM");
-
         GetComponent<Animator>().SetTrigger("Boom");
-        speedUpAnim = true; 
-
-        playerTriggeredBy = _player;
-
-
-        yield return new WaitForSecondsRealtime(ObjectManager.Instance.timeBeforeExplosion);
-
-        sphereCollider.gameObject.SetActive(true); 
-
-        GetComponent<SphereCollider>().enabled = true;
-
-        foreach (Transform child in transform)
+        if (!speedUpAnim)
         {
-            child.gameObject.SetActive(false);
+            speedUpAnim = true;
+
+            playerTriggeredBy = _player;
+
+
+            yield return new WaitForSecondsRealtime(ObjectManager.Instance.timeBeforeExplosion);
+
+            isExploded = true;
+
+            sphereCollider.gameObject.SetActive(true);
+
+            GetComponent<SphereCollider>().enabled = true;
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            //trigger Particle effect
+            transform.GetChild(0).gameObject.SetActive(true);
+            GetComponent<Rigidbody>().useGravity = false;
+            //trigger Sound
+
+            ObjectManager.Instance.SpawnNextObject();
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            Destroy(gameObject);
         }
-        //trigger Particle effect
-        transform.GetChild(0).gameObject.SetActive(true);
-        GetComponent<Rigidbody>().useGravity = false;
-        //trigger Sound
+    }
 
-        yield return new WaitForSecondsRealtime(1.0f);
+    private IEnumerator AutoExplosion()
+    {
+        yield return new WaitForSeconds(ObjectManager.Instance.cdBeforeAutoExplosion);
 
-        Destroy(gameObject);
+        if (!speedUpAnim)
+        {
+            GetComponent<Animator>().SetTrigger("Boom");
+            speedUpAnim = true;
+
+            yield return new WaitForSecondsRealtime(ObjectManager.Instance.timeBeforeExplosion);
+
+            isExploded = true;
+
+            sphereCollider.gameObject.SetActive(true);
+
+            GetComponent<SphereCollider>().enabled = true;
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            //trigger Particle effect
+            transform.GetChild(0).gameObject.SetActive(true);
+            GetComponent<Rigidbody>().useGravity = false;
+            //trigger Sound
+
+            ObjectManager.Instance.SpawnNextObject();
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerStay(Collider hit)
@@ -69,8 +113,11 @@ public class Bomb : MonoBehaviour, IInteractable
             Vector3 dir = new Vector3((hit.transform.position.x - transform.position.x), 3, (hit.transform.position.z - transform.position.z)).normalized;
             hit.attachedRigidbody.AddForce(dir * ObjectManager.Instance.bombStrenght);
 
-            if (hit.gameObject != playerTriggeredBy.gameObject)
-                player.HitTag(playerTriggeredBy);
+            if (playerTriggeredBy != null)
+            {
+                if (hit.gameObject != playerTriggeredBy.gameObject)
+                    player.HitTag(playerTriggeredBy);
+            }
         }
     }
 
