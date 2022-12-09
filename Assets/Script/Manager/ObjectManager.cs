@@ -11,6 +11,8 @@ public class ObjectManager : MonoBehaviour
     private int itemPossible;
     [SerializeField] private float cdSpawn;
     [SerializeField] private float cdDespawn;
+    private GameObject effectSpawn;
+    public GameObject EffectSpawn => effectSpawn;
     private List<GameObject> allObjectList = new List<GameObject>();
 
     [Header("FishBag")]
@@ -30,6 +32,7 @@ public class ObjectManager : MonoBehaviour
 
     [Header("BOMB")]
     public float timeBeforeExplosion;
+    public float cdBeforeAutoExplosion;
     public int bombStrenght;
     private GameObject bomb;
 
@@ -50,6 +53,7 @@ public class ObjectManager : MonoBehaviour
         speedObject = Resources.Load<GameObject>("Features/SpeedUpObject");
         slowZoneObject = Resources.Load<GameObject>("Features/SlowWater");
         bomb = Resources.Load<GameObject>("Features/Bomb");
+        effectSpawn = Resources.Load<GameObject>("Features/Spawn");
 
         SetPercentObject(multiplierObject, percentMultiplier);
         SetPercentObject(speedObject, percentSpeedUp);
@@ -193,6 +197,11 @@ public class ObjectManager : MonoBehaviour
 
     #region Spawn / Despawn Gestion
 
+    public void SpawnNextObject()
+    {
+        StartCoroutine(SpawnObject());
+    }
+
     private IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(cdSpawn);
@@ -207,9 +216,23 @@ public class ObjectManager : MonoBehaviour
             else
                 pos = PointAreaManager.instance.GetBombRandomPos();
 
-            pos.position = new Vector3(pos.position.x, pos.position.y - 0.5f, pos.position.z);
+            PointAreaManager.instance.DictInUse[pos] = true;
 
-            Instantiate(allObjectList[random], pos.position, Quaternion.identity, pos.parent);
+            GameObject obj = allObjectList[random];
+            if (!obj.GetComponent<SlowWater>())
+            {
+                GameObject effect = Instantiate(effectSpawn, pos.position, Quaternion.identity, pos.parent);
+                yield return new WaitForSeconds(2f);
+                Instantiate(obj, pos.position, Quaternion.identity, pos.parent);
+                yield return new WaitForSeconds(2f);
+                Destroy(effect);
+            }
+            else
+            {
+                pos.position = new Vector3(pos.position.x, pos.position.y - 0.4f, pos.position.z);
+                Instantiate(obj, pos.position, Quaternion.identity, pos.parent);
+            }
+            PointAreaManager.instance.DictInUse[pos] = false;
         }
     }
 
