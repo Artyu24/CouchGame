@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &507366530501089767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2778551279751954173}
+  - component: {fileID: 6925241632169361708}
+  m_Layer: 12
+  m_Name: Plate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2778551279751954173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507366530501089767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.133, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2847655648025156840}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6925241632169361708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507366530501089767}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3228860025302468178
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +56,9 @@ GameObject:
   - component: {fileID: 2847655648025156840}
   - component: {fileID: 3228860025302468191}
   - component: {fileID: 3228860025302468188}
+  - component: {fileID: 5834974773456773855}
   - component: {fileID: 3228860025302468189}
   - component: {fileID: 7601453647227636219}
-  - component: {fileID: 5834974773456773855}
   m_Layer: 11
   m_Name: FishBag
   m_TagString: FishBag
@@ -30,11 +75,12 @@ Transform:
   m_GameObject: {fileID: 3228860025302468178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5855203278240746966}
   - {fileID: 9071480693888016865}
+  - {fileID: 2778551279751954173}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,9 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  col:
-  - {fileID: 3228860025302468188}
-  - {fileID: 5834974773456773855}
+  boxOne: {fileID: 3228860025302468188}
+  boxTwo: {fileID: 5834974773456773855}
   isGolden: 0
 --- !u!65 &3228860025302468188
 BoxCollider:
@@ -68,6 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6062664, y: 1.0533283, z: 0.09672141}
   m_Center: {x: -0.0028879046, y: 0.33859953, z: -0.038548432}
+--- !u!65 &5834974773456773855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228860025302468178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6318644, y: 0.5012008, z: 0.8782565}
+  m_Center: {x: -0.0023294091, y: 0.24070412, z: -0.06087175}
 --- !u!54 &3228860025302468189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,19 +162,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &5834974773456773855
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3228860025302468178}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6318644, y: 0.5012008, z: 0.8782565}
-  m_Center: {x: -0.0023294091, y: 0.24070412, z: -0.06087175}
 --- !u!1 &6488012469880903532
 GameObject:
   m_ObjectHideFlags: 0

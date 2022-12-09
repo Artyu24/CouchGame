@@ -7,7 +7,7 @@ public class FishBag : MonoBehaviour
 {
     [SerializeField] public int hp = 1;
     private Animator animator;
-    public Collider[] col;
+    [SerializeField] private BoxCollider boxOne, boxTwo;
 
     private GameObject fishToUI;
     public bool isGolden;
@@ -35,7 +35,6 @@ public class FishBag : MonoBehaviour
         hp--;
         int xcount = Random.Range(0, 5);
 
-        //Debug.LogError("JM ICI LE SON FRERO T ES BO");
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.EatingSound);
         
         GameObject fui =  Instantiate(fishToUI, Camera.main.WorldToScreenPoint(transform.position), Quaternion.identity, PlayerManager.instance.canvasUI.transform);
@@ -46,13 +45,15 @@ public class FishBag : MonoBehaviour
 
         if (hp <= 0)
         {
+            boxTwo.enabled = false;
+            boxOne.enabled = false;
+
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
-            foreach(Collider c in col)
-                c.gameObject.SetActive(false);
+            
             gameObject.layer = 0;
-            Destroy(gameObject, 1.0f);
             ObjectManager.Instance.StartNextSpawn();
+            Destroy(gameObject, 1.0f);
         }
     }
 
