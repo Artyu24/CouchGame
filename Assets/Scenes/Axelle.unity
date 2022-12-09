@@ -602,8 +602,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205489611}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.43, y: -0.000000059604645, z: -0.605}
-  m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
+  m_LocalPosition: {x: -19.2, y: -0.000000059604645, z: -0.605}
+  m_LocalScale: {x: 27.853498, y: 27.853506, z: 27.853506}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -22583,6 +22583,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3966559105457687557, guid: 11418019e9fe95d4aa4089e661259e3b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: f5a314acc9b1ee044b402b5d5bfec9b7, type: 3}
     - target: {fileID: 7378754177340327075, guid: 11418019e9fe95d4aa4089e661259e3b,
         type: 3}
       propertyPath: m_Name

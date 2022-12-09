@@ -6,25 +6,24 @@ public class ChocWave : MonoBehaviour
 {
     public SphereCollider sphereCollider;
     bool getPushed = false;
-    public Transform transparence;
     private List<Player> playerList = new List<Player>();
 
     private void Start()
     {        
-        transparence.localScale = new Vector3(0, 0, 0);
+        transform.localScale = new Vector3(0, 0, 0);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.ChocWaveSound);
 
     }
 
     private void Update()
     {
-        if(transparence.localScale.x < GameManager.instance.RadiusMax)
-        {            
-            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeed, transparence.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeed);
+        if(transform.localScale.x < GameManager.instance.RadiusMax)
+        {
+            transform.localScale = new Vector3(transform.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeed, transform.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeed, transform.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeed);
         }
 
 
-        if(transparence.localScale.x >= GameManager.instance.RadiusMax)
+        if(transform.localScale.x >= GameManager.instance.RadiusMax)
         {
             getPushed = false;
             foreach(Player player in playerList)
