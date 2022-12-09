@@ -16,6 +16,7 @@ public class CameraManager : MonoBehaviour
         if(Instance == null)
             Instance = this;
         targetAllPlayer.m_Targets = new CinemachineTargetGroup.Target[5];
+
         targetAllPlayer.m_Targets[0] = CreateNewTarget(AudioManager.instance.transform, 1f, 0.2f);
     }
 

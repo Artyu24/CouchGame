@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
@@ -202,26 +203,29 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        /*else
-            Destroy(this.gameObject);*/
-
-        for (int i = 0; i < tabCircle.Count; i++)
+        
+        if (SceneManager.GetActiveScene().name != "LobbyV1_Working")
         {
-            if (tabCircle[i] == null)
-                tabCircle.Remove(tabCircle[i]);
-        }
+            for (int i = 0; i < tabCircle.Count; i++)
+            {
+                if (tabCircle[i] == null)
+                    tabCircle.Remove(tabCircle[i]);
+            }
 
-        if (tabCircle.Count == 0)
-        {
-            Debug.Log("NO PLATFORM ON GAME");
-            return;
-        }
+            if (tabCircle.Count == 0)
+            {
+                Debug.Log("NO PLATFORM ON GAME");
+                return;
+            }
 
-        foreach (GameObject circle in tabCircle)
-        {
-            if(circle.GetComponentInChildren<MeshRenderer>() != null)
-                tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            foreach (GameObject circle in tabCircle)
+            {
+
+                if (circle.GetComponentInChildren<MeshRenderer>() != null)
+                    tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
+            }
         }
+        
 
         meteorite = Resources.Load<GameObject>("Meteorite");
     }

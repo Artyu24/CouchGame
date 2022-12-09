@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private int nextSceneID;
     [SerializeField]
-    private string leaderBoardScene = "LeaderBoard";
+    private string leaderBoardScene = "Leaderboard";
     #endregion
 
     #region Scoreboard
@@ -289,12 +289,12 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadSceneAsync(leaderBoardScene);
+                SceneManager.LoadSceneAsync(nextSceneID);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadSceneAsync(nextSceneID);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
             }
         }
     }
