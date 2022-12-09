@@ -161,7 +161,11 @@ public class Timer : MonoBehaviour
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.WinSound);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.EndPublicSound);
 
-        EjectPlayerCentre.EjectPlayer();
+        if (GameManager.instance.PlayerInMiddle != null)
+        {
+            EjectPlayerCentre.EjectPlayer();
+        }
+
         yield return new WaitForSeconds(2); 
 
         List<GameObject> rootObjects = new List<GameObject>();
@@ -177,7 +181,7 @@ public class Timer : MonoBehaviour
 
         CameraManager.Instance.ActivateHyperSpace();
         ScoreManager.instance.hyperSpeed.SetActive(true);
-        PrintScoreWindow();
+        PrintGeneralScoreWindow();
     }
     private void PrintScoreWindow()
     {
