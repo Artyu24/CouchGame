@@ -9,6 +9,8 @@ public class FishBag : MonoBehaviour
     private Animator animator;
     public Transform[] fish;
 
+    [SerializeField] private BoxCollider boxOne, boxTwo;
+
     private GameObject fishToUI;
     public bool isGolden;
 
@@ -46,6 +48,9 @@ public class FishBag : MonoBehaviour
 
         if (hp <= 0)
         {
+            boxOne.enabled = false;
+            boxTwo.enabled = false;
+
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
             gameObject.layer = 0;
