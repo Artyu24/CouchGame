@@ -66,7 +66,8 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
-        
+
+
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
@@ -80,6 +81,11 @@ public class Timer : MonoBehaviour
 
                 
             }
+            //if (GameManager.instance.Timer <= 5f)
+            //{
+            //    StartCoroutine(GameManager.instance.TimerSound());
+
+            //}
 
             if (!scoreWindowRoundIsActive)
             {
@@ -105,6 +111,7 @@ public class Timer : MonoBehaviour
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
                 
             }
@@ -130,8 +137,11 @@ public class Timer : MonoBehaviour
 
     private IEnumerator FinishAllActions()
     {
-        EjectPlayerCentre.EjectPlayer();
+        FindObjectOfType<AudioManager>().Stop(SoundState.Music);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.WinSound);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EndPublicSound);
 
+        EjectPlayerCentre.EjectPlayer();
         yield return new WaitForSeconds(2); 
 
         List<GameObject> rootObjects = new List<GameObject>();

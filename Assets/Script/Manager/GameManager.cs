@@ -192,6 +192,10 @@ public class GameManager : MonoBehaviour
     public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton;
     #endregion
 
+
+
+
+    bool canChocWave;
     void Awake()
     {
         if (instance == null)
@@ -229,6 +233,14 @@ public class GameManager : MonoBehaviour
         {
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
+        }
+        canChocWave = true;
+    }
+    public void SounCD()
+    {
+        if(canChocWave == true)
+        {
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
         }
     }
 
@@ -285,7 +297,8 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("One");
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
-
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.BeginingPublicSound);
     }
 
     public IEnumerator CircleWaveEffect()
@@ -300,14 +313,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if (target.activeSelf == true)
-    //    {
-    //        if (target.transform.localScale.x < 0.23f)
-    //        {
-    //            target.transform.localScale = new Vector3(target.transform.localScale.x + Time.deltaTime * 0.09f, target.transform.localScale.y + Time.deltaTime * 0.09f, target.transform.localScale.z + Time.deltaTime * 0.09f);
-    //        }
-    //    }
-    //}
+    private void Update()
+    {
+        if(InteractionCD <= 0)
+        {
+            canChocWave = true;
+        }
+        else
+        {
+            canChocWave = false;
+        }
+    }
 }
