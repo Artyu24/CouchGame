@@ -128,6 +128,9 @@ public class PlayerMovement : MonoBehaviour
                             rotation = -1;
                         else
                             rotation = 1;
+
+                        //son rota
+
                     }
                 }
             }
@@ -164,6 +167,9 @@ public class PlayerMovement : MonoBehaviour
                             GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>().enabled = true;
                             GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
                         }
+                        //son switch plata
+                        FindObjectOfType<AudioManager>().PlayRandom(SoundState.SwitchCircleSound);
+
                     }
                 }
                 else
@@ -200,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isInteracting = true;
         yield return new WaitForSeconds(GameManager.instance.InteractionCD);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
         isInteracting = false;
     }
 

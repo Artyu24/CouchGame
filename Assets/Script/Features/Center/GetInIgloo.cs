@@ -29,6 +29,9 @@ public class GetInIgloo : MonoBehaviour
             {
                 InitCenter(player);
                 GetComponent<Animator>().SetTrigger("Enter");
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.TakeIglooControlSound);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SatisfySound);
+
             };
         }
     }
@@ -38,6 +41,7 @@ public class GetInIgloo : MonoBehaviour
         //On cache le joueur qui est rentrer dans l'igloo
         player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear).onComplete += () =>
         {
+
             player.transform.position = Vector3.zero;
             player.GetComponent<Player>().HideGuy(false);
             StartCoroutine(GameManager.instance.CircleWaveEffect());

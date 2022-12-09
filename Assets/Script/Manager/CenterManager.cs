@@ -67,6 +67,8 @@ public class CenterManager : MonoBehaviour, IInteractable
         actualCenterState = CenterState.ACCESS;
         //Détruire le bo shield
         shieldEffect.pause = false;
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldDestroyedSound);
+
     }
 
     private void ActivateRandomBridge()
@@ -107,8 +109,11 @@ public class CenterManager : MonoBehaviour, IInteractable
     {
         healthPoint--;
         shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldAttackedSound);
+
         //shieldEffect.visualEffectAsset.
         if (healthPoint <= 0)
             DesactivateShield();
+
     }
 }
