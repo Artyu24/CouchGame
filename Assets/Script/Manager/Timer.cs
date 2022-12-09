@@ -255,7 +255,7 @@ public class Timer : MonoBehaviour
                         if (tempPlayerListPlayer[p].score > 0)
                         {
                             //Anim d'apparition
-                            InstantiateMedals(temp.transform, position);
+                            StartCoroutine(InstantiateMedals(temp.transform, position, i));
                             PlayerManager.instance.players[p].scoreGeneral++;
                         }
                     }
@@ -268,8 +268,9 @@ public class Timer : MonoBehaviour
             
         }
     }
-    private void InstantiateMedals(Transform t, int position)
+    private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
+        yield return new WaitForSeconds(p);
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
         //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
