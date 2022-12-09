@@ -64,15 +64,25 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void Stop(string name)
+    public void Stop(SoundState soundState)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        if (DicoActualSound.ContainsKey(soundState))
         {
-            Debug.LogWarning("Sound: " + name + " not found (surement mal ecrit entre le script et sur Unity)");
-            return;
+            int i = Random.Range(0, DicoActualSound[soundState].Count);
+
+            Sound s = DicoActualSound[soundState][i];
+            if (s == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found (surement mal ecrit entre le script et sur Unity)");
+                return;
+            }
+            s.source.Stop();
+
         }
-        s.source.Stop();
+        else
+        {
+            Debug.LogWarning("PB de son");
+        }
     }
     public void PlayRandom(SoundState soundState)
     {
