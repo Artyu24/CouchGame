@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -139,6 +140,7 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Vitesse de rotation des anneaux")]
     [SerializeField] private float circleRotationSpeed = 5;
+    [SerializeField] private List<GameObject> allCircleList;
     public List<GameObject> tabCircle;
     public List<GameObject> circleBlockList;
 
@@ -284,6 +286,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
 
+    }
+
+    public IEnumerator CircleWaveEffect()
+    {
+        if (allCircleList.Count != 0)
+        {
+            foreach (GameObject circle in allCircleList)
+            {
+                circle.transform.DOJump(transform.position, 1, 1, 1);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
     }
 
     //private void Update()

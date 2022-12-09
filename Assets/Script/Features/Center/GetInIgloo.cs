@@ -40,6 +40,7 @@ public class GetInIgloo : MonoBehaviour
         {
             player.transform.position = Vector3.zero;
             player.GetComponent<Player>().HideGuy(false);
+            StartCoroutine(GameManager.instance.CircleWaveEffect());
         };
 
         GameManager GM = GameManager.instance;
