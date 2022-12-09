@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private int nextSceneID;
     [SerializeField]
-    private string leaderBoardScene = "LeaderBoard";
+    private string leaderBoardScene = "Leaderboard";
 
     bool fiveSecondLeft;
     bool canBePlay = true;
@@ -275,7 +275,7 @@ public class Timer : MonoBehaviour
                         if (tempPlayerListPlayer[p].score > 0)
                         {
                             //Anim d'apparition
-                            InstantiateMedals(temp.transform, position);
+                            StartCoroutine(InstantiateMedals(temp.transform, position, i));
                             PlayerManager.instance.players[p].scoreGeneral++;
                         }
                     }
@@ -288,8 +288,9 @@ public class Timer : MonoBehaviour
             
         }
     }
-    private void InstantiateMedals(Transform t, int position)
+    private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
+        yield return new WaitForSeconds(p);
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
         //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
@@ -308,12 +309,12 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadSceneAsync(leaderBoardScene);
+                SceneManager.LoadSceneAsync(nextSceneID);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadSceneAsync(nextSceneID);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
             }
         }
     }
