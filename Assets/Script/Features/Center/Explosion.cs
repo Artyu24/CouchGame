@@ -6,23 +6,22 @@ public class Explosion : MonoBehaviour
 {
     public SphereCollider sphereCollider;
     bool getPushed = false;
-    public Transform transparence;
     private List<Player> playerList = new List<Player>();
 
     private void Start()
     {
-        transparence.localScale = new Vector3(0, 0, 0);
+        transform.localScale = new Vector3(0, 0, 0);
     }
 
     private void Update()
     {
-        if (transparence.localScale.x < GameManager.instance.RadiusMaxExplosion)
+        if (transform.localScale.x < GameManager.instance.RadiusMaxExplosion)
         {
-            transparence.localScale = new Vector3(transparence.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion, transparence.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion, transparence.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion);
+            transform.localScale = new Vector3(transform.localScale.x + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion, transform.localScale.y + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion, transform.localScale.z + Time.deltaTime * GameManager.instance.GrowingSpeedExplosion);
         }
 
 
-        if (transparence.localScale.x >= GameManager.instance.RadiusMaxExplosion)
+        if (transform.localScale.x >= GameManager.instance.RadiusMaxExplosion)
         {
             getPushed = false;
             foreach (Player player in playerList)
