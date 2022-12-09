@@ -51,7 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  fish: []
+  col:
+  - {fileID: 3228860025302468188}
+  - {fileID: 5834974773456773855}
   isGolden: 0
 --- !u!65 &3228860025302468188
 BoxCollider:
