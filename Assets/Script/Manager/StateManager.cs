@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum GameState
 {
+    LOBBY,
     MENU,
     WAIT,
     INIT,
