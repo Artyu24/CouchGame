@@ -173,6 +173,9 @@ public class ScoreManager : MonoBehaviour
         swapPlayerSequence.onComplete += () =>
         {
             //nouvelle sequence shakeFirstPlayer
+            //Sequence shakeFirstPlayer = DOTween.Sequence();
+            //shakeFirstPlayer.Append(playersRankGUISortedByScore[0].DORotate());
+            
             for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
             {
                 playersRankGUISortedByScore[i].SetParent(null);
