@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
 
     bool fiveSecondLeft;
     bool canBePlay = true;
+
     #endregion
 
     #region Scoreboard
@@ -68,6 +69,7 @@ public class Timer : MonoBehaviour
         {
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
+            StartCoroutine(GameManager.instance.TimerVisu());
         }
 
 
