@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MainTheme
-    clip: {fileID: 8300000, guid: c750f14050e60d64caf03bc8c5a1f8f2, type: 3}
+    clip: {fileID: 8300000, guid: c33b37c3334ce64438d2fdc9c2856cb6, type: 3}
     volume: 0.26
     pitch: 1
     loop: 1
@@ -54,6 +54,51 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
     actualSound: 0
+  - name: AmbianceSpace
+    clip: {fileID: 8300000, guid: 2769d8ded03929e429a3004bb0342cf6, type: 3}
+    volume: 0.469
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 28
+  - name: WinMusic
+    clip: {fileID: 8300000, guid: 6a0e1c54c70b0774880bc7aa7cd6ab4c, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 24
+  - name: PublicReactWin
+    clip: {fileID: 8300000, guid: 3d8ffbf1c1f34ba41a58133b8e5beedc, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 29
+  - name: Coundown 5s
+    clip: {fileID: 8300000, guid: 640c346d0870fa14c8bb8a4e23bd9417, type: 3}
+    volume: 0.76
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 25
+  - name: PublicReactBegin
+    clip: {fileID: 8300000, guid: 9bbe7a44d2d89d645a174fd1c6030cfb, type: 3}
+    volume: 0.117
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 26
   - name: Fall1
     clip: {fileID: 8300000, guid: c19e3a983ea66ec49803840b0ee045fd, type: 3}
     volume: 0.26
@@ -180,8 +225,17 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
     actualSound: 3
+  - name: ChargedShockwave
+    clip: {fileID: 8300000, guid: e714774e1ee584e419b2ec8cd1ee2ac0, type: 3}
+    volume: 0.744
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 27
   - name: ChocWave
-    clip: {fileID: 8300000, guid: 41fc2446b420ecb4092f926cec2ccda3, type: 3}
+    clip: {fileID: 8300000, guid: 83c492a9806e26b48aa7aec2062a797e, type: 3}
     volume: 0.26
     pitch: 1
     loop: 0
@@ -190,7 +244,7 @@ MonoBehaviour:
     source: {fileID: 0}
     actualSound: 4
   - name: MeteoriteExplosion
-    clip: {fileID: 8300000, guid: 4425426028fe3b9429c415de62109c28, type: 3}
+    clip: {fileID: 8300000, guid: 5797831d5db888b4f94de376dd2f2322, type: 3}
     volume: 0.26
     pitch: 1
     loop: 0
@@ -235,7 +289,7 @@ MonoBehaviour:
     source: {fileID: 0}
     actualSound: 6
   - name: Eating1
-    clip: {fileID: 8300000, guid: 5e57edebc64dbdd4b95fee823bef2acc, type: 3}
+    clip: {fileID: 8300000, guid: 74117c78d13947642ad426a6686bb393, type: 3}
     volume: 0.26
     pitch: 1
     loop: 0
@@ -244,7 +298,7 @@ MonoBehaviour:
     source: {fileID: 0}
     actualSound: 7
   - name: Eating2
-    clip: {fileID: 8300000, guid: cccc8ff073a736b4a9c71d4504687c67, type: 3}
+    clip: {fileID: 8300000, guid: 5889c5d7b0c071f4fa2c4e9296be475a, type: 3}
     volume: 0.26
     pitch: 1
     loop: 0
@@ -253,34 +307,7 @@ MonoBehaviour:
     source: {fileID: 0}
     actualSound: 7
   - name: Eating3
-    clip: {fileID: 8300000, guid: 392dc83e4fa46ed41838902a850dfd99, type: 3}
-    volume: 0.26
-    pitch: 1
-    loop: 0
-    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
-      type: 2}
-    source: {fileID: 0}
-    actualSound: 7
-  - name: Eating4
-    clip: {fileID: 8300000, guid: 187b8de88f371d64383eee43d3063a16, type: 3}
-    volume: 0.26
-    pitch: 1
-    loop: 0
-    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
-      type: 2}
-    source: {fileID: 0}
-    actualSound: 7
-  - name: Eating5
-    clip: {fileID: 8300000, guid: e511daf5ec93e0240b3502f4b0d0885d, type: 3}
-    volume: 0.26
-    pitch: 1
-    loop: 0
-    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
-      type: 2}
-    source: {fileID: 0}
-    actualSound: 7
-  - name: Eating6
-    clip: {fileID: 8300000, guid: 9159f033e6a6ce74d87b2ce1f3178fcf, type: 3}
+    clip: {fileID: 8300000, guid: 74117c78d13947642ad426a6686bb393, type: 3}
     volume: 0.26
     pitch: 1
     loop: 0
@@ -533,7 +560,7 @@ MonoBehaviour:
     actualSound: 18
   - name: FootStep6
     clip: {fileID: 8300000, guid: 8549c759d2bd0a04b8de30517b3baee1, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -542,7 +569,7 @@ MonoBehaviour:
     actualSound: 18
   - name: Hit1
     clip: {fileID: 8300000, guid: a8f95d11b1b69ca4380696724c291227, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -551,7 +578,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit2
     clip: {fileID: 8300000, guid: fb70de961c6c0ff45b9ab4e3ec014511, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -560,7 +587,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit3
     clip: {fileID: 8300000, guid: 3bdb1106801520c4aa64885fe1bbe323, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -569,7 +596,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit4
     clip: {fileID: 8300000, guid: cc96d73b1404732499f07aa997835445, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -578,7 +605,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit5
     clip: {fileID: 8300000, guid: 61a5b1dc0d851a7429118e41e34fd4c3, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -587,7 +614,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit6
     clip: {fileID: 8300000, guid: d769d80d2e7486e489776c1b41a99727, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -596,7 +623,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit7
     clip: {fileID: 8300000, guid: 6018c437a78bd514392085c905c282bc, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -605,7 +632,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit8
     clip: {fileID: 8300000, guid: 8e54874d7d885f848b65c4b393989b12, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -614,7 +641,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit9
     clip: {fileID: 8300000, guid: 1f546ae2802d7cc47853470264c36834, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -623,7 +650,7 @@ MonoBehaviour:
     actualSound: 19
   - name: Hit9
     clip: {fileID: 8300000, guid: 1f546ae2802d7cc47853470264c36834, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -632,7 +659,7 @@ MonoBehaviour:
     actualSound: 19
   - name: NormalPunch1
     clip: {fileID: 8300000, guid: 4246c8342b56caa42aff7db5f8128ee9, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -641,7 +668,7 @@ MonoBehaviour:
     actualSound: 20
   - name: NormalPunch2
     clip: {fileID: 8300000, guid: a23ae59b42c2cad458bac6b740584023, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -650,7 +677,7 @@ MonoBehaviour:
     actualSound: 20
   - name: NormalPunch3
     clip: {fileID: 8300000, guid: a5ef21877172ee74896a73c4d61c2f96, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -659,7 +686,7 @@ MonoBehaviour:
     actualSound: 20
   - name: NormalPunch4
     clip: {fileID: 8300000, guid: ca16c903ebe12694ba4de6d97c8c232e, type: 3}
-    volume: 0.26
+    volume: 0.2
     pitch: 1
     loop: 0
     audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
@@ -702,3 +729,111 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
     actualSound: 23
+  - name: RotateCircleSound
+    clip: {fileID: 8300000, guid: 41c31addb170d614f89cfacfc198c127, type: 3}
+    volume: 0.81
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 30
+  - name: SwitchCircleSound
+    clip: {fileID: 8300000, guid: 08d8babce8e11d842810b8dbe72598a0, type: 3}
+    volume: 0.782
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 31
+  - name: TakeControl Igloo
+    clip: {fileID: 8300000, guid: d98c6c0842449234ba5f731404f54a82, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 32
+  - name: EjectPlayer Igloo
+    clip: {fileID: 8300000, guid: 473cc38eabf43b54e82aa489648fb20a, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 33
+  - name: IglooControlled Idle
+    clip: {fileID: 8300000, guid: 47906d4143812d54db0884e53f2189c0, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 34
+  - name: ShieldAttacked1
+    clip: {fileID: 8300000, guid: b4b1ef0bef45be249aac8b1e1673ce33, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 35
+  - name: ShieldAttacked2
+    clip: {fileID: 8300000, guid: 8a827cd3a507f2f44b0bbdba26560be7, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 35
+  - name: ShieldAttacked3
+    clip: {fileID: 8300000, guid: 82b5be452615dd74d8f848387fdab4c2, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 35
+  - name: ShieldAttacked4
+    clip: {fileID: 8300000, guid: 02946321c52134a4797da442fea584f7, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 35
+  - name: ShieldDestroyed
+    clip: {fileID: 8300000, guid: 55604fd5f70321a41ae8f8f9480f4bcf, type: 3}
+    volume: 0.898
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 36
+  - name: TransitionLoop
+    clip: {fileID: 8300000, guid: 9d4ab2000f3e835449cc26a78d47d2fc, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 37
+  - name: TransitionEnd
+    clip: {fileID: 8300000, guid: 74670e62e4c0b58429836be523db92a8, type: 3}
+    volume: 0.26
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: -2306349820862872657, guid: 2a026aa3d92b55e47b9dd9214e277386,
+      type: 2}
+    source: {fileID: 0}
+    actualSound: 38

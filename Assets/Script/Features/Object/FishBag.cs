@@ -7,7 +7,7 @@ public class FishBag : MonoBehaviour
 {
     [SerializeField] public int hp = 1;
     private Animator animator;
-    public Transform[] fish;
+    public Collider[] col;
 
     [SerializeField] private BoxCollider boxOne, boxTwo;
 
@@ -53,6 +53,8 @@ public class FishBag : MonoBehaviour
 
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
+            foreach(Collider c in col)
+                c.gameObject.SetActive(false);
             gameObject.layer = 0;
             Destroy(gameObject, 1.0f);
             ObjectManager.Instance.StartNextSpawn();

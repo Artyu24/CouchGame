@@ -19,6 +19,9 @@ public class Timer : MonoBehaviour
     private int nextSceneID;
     [SerializeField]
     private string leaderBoardScene = "LeaderBoard";
+
+    bool fiveSecondLeft;
+    bool canBePlay = true;
     #endregion
 
     #region Scoreboard
@@ -66,7 +69,8 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
-        
+
+
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
@@ -79,6 +83,15 @@ public class Timer : MonoBehaviour
                 //recup les objets origines de la hierachie dans une liste
 
                 
+            }
+            if (GameManager.instance.Timer <= 7f)
+            {                
+                fiveSecondLeft = true;
+                if(canBePlay == true)
+                {
+                    StartCoroutine(FiveSecond());
+                }
+
             }
 
             if (!scoreWindowRoundIsActive)
@@ -105,6 +118,7 @@ public class Timer : MonoBehaviour
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
+                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
                 
             }
@@ -127,10 +141,30 @@ public class Timer : MonoBehaviour
             timerText.text = "START";
         }
     }
+    public IEnumerator FiveSecond()
+    {
+        if(fiveSecondLeft == true)
+        {
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.CountdownFinal5sSound);
+            yield return new WaitForSeconds(1f);
+            fiveSecondLeft = false;
+            canBePlay = false;
+        }
 
+    }
+    
+        
+    
     private IEnumerator FinishAllActions()
     {
-        EjectPlayerCentre.EjectPlayer();
+        FindObjectOfType<AudioManager>().Stop(SoundState.Music);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.WinSound);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EndPublicSound);
+
+        if (GameManager.instance.PlayerInMiddle != null)
+        {
+            EjectPlayerCentre.EjectPlayer();
+        }
 
         yield return new WaitForSeconds(2); 
 
@@ -147,7 +181,7 @@ public class Timer : MonoBehaviour
 
         CameraManager.Instance.ActivateHyperSpace();
         ScoreManager.instance.hyperSpeed.SetActive(true);
-        PrintScoreWindow();
+        PrintGeneralScoreWindow();
     }
     private void PrintScoreWindow()
     {

@@ -74,5 +74,7 @@ public class CameraManager : MonoBehaviour
     public void ActivateHyperSpace()
     {
         hyperSpaceCamera.SetActive(true);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.TransitionLoopSound);
+
     }
 }
