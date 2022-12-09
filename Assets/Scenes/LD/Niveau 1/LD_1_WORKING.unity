@@ -2185,9 +2185,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
+      propertyPath: allCircleList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
       propertyPath: circleBlockList.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: allCircleList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7705786193472192884}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: allCircleList.Array.data[1]
+      value: 
+      objectReference: {fileID: 160855149}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: allCircleList.Array.data[2]
+      value: 
+      objectReference: {fileID: 56396652}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: circleBlockList.Array.data[0]
@@ -2516,12 +2536,12 @@ PrefabInstance:
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000020043117
+      value: 0.000000020043123
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: -0.000000013798283
       objectReference: {fileID: 0}
     - target: {fileID: 5651840039763955990, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
