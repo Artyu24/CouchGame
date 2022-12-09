@@ -2748,58 +2748,13 @@ PrefabInstance:
       objectReference: {fileID: 1558848477}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
-      propertyPath: pushForce
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: radiusMax
-      value: 9.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: speedBumper
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: growingSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: speedMeteorite
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: pushForceBumper
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: pushForceExplosion
-      value: 950
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: radiusMaxExplosion
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: speedBumperCharged
-      value: 3
+      propertyPath: timer
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: tabCircle.Array.size
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: growingSpeedExplossion
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2846,11 +2801,6 @@ PrefabInstance:
       propertyPath: allCircleList.Array.data[3]
       value: 
       objectReference: {fileID: 1634013844}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: bumperMovementDistanceCharged
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: circleBlockList.Array.data[0]
@@ -2940,6 +2890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: leaderBoardScene
+      value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
