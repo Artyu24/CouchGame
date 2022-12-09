@@ -55,6 +55,9 @@ public class EjectPlayerCentre : MonoBehaviour
         GameManager GM = GameManager.instance;
 
         GM.PlayerInMiddle.GetComponent<Player>().ActivateRespawnEffect();
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.EjectPlayerIglooSound);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.DisapointedSound);
+
 
         for (int i = 0; i < GameManager.instance.tabCircle.Count; i++)
         {

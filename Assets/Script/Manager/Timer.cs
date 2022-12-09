@@ -19,6 +19,9 @@ public class Timer : MonoBehaviour
     private int nextSceneID;
     [SerializeField]
     private string leaderBoardScene = "LeaderBoard";
+
+    bool fiveSecondLeft;
+    bool canBePlay = true;
     #endregion
 
     #region Scoreboard
@@ -81,11 +84,15 @@ public class Timer : MonoBehaviour
 
                 
             }
-            //if (GameManager.instance.Timer <= 5f)
-            //{
-            //    StartCoroutine(GameManager.instance.TimerSound());
+            if (GameManager.instance.Timer <= 7f)
+            {                
+                fiveSecondLeft = true;
+                if(canBePlay == true)
+                {
+                    StartCoroutine(FiveSecond());
+                }
 
-            //}
+            }
 
             if (!scoreWindowRoundIsActive)
             {
@@ -134,7 +141,20 @@ public class Timer : MonoBehaviour
             timerText.text = "START";
         }
     }
+    public IEnumerator FiveSecond()
+    {
+        if(fiveSecondLeft == true)
+        {
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.CountdownFinal5sSound);
+            yield return new WaitForSeconds(1f);
+            fiveSecondLeft = false;
+            canBePlay = false;
+        }
 
+    }
+    
+        
+    
     private IEnumerator FinishAllActions()
     {
         FindObjectOfType<AudioManager>().Stop(SoundState.Music);

@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    bool canChocWave;
+    
     void Awake()
     {
         if (instance == null)
@@ -234,15 +234,9 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-        canChocWave = true;
+        
     }
-    public void SounCD()
-    {
-        if(canChocWave == true)
-        {
-            FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
-        }
-    }
+  
 
     public IEnumerator TargetMeteorite()
     {
@@ -313,15 +307,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(InteractionCD <= 0)
-        {
-            canChocWave = true;
-        }
-        else
-        {
-            canChocWave = false;
-        }
-    }
+
 }
