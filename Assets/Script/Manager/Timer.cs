@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
 
     bool fiveSecondLeft;
     bool canBePlay = true;
+
     #endregion
 
     #region Scoreboard
