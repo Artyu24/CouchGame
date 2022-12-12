@@ -225,6 +225,10 @@ public class GameManager : MonoBehaviour
                     tabMaterialColor.Add(circle.GetComponentInChildren<MeshRenderer>().material.color);
             }
         }
+        else
+        {
+            actualGameState = GameState.LOBBY;
+        }
         
 
         meteorite = Resources.Load<GameObject>("Meteorite");

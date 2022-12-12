@@ -22,25 +22,27 @@ public class LeaderBoard : MonoBehaviour
             PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
             PlayerManager.instance.playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
             PlayerManager.instance.playersSortedByScore[i].transform.localScale *= 3;
-            //reset l'anim, voir mettre une anim de danse
-            switch (i)
-            {
-                case 0:
-                    //Jouer anim du premier
-                    break; 
-                case 1:
-                    //Jouer anim du second
-                    break; 
-                case 2:
-                    //Jouer anim du troisième
-                    break;
-                case 3:
-                    //Jouer anim du dernier + KaKawai
-                    break;
-                default:
-                    break;
-            }
-        }
+            PlayerManager.instance.playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
 
+            //reset l'anim
+        }
+        PlayerManager.instance.playersSortedByScore[0].GetComponentInChildren<Animator>().Play("Dance");
+       /* switch (i)
+        {
+            case 0:
+                PlayerManager.instance.playersSortedByScore[0]
+                break;
+            case 1:
+                PlayerManager.instance.playersSortedByScore[1]
+                break;
+            case 2:
+                PlayerManager.instance.playersSortedByScore[2]
+                break;
+            case 3:
+                PlayerManager.instance.playersSortedByScore[3]
+                break;
+            default:
+                break;
+        }*/
     }
 }
