@@ -110,8 +110,9 @@ public class Player : MonoBehaviour
         Transform pos = PointAreaManager.instance.GetPlayerRandomPos();
         PointAreaManager.instance.DictInUse[pos] = true;
         transform.position = pos.position;
+        transform.parent = pos.parent;
 
-        GameObject effect = Instantiate(ObjectManager.Instance.EffectSpawn, pos.position, Quaternion.identity, transform.parent);
+        GameObject effect = Instantiate(ObjectManager.Instance.EffectSpawn, pos.position, Quaternion.identity, pos.parent);
         yield return new WaitForSeconds(2f);
 
         HideGuy(true);
@@ -119,6 +120,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector3.zero;
         actualPlayerState = PlayerState.FIGHTING;
+        transform.parent = null;
 
         //Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
         //Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);
