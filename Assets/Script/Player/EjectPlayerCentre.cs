@@ -76,5 +76,7 @@ public class EjectPlayerCentre : MonoBehaviour
         GM.EjectPlates.Clear();
 
         GM.PlayerInMiddle = null;
+
+        CenterManager.instance.centerLight.GetComponent<Light>().color = Color.green; //set the light in green when nobody is in igloo
     }
 }
