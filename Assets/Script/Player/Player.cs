@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.zero;
         actualPlayerState = PlayerState.FIGHTING;
         transform.parent = null;
+        DontDestroyOnLoad(transform.gameObject);
 
         //Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
         //Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);
