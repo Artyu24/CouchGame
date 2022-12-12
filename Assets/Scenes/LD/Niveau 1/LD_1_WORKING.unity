@@ -2156,7 +2156,7 @@ PrefabInstance:
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: timer
-      value: 10
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2272,6 +2272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PREFAB_GENERAL
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090755911361948, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: scoreGoldPointArea
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 204200904872038713, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2536,12 +2541,12 @@ PrefabInstance:
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000020043123
+      value: -0.000000020043114
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000013798283
+      value: 0.000000013798276
       objectReference: {fileID: 0}
     - target: {fileID: 5651840039763955990, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
