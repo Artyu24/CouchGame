@@ -87,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
             if(player.ActualPlayerState != PlayerState.MIDDLE)
                 player.ActualPlayerState = PlayerState.FIGHTING;
         }
+        else
+        {
+            yield return new WaitForSecondsRealtime(2.0f);
+            if (player.ActualPlayerState != PlayerState.MIDDLE)
+                player.ActualPlayerState = PlayerState.FIGHTING;
+        }
     }
 
     #region INPUT
