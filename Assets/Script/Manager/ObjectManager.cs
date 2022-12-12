@@ -184,10 +184,16 @@ public class ObjectManager : MonoBehaviour
     {
         StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdSpeedUp);
-        if(playerData.IsSlow)
+        if (playerData.IsSlow)
+        {
             player.Speed = GameManager.instance.MinMoveSpeed;
+            player.animator.SetFloat("RunModifier", .5f);
+        }
         else
+        {
             player.Speed = GameManager.instance.MoveSpeed;
+            player.animator.SetFloat("RunModifier", 1f);
+        }
         
         playerData.IsSpeedUp = false;
         playerData.speedCoroutine = null;
