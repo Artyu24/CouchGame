@@ -298,12 +298,12 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].medals.Count);
             if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
             {
-                SceneManager.LoadSceneAsync(nextSceneID);
+                SceneManager.LoadSceneAsync(leaderBoardScene);
                 Debug.Log("WE HAVE A WINNER !!!");
             }
             else
             {
-                SceneManager.LoadSceneAsync(leaderBoardScene);
+                SceneManager.LoadScene(nextSceneID);
             }
         }
     }
