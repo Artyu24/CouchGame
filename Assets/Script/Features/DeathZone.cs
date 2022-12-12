@@ -15,5 +15,10 @@ public class DeathZone : MonoBehaviour
             int xcount = Random.Range(0, 3);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.FallSound);            
         }
+        else
+        {
+            other.transform.position = new Vector3(other.transform.position.x, 0.8f, other.transform.position.z);
+            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
 }
