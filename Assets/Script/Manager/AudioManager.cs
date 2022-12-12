@@ -17,7 +17,9 @@ public class AudioManager : MonoBehaviour
     
     private void Start()
     {
-        foreach(Sound sound in sounds)
+        FindObjectOfType<AudioManager>().Play("AmbianceSpace");
+
+        foreach (Sound sound in sounds)
         {
             if (!DicoActualSound.ContainsKey(sound.ActualSound))
             {
