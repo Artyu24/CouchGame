@@ -74,8 +74,9 @@ public class Player : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Leaderboard")
         {
             GetComponent<ArrowPlayer>().cam = GameManager.instance.CameraScene;
+            CameraManager.Instance.AddPlayerTarget(transform, (playerID + 1));
         }
-        CameraManager.Instance.AddPlayerTarget(transform, (playerID+1));
+       
     }
 
     public void Kill()
