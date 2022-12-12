@@ -194,9 +194,18 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
+    [SerializeField]
+    private int nextSceneID;
+    public int NextSceneID => nextSceneID;
+    [SerializeField]
+    private string leaderBoardScene = "Leaderboard";
+    public string LeaderBoardScene => leaderBoardScene;
+    [SerializeField]
+    private int pointToWin;
+    public int PointToWin => pointToWin;
 
 
-    
+
     void Awake()
     {
 
