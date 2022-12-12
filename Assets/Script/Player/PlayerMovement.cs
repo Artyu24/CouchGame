@@ -196,6 +196,8 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region Interaction Object
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.GetComponent<IPickable>() != null)
@@ -209,6 +211,27 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
         isInteracting = false;
     }
+
+    public void ChangeSpeed()
+    {
+        if (player.IsSlow)
+        {
+            speed = GameManager.instance.MinMoveSpeed;
+            animator.SetFloat("RunModifier", .5f);
+        }
+        else if(player.IsSpeedUp)
+        {
+            speed = GameManager.instance.MaxMoveSpeed;
+            animator.SetFloat("RunModifier", 2f);
+        }
+        else
+        {
+            speed = GameManager.instance.MoveSpeed;
+            animator.SetFloat("RunModifier", 1f);
+        }
+    }
+
+    #endregion
 
     void OnDrawGizmosSelected()
     {

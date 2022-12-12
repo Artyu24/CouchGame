@@ -14,19 +14,9 @@ public class SpeedUpObject : MonoBehaviour, IPickable
         if (player != null)
         {
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-            if(player.IsSlow)
-            {                
-                playerMovement.Speed = GameManager.instance.MoveSpeed;
-                playerMovement.animator.SetFloat("RunModifier", 1f);
-            }
-            else
-            {
-                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
-                playerMovement.animator.SetFloat("RunModifier", 2f);
-            }
-            
-            ObjectManager.Instance.StopSpeedUp(playerMovement);
             player.IsSpeedUp = true;
+            playerMovement.ChangeSpeed();
+            ObjectManager.Instance.StopSpeedUp(playerMovement);
             Destroy(this.gameObject);
         }
     }
