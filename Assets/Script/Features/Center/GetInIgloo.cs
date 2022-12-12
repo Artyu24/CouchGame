@@ -31,6 +31,7 @@ public class GetInIgloo : MonoBehaviour
             CenterPoint.Instance.SetUp(other.GetComponent<Player>());
 
             GameObject player = other.gameObject;
+            player.GetComponent<CapsuleCollider>().enabled = false;
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             player.transform.DOMove(new Vector3(0, 3, 0), 2).onComplete += () =>
             {
