@@ -19,9 +19,15 @@ public class SlowWater : MonoBehaviour
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
                 
             if (playerData.IsSpeedUp)
+            {
                 playerMovement.Speed = GameManager.instance.MoveSpeed;
+                playerMovement.animator.SetFloat("RunModifier", 1f);
+            }
             else
-                playerMovement.Speed = GameManager.instance.MinMoveSpeed;
+            {
+                playerMovement.Speed = GameManager.instance.MinMoveSpeed; 
+                playerMovement.animator.SetFloat("RunModifier", .5f);
+            }
 
             playerData.IsSlow = true;
             playersInside.Add(playerMovement);
@@ -36,9 +42,15 @@ public class SlowWater : MonoBehaviour
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
             
             if (playerData.IsSpeedUp)
-                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
+            {
+                playerMovement.Speed = GameManager.instance.MaxMoveSpeed; 
+                playerMovement.animator.SetFloat("RunModifier", 2f);
+            }
             else
-                playerMovement.Speed = GameManager.instance.MoveSpeed;
+            {
+                playerMovement.Speed = GameManager.instance.MoveSpeed; 
+                playerMovement.animator.SetFloat("RunModifier", 1f);
+            }
 
             playerData.IsSlow = false;
             playersInside.Remove(playerMovement);
