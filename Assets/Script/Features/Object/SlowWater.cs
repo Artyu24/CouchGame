@@ -17,19 +17,8 @@ public class SlowWater : MonoBehaviour
         {
             Player playerData = other.gameObject.GetComponent<Player>();
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
-                
-            if (playerData.IsSpeedUp)
-            {
-                playerMovement.Speed = GameManager.instance.MoveSpeed;
-                playerMovement.animator.SetFloat("RunModifier", 1f);
-            }
-            else
-            {
-                playerMovement.Speed = GameManager.instance.MinMoveSpeed; 
-                playerMovement.animator.SetFloat("RunModifier", .5f);
-            }
-
             playerData.IsSlow = true;
+            playerMovement.ChangeSpeed();
             playersInside.Add(playerMovement);
         }
     }
@@ -40,19 +29,8 @@ public class SlowWater : MonoBehaviour
         {
             Player playerData = other.gameObject.GetComponent<Player>();
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
-            
-            if (playerData.IsSpeedUp)
-            {
-                playerMovement.Speed = GameManager.instance.MaxMoveSpeed; 
-                playerMovement.animator.SetFloat("RunModifier", 2f);
-            }
-            else
-            {
-                playerMovement.Speed = GameManager.instance.MoveSpeed; 
-                playerMovement.animator.SetFloat("RunModifier", 1f);
-            }
-
             playerData.IsSlow = false;
+            playerMovement.ChangeSpeed();
             playersInside.Remove(playerMovement);
         }
     }
@@ -62,11 +40,8 @@ public class SlowWater : MonoBehaviour
         foreach (PlayerMovement playerMovement in playersInside)
         {
             Player playerData = playerMovement.GetComponent<Player>();
-
-            if (playerData.IsSpeedUp)
-                playerMovement.Speed = GameManager.instance.MaxMoveSpeed;
-            else
-                playerMovement.Speed = GameManager.instance.MoveSpeed;
+            playerData.IsSlow = false;
+            playerMovement.ChangeSpeed();
         }
     }
 }
