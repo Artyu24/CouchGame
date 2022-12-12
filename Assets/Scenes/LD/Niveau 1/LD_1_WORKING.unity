@@ -2150,23 +2150,8 @@ PrefabInstance:
       objectReference: {fileID: 1558848477}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
-      propertyPath: range
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: timer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
       propertyPath: maxMovementSpeed
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: tabCircle.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2182,16 +2167,6 @@ PrefabInstance:
         type: 3}
       propertyPath: tabCircle.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: allCircleList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
-        type: 3}
-      propertyPath: circleBlockList.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
