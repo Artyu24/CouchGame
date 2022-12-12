@@ -19,7 +19,7 @@ public class EjectPlayerCentre : MonoBehaviour
     private void Update()
     {
         if (cable != null)
-            cable.transform.DODynamicLookAt(Vector3.zero, .5f, AxisConstraint.Y);
+            cable.transform.LookAt(transform.GetChild(0).transform.position, Vector3.up);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -76,5 +76,7 @@ public class EjectPlayerCentre : MonoBehaviour
         GM.EjectPlates.Clear();
 
         GM.PlayerInMiddle = null;
+
+        CenterManager.instance.centerLight.GetComponent<Light>().color = Color.green; //set the light in green when nobody is in igloo
     }
 }

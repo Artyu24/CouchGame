@@ -9,7 +9,12 @@ public class GetInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
     [SerializeField] private GameObject platePref;
-    private Animator anim; 
+    private Animator anim;
+
+    private void Start()
+    {
+        CenterManager.instance.centerLight = transform.GetChild(transform.childCount - 3).gameObject;
+    }
 
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
     public void OnTriggerEnter(Collider other)
@@ -21,6 +26,8 @@ public class GetInIgloo : MonoBehaviour
             CenterManager.instance.ActualCenterState = CenterState.USE;
             other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
 
+            Debug.Log(transform.GetChild(transform.childCount - 3).name);
+
             CenterPoint.Instance.SetUp(other.GetComponent<Player>());
 
             GameObject player = other.gameObject;
@@ -31,6 +38,7 @@ public class GetInIgloo : MonoBehaviour
                 GetComponent<Animator>().SetTrigger("Enter");
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.TakeIglooControlSound);
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.SatisfySound);
+                CenterManager.instance.centerLight.GetComponent<Light>().color = Color.red; //set the light in red when getting in igloo
 
             };
         }
@@ -61,8 +69,8 @@ public class GetInIgloo : MonoBehaviour
             plate.GetComponent<BoxCollider>().enabled = true;
             GM.EjectPlates.Add(plate);
 
-            Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.5f);
-            GameObject p = Instantiate(_pipe, _pos, Quaternion.identity);
+            //Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.0f);
+            GameObject p = Instantiate(_pipe, Vector3.zero, Quaternion.identity);
             p.transform.parent = plate.transform;
             plate.transform.GetComponent<EjectPlayerCentre>().cable = p;
         }

@@ -20,6 +20,8 @@ public class CenterManager : MonoBehaviour, IInteractable
     [SerializeField] private VisualEffect shieldEffect;
     [SerializeField] private BoxCollider col;
 
+    public GameObject centerLight;
+
     void Awake()
     {
         if (instance == null)
