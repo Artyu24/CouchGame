@@ -2749,7 +2749,7 @@ PrefabInstance:
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: timer
-      value: 20
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2903,8 +2903,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
+      propertyPath: nextSceneID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
       propertyPath: leaderBoardScene
-      value: Leaderboard
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
