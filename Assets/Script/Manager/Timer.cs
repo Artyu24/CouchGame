@@ -119,7 +119,6 @@ public class Timer : MonoBehaviour
                 ObjectManager.Instance.InitSpawnAll();
                 GameManager.instance.ActualGameState = GameState.INGAME;
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
                 
             }

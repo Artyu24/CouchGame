@@ -199,6 +199,7 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -242,9 +243,10 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-        
+                
+
     }
-  
+
 
     public IEnumerator TargetMeteorite()
     {
@@ -306,7 +308,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator TimerVisu()
     {
         animator.SetBool("Timer", true);
-        yield return new WaitForSeconds(7.033f);
+        yield return new WaitForSeconds(7f);
         animator.SetBool("Timer", false);
     }
     public IEnumerator CircleWaveEffect()
