@@ -124,21 +124,10 @@ public class Timer : MonoBehaviour
             }
 
             timerCountDown -= Time.deltaTime;
-            seconds = Mathf.FloorToInt(timerCountDown + 1 % 60f);
-            
-            if (timerCountDown >= 0.0f)
-            {
-                timerText.text = seconds.ToString("0");
-
-            }
-            else
-            {
-                timerText.text = "0";
-            }
         }
         else
         {
-            timerText.text = "START";
+            timerText.text = "";
         }
     }
     public IEnumerator FiveSecond()
