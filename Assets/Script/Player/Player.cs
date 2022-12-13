@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -74,8 +73,9 @@ public class Player : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Leaderboard")
         {
             GetComponent<ArrowPlayer>().cam = GameManager.instance.CameraScene;
+            CameraManager.Instance.AddPlayerTarget(transform, (playerID + 1));
         }
-        CameraManager.Instance.AddPlayerTarget(transform, (playerID+1));
+       
     }
 
     public void Kill()
@@ -110,8 +110,9 @@ public class Player : MonoBehaviour
         Transform pos = PointAreaManager.instance.GetPlayerRandomPos();
         PointAreaManager.instance.DictInUse[pos] = true;
         transform.position = pos.position;
+        transform.parent = pos.parent;
 
-        GameObject effect = Instantiate(ObjectManager.Instance.EffectSpawn, pos.position, Quaternion.identity, transform.parent);
+        GameObject effect = Instantiate(ObjectManager.Instance.EffectSpawn, pos.position, Quaternion.identity, pos.parent);
         yield return new WaitForSeconds(2f);
 
         HideGuy(true);
@@ -119,6 +120,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector3.zero;
         actualPlayerState = PlayerState.FIGHTING;
+        transform.parent = null;
+        DontDestroyOnLoad(transform.gameObject);
 
         //Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
         //Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);
@@ -143,6 +146,11 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             playerAttack.EffectSpeBarre.SetActive(false);
             couronne.SetActive(false);
+
+            if (GameManager.instance.ActualGameState == GameState.LOBBY)
+            {
+                actualPlayerState = PlayerState.WAITING;
+            }
         }
         else
         {
@@ -152,7 +160,6 @@ public class Player : MonoBehaviour
                 if (this == PlayerManager.instance.playersSortedByScore[0])
                     couronne.SetActive(true);
         }
-
         // cacher les particules
     }
 }

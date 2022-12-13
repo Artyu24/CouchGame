@@ -32,6 +32,11 @@ public class PointAreaManager : MonoBehaviour
         RemoveObjectNullFromList(spawnPointBomb);
         RemoveObjectNullFromList(spawnPointPlayer);
 
+        foreach (Transform point in SpawnPoint)
+        {
+            dictInUse.Add(point, false);
+        }
+
         int i = 0;
         foreach (Transform point in spawnPointPlayer)
         {
@@ -59,10 +64,6 @@ public class PointAreaManager : MonoBehaviour
             }
         }
 
-        foreach (Transform point in SpawnPoint)
-        {
-            dictInUse.Add(point, false);
-        }
     }
 
     private void RemoveObjectNullFromList(List<Transform> listTransform)
@@ -93,7 +94,7 @@ public class PointAreaManager : MonoBehaviour
 
     public Transform GetBombRandomPos()
     {
-        return RandomPosition(spawnPointMeteorite);
+        return RandomPosition(spawnPointBomb);
     }
 
     public Transform GetMeteoriteRandomPos()

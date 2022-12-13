@@ -1,13 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -51,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        if (GameManager.instance.ActualGameState == GameState.INGAME || GameManager.instance.ActualGameState == GameState.LOBBY)
         {
             if (player.ActualPlayerState == PlayerState.FIGHTING)
             {
@@ -87,6 +82,12 @@ public class PlayerMovement : MonoBehaviour
             if(player.ActualPlayerState != PlayerState.MIDDLE)
                 player.ActualPlayerState = PlayerState.FIGHTING;
         }
+        else
+        {
+            yield return new WaitForSecondsRealtime(2.0f);
+            if (player.ActualPlayerState != PlayerState.MIDDLE)
+                player.ActualPlayerState = PlayerState.FIGHTING;
+        }
     }
 
     #region INPUT
@@ -95,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector3>();
 
-        if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME)
+        if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME || GameManager.instance.ActualGameState == GameState.LOBBY)
         {
             if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
             {

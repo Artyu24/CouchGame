@@ -2792,8 +2792,13 @@ PrefabInstance:
       objectReference: {fileID: 1558848477}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
-      propertyPath: timer
-      value: 180
+      propertyPath: radiusMax
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: nextSceneID
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2949,6 +2954,16 @@ PrefabInstance:
         type: 3}
       propertyPath: levelName
       value: LD_2_WORKING
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: nextSceneID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044467867255522159, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: leaderBoardScene
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1305446273737083973, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -3130,6 +3145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986663495788234754, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384015259377065166, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}

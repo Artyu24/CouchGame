@@ -96,6 +96,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public void UpdateScoresPlayer(int id)
+    {
+        scorePlayerText[id].text = PlayerManager.instance.players[id].score.ToString();
+    }
+
     public void AddScore(int points, Player player)
     {
         int multi = 1;
@@ -209,6 +214,6 @@ public class ScoreManager : MonoBehaviour
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
         //Debug.Log(PlayerManager.instance.players[p].GetComponent<Player>().currentColor);
         //scorePlayerText[p].color = PlayerManager.instance.players[p].GetComponent<Player>().currentColor;
-        UpdateScores();
+        UpdateScoresPlayer(p);
     }
 }

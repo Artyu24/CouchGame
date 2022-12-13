@@ -21,7 +21,7 @@ public class LeaderBoard : MonoBehaviour
         {
             PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
             PlayerManager.instance.playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
-            //PlayerManager.instance.playersSortedByScore[i].transform.localScale *= 3;
+            PlayerManager.instance.playersSortedByScore[i].transform.localScale *= 1.5f;
             PlayerManager.instance.playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
 
             //reset l'anim

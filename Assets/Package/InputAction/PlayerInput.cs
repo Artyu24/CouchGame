@@ -212,6 +212,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b5654b86-56f4-4b11-a890-dded5f8e25ca"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""ChocWave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5009486f-b7b3-4af7-8dcb-7db6fd727f87"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""ChocWave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""633cf722-3475-4e27-a55c-4263a8e8c950"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""CircularScheme"",
+                    ""action"": ""ChocWave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f2bb5600-98be-478f-9055-d3850a1d5649"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",

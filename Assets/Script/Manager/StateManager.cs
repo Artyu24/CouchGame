@@ -16,6 +16,7 @@ public enum GameState
 public enum PlayerState
 {
     INIT,
+    WAITING,
     FIGHTING,
     FLYING,
     MIDDLE,
@@ -71,5 +72,16 @@ public enum SoundState
     ShieldDestroyedSound,
     TransitionLoopSound,
     TransitionEndSound,
+    BombExplosionSound,
+    BumperTouchedSound,
+    EauToxiquePlayerInSound,
+    IglooInterrupteurPressedSound,
+    StarSerringuePickUpSound,
+    TeleportRespawnSound,
+    UIConfirmSound,
+    UISwitchSound,
+    WinThemeLeaderboardSound,
+    SpaceAmbianceLobbySound,
+    MusicLobbySound,
 
 }

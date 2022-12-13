@@ -15,10 +15,6 @@ public class Timer : MonoBehaviour
     private float timerCountDown = 5;
 
     private int minutes, seconds;
-    [SerializeField]
-    private int nextSceneID;
-    [SerializeField]
-    private string leaderBoardScene = "Leaderboard";
 
     bool fiveSecondLeft;
     bool canBePlay = true;
@@ -40,8 +36,6 @@ public class Timer : MonoBehaviour
 
     private GameObject[] medals = new GameObject[3];
     private int numberOfMedal = 3;
-    [SerializeField]
-    private int pointToWin = 10;
     #endregion
 
     private void Awake()
@@ -124,21 +118,10 @@ public class Timer : MonoBehaviour
             }
 
             timerCountDown -= Time.deltaTime;
-            seconds = Mathf.FloorToInt(timerCountDown + 1 % 60f);
-            
-            if (timerCountDown >= 0.0f)
-            {
-                timerText.text = seconds.ToString("0");
-
-            }
-            else
-            {
-                timerText.text = "0";
-            }
         }
         else
         {
-            timerText.text = "START";
+            timerText.text = "";
         }
     }
     public IEnumerator FiveSecond()
@@ -217,6 +200,11 @@ public class Timer : MonoBehaviour
 
     public void PrintGeneralScoreWindow()
     {
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            DontDestroyOnLoad(PlayerManager.instance.players[i].gameObject);
+        }
+
         Sequence mySequence2 = DOTween.Sequence();
         mySequence2.Append(scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(1000, 2));
         mySequence2.onComplete += () =>
@@ -303,19 +291,19 @@ public class Timer : MonoBehaviour
     public void ReloadScene()
     {
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
-        Time.timeScale = 1;
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        {
-            Debug.Log(PlayerManager.instance.players[i].medals.Count);
-            if (PlayerManager.instance.players[i].medals.Count >= pointToWin)
-            {
-                SceneManager.LoadSceneAsync(nextSceneID);
-                Debug.Log("WE HAVE A WINNER !!!");
-            }
-            else
-            {
-                SceneManager.LoadSceneAsync(leaderBoardScene);
-            }
-        }
+
+        /* for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+         {
+             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
+             {
+                 SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
+             }
+             else
+             {
+             }
+         }*/
+        
+
+        SceneManager.LoadScene(GameManager.instance.NextSceneID);
     }
 }

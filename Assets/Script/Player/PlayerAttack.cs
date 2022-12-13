@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
@@ -65,6 +63,13 @@ public class PlayerAttack : MonoBehaviour
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
                     StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
                 }
+            }
+            else if (player.ActualPlayerState == PlayerState.WAITING && GameManager.instance.ActualGameState == GameState.LOBBY)
+            {
+                player.transform.position = new Vector3(0, 1, 0);
+                LobbyManager.instance.ListOfPlayerToStart.Remove(gameObject);
+                player.ActualPlayerState = PlayerState.FIGHTING;
+                player.HideGuy(true);
             }
         }
     }
