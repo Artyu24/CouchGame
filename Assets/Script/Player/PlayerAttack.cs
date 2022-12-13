@@ -64,6 +64,26 @@ public class PlayerAttack : MonoBehaviour
                     StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
                 }
             }
+            else if ((player.ActualPlayerState == PlayerState.WAITINGPLAY || player.ActualPlayerState == PlayerState.WAITINGQUIT || player.ActualPlayerState == PlayerState.WAITINGSETTINGS) && GameManager.instance.ActualGameState == GameState.LOBBY)
+            {
+                player.transform.position = new Vector3(Random.Range(-1.5f, - 0.5f), 2f, Random.Range(-3.5f, -2.5f));
+                switch (player.ActualPlayerState)
+                {
+                    case PlayerState.WAITINGPLAY:
+                        LobbyManager.instance.ListOfPlayerToStart.Remove(gameObject);
+                        break;
+                    case PlayerState.WAITINGQUIT:
+                        QuitLobby.instance.ListOfPlayerToQuit.Remove(gameObject);
+                        break;
+                    case PlayerState.WAITINGSETTINGS:
+                        SettingsLobby.instance.ListOfPlayerToSettings.Remove(gameObject);
+                        break;
+                    default:
+                        break;
+                }
+                player.ActualPlayerState = PlayerState.FIGHTING;
+                player.HideGuy(true);
+            }
         }
     }
 

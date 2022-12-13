@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameManager.instance.ActualGameState == GameState.INGAME)
+        if (GameManager.instance.ActualGameState == GameState.INGAME || GameManager.instance.ActualGameState == GameState.LOBBY)
         {
             if (player.ActualPlayerState == PlayerState.FIGHTING)
             {
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector3>();
 
-        if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME)
+        if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME || GameManager.instance.ActualGameState == GameState.LOBBY)
         {
             if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
             {

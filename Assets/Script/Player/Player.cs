@@ -156,7 +156,6 @@ public class Player : MonoBehaviour
                 if (this == PlayerManager.instance.playersSortedByScore[0])
                     couronne.SetActive(true);
         }
-
         // cacher les particules
     }
 }

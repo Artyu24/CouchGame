@@ -292,18 +292,16 @@ public class Timer : MonoBehaviour
     {
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
 
-        /* for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-         {
-             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
-             {
-                 SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
-             }
-             else
-             {
-             }
-         }*/
-        
-
-        SceneManager.LoadScene(GameManager.instance.NextSceneID);
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
+            {
+                SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(GameManager.instance.NextSceneID);
+            }
+        }
     }
 }
