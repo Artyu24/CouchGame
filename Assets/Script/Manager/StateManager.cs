@@ -79,5 +79,8 @@ public enum SoundState
     TeleportRespawnSound,
     UIConfirmSound,
     UISwitchSound,
+    WinThemeLeaderboardSound,
+    SpaceAmbianceLobbySound,
+    MusicLobbySound,
 
 }
