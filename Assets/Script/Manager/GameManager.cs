@@ -251,7 +251,8 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-        ButtonToPress.SetActive(false);
+        if(ButtonToPress != null)
+            ButtonToPress.SetActive(false);
 
     }
 
