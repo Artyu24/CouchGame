@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: holoMat 6
+  m_Name: holoMat 1
   m_Shader: {fileID: -6465566751694194690, guid: d71877c08eaa47e418dd0461386736b5,
     type: 3}
   m_ValidKeywords:
@@ -16,12 +16,12 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DepthOnly
   - SHADOWCASTER
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -59,9 +59,9 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _FresnelColor: {r: 7.120421, g: 0, b: 6.6730647, a: 1}
-    - _HologrammeTilling: {r: 79.6, g: -7.4, b: 0, a: 0}
-    - _MainColor: {r: 7.999999, g: 1.4659685, b: 7.539266, a: 1}
+    - _FresnelColor: {r: 20.399765, g: 1.2509296, b: 1.2509296, a: 1}
+    - _HologrammeTilling: {r: 64, g: -7.4, b: 0, a: 0}
+    - _MainColor: {r: 50.83317, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &999418250919980179
 MonoBehaviour:

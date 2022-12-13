@@ -182,6 +182,7 @@ public class PlayerAttack : MonoBehaviour
                     if (hit.transform.tag == "Bumper")// if we hit a bumper it push it and trigger it
                     {
                         hit.transform.GetComponent<RailedBumper>().strenghtPlayerAttack = _strenght;
+                        hit.transform.GetComponent<IInteractable>().Interact(GetComponent<Player>());
                     }
 
                     if (hit.transform.GetComponent<IInteractable>() != null)
