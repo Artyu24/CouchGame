@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (player.ActualPlayerState == PlayerState.WAITING && GameManager.instance.ActualGameState == GameState.LOBBY)
             {
-                player.transform.position = new Vector3(0, 1, 0);
+                player.transform.position = new Vector3(Random.Range(-1.5f, - 0.5f), -1.5f, Random.Range(-3.5f, -2.5f));
                 LobbyManager.instance.ListOfPlayerToStart.Remove(gameObject);
                 player.ActualPlayerState = PlayerState.FIGHTING;
                 player.HideGuy(true);
