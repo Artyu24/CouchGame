@@ -49,12 +49,13 @@ public class EjectPlayerCentre : MonoBehaviour
         }
     }
 
-    static public void EjectPlayer()
+    public static void EjectPlayer()
     {
         CenterPoint.Instance.PointToUIF();
 
         GameManager GM = GameManager.instance;
 
+        GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.DEAD;
         GM.PlayerInMiddle.GetComponent<Player>().ActivateRespawnEffect();
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.EjectPlayerIglooSound);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.DisapointedSound);

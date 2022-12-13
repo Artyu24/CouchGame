@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Bumper : MonoBehaviour
 {
     public CapsuleCollider capsulCollider;
     private List<Player> playerList = new List<Player>();
     public Animator m_Animator;
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -16,7 +19,14 @@ public class Bumper : MonoBehaviour
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.BumperTouchedSound);
             StartCoroutine(PlayAnim());
+
+            if (GetComponent<RailedBumper>().playerTriggeredBy != null)
+            {
+                if (other.gameObject != GetComponent<RailedBumper>().playerTriggeredBy.gameObject)
+                    other.GetComponent<PlayerAttack>().HitTag(GetComponent<RailedBumper>().playerTriggeredBy);
+            }
         }
+
     }
 
     public IEnumerator PlayAnim()
