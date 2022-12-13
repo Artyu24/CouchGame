@@ -24,7 +24,7 @@ public class GetInIgloo : MonoBehaviour
             CameraManager.Instance.ChangeCamera();
 
             CenterManager.instance.ActualCenterState = CenterState.USE;
-            other.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
+            
 
             Debug.Log(transform.GetChild(transform.childCount - 3).name);
 
@@ -50,8 +50,9 @@ public class GetInIgloo : MonoBehaviour
         //On cache le joueur qui est rentrer dans l'igloo
         player.transform.DOMove(new Vector3(0, 0, 0), 0.05f).SetEase(Ease.Linear).onComplete += () =>
         {
-
+            GameManager.instance.ButtonToPress.SetActive(true);
             player.transform.position = Vector3.zero;
+            player.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             player.GetComponent<Player>().HideGuy(false);
             StartCoroutine(GameManager.instance.CircleWaveEffect());
         };

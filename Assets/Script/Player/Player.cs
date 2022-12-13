@@ -116,6 +116,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         HideGuy(true);
+        FindObjectOfType<AudioManager>().PlayRandom(SoundState.TeleportRespawnSound);
 
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector3.zero;
@@ -155,7 +156,6 @@ public class Player : MonoBehaviour
                 if (this == PlayerManager.instance.playersSortedByScore[0])
                     couronne.SetActive(true);
         }
-
         // cacher les particules
     }
 }

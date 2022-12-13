@@ -590,7 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8766385790629962415}
-  - component: {fileID: 608277073181477602}
+  - component: {fileID: 8045160397748908009}
   m_Layer: 0
   m_Name: "igloo m\xE9ca 1"
   m_TagString: Untagged
@@ -621,8 +621,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 137.385, z: 0}
---- !u!65 &608277073181477602
-BoxCollider:
+--- !u!135 &8045160397748908009
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -632,8 +632,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 3.5, z: 3.5}
-  m_Center: {x: 0.1214877, y: 1.3423978, z: -0.084569156}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8479908247392270112
 GameObject:
   m_ObjectHideFlags: 0

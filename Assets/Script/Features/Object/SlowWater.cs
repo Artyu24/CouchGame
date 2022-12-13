@@ -20,6 +20,8 @@ public class SlowWater : MonoBehaviour
             playerData.IsSlow = true;
             playerMovement.ChangeSpeed();
             playersInside.Add(playerMovement);
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.EauToxiquePlayerInSound);
+
         }
     }
 

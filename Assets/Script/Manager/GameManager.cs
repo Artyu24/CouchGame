@@ -45,8 +45,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float attackCd = 1.5f;
     public float AttackCd { get => attackCd; private set => attackCd = value; }
 
-    [SerializeField] private float interactionCD = 1.5f;
-    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+    
 
     #endregion
     
@@ -81,6 +80,11 @@ public class GameManager : MonoBehaviour
     public float GrowingSpeed { get => growingSpeed; private set => growingSpeed = value; }
     [SerializeField] private float pushForce = 1.5f;
     public float PushForce { get => pushForce; private set => pushForce = value; }
+
+    [SerializeField] private float interactionCD = 1.5f;
+    public float InteractionCD { get => interactionCD; private set => interactionCD = value; }
+
+    public GameObject ButtonToPress;
 
     [Header("Variables des Meteorite")]
     [SerializeField] private float radiusMaxExplosion = 1.5f;
@@ -199,7 +203,7 @@ public class GameManager : MonoBehaviour
     private int pointToWin;
     public int PointToWin => pointToWin;
 
-
+    
 
     void Awake()
     {
@@ -247,7 +251,7 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-                
+        ButtonToPress.SetActive(false);
 
     }
 

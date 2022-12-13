@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviour
 {
     private List<GameObject> listOfPlayerToStart = new List<GameObject>();
+    public List<GameObject> ListOfPlayerToStart => listOfPlayerToStart;
+
+    public static LobbyManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,20 +22,15 @@ public class LobbyManager : MonoBehaviour
         {
             //Check si le player est pas déjà dans la liste
             listOfPlayerToStart.Add(other.gameObject);
-            //Bloquer les mouvements du player comme dans l'igloo
+            other.GetComponent<Player>().ActualPlayerState = PlayerState.WAITINGPLAY;
 
-            if (listOfPlayerToStart.Count >= PlayerManager.instance.players.Count)
+            //Bloquer les mouvements du player comme dans l'igloo
+            other.GetComponent<Player>().HideGuy(false);
+
+            if (listOfPlayerToStart.Count >= PlayerManager.instance.players.Count && PlayerManager.instance.players.Count >= 2)
             {
                 SceneManager.LoadScene(1);
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            listOfPlayerToStart.Remove(other.gameObject);
         }
     }
 }
