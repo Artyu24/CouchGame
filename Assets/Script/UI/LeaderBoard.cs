@@ -7,6 +7,8 @@ public class LeaderBoard : MonoBehaviour
 
     public static LeaderBoard Instance;
 
+    public float taillePingouin = 2.5f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,7 +23,7 @@ public class LeaderBoard : MonoBehaviour
         {
             PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
             PlayerManager.instance.playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
-            PlayerManager.instance.playersSortedByScore[i].transform.localScale *= 1.5f;
+            PlayerManager.instance.playersSortedByScore[i].transform.localScale *= taillePingouin;
             PlayerManager.instance.playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
 
             //reset l'anim
