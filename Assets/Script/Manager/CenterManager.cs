@@ -60,7 +60,7 @@ public class CenterManager : MonoBehaviour, IInteractable
 
     private IEnumerator StopShieldAnimation()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         shieldEffect.pause = true;
     }
 

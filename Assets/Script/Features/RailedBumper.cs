@@ -23,6 +23,10 @@ public class RailedBumper : MonoBehaviour, IInteractable
 
     bool sensNormal = false;
     bool sensInverse = false;
+
+
+    public GameObject playerTriggeredBy;
+
     private void Start()
     {
         igloo = new Vector3(0, 0, 0);
@@ -67,7 +71,7 @@ public class RailedBumper : MonoBehaviour, IInteractable
     public void Interact(Player player = null)
     {
         attackCharged = strenghtPlayerAttack > GameManager.instance.NormalStrenght;
-
+        playerTriggeredBy = player.gameObject;
         Vector3 playerOrient = player.transform.forward;
         Vector3 bumperOrient = transform.right;
         playerOrient.y = 0;
