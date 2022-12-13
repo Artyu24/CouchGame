@@ -71,5 +71,13 @@ public enum SoundState
     ShieldDestroyedSound,
     TransitionLoopSound,
     TransitionEndSound,
+    BombExplosionSound,
+    BumperTouchedSound,
+    EauToxiquePlayerInSound,
+    IglooInterrupteurPressedSound,
+    StarSerringuePickUpSound,
+    TeleportRespawnSound,
+    UIConfirmSound,
+    UISwitchSound,
 
 }
