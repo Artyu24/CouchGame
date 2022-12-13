@@ -62,6 +62,8 @@ public class Bomb : MonoBehaviour, IInteractable
             transform.GetChild(0).gameObject.SetActive(true);
             GetComponent<Rigidbody>().useGravity = false;
             //trigger Sound
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.BombExplosionSound);
+
 
             ObjectManager.Instance.SpawnNextObject();
             yield return new WaitForSecondsRealtime(1.0f);

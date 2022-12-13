@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject chocWave;
 
 
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -187,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isInteracting == false)
                 {
+                    GameManager.instance.ButtonToPress.SetActive(false);
                     Instantiate(chocWave, departChoc , quaternion.identity);
                     //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
@@ -210,6 +213,8 @@ public class PlayerMovement : MonoBehaviour
         isInteracting = true;
         yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
+        GameManager.instance.ButtonToPress.SetActive(true);
+        ////// llalalalalalalalalalalalalalalalalalal
         isInteracting = false;
     }
 

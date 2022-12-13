@@ -16,12 +16,12 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DepthOnly
   - SHADOWCASTER
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -61,7 +61,7 @@ Material:
     m_Colors:
     - _FresnelColor: {r: 0, g: 2.370369, b: 16, a: 1}
     - _HologrammeTilling: {r: 64, g: 64, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 0.54901963, b: 1.1529412, a: 1}
+    - _MainColor: {r: 0, g: 0.30529705, b: 1.5392672, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &999418250919980179
 MonoBehaviour:
