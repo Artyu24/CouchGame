@@ -8,7 +8,7 @@ public class LookAtCamera : MonoBehaviour
 
     private void Start()
     {
-        //cameraToLookAt = GameManager.instance.CameraScene;
+        
     }
 
     void Update()

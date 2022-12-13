@@ -146,6 +146,10 @@ public class PlayerManager : MonoBehaviour
                 speBarreTemp.name = "SpéChargeBarre " + (1);
                 player.GetComponent<PlayerAttack>().SpeBarreSlider = speBarreTemp.GetComponent<Slider>();
                 player.GetComponent<PlayerAttack>().SpeBarreSlider.value = 0;
+
+                //arrowPlayer
+                player.GetComponent<ArrowPlayer>().fleche.SetActive(true);
+                player.GetComponent<ArrowPlayer>().texte.SetActive(true);
             }
             
         }
