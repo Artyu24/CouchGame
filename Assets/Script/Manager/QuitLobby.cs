@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LobbyManager : MonoBehaviour
+public class QuitLobby : MonoBehaviour
 {
-    private List<GameObject> listOfPlayerToStart = new List<GameObject>();
-    public List<GameObject> ListOfPlayerToStart => listOfPlayerToStart;
+    private List<GameObject> listOfPlayerToQuit = new List<GameObject>();
+    public List<GameObject> ListOfPlayerToQuit => listOfPlayerToQuit;
 
-    public static LobbyManager instance;
+    public static QuitLobby instance;
 
     private void Awake()
     {
@@ -21,15 +21,15 @@ public class LobbyManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Check si le player est pas déjà dans la liste
-            listOfPlayerToStart.Add(other.gameObject);
-            other.GetComponent<Player>().ActualPlayerState = PlayerState.WAITINGPLAY;
+            listOfPlayerToQuit.Add(other.gameObject);
+            other.GetComponent<Player>().ActualPlayerState = PlayerState.WAITINGQUIT;
 
             //Bloquer les mouvements du player comme dans l'igloo
             other.GetComponent<Player>().HideGuy(false);
 
-            if (listOfPlayerToStart.Count >= PlayerManager.instance.players.Count && PlayerManager.instance.players.Count >= 2)
+            if (listOfPlayerToQuit.Count >= PlayerManager.instance.players.Count)
             {
-                SceneManager.LoadScene(1);
+                Application.Quit();
             }
         }
     }
