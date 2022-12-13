@@ -17,7 +17,9 @@ public class AudioManager : MonoBehaviour
     
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("AmbianceSpace");
+
+        //FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
+
 
         foreach (Sound sound in sounds)
         {
