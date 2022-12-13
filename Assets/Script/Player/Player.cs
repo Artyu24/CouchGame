@@ -146,6 +146,11 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             playerAttack.EffectSpeBarre.SetActive(false);
             couronne.SetActive(false);
+
+            if (GameManager.instance.ActualGameState == GameState.LOBBY)
+            {
+                actualPlayerState = PlayerState.WAITING;
+            }
         }
         else
         {
@@ -155,7 +160,6 @@ public class Player : MonoBehaviour
                 if (this == PlayerManager.instance.playersSortedByScore[0])
                     couronne.SetActive(true);
         }
-
         // cacher les particules
     }
 }

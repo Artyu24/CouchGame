@@ -16,6 +16,7 @@ public enum GameState
 public enum PlayerState
 {
     INIT,
+    WAITING,
     FIGHTING,
     FLYING,
     MIDDLE,

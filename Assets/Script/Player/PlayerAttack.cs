@@ -64,6 +64,13 @@ public class PlayerAttack : MonoBehaviour
                     StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
                 }
             }
+            else if (player.ActualPlayerState == PlayerState.WAITING && GameManager.instance.ActualGameState == GameState.LOBBY)
+            {
+                player.transform.position = new Vector3(0, 1, 0);
+                LobbyManager.instance.ListOfPlayerToStart.Remove(gameObject);
+                player.ActualPlayerState = PlayerState.FIGHTING;
+                player.HideGuy(true);
+            }
         }
     }
 
