@@ -14,6 +14,7 @@ public class Bumper : MonoBehaviour
             Vector3 push = (other.transform.position - capsulCollider.transform.position).normalized;
             other.GetComponent<Rigidbody>().AddForce(push * GameManager.instance.PushForceBumper);
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.HurtSound);
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.BumperTouchedSound);
             StartCoroutine(PlayAnim());
         }
     }

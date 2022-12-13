@@ -37,6 +37,7 @@ public class EjectPlayerCentre : MonoBehaviour
             //mat.SetColor("_MainColor", Color.green);
 
             cable.transform.GetChild(0).GetComponent<MeshRenderer>().material = cableDone;
+            FindObjectOfType<AudioManager>().PlayRandom(SoundState.IglooInterrupteurPressedSound);
 
 
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)

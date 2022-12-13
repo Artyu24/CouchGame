@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
     private int pointToWin;
     public int PointToWin => pointToWin;
 
-
+    public GameObject ButtonToPress;
 
     void Awake()
     {
@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
             target.SetActive(false);
             //StartCoroutine(TargetMeteorite());
         }
-                
+        ButtonToPress.SetActive(false);
 
     }
 
