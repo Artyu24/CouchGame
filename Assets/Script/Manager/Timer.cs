@@ -64,7 +64,11 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
-
+        if (GameManager.instance.ActualGameState == GameState.ENDROUND)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+                ReloadScene();
+        }
 
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
@@ -105,11 +109,7 @@ public class Timer : MonoBehaviour
                 timerText.text = "00 : 00";
             }
         }
-        if (GameManager.instance.Timer <= 0.0f && GameManager.instance.ActualGameState == GameState.ENDROUND)
-        {
-            if (Input.GetKeyDown(KeyCode.JoystickButton0))
-                ReloadScene();
-        }
+        
         else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
             if (timerCountDown <= 0)
@@ -255,7 +255,7 @@ public class Timer : MonoBehaviour
                 for (int p = 0; p < tempPlayerListPlayer.Count; p++)
                 {
                     temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>(); // spawn des prefab pour les score avec les oeufs
                     temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
@@ -305,6 +305,7 @@ public class Timer : MonoBehaviour
         {
             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
                 isEnd = true;
+
         }
 
         
@@ -315,6 +316,12 @@ public class Timer : MonoBehaviour
     {
         CameraManager.Instance.AnimTransition.SetTrigger("Start");
         yield return new WaitForSeconds(1);
+
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            PlayerManager.instance.players[i].HideGuy(true);
+            PlayerManager.instance.players[i].ActualPlayerState = PlayerState.FIGHTING;
+        }
 
         if (isEnd)
             SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);

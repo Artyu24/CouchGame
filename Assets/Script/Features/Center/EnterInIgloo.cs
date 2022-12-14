@@ -54,7 +54,7 @@ public class EnterInIgloo : MonoBehaviour
             player.transform.position = Vector3.zero;
             player.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             player.GetComponent<Player>().HideGuy(false);
-            StartCoroutine(GameManager.instance.CircleWaveEffect(1, 0.5f));
+            StartCoroutine(GameManager.instance.CircleWaveEffect(1));
         };
 
         StartCoroutine(InstantiateButton());
@@ -81,7 +81,7 @@ public class EnterInIgloo : MonoBehaviour
 
     private IEnumerator InstantiateButton()
     {
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(1.08f);
 
         //On cree les interupteurs pour faire sortir le joueur
         for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
