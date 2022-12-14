@@ -114,7 +114,6 @@ public class Timer : MonoBehaviour
                 GameManager.instance.ActualGameState = GameState.INGAME;
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
-                StartCoroutine(GameManager.instance.CircleWaveEffect());
             }
 
             timerCountDown -= Time.deltaTime;
