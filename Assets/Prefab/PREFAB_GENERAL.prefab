@@ -1401,6 +1401,11 @@ PrefabInstance:
       propertyPath: col
       value: 
       objectReference: {fileID: 1104131932077631749}
+    - target: {fileID: 3702598320677072876, guid: ffd0cd7bf65551d4b98a2c5add01c7cb,
+        type: 3}
+      propertyPath: maxHealthPoint
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3702598320677072879, guid: ffd0cd7bf65551d4b98a2c5add01c7cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2998,7 +3003,7 @@ PrefabInstance:
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[22].volume
-      value: 0.339
+      value: 0.412
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
@@ -3112,6 +3117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
+      propertyPath: sounds.Array.data[77].volume
+      value: 0.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
+        type: 3}
       propertyPath: sounds.Array.data[78].volume
       value: 0.435
       objectReference: {fileID: 0}
@@ -3158,27 +3168,27 @@ PrefabInstance:
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[88].volume
-      value: 0.26
+      value: 0.295
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[89].volume
-      value: 0.26
+      value: 0.428
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[90].volume
-      value: 0.26
+      value: 0.318
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[91].volume
-      value: 0.26
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
       propertyPath: sounds.Array.data[92].volume
-      value: 0.26
+      value: 0.327
       objectReference: {fileID: 0}
     - target: {fileID: 6977688757358291423, guid: 19ef2332689e6ab43a9980ebe0531533,
         type: 3}
@@ -3756,6 +3766,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 175090755445885864}
     m_Modifications:
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5,
+        type: 2}
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
     - target: {fileID: 4865056626624256745, guid: dd5653fb30ed303438fb3d0c340a37d9,
         type: 3}
       propertyPath: m_RootOrder
@@ -3815,6 +3846,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Center_Igloo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999202947559109089, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999202947559109089, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -205.04
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5634984723853185641, guid: dd5653fb30ed303438fb3d0c340a37d9, type: 3}
