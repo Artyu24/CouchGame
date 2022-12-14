@@ -63,7 +63,8 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(StartingGame());
+        if(!startGame)
+            StartCoroutine(StartingGame());
         if (startGame)
         {
             StartCoroutine(GameManager.instance.TimerSound());
@@ -87,12 +88,7 @@ public class Timer : MonoBehaviour
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
-                //add un temps mort de 2 secs pour que toute les anims se finissent
                 StartCoroutine(FinishAllActions());
-
-                //anim de d�part du terrain
-                //recup les objets origines de la hierachie dans une liste
-                
             }            
 
             if (GameManager.instance.Timer <= 7f)
@@ -102,7 +98,6 @@ public class Timer : MonoBehaviour
                 {
                     StartCoroutine(FiveSecond());
                 }
-
             }
 
             if (!scoreWindowRoundIsActive)
@@ -293,17 +288,13 @@ public class Timer : MonoBehaviour
                     position++;
                     numberOfMedal--;
                 }
-                
             };
-
-            
         }
     }
     private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
         yield return new WaitForSeconds(p);
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
-        //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
         Tween b = temp2.transform.DOScale(new Vector3(1, 1), 0.5f);
         Sequence seq = DOTween.Sequence();
@@ -320,10 +311,7 @@ public class Timer : MonoBehaviour
         {
             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
                 isEnd = true;
-
         }
-
-        
         GameManager.instance.GetComponent<MonoBehaviour>().StartCoroutine(ReloadSceneStart(isEnd));
     }
 
