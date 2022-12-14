@@ -12,6 +12,10 @@ public class Timer : MonoBehaviour
     private Text timerText;
     private Text timerSet;
 
+    [SerializeField]
+    private float timerForStart = 4.0f;
+    private bool startGame = false;
+
     private float timerCountDown = 5;
 
     private int minutes, seconds;
@@ -59,11 +63,19 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        StartCoroutine(StartingGame());
+        if (startGame)
+        {
+            StartCoroutine(GameManager.instance.TimerSound());
+            GameManager.instance.ActualGameState = GameState.INIT;
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
+
         if (GameManager.instance.ActualGameState == GameState.ENDROUND)
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
@@ -130,6 +142,13 @@ public class Timer : MonoBehaviour
             timerText.text = "";
         }
     }
+
+    private IEnumerator StartingGame()
+    {
+        yield return new WaitForSeconds(timerForStart);
+        startGame = true;
+    }
+
     public IEnumerator FiveSecond()
     {
         if(fiveSecondLeft == true)
@@ -140,12 +159,8 @@ public class Timer : MonoBehaviour
             canBePlay = false;
             yield return new WaitForSeconds(3f);
             StartCoroutine(GameManager.instance.TimerVisuFin());
-
         }
-
     }
-    
-        
     
     private IEnumerator FinishAllActions()
     {
