@@ -214,7 +214,11 @@ public class PlayerMovement : MonoBehaviour
         isInteracting = true;
         yield return new WaitForSeconds(GameManager.instance.InteractionCD);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
-        GameManager.instance.ButtonToPress.SetActive(true);
+        if(GameManager.instance.PlayerInMiddle != null)
+        {
+
+            GameManager.instance.ButtonToPress.SetActive(true);
+        }
         ////// llalalalalalalalalalalalalalalalalalal
         isInteracting = false;
     }

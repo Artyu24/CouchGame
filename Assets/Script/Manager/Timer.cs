@@ -76,9 +76,9 @@ public class Timer : MonoBehaviour
 
                 //anim de d�part du terrain
                 //recup les objets origines de la hierachie dans une liste
-
                 
-            }
+            }            
+
             if (GameManager.instance.Timer <= 7f)
             {                
                 fiveSecondLeft = true;
@@ -104,6 +104,11 @@ public class Timer : MonoBehaviour
             {
                 timerText.text = "00 : 00";
             }
+        }
+        if (GameManager.instance.Timer <= 0.0f && GameManager.instance.ActualGameState == GameState.ENDROUND)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+                ReloadScene();
         }
         else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
@@ -131,6 +136,9 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
             fiveSecondLeft = false;
             canBePlay = false;
+            yield return new WaitForSeconds(3f);
+            StartCoroutine(GameManager.instance.TimerVisuFin());
+
         }
 
     }
@@ -250,13 +258,12 @@ public class Timer : MonoBehaviour
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
-                    //Coroutine pour faire apparaitre les oeufs
 
-                    // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {
-                        GameObject test = Instantiate(PlayerManager.instance.players[p].medals[p], temp.transform);
+                        /*GameObject oldMedal = */Instantiate(PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals[p], temp.transform);
                     }
+
                     for (int i = 0; i < numberOfMedal; i++)
                     {
                         if (tempPlayerListPlayer[p].score > 0)

@@ -1,13 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LeaderBoard : MonoBehaviour
 {
     public List<Transform> spawnPoints = new List<Transform>();
 
     public static LeaderBoard Instance;
-
-    public float taillePingouin = 2.5f;
+    [SerializeField]
+    private float taillePingouin = 2.5f;
+    [SerializeField]
+    private float timeBeforeRestart = 15;
 
     private void Awake()
     {
@@ -19,6 +23,7 @@ public class LeaderBoard : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(RestartGame());
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
@@ -29,22 +34,11 @@ public class LeaderBoard : MonoBehaviour
             //reset l'anim
         }
         PlayerManager.instance.playersSortedByScore[0].GetComponentInChildren<Animator>().Play("Dance");
-       /* switch (i)
-        {
-            case 0:
-                PlayerManager.instance.playersSortedByScore[0]
-                break;
-            case 1:
-                PlayerManager.instance.playersSortedByScore[1]
-                break;
-            case 2:
-                PlayerManager.instance.playersSortedByScore[2]
-                break;
-            case 3:
-                PlayerManager.instance.playersSortedByScore[3]
-                break;
-            default:
-                break;
-        }*/
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(timeBeforeRestart);
+        SceneManager.LoadScene("LobbyV1_Working");
     }
 }
