@@ -51,7 +51,7 @@ public class EnterInIgloo : MonoBehaviour
             player.transform.position = Vector3.zero;
             player.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             player.GetComponent<Player>().HideGuy(false);
-            StartCoroutine(GameManager.instance.CircleWaveEffect());
+            StartCoroutine(GameManager.instance.CircleWaveEffect(1));
         };
 
         GameManager GM = GameManager.instance;

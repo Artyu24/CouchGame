@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour
     public float SpeedBumperCharged { get => speedBumperCharged; private set => speedBumperCharged = value; }
 
 
-    public Animator animator;
+    public Animator animatorDebut;
+    public Animator animatorFin;
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
 
@@ -300,15 +301,26 @@ public class GameManager : MonoBehaviour
     public IEnumerator TimerSound()
     {
         StartCoroutine(TimerVisu());
+
+        foreach (Player player in PlayerManager.instance.players.Values)
+        {
+            player.transform.DOMoveY(5, 4.5f).SetEase(Ease.OutBack).OnComplete(() => player.transform.DOMoveY(1, 0.5f).SetEase(Ease.InBack));
+        }
+
         FindObjectOfType<AudioManager>().Play("Five");
+        StartCoroutine(CircleWaveEffect(1));
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Four");
+        StartCoroutine(CircleWaveEffect(1));
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Three");
+        StartCoroutine(CircleWaveEffect(1));
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Two");
+        StartCoroutine(CircleWaveEffect(2));
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("One");
+        StartCoroutine(CircleWaveEffect(2));
         yield return new WaitForSeconds(1f);
         FindObjectOfType<AudioManager>().Play("Fight");
         yield return new WaitForSeconds(1f);
@@ -316,17 +328,23 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator TimerVisu()
     {
-        animator.SetBool("Timer", true);
+        animatorDebut.SetBool("Timer", true);
         yield return new WaitForSeconds(7f);
-        animator.SetBool("Timer", false);
+        animatorDebut.SetBool("Timer", false);
     }
-    public IEnumerator CircleWaveEffect()
+    public IEnumerator TimerVisuFin()
+    {
+        animatorFin.SetBool("TimerFin", true);
+        yield return new WaitForSeconds(4.017f);
+        animatorFin.SetBool("TimerFin", false);
+    }
+    public IEnumerator CircleWaveEffect(int power)
     {
         if (allCircleList.Count != 0)
         {
             foreach (GameObject circle in allCircleList)
             {
-                circle.transform.DOJump(transform.position, 1, 1, 1);
+                circle.transform.DOJump(transform.position, power, 1, 1);
                 yield return new WaitForSeconds(0.2f);
             }
         }

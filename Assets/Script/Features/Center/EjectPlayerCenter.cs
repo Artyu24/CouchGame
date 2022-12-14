@@ -52,7 +52,7 @@ public class EjectPlayerCenter : MonoBehaviour
     public static void EjectPlayer()
     {
         CenterPoint.Instance.PointToUIF();
-
+        GameManager.instance.ButtonToPress.SetActive(false);
         GameManager GM = GameManager.instance;
 
         GM.PlayerInMiddle.GetComponent<Player>().ActualPlayerState = PlayerState.DEAD;

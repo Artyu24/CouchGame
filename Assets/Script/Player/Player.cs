@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
@@ -113,6 +114,27 @@ public class Player : MonoBehaviour
         transform.parent = pos.parent;
 
         GameObject effect = Instantiate(ObjectManager.Instance.EffectSpawn, pos.position, Quaternion.identity, pos.parent);
+        VisualEffect visualEffect = effect.GetComponent<VisualEffect>();
+        Vector4 colorVector = Vector4.zero;
+
+        switch (playerID)
+        {
+            case 0:
+                colorVector = Color.blue;
+                break;
+            case 1:
+                colorVector = Color.red;
+                break;
+            case 2:
+                colorVector = Color.yellow;
+                break;
+            case 3:
+                colorVector = Color.green;
+                break;
+        }
+        visualEffect.SetVector4("ColorStart", colorVector);
+        visualEffect.SetVector4("FresnelColor", colorVector);
+
         yield return new WaitForSeconds(2f);
 
         HideGuy(true);
