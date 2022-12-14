@@ -179,10 +179,6 @@ public class ScoreManager : MonoBehaviour
         }
         swapPlayerSequence.onComplete += () =>
         {
-            //nouvelle sequence shakeFirstPlayer
-            //Sequence shakeFirstPlayer = DOTween.Sequence();
-            //shakeFirstPlayer.Append(playersRankGUISortedByScore[0].DORotate());
-            
             for (int i = 0; i < playersRankGUISortedByScore.Count; i++)
             {
                 playersRankGUISortedByScore[i].SetParent(null);
@@ -214,8 +210,6 @@ public class ScoreManager : MonoBehaviour
 
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
-        //Debug.Log(PlayerManager.instance.players[p].GetComponent<Player>().currentColor);
-        //scorePlayerText[p].color = PlayerManager.instance.players[p].GetComponent<Player>().currentColor;
         UpdateScoresPlayer(p);
     }
 }

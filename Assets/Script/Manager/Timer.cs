@@ -251,13 +251,12 @@ public class Timer : MonoBehaviour
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
-                    //Coroutine pour faire apparaitre les oeufs
 
-                    // Spawn des nouvelles medailes pour chaque joueurs en fonction de leur classement
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {
-                        GameObject test = Instantiate(PlayerManager.instance.players[p].medals[p], temp.transform);
+                        /*GameObject oldMedal = */Instantiate(PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals[p], temp.transform);
                     }
+
                     for (int i = 0; i < numberOfMedal; i++)
                     {
                         if (tempPlayerListPlayer[p].score > 0)
