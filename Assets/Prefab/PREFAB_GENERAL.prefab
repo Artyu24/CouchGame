@@ -833,6 +833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
+      propertyPath: animatorFin
+      value: 
+      objectReference: {fileID: 7340022360438196998}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
       propertyPath: cameraScene
       value: 
       objectReference: {fileID: 7384015259377065155}
@@ -866,6 +871,11 @@ PrefabInstance:
       propertyPath: ButtonToPress
       value: 
       objectReference: {fileID: 6922140620376614923}
+    - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
+        type: 3}
+      propertyPath: animatorDebut
+      value: 
+      objectReference: {fileID: 3519936674745985452}
     - target: {fileID: 367160676615333858, guid: b4d26a2ac13b4cc47b37bbd09cbbd33e,
         type: 3}
       propertyPath: interactionCD
@@ -3894,6 +3904,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503c5738210e746458878e7887109535, type: 3}
+--- !u!95 &7340022360438196998 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5261563233671712287, guid: 503c5738210e746458878e7887109535,
+    type: 3}
+  m_PrefabInstance: {fileID: 3231381733099554073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5071214095439965350
 PrefabInstance:
   m_ObjectHideFlags: 0

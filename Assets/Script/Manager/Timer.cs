@@ -76,9 +76,9 @@ public class Timer : MonoBehaviour
 
                 //anim de d�part du terrain
                 //recup les objets origines de la hierachie dans une liste
-
                 
-            }
+            }            
+
             if (GameManager.instance.Timer <= 7f)
             {                
                 fiveSecondLeft = true;
@@ -104,6 +104,11 @@ public class Timer : MonoBehaviour
             {
                 timerText.text = "00 : 00";
             }
+        }
+        if (GameManager.instance.Timer <= 0.0f && GameManager.instance.ActualGameState == GameState.ENDROUND)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+                ReloadScene();
         }
         else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
@@ -132,6 +137,9 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
             fiveSecondLeft = false;
             canBePlay = false;
+            yield return new WaitForSeconds(3f);
+            StartCoroutine(GameManager.instance.TimerVisuFin());
+
         }
 
     }

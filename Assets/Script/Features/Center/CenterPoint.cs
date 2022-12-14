@@ -48,7 +48,7 @@ public class CenterPoint : MonoBehaviour
         _strength = _strength >= 10 ? _strength = 10 : _strength = currentScore / ScoreManager.instance.scoreMiddle;
 
 
-        globalText.transform.DOShakePosition(ScoreManager.instance.middelPointsCooldown, new Vector3(.05f,.05f,.05f), _strength / 2, 90, false, false);
+        globalText.transform.DOShakePosition(ScoreManager.instance.middelPointsCooldown, new Vector3(.05f,.05f,.05f), _strength, 90, false, false);
     }
 
     public IEnumerator PopPointText()
