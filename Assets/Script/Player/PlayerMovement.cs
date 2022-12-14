@@ -69,13 +69,15 @@ public class PlayerMovement : MonoBehaviour
                 if (Math.Abs(rotation) > 0)
                 {
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.RotateCircleSound);
-
                 }
                 else
                 {
-                    FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound);
-
+                    FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound););
                 }
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound);
             }
         }
     }
