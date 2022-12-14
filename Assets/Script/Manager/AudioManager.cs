@@ -15,23 +15,7 @@ public class AudioManager : MonoBehaviour
     
     private Dictionary<SoundState, List<Sound>> DicoActualSound = new Dictionary<SoundState, List<Sound>>();
     
-    private void Start()
-    {
-
-        //FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpaceAmbianceSound);
-
-
-        foreach (Sound sound in sounds)
-        {
-            if (!DicoActualSound.ContainsKey(sound.ActualSound))
-            {
-                DicoActualSound.Add(sound.ActualSound, new List<Sound>());
-            }
-            DicoActualSound[sound.ActualSound].Add(sound);
-        }
-
-
-    }
+    
     void Awake()
     {
         if(instance == null)
@@ -54,6 +38,24 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.outputAudioMixerGroup = s.audioMixer;
        }
+    }
+
+    private void Start()
+    {
+
+        FindObjectOfType<AudioManager>().Play("AmbianceSpace");
+
+
+        foreach (Sound sound in sounds)
+        {
+            if (!DicoActualSound.ContainsKey(sound.ActualSound))
+            {
+                DicoActualSound.Add(sound.ActualSound, new List<Sound>());
+            }
+            DicoActualSound[sound.ActualSound].Add(sound);
+        }
+
+
     }
 
     public void Play(string name)
