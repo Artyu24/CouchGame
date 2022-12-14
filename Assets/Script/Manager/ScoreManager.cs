@@ -109,6 +109,8 @@ public class ScoreManager : MonoBehaviour
 
         player.score += points * multi;
 
+        player.GetComponent<PlayerAttack>().SpeBarreSlider.transform.parent.transform.GetChild(0).transform.DOPunchScale(Vector3.one,.2f);
+
         ScoreBoardSorting();
         UpdateScores();
     }
