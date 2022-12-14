@@ -53,7 +53,7 @@ public class CenterManager : MonoBehaviour, IInteractable
     {
         healthPoint = maxHealthPoint;
         GetComponent<BoxCollider>().enabled = true;
-        //Activer le bo shield
+
         shieldEffect.Play();
         StartCoroutine(StopShieldAnimation());
     }
@@ -69,7 +69,7 @@ public class CenterManager : MonoBehaviour, IInteractable
         GetComponent<BoxCollider>().enabled = false;
         col.enabled = false;
         actualCenterState = CenterState.ACCESS;
-        //Détruire le bo shield
+    
         shieldEffect.pause = false;
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldDestroyedSound);
 
@@ -98,6 +98,8 @@ public class CenterManager : MonoBehaviour, IInteractable
             if (bridge != null)
                 bridge.DesactivateBridge();
         }
+
+        col.enabled = true;
 
         actualCenterState = CenterState.REGENERATION;
         ActivateShield();
