@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound););
+                    FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound);
                 }
             }
             else
