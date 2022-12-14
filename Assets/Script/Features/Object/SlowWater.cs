@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class SlowWater : MonoBehaviour
@@ -8,6 +9,8 @@ public class SlowWater : MonoBehaviour
 
     private void Awake()
     {
+        transform.GetChild(0).localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        transform.GetChild(0).DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.InCubic);
         StartCoroutine(ObjectManager.Instance.DestroyObject(gameObject));
     }
 

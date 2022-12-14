@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -236,7 +237,11 @@ public class ObjectManager : MonoBehaviour
     {
         yield return new WaitForSeconds(cdDespawn);
         StartCoroutine(SpawnObject());
-        Destroy(objet);
+
+        if (objet.GetComponent<SlowWater>())
+            objet.transform.DOScale(new Vector3(0.05f, 0.05f, 0.05f), 0.5f).SetEase(Ease.InBack).OnComplete(() => Destroy(objet));
+        else
+            Destroy(objet);
     }
 
     #endregion

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,7 +8,6 @@ public class FishBag : MonoBehaviour
 {
     [SerializeField] public int hp = 1;
     private Animator animator;
-    [SerializeField] private BoxCollider boxOne, boxTwo;
 
     private GameObject fishToUI;
     public bool isGolden;
@@ -20,6 +20,9 @@ public class FishBag : MonoBehaviour
 
     void Start()
     {
+        transform.GetChild(0).localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        transform.GetChild(0).DOScale(new Vector3(2.5f, 5, 5), 1f).SetEase(Ease.OutBack);
+
         transform.GetChild(1).gameObject.SetActive(false);
         hp = 1;
         fishToUI = Resources.Load("UI/FishToUI") as GameObject;
@@ -45,17 +48,15 @@ public class FishBag : MonoBehaviour
 
         if (hp <= 0)
         {
-            boxTwo.enabled = false;
-            boxOne.enabled = false;
+            gameObject.layer = 12;
 
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
-            
-            gameObject.layer = 0;
+
             ObjectManager.Instance.StartNextSpawn();
-            Destroy(gameObject, 1.0f);
+            
+            Vector3 scale = transform.GetChild(1).localScale;
+            transform.GetChild(1).DOScale(scale, 1f).OnComplete(() => transform.GetChild(1).DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject)));
         }
     }
-
-    
 }
