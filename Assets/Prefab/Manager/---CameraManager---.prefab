@@ -100,7 +100,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351506069664746905}
-  m_LocalRotation: {x: 0.5670488, y: -0.000000020043117, z: 0.00000001379828, w: 0.8236842}
+  m_LocalRotation: {x: 0.5670488, y: -0.000000020043114, z: 0.000000013798276, w: 0.8236842}
   m_LocalPosition: {x: 0, y: 12.72, z: -6.8100004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -917,6 +917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4507011412241473746}
   hyperSpaceCamera: {fileID: 5353320900190785922}
+  screenShakeCamera: {fileID: 0}
   targetAllPlayer: {fileID: 100339777944459634}
   radiusPlayer: 1.5
-  anim: {fileID: 2903133291915226506}
+  animTransition: {fileID: 2903133291915226506}

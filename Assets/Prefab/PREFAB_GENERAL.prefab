@@ -4636,7 +4636,7 @@ PrefabInstance:
     - target: {fileID: 204043965628417523, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_Priority
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1183523372831398118, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
@@ -4696,18 +4696,33 @@ PrefabInstance:
     - target: {fileID: 1201274586916349855, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002004312
+      value: -0.000000020043117
       objectReference: {fileID: 0}
     - target: {fileID: 1201274586916349855, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000001379828
+      value: 0.00000001379828
       objectReference: {fileID: 0}
-    - target: {fileID: 3734872510373893934, guid: 33d98c12362e4f1478e370d4a05120e0,
+    - target: {fileID: 1574856924986775649, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
-      propertyPath: animTransition
-      value: 
-      objectReference: {fileID: 8460035222454444755}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750525864101419865, guid: 33d98c12362e4f1478e370d4a05120e0,
+        type: 3}
+      propertyPath: m_Priority
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140380996018949637, guid: 33d98c12362e4f1478e370d4a05120e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000020043114
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140380996018949637, guid: 33d98c12362e4f1478e370d4a05120e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000013798276
+      objectReference: {fileID: 0}
     - target: {fileID: 9094039694744371395, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_Name
@@ -4718,12 +4733,6 @@ PrefabInstance:
 --- !u!4 &5570580358840965055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1183523372831398118, guid: 33d98c12362e4f1478e370d4a05120e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6710949960508444505}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8460035222454444755 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2903133291915226506, guid: 33d98c12362e4f1478e370d4a05120e0,
     type: 3}
   m_PrefabInstance: {fileID: 6710949960508444505}
   m_PrefabAsset: {fileID: 0}
