@@ -303,6 +303,7 @@ public class Timer : MonoBehaviour
         {
             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
                 isEnd = true;
+
         }
 
         
@@ -313,6 +314,12 @@ public class Timer : MonoBehaviour
     {
         CameraManager.Instance.AnimTransition.SetTrigger("Start");
         yield return new WaitForSeconds(1);
+
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            PlayerManager.instance.players[i].HideGuy(true);
+            PlayerManager.instance.players[i].ActualPlayerState = PlayerState.FIGHTING;
+        }
 
         if (isEnd)
             SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
