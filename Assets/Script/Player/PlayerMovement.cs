@@ -134,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
                         else
                             rotation = 1;
 
+
                         //son rota
 
                     }

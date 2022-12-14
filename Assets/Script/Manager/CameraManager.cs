@@ -7,10 +7,11 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    [SerializeField] private GameObject playerCamera, hyperSpaceCamera;
+    [SerializeField] private GameObject playerCamera, hyperSpaceCamera, screenShakeCamera;
     [SerializeField] private CinemachineTargetGroup targetAllPlayer;
     [SerializeField] private float radiusPlayer = 2;
     [SerializeField] private Animator animTransition;
+    public GameObject ScreenShakeCamera => screenShakeCamera;
     public Animator AnimTransition => animTransition;
 
     private void Awake()
