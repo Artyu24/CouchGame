@@ -304,7 +304,7 @@ public class GameManager : MonoBehaviour
 
         foreach (Player player in PlayerManager.instance.players.Values)
         {
-            player.transform.DOMoveY(5, 4.5f).SetEase(Ease.OutBack).OnComplete(() => player.transform.DOMoveY(1, 0.5f).SetEase(Ease.InBack));
+            player.transform.DOMoveY(5, 4.6f).SetEase(Ease.OutBack).OnComplete(() => player.transform.DOMoveY(1, 0.5f).SetEase(Ease.InBack));
         }
 
         FindObjectOfType<AudioManager>().Play("Five");
@@ -338,13 +338,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4.017f);
         animatorFin.SetBool("TimerFin", false);
     }
-    public IEnumerator CircleWaveEffect(int power)
+    public IEnumerator CircleWaveEffect(int power, float duration = 1)
     {
         if (allCircleList.Count != 0)
         {
             foreach (GameObject circle in allCircleList)
             {
-                circle.transform.DOJump(transform.position, power, 1, 1);
+                circle.transform.DOJump(transform.position, power, 1, duration);
                 yield return new WaitForSeconds(0.2f);
             }
         }
