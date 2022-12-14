@@ -96,14 +96,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        movementInput = ctx.ReadValue<Vector3>();
 
         if (player.ActualPlayerState == PlayerState.FIGHTING && GameManager.instance.ActualGameState == GameState.INGAME || GameManager.instance.ActualGameState == GameState.LOBBY)
         {
             if (ctx.performed && ctx.ReadValue<Vector3>().sqrMagnitude > (GameManager.instance.DeadZoneController * GameManager.instance.DeadZoneController))
             {
                 orientation = quaternion.LookRotation(ctx.ReadValue<Vector3>(), Vector3.up);
+                movementInput = ctx.ReadValue<Vector3>();
             }
+            else
+                movementInput = Vector3.zero;            
 
             if(movementInput == Vector3.zero)
                 animator.SetBool("Run", false);
@@ -114,10 +116,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCircleMovement(InputAction.CallbackContext ctx)
     {
-        movementInput = ctx.ReadValue<Vector3>();
-
         if (player.ActualPlayerState == PlayerState.MIDDLE && GameManager.instance.ActualGameState == GameState.INGAME)
         {
+            movementInput = ctx.ReadValue<Vector3>();
             rotation = 0;
 
             if (Math.Abs(movementInput.x) > Math.Abs(movementInput.z))
