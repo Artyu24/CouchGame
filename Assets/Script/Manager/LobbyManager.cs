@@ -29,6 +29,12 @@ public class LobbyManager : MonoBehaviour
 
             if (listOfPlayerToStart.Count >= PlayerManager.instance.players.Count && PlayerManager.instance.players.Count >= 2)
             {
+                foreach (GameObject player in ListOfPlayerToStart)
+                {
+                    player.GetComponent<Player>().HideGuy(true);
+                    player.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+                }
+
                 SceneManager.LoadScene(1);
             }
         }
