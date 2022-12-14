@@ -33,6 +33,7 @@ public class LobbyManager : MonoBehaviour
                 {
                     player.GetComponent<Player>().HideGuy(true);
                     player.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+                    player.GetComponent<PlayerMovement>().MovementInput = Vector3.zero;
                 }
 
                 SceneManager.LoadScene(1);
