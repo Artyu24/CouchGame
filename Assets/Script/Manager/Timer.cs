@@ -60,13 +60,7 @@ public class Timer : MonoBehaviour
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
         
-        if(!startGame)
-            StartCoroutine(StartingGame());
-        if (startGame)
-        {
-            StartCoroutine(GameManager.instance.TimerSound());
-            GameManager.instance.ActualGameState = GameState.INIT;
-        }
+        StartCoroutine(StartingGame());
     }
 
     void Update()
@@ -141,7 +135,8 @@ public class Timer : MonoBehaviour
     private IEnumerator StartingGame()
     {
         yield return new WaitForSeconds(timerForStart);
-        startGame = true;
+        StartCoroutine(GameManager.instance.TimerSound());
+        GameManager.instance.ActualGameState = GameState.INIT;
     }
 
     public IEnumerator FiveSecond()
