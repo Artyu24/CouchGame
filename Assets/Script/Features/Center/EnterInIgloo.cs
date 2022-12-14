@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-public class GetInIgloo : MonoBehaviour
+public class EnterInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
     [SerializeField] private GameObject platePref;
@@ -22,23 +22,20 @@ public class GetInIgloo : MonoBehaviour
         if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.ACCESS)
         {
             CameraManager.Instance.ChangeCamera();
-
             CenterManager.instance.ActualCenterState = CenterState.USE;
-            
-
-            Debug.Log(transform.GetChild(transform.childCount - 3).name);
 
             CenterPoint.Instance.SetUp(other.GetComponent<Player>());
 
             GameObject player = other.gameObject;
             player.GetComponent<CapsuleCollider>().enabled = false;
+            other.GetComponent<Player>().ActualPlayerState = PlayerState.WAIT;
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             player.transform.DOMove(new Vector3(0, 3, 0), 2).onComplete += () =>
             {
                 InitCenter(player);
                 GetComponent<Animator>().SetTrigger("Enter");
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.TakeIglooControlSound);
-                FindObjectOfType<AudioManager>().PlayRandom(SoundState.SatisfySound);
+                AudioManager.instance.PlayRandom(SoundState.TakeIglooControlSound);
+                AudioManager.instance.PlayRandom(SoundState.SatisfySound);
                 CenterManager.instance.centerLight.GetComponent<Light>().color = Color.red; //set the light in red when getting in igloo
 
             };
@@ -74,15 +71,15 @@ public class GetInIgloo : MonoBehaviour
             //Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.0f);
             GameObject p = Instantiate(_pipe, Vector3.zero, Quaternion.identity);
             p.transform.parent = plate.transform;
-            plate.transform.GetComponent<EjectPlayerCentre>().cable = p;
+            plate.transform.GetComponent<EjectPlayerCenter>().cable = p;
         }
 
-
+        int actualCircle = player.GetComponent<PlayerMovement>().ActualCircle;
         //Ajoute la couleur et la outline au cercle choisis de base
-        if (GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<Outline>() != null)
+        if (GM.tabCircle[actualCircle].GetComponentInChildren<Outline>() != null)
         {
-            GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<Outline>().enabled = true;
-            GM.tabCircle[player.GetComponent<PlayerMovement>().ActualCircle].GetComponentInChildren<MeshRenderer>().material.color = GM.ColorCircleChoose;
+            GM.tabCircle[actualCircle].GetComponentInChildren<Outline>().enabled = true;
+            GM.tabCircle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color = GM.ColorCircleChoose;
         }
 
         //Gestion du Centre via le Centre Manager

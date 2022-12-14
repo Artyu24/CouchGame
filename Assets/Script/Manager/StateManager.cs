@@ -16,6 +16,7 @@ public enum GameState
 public enum PlayerState
 {
     INIT,
+    WAIT,
     WAITINGPLAY,
     WAITINGQUIT,
     WAITINGSETTINGS,

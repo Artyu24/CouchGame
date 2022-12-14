@@ -146,7 +146,7 @@ public class Timer : MonoBehaviour
 
         if (GameManager.instance.PlayerInMiddle != null)
         {
-            EjectPlayerCentre.EjectPlayer();
+            EjectPlayerCenter.EjectPlayer();
         }
 
         yield return new WaitForSeconds(2); 
