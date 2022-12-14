@@ -81,7 +81,7 @@ public class EnterInIgloo : MonoBehaviour
 
     private IEnumerator InstantiateButton()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.55f);
 
         //On cree les interupteurs pour faire sortir le joueur
         for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
