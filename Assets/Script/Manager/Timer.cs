@@ -132,6 +132,9 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
             fiveSecondLeft = false;
             canBePlay = false;
+            yield return new WaitForSeconds(3f);
+            StartCoroutine(GameManager.instance.TimerVisuFin());
+
         }
 
     }

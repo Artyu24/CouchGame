@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour
     public float SpeedBumperCharged { get => speedBumperCharged; private set => speedBumperCharged = value; }
 
 
-    public Animator animator;
+    public Animator animatorDebut;
+    public Animator animatorFin;
 
     //public Dictionary<Player, int> PlayersScoreGenerals { get => playersScoreGenerals; set => playersScoreGenerals = value; }
 
@@ -316,9 +317,15 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator TimerVisu()
     {
-        animator.SetBool("Timer", true);
+        animatorDebut.SetBool("Timer", true);
         yield return new WaitForSeconds(7f);
-        animator.SetBool("Timer", false);
+        animatorDebut.SetBool("Timer", false);
+    }
+    public IEnumerator TimerVisuFin()
+    {
+        animatorFin.SetBool("TimerFin", true);
+        yield return new WaitForSeconds(4.017f);
+        animatorFin.SetBool("TimerFin", false);
     }
     public IEnumerator CircleWaveEffect()
     {
