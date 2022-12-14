@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EjectPlayerCentre : MonoBehaviour
+public class EjectPlayerCenter : MonoBehaviour
 {
     private BoxCollider bc;
     public GameObject cable;

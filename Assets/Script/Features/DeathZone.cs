@@ -17,8 +17,11 @@ public class DeathZone : MonoBehaviour
         }
         else
         {
-            other.transform.position = new Vector3(other.transform.position.x, 0.8f, other.transform.position.z);
-            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if (GetComponent<Rigidbody>())
+            {
+                other.transform.position = new Vector3(other.transform.position.x, 0.8f, other.transform.position.z);
+                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
         }
     }
 }

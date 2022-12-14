@@ -146,7 +146,7 @@ public class Timer : MonoBehaviour
 
         if (GameManager.instance.PlayerInMiddle != null)
         {
-            EjectPlayerCentre.EjectPlayer();
+            EjectPlayerCenter.EjectPlayer();
         }
 
         yield return new WaitForSeconds(2); 
@@ -292,16 +292,25 @@ public class Timer : MonoBehaviour
     {
         Array.Clear(PlayerManager.instance.PlayersInterface, 0, PlayerManager.instance.PlayersInterface.Length);
 
+        bool isEnd = false;
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
-            {
-                SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
-            }
-            else
-            {
-                SceneManager.LoadScene(GameManager.instance.NextSceneID);
-            }
+                isEnd = true;
         }
+
+        
+        GameManager.instance.GetComponent<MonoBehaviour>().StartCoroutine(ReloadSceneStart(isEnd));
+    }
+
+    private IEnumerator ReloadSceneStart(bool isEnd)
+    {
+        CameraManager.Instance.AnimTransition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+
+        if (isEnd)
+            SceneManager.LoadSceneAsync(GameManager.instance.LeaderBoardScene);
+        else
+            SceneManager.LoadScene(GameManager.instance.NextSceneID);
     }
 }

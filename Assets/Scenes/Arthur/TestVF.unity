@@ -2155,6 +2155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
+      propertyPath: nextSceneID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
       propertyPath: maxMovementSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -2267,6 +2272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PREFAB_GENERAL
+      objectReference: {fileID: 0}
+    - target: {fileID: 175090755445885867, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 600053581973501751, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -2492,6 +2502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966781008414317658, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2966781008582432405, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}

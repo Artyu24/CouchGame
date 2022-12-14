@@ -18,7 +18,7 @@ public class ArrowPlayer : MonoBehaviour
     {
         cam = GameManager.instance.CameraScene;
         canvasArrow.worldCamera = cam;
-        canvasArrow.transform.parent = null;
+        canvasArrow.transform.SetParent(null);
         //Debug.Log(GetComponentInParent<Player>().playerID);
         fleche.GetComponent<Image>().color = flecheColor[GetComponentInParent<Player>().playerID];
         texte.GetComponent<Text>().text = "J" + (GetComponentInParent<Player>().playerID+1);

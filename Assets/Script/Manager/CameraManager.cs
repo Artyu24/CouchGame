@@ -10,6 +10,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject playerCamera, hyperSpaceCamera;
     [SerializeField] private CinemachineTargetGroup targetAllPlayer;
     [SerializeField] private float radiusPlayer = 2;
+    [SerializeField] private Animator animTransition;
+    public Animator AnimTransition => animTransition;
 
     private void Awake()
     {
@@ -22,7 +24,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         targetAllPlayer.m_Targets[0] = CreateNewTarget(AudioManager.instance.transform, 1f, 0.2f);
-        hyperSpaceCamera.SetActive(false);
+        StartCoroutine(TransitionStart());
     }
 
     private CinemachineTargetGroup.Target CreateNewTarget(Transform t, float weight, float radius)
@@ -72,10 +74,15 @@ public class CameraManager : MonoBehaviour
             playerCamera.SetActive(true);
     }
 
+    private IEnumerator TransitionStart()
+    {
+        yield return new WaitForSeconds(1);
+        hyperSpaceCamera.SetActive(false);
+    }
+
     public void ActivateHyperSpace()
     {
         hyperSpaceCamera.SetActive(true);
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.TransitionLoopSound);
-
     }
 }
