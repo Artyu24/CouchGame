@@ -255,7 +255,7 @@ public class Timer : MonoBehaviour
                 for (int p = 0; p < tempPlayerListPlayer.Count; p++)
                 {
                     temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>(); // spawn des prefab pour les score avec les oeufs
                     temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
