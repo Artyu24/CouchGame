@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.ProBuilder.Shapes;
 
 public class EnterInIgloo : MonoBehaviour
 {
     private Vector3 offsetCam = Vector3.zero;
     [SerializeField] private GameObject platePref;
     private Animator anim;
+    private GameObject _pipe;
 
     private void Start()
     {
-        CenterManager.instance.centerLight = transform.GetChild(transform.childCount - 3).gameObject;
+        CenterManager.instance.centerLight = transform.GetChild(transform.childCount - 3).gameObject; 
+        _pipe = Resources.Load<GameObject>("Features/CableShield");
     }
 
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
@@ -51,28 +54,13 @@ public class EnterInIgloo : MonoBehaviour
             player.transform.position = Vector3.zero;
             player.GetComponent<Player>().ActualPlayerState = PlayerState.MIDDLE;
             player.GetComponent<Player>().HideGuy(false);
-            StartCoroutine(GameManager.instance.CircleWaveEffect(1));
+            StartCoroutine(GameManager.instance.CircleWaveEffect(1, 0.5f));
         };
 
+        StartCoroutine(InstantiateButton());
+
         GameManager GM = GameManager.instance;
-
-        GameObject _pipe = Resources.Load<GameObject>("Features/CableShield");
-
         GM.PlayerInMiddle = player.gameObject;
-
-        //On créé les inérupteurs pour faire sortir le joueur
-        for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
-        {
-            Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
-            GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
-            plate.GetComponent<BoxCollider>().enabled = true;
-            GM.EjectPlates.Add(plate);
-
-            //Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.0f);
-            GameObject p = Instantiate(_pipe, Vector3.zero, Quaternion.identity);
-            p.transform.parent = plate.transform;
-            plate.transform.GetComponent<EjectPlayerCenter>().cable = p;
-        }
 
         int actualCircle = player.GetComponent<PlayerMovement>().ActualCircle;
         //Ajoute la couleur et la outline au cercle choisis de base
@@ -89,6 +77,25 @@ public class EnterInIgloo : MonoBehaviour
         StartCoroutine(OnVibrate());
         StartCoroutine(ShakeCam());
 
+    }
+
+    private IEnumerator InstantiateButton()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        //On cree les interupteurs pour faire sortir le joueur
+        for (int i = 0; i < GameManager.instance.NumberOfPlate; i++)
+        {
+            Transform spawnPoint = PointAreaManager.instance.GetRandomPosition();
+            GameObject plate = Instantiate(platePref, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
+            plate.GetComponent<BoxCollider>().enabled = true;
+            GameManager.instance.EjectPlates.Add(plate);
+
+            //Vector3 _pos = Vector3.Lerp(transform.position, plate.transform.position, 0.0f);
+            GameObject p = Instantiate(_pipe, Vector3.zero, Quaternion.identity);
+            p.transform.parent = plate.transform;
+            plate.transform.GetComponent<EjectPlayerCenter>().cable = p;
+        }
     }
 
     private IEnumerator ShakeCam()
