@@ -45,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
         effectSpeBarre.SetActive(false);
         player = GetComponent<Player>();
         playerHit = Resources.Load<GameObject>("Features/Hit");
+        currentSpecial = 0;
     }
     #endregion
 
