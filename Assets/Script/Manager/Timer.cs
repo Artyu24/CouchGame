@@ -64,7 +64,11 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
-
+        if (GameManager.instance.ActualGameState == GameState.ENDROUND)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+                ReloadScene();
+        }
 
         if (GameManager.instance.ActualGameState == GameState.INGAME)
         {
@@ -105,11 +109,7 @@ public class Timer : MonoBehaviour
                 timerText.text = "00 : 00";
             }
         }
-        if (GameManager.instance.Timer <= 0.0f && GameManager.instance.ActualGameState == GameState.ENDROUND)
-        {
-            if (Input.GetKeyDown(KeyCode.JoystickButton0))
-                ReloadScene();
-        }
+        
         else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
             if (timerCountDown <= 0)
