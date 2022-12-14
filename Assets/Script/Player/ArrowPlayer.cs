@@ -18,6 +18,7 @@ public class ArrowPlayer : MonoBehaviour
     {
         cam = GameManager.instance.CameraScene;
         canvasArrow.worldCamera = cam;
+        canvasArrow.transform.parent = null;
         //Debug.Log(GetComponentInParent<Player>().playerID);
         fleche.GetComponent<Image>().color = flecheColor[GetComponentInParent<Player>().playerID];
         texte.GetComponent<Text>().text = "J" + (GetComponentInParent<Player>().playerID+1);
@@ -34,10 +35,12 @@ public class ArrowPlayer : MonoBehaviour
                 texte.SetActive(false);
                 //remettre le active a true en début de manche
             }
-            //Remettre la rotation du canvas en opposition a celui du player            
+            //Remettre la rotation du canvas en opposition a celui du player
+            Vector3 arrowPos = transform.position;
             Vector3 canvasRotationOffset = cam.transform.localEulerAngles;
-            canvasRotationOffset.y -= transform.eulerAngles.y;
             canvasArrow.transform.localEulerAngles = canvasRotationOffset;
+            arrowPos.z += offsetArrow;
+            canvasArrow.transform.position = arrowPos;
         }
     }
 }

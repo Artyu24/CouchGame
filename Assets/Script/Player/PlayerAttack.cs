@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
                     int xcount = Random.Range(0, 5);
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.EffortSound);
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.NormalPunch);
-                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
+                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(2).gameObject));
                 }
             }
             else if ((player.ActualPlayerState == PlayerState.WAITINGPLAY || player.ActualPlayerState == PlayerState.WAITINGQUIT || player.ActualPlayerState == PlayerState.WAITINGSETTINGS) && GameManager.instance.ActualGameState == GameState.LOBBY)
@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
                     currentSpecial = 0;
                     speBarreSlider.value = currentSpecial;
                     int xcount = Random.Range(0, 3);
-                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(4).gameObject));
+                    StartCoroutine(AttackCoroutine(strenght, transform.GetChild(3).gameObject));
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.PunchSpecialSound);
                     FindObjectOfType<AudioManager>().PlayRandom(SoundState.SpecialPunchHit);
                 }
