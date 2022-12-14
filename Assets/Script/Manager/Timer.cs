@@ -59,10 +59,7 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].name + " : " + PlayerManager.instance.players[i].medals.Count);
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
-    }
-
-    void Update()
-    {
+        
         if(!startGame)
             StartCoroutine(StartingGame());
         if (startGame)
@@ -70,7 +67,10 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
+    }
 
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(GameManager.instance.TimerSound());
