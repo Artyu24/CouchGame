@@ -2911,6 +2911,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PREFAB_GENERAL
       objectReference: {fileID: 0}
+    - target: {fileID: 175090755911361948, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: middelPointsCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1023587080910456488, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
