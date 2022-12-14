@@ -2754,7 +2754,7 @@ PrefabInstance:
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
       propertyPath: timer
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 175090754971490319, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
@@ -3105,6 +3105,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 135.13412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426283350283543523, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: sounds.Array.data[76].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 980cb323c0161f147a137487ba1ec36d, type: 3}
+    - target: {fileID: 5426283350283543523, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: sounds.Array.data[76].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426283350283543523, guid: 8e20f36eac6b6e44799cc004650ee951,
+        type: 3}
+      propertyPath: sounds.Array.data[76].volume
+      value: 0.953
       objectReference: {fileID: 0}
     - target: {fileID: 5587240567481133254, guid: 8e20f36eac6b6e44799cc004650ee951,
         type: 3}
