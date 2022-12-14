@@ -120,6 +120,7 @@ public class Timer : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlayRandom(SoundState.Music);
                 StartCoroutine(GameManager.instance.TargetMeteorite());
                 StartCoroutine(GameManager.instance.CircleWaveEffect());
+                GameManager.instance.ButtonToPress.SetActive(false);
             }
 
             timerCountDown -= Time.deltaTime;
