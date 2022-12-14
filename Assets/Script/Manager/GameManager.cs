@@ -250,7 +250,6 @@ public class GameManager : MonoBehaviour
         if (target != null)
         {
             target.SetActive(false);
-            //StartCoroutine(TargetMeteorite());
         }
         if(ButtonToPress != null)
             ButtonToPress.SetActive(false);
@@ -279,8 +278,6 @@ public class GameManager : MonoBehaviour
                 canMeteorite = false;
             }
         }
-        
-
     }
 
     public IEnumerator TargetCD()
@@ -288,7 +285,6 @@ public class GameManager : MonoBehaviour
         target.SetActive(true);
         yield return new WaitForSeconds(CDafterTargetAparrition);
         target.SetActive(false);
-
     }
     public IEnumerator CDBeforNewMeteorite()
     {

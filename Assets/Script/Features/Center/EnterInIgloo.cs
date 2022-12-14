@@ -20,18 +20,18 @@ public class EnterInIgloo : MonoBehaviour
     }
 
     //screen shake, color disque, anim disque (gamefeel) vibration manette, canvas contour
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.ACCESS)
+        if (other.gameObject.CompareTag("Player") && CenterManager.instance.ActualCenterState == CenterState.ACCESS)
         {
             CameraManager.Instance.ChangeCamera();
             CenterManager.instance.ActualCenterState = CenterState.USE;
 
-            CenterPoint.Instance.SetUp(other.GetComponent<Player>());
+            CenterPoint.Instance.SetUp(other.gameObject.GetComponent<Player>());
 
             GameObject player = other.gameObject;
             player.GetComponent<CapsuleCollider>().enabled = false;
-            other.GetComponent<Player>().ActualPlayerState = PlayerState.WAIT;
+            other.gameObject.GetComponent<Player>().ActualPlayerState = PlayerState.WAIT;
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             player.transform.DOMove(new Vector3(0, 3, 0), 2).onComplete += () =>
             {

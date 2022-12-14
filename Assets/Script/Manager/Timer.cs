@@ -12,6 +12,10 @@ public class Timer : MonoBehaviour
     private Text timerText;
     private Text timerSet;
 
+    [SerializeField]
+    private float timerForStart = 4.0f;
+    private bool startGame = false;
+
     private float timerCountDown = 5;
 
     private int minutes, seconds;
@@ -55,6 +59,8 @@ public class Timer : MonoBehaviour
             Debug.Log(PlayerManager.instance.players[i].name + " : " + PlayerManager.instance.players[i].medals.Count);
             PlayerManager.instance.Init(i, PlayerManager.instance.players[i].gameObject);
         }
+        
+        StartCoroutine(StartingGame());
     }
 
     void Update()
@@ -64,6 +70,7 @@ public class Timer : MonoBehaviour
             StartCoroutine(GameManager.instance.TimerSound());
             GameManager.instance.ActualGameState = GameState.INIT;
         }
+
         if (GameManager.instance.ActualGameState == GameState.ENDROUND)
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
@@ -75,12 +82,7 @@ public class Timer : MonoBehaviour
             if (GameManager.instance.Timer <= 0.0f && !scoreWindowRoundIsActive && ScoreManager.instance.terrain.Count != 0)
             {
                 GameManager.instance.ActualGameState = GameState.ENDROUND;
-                //add un temps mort de 2 secs pour que toute les anims se finissent
                 StartCoroutine(FinishAllActions());
-
-                //anim de d�part du terrain
-                //recup les objets origines de la hierachie dans une liste
-                
             }            
 
             if (GameManager.instance.Timer <= 7f)
@@ -90,7 +92,6 @@ public class Timer : MonoBehaviour
                 {
                     StartCoroutine(FiveSecond());
                 }
-
             }
 
             if (!scoreWindowRoundIsActive)
@@ -130,6 +131,14 @@ public class Timer : MonoBehaviour
             timerText.text = "";
         }
     }
+
+    private IEnumerator StartingGame()
+    {
+        yield return new WaitForSeconds(timerForStart);
+        StartCoroutine(GameManager.instance.TimerSound());
+        GameManager.instance.ActualGameState = GameState.INIT;
+    }
+
     public IEnumerator FiveSecond()
     {
         if(fiveSecondLeft == true)
@@ -140,12 +149,8 @@ public class Timer : MonoBehaviour
             canBePlay = false;
             yield return new WaitForSeconds(3f);
             StartCoroutine(GameManager.instance.TimerVisuFin());
-
         }
-
     }
-    
-        
     
     private IEnumerator FinishAllActions()
     {
@@ -255,7 +260,7 @@ public class Timer : MonoBehaviour
                 for (int p = 0; p < tempPlayerListPlayer.Count; p++)
                 {
                     temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
+                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>(); // spawn des prefab pour les score avec les oeufs
                     temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
@@ -278,17 +283,13 @@ public class Timer : MonoBehaviour
                     position++;
                     numberOfMedal--;
                 }
-                
             };
-
-            
         }
     }
     private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
         yield return new WaitForSeconds(p);
         GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
-        //temp2.GetComponentInChildren<Animator>().SetTrigger("SpawnMedal");
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
         Tween b = temp2.transform.DOScale(new Vector3(1, 1), 0.5f);
         Sequence seq = DOTween.Sequence();
@@ -305,10 +306,7 @@ public class Timer : MonoBehaviour
         {
             if (PlayerManager.instance.players[i].medals.Count >= GameManager.instance.PointToWin)
                 isEnd = true;
-
         }
-
-        
         GameManager.instance.GetComponent<MonoBehaviour>().StartCoroutine(ReloadSceneStart(isEnd));
     }
 

@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     private Vector3 movementInput;
+    public Vector3 MovementInput {set => movementInput = value; }
     private Quaternion orientation;
     private float rotation = 0;
     private bool switchDone = false;
@@ -219,26 +220,48 @@ public class PlayerMovement : MonoBehaviour
 
             GameManager.instance.ButtonToPress.SetActive(true);
         }
-        ////// llalalalalalalalalalalalalalalalalalal
+        
         isInteracting = false;
     }
 
     public void ChangeSpeed()
     {
-        if (player.IsSlow)
+        if (player.IsSlow && !player.IsSpeedUp)
         {
             speed = GameManager.instance.MinMoveSpeed;
             animator.SetFloat("RunModifier", .5f);
+            SwitchEffect(1);
         }
-        else if(player.IsSpeedUp)
+        else if(player.IsSpeedUp && !player.IsSlow)
         {
             speed = GameManager.instance.MaxMoveSpeed;
             animator.SetFloat("RunModifier", 2f);
+            SwitchEffect(2);
         }
         else
         {
             speed = GameManager.instance.MoveSpeed;
             animator.SetFloat("RunModifier", 1f);
+            SwitchEffect(3);
+        }
+    }
+
+    private void SwitchEffect(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+                break;
+            case 2:
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
+                break;
+            case 3:
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+                PlayerManager.instance.PlayersInterface[player.playerID].transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+                break;
         }
     }
 

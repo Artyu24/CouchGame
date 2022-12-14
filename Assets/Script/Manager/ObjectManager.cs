@@ -162,6 +162,7 @@ public class ObjectManager : MonoBehaviour
     {
         StartCoroutine(SpawnObject());
         yield return new WaitForSeconds(cdMultiplier);
+        ScoreManager.instance.scorePlayerText[player.playerID].transform.GetChild(0).gameObject.SetActive(false);
         player.Multiplier = false;
         player.multiplierCoroutine = null;
     }
