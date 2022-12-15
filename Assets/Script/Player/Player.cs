@@ -64,13 +64,14 @@ public class Player : MonoBehaviour
     private void Start()
     {/*
         InitCam();*/
-        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) => 
-        {
-            InitCam();
-        };
+        //SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) => 
+        //{
+        //    InitCam();
+        //};
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void InitCam()
+    public void InitCam()
     {
         if (SceneManager.GetActiveScene().name != "Leaderboard")
         {
@@ -182,5 +183,15 @@ public class Player : MonoBehaviour
                     couronne.SetActive(true);
         }
         // cacher les particules
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitCam();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
