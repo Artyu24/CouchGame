@@ -202,7 +202,7 @@ public class Timer : MonoBehaviour
                 Player playerTemp = null;
                 List<Player> tempPlayerListPlayer = new List<Player>();
 
-                while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
+                while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)//tri les joueurs du plus gros score au plus petit
                 {
                     foreach (var player in PlayerManager.instance.players)
                     {
