@@ -202,7 +202,7 @@ public class ScoreManager : MonoBehaviour
         {
             playersRankGUISortedByScore[i].GetChild(0).GetChild(0).GetComponent<Image>().sprite = emptyCourroneUI;
         }
-        PlayerManager.instance.playersSortedByScore= playersSortedByScore;
+        PlayerManager.instance.playersSortedByScore = playersSortedByScore;
     }
 
     public void InstantiateScoreText(int p) 

@@ -24,12 +24,29 @@ public class LeaderBoard : MonoBehaviour
     void Start()
     {
         StartCoroutine(RestartGame());
+        int bestScore = int.MinValue;
+        Player playerWithBestScore = null;
+        List<Player> playersSortedByScore = new List<Player>(); //list des players trié par score
+
+        while (playersSortedByScore.Count < PlayerManager.instance.players.Count)
+        {
+            foreach (var p in PlayerManager.instance.players)
+            {
+                if (!playersSortedByScore.Contains(p.Value) && p.Value.score > bestScore)
+                {
+                    bestScore = p.Value.score;
+                    playerWithBestScore = p.Value;
+                }
+            }
+            playersSortedByScore.Add(playerWithBestScore);
+            bestScore = int.MinValue;
+        }
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            PlayerManager.instance.playersSortedByScore[i].transform.position = spawnPoints[i].position;
-            PlayerManager.instance.playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
-            PlayerManager.instance.playersSortedByScore[i].transform.localScale *= taillePingouin;
-            PlayerManager.instance.playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
+            playersSortedByScore[i].transform.position = spawnPoints[i].position;
+            playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
+            playersSortedByScore[i].transform.localScale *= taillePingouin;
+            playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
 
             //reset l'anim
         }
