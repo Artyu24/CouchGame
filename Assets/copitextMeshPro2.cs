@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class copitextMeshPro2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TextMeshProUGUI text;
+    
 
-    // Update is called once per frame
+    private void Start()
+    {
+        text = GetComponent<TextMeshProUGUI>();   
+
+    }
     void Update()
     {
-        
+        text.text = transform.parent.GetComponent<TextMeshProUGUI>().text;
+
     }
 }
