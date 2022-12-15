@@ -226,18 +226,17 @@ public class Timer : MonoBehaviour
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
                     scoreGeneralPlayerText[p].text = "Player " + (tempPlayerListPlayer[p].playerID + 1) + " : ";
 
-                    for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
+                    for (int i = 0; i < PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals.Count; i++)//Medilles ancien round
                     {
-                        Instantiate(PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals[p], temp.transform);
+                        Instantiate(medals[0], temp.transform);
                     }
 
-                    for (int i = 0; i < numberOfMedal; i++)
+                    for (int i = 0; i < numberOfMedal; i++)//nouvelles medailles
                     {
-                        if (tempPlayerListPlayer[p].score > 0)
+                        if (tempPlayerListPlayer[p].score >= 0)
                         {
                             //Anim d'apparition
                             StartCoroutine(InstantiateMedals(temp.transform, position, i));
-                            PlayerManager.instance.players[p].scoreGeneral++;
                         }
                     }
                     position++;
