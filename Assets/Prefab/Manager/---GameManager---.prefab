@@ -52,24 +52,34 @@ MonoBehaviour:
   normalStrenght: 11
   specialStrenght: 30
   attackCd: 1
-  interactionCD: 1.5
-  maxMovementSpeed: 4
-  movSpeedSlowZone: 0
+  moveSpeed: 0
+  maxMoveSpeed: 0
+  minMoveSpeed: 0
   respawnDelay: 2
-  invincibleDelay: 2
+  invincibleDelay: 1
   slowDuration: 2
   radiusMax: 1.5
   growingSpeed: 1.5
   pushForce: 1.5
+  interactionCD: 1.5
+  ButtonToPress: {fileID: 0}
   radiusMaxExplosion: 1.5
   growingSpeedExplossion: 1.5
   pushForceExplosion: 1.5
   speedMeteorite: 1.5
-  pushForceBumper: 1.5
   target: {fileID: 0}
   CDafterTargetAparrition: 0
+  launchMeteorite: 0
   cdforNewMeteorite: 0
+  pushForceBumper: 1.5
+  bumperMovementDistance: 0.5
+  bumperMovementDistanceCharged: 0.5
+  speedBumper: 2
+  speedBumperCharged: 2
+  animatorDebut: {fileID: 0}
+  animatorFin: {fileID: 0}
   circleRotationSpeed: 32.2
+  allCircleList: []
   tabCircle:
   - {fileID: 0}
   - {fileID: 0}
@@ -88,3 +98,6 @@ MonoBehaviour:
   pauseFirstButton: {fileID: 0}
   optionsFirstButton: {fileID: 0}
   optionsClosedButton: {fileID: 0}
+  nextSceneID: 0
+  leaderBoardScene: Leaderboard
+  pointToWin: 0

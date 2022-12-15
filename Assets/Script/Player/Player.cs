@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     public bool isChockedWaved = false;
     public bool isInvincible = false;
+    public Coroutine spawnCoroutine;
 
     private PlayerState actualPlayerState = PlayerState.INIT;
     public PlayerState ActualPlayerState { get => actualPlayerState; set => actualPlayerState = value; }
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
 
     public void ActivateRespawnEffect()
     {
-        StartCoroutine(RespawnEffect());
+        spawnCoroutine = StartCoroutine(RespawnEffect());
     }
 
     private IEnumerator RespawnEffect()
@@ -145,6 +146,8 @@ public class Player : MonoBehaviour
         actualPlayerState = PlayerState.FIGHTING;
         transform.parent = null;
         DontDestroyOnLoad(transform.gameObject);
+
+        spawnCoroutine = null;
 
         //Tween a = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 0.2f), 0.5f);
         //Tween b = gameObject.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(new Color(1f, 1f, 1f, 1f), 0.5f);

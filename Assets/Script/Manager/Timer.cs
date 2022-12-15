@@ -14,7 +14,8 @@ public class Timer : MonoBehaviour
 
     [SerializeField]
     private float timerForStart = 4.0f;
-    private bool startGame = false;
+
+    [SerializeField] private GameObject cadre;
 
     private float timerCountDown = 5;
 
@@ -65,11 +66,11 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartCoroutine(GameManager.instance.TimerSound());
-            GameManager.instance.ActualGameState = GameState.INIT;
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    StartCoroutine(GameManager.instance.TimerSound());
+        //    GameManager.instance.ActualGameState = GameState.INIT;
+        //}
 
         if (GameManager.instance.ActualGameState == GameState.ENDROUND)
         {
@@ -101,6 +102,9 @@ public class Timer : MonoBehaviour
                 seconds = Mathf.FloorToInt(GameManager.instance.Timer % 60f);
             }
 
+            if (!cadre.activeInHierarchy)
+                cadre.SetActive(true);
+
             if (GameManager.instance.Timer >= 0.0f)
             {
                 timerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
@@ -110,7 +114,6 @@ public class Timer : MonoBehaviour
                 timerText.text = "00 : 00";
             }
         }
-        
         else if (GameManager.instance.ActualGameState == GameState.INIT)
         {
             if (timerCountDown <= 0)
@@ -129,6 +132,8 @@ public class Timer : MonoBehaviour
         else
         {
             timerText.text = "";
+            if(cadre.activeInHierarchy)
+                cadre.SetActive(false);
         }
     }
 
@@ -173,6 +178,13 @@ public class Timer : MonoBehaviour
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             CameraManager.Instance.RemovePlayerTarget(i + 1);
+            if (PlayerManager.instance.players[i].spawnCoroutine != null)
+            {
+                StopCoroutine(PlayerManager.instance.players[i].spawnCoroutine);
+                PlayerManager.instance.players[i].HideGuy(false);
+                PlayerManager.instance.players[i].transform.parent = null;
+                DontDestroyOnLoad(PlayerManager.instance.players[i].transform.gameObject);
+            }
         }
 
         CameraManager.Instance.ActivateHyperSpace();
@@ -278,6 +290,11 @@ public class Timer : MonoBehaviour
         {
             PlayerManager.instance.players[i].HideGuy(true);
             PlayerManager.instance.players[i].ActualPlayerState = PlayerState.FIGHTING;
+            PlayerManager.instance.players[i].isInvincible = false;
+            PlayerManager.instance.players[i].GetComponent<PlayerMovement>().ActualCircle = 0;
+            PlayerAttack playerAtk = PlayerManager.instance.players[i].GetComponent<PlayerAttack>();
+            playerAtk.CurrentSpecial = 0;
+            playerAtk.EffectSpeBarre.SetActive(false);
         }
 
         if (isEnd)

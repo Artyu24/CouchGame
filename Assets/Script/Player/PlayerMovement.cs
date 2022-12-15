@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float rotation = 0;
     private bool switchDone = false;
     private int actualCircle;
-    public int ActualCircle => actualCircle;
+    public int ActualCircle { get => actualCircle; set => actualCircle = value; }
 
     bool isInteracting = false;
     

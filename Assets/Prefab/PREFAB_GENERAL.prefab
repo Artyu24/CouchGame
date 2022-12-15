@@ -426,8 +426,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384015259377065167}
-  m_LocalRotation: {x: 0.5670488, y: -0.000000020043117, z: 0.00000001379828, w: 0.8236842}
-  m_LocalPosition: {x: 0, y: 946, z: -364}
+  m_LocalRotation: {x: 0.5059584, y: -0, z: -0, w: 0.86255795}
+  m_LocalPosition: {x: -1.31, y: 18.74, z: -11.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2303,6 +2303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerForStart: 4
+  cadre: {fileID: 2493109806273671931}
   scoreWindowRound: {fileID: 175090755128949392}
   scoreWindowGeneral: {fileID: 6986663495788234754}
   ppWindowRound:
@@ -5353,12 +5354,12 @@ PrefabInstance:
     - target: {fileID: 1201274586916349855, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000020043117
+      value: 0.00000002004312
       objectReference: {fileID: 0}
     - target: {fileID: 1201274586916349855, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001379828
+      value: -0.00000001379828
       objectReference: {fileID: 0}
     - target: {fileID: 1574856924986775649, guid: 33d98c12362e4f1478e370d4a05120e0,
         type: 3}
