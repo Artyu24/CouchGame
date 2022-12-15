@@ -49,31 +49,6 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("LostPlayer");
-        
-        //manettes.Add(Gamepad.current); //pbm il prend pas la bonne manette
-
-        /*for (int i = 0; i < manettes.Count; i++)
-        {
-            Debug.Log(i + " : " + manettes[i]);
-        }*/
-
-        int xcount = Random.Range(0, 3);
-
-        /*switch (xcount)
-        {
-            case 0:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn1");
-                break;
-            case 1:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn2");
-                break;
-            case 2:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn3");
-                break;
-            case 3:
-                FindObjectOfType<AudioManager>().Play("Spawn/respawn4");
-                break;
-        }*/
 
         int id = players.Count;
 

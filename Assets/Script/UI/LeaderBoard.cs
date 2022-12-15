@@ -28,9 +28,9 @@ public class LeaderBoard : MonoBehaviour
         {
             foreach (var p in PlayerManager.instance.players)
             {
-                if (!playersSortedByScore.Contains(p.Value) && p.Value.scoreGeneral > bestScore)
+                if (!playersSortedByScore.Contains(p.Value) && p.Value.medals.Count > bestScore)
                 {
-                    bestScore = p.Value.scoreGeneral;
+                    bestScore = p.Value.medals.Count;
                     playerWithBestScore = p.Value;
                 }
             }
@@ -49,8 +49,6 @@ public class LeaderBoard : MonoBehaviour
             playersSortedByScore[i].transform.rotation = spawnPoints[i].rotation;
             playersSortedByScore[i].transform.localScale *= taillePingouin;
             playersSortedByScore[i].GetComponent<PlayerAttack>().EffectSpeBarre.SetActive(false);
-
-            //reset l'anim
         }
         playersSortedByScore[0].GetComponentInChildren<Animator>().Play("Dance");
     }
