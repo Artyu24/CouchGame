@@ -21,7 +21,7 @@ public class HyperSpeedEffect : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.ActualGameState == GameState.ENDROUND && !warpActive) // a la fin du niveau
+        if (GameManager.instance.ActualGameState == GameState.ENDROUND || GameManager.instance.ActualGameState == GameState.ENDSCORING && !warpActive) // a la fin du niveau
         {
             warpActive = true;
             StartCoroutine(ActivateParticules());

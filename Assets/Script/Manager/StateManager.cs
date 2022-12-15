@@ -10,7 +10,8 @@ public enum GameState
     INIT,
     INGAME,
     PAUSED,
-    ENDROUND
+    ENDROUND,
+    ENDSCORING
 }
 
 public enum PlayerState

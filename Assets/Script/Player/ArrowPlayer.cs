@@ -34,7 +34,7 @@ public class ArrowPlayer : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Leaderboard")
         {
-            if (GameManager.instance.ActualGameState == GameState.ENDROUND && fleche.activeInHierarchy)
+            if (GameManager.instance.ActualGameState == GameState.ENDROUND || GameManager.instance.ActualGameState == GameState.ENDSCORING && fleche.activeInHierarchy)
             {
                 fleche.SetActive(false);
                 texte.SetActive(false);

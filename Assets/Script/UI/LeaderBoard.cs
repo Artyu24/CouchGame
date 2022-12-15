@@ -12,6 +12,8 @@ public class LeaderBoard : MonoBehaviour
     private float taillePingouin = 2.5f;
     [SerializeField]
     private float timeBeforeRestart = 15;
+    [SerializeField] private Animator animTransi;
+
     List<Player> playersSortedByScore = new List<Player>();
 
     private void Awake()
@@ -56,6 +58,14 @@ public class LeaderBoard : MonoBehaviour
     private IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(timeBeforeRestart);
+        animTransi.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            Destroy(PlayerManager.instance.players[i].GetComponent<ArrowPlayer>().fleche);
+            Destroy(PlayerManager.instance.players[i].gameObject);
+        }
+        PlayerManager.instance.players.Clear();
         SceneManager.LoadScene("LobbyV1_Working");
     }
 }
