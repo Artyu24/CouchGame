@@ -16,6 +16,15 @@ public class LobbyManager : MonoBehaviour
             instance = this;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        {
+            PlayerManager.instance.players[i].transform.localScale = new Vector3(1,1,1);
+        }
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

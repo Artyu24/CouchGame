@@ -42,7 +42,7 @@ public class LeaderBoard : MonoBehaviour
     void Start()
     {
         StartCoroutine(RestartGame());
-        
+        PlayerManager.instance.playersSortedByScore[0].couronne.SetActive(false);
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
             playersSortedByScore[i].transform.position = spawnPoints[i].position;
