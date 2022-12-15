@@ -204,12 +204,12 @@ public class Timer : MonoBehaviour
 
                 while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)//tri les joueurs du plus gros score au plus petit
                 {
-                    foreach (var player in PlayerManager.instance.players)
+                    foreach (var player in PlayerManager.instance.players.Values)
                     {
-                        if (!tempPlayerListPlayer.Contains(player.Value) && player.Value.score > bestScore)
+                        if (!tempPlayerListPlayer.Contains(player) && player.score > bestScore)
                         {
-                            bestScore = player.Value.score;
-                            playerTemp = player.Value;
+                            bestScore = player.score;
+                            playerTemp = player;
                         }
                     }
                     tempPlayerListPlayer.Add(playerTemp);
@@ -236,7 +236,7 @@ public class Timer : MonoBehaviour
                         if (tempPlayerListPlayer[p].score >= 0)
                         {
                             //Anim d'apparition
-                            StartCoroutine(InstantiateMedals(temp.transform, position, i));
+                            StartCoroutine(InstantiateMedals(temp.transform, tempPlayerListPlayer[p].playerID, i));
                         }
                     }
                     position++;
@@ -248,12 +248,12 @@ public class Timer : MonoBehaviour
     private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
         yield return new WaitForSeconds(p);
-        GameObject temp2 = Instantiate(medals[Mathf.Abs(position)], t);
+        GameObject temp2 = Instantiate(medals[0], t);
+        PlayerManager.instance.players[position].medals.Add(medals[0]);
         Tween a = temp2.transform.DOScale(new Vector3(1.1f, 1.1f), 0.5f);
         Tween b = temp2.transform.DOScale(new Vector3(1, 1), 0.5f);
         Sequence seq = DOTween.Sequence();
         seq.Append(a).Append(b).SetLoops(-1);
-        PlayerManager.instance.players[position].medals.Add(medals[Mathf.Abs(position)]);
     }
 
     public void ReloadScene()
