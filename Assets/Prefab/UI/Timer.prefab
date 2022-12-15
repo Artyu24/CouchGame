@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 869403501190501466}
   - component: {fileID: 869403501190501468}
   - component: {fileID: 869403501190501467}
-  - component: {fileID: 869403501190501469}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -81,33 +80,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '00 : 00'
---- !u!114 &869403501190501469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869403501190501465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61548388566ac74ba61cbed29cf37ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreWindowRound: {fileID: 0}
-  scoreWindowGeneral: {fileID: 0}
-  ppWindowRound:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  backgroundWindowRound:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  textParentRound: {fileID: 0}
-  textParentGeneral: {fileID: 0}
-  roundScoreTextPrefab: {fileID: 6026816814468351564, guid: 78508db7605d06c448622a66f51175bd,
-    type: 3}
-  generalScoreTextPrefab: {fileID: 2036963654598244154, guid: ea504755cb8d4cb4381086a409dcbe99,
-    type: 3}
