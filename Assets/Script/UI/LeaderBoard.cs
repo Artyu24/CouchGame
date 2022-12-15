@@ -50,7 +50,7 @@ public class LeaderBoard : MonoBehaviour
 
             //reset l'anim
         }
-        PlayerManager.instance.playersSortedByScore[0].GetComponentInChildren<Animator>().Play("Dance");
+        playersSortedByScore[0].GetComponentInChildren<Animator>().Play("Dance");
     }
 
     private IEnumerator RestartGame()
