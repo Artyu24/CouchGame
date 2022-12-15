@@ -172,44 +172,12 @@ public class Timer : MonoBehaviour
         GameManager.instance.CameraScene.gameObject.transform.parent = null;
         for (int i = 0; i < PlayerManager.instance.players.Count; i++)
         {
-            //PlayerManager.instance.players[i].HideGuy(false);
             CameraManager.Instance.RemovePlayerTarget(i + 1);
         }
 
         CameraManager.Instance.ActivateHyperSpace();
         ScoreManager.instance.hyperSpeed.SetActive(true);
         PrintGeneralScoreWindow();
-    }
-    private void PrintScoreWindow()
-    {
-        scoreWindowRoundIsActive = true;
-        
-        if (scoreWindowRound != null)
-        {
-            scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(0, 2);
-            //Time.timeScale = 0;
-            scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-
-            for (int p = 0; p < PlayerManager.instance.players.Count; p++)
-            {
-                GameObject temp = Instantiate(roundScoreTextPrefab, textParentRound.transform);
-                scorePlayerText[p] = temp.GetComponentInChildren<Text>();
-                temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[p];
-                temp.name = "Player " + (p + 1);
-            }
-
-            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-            {
-                //Debug.Log(PlayerManager.instance.players[i].score);
-                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
-            }
-
-            for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-            {
-                //Debug.Log(PlayerManager.instance.players[i].score);
-                scorePlayerText[i].text = "Player " + (i + 1) + " : " + PlayerManager.instance.players[i].score;
-            }
-        }
     }
 
     public void PrintGeneralScoreWindow()
@@ -219,13 +187,6 @@ public class Timer : MonoBehaviour
             DontDestroyOnLoad(PlayerManager.instance.players[i].gameObject);
         }
 
-        Sequence mySequence2 = DOTween.Sequence();
-        mySequence2.Append(scoreWindowRound.GetComponent<RectTransform>().DOAnchorPosY(1000, 2));
-        mySequence2.onComplete += () =>
-        {
-            scoreWindowRoundIsActive = false;
-            scoreWindowRound.SetActive(scoreWindowRoundIsActive);
-        };
         if (!scoreWindowGeneralIsActive)
         {
             scoreWindowGeneralIsActive = true;
@@ -234,33 +195,32 @@ public class Timer : MonoBehaviour
             mySequence3.Append(scoreWindowGeneral.GetComponent<RectTransform>().DOAnchorPosY(0, 2));
             mySequence3.onComplete += () =>
             {
-
-                List<Player> tempPlayerListPlayer = new List<Player>();
                 int position = 0;
 
-                Player playerTemp = null;
-                int bestScore = 0;
 
-                // Rangage des joueurs par score
+                int bestScore = int.MinValue;
+                Player playerTemp = null;
+                List<Player> tempPlayerListPlayer = new List<Player>();
+
                 while (tempPlayerListPlayer.Count < PlayerManager.instance.players.Count)
                 {
                     foreach (var player in PlayerManager.instance.players)
                     {
-                        if (!tempPlayerListPlayer.Contains(player.Value) && bestScore <= player.Value.score)
+                        if (!tempPlayerListPlayer.Contains(player.Value) && player.Value.score > bestScore)
                         {
                             bestScore = player.Value.score;
                             playerTemp = player.Value;
                         }
                     }
                     tempPlayerListPlayer.Add(playerTemp);
-                    bestScore = 0;
+                    bestScore = int.MinValue;
                 }
 
                 GameObject temp = null;
                 for (int p = 0; p < tempPlayerListPlayer.Count; p++)
                 {
-                    temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform);
-                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>(); // spawn des prefab pour les score avec les oeufs
+                    temp = Instantiate(generalScoreTextPrefab, textParentGeneral.transform); // spawn des prefab pour les score avec les oeufs
+                    scoreGeneralPlayerText[p] = temp.GetComponentInChildren<Text>();
                     temp.GetComponent<Transform>().GetChild(0).GetComponent<Image>().sprite = ppWindowRound[tempPlayerListPlayer[p].playerID];
                     temp.GetComponent<Image>().sprite = backgroundWindowRound[p];
                     temp.name = "Player " + (tempPlayerListPlayer[p].playerID + 1);
@@ -268,7 +228,7 @@ public class Timer : MonoBehaviour
 
                     for (int i = 0; i < PlayerManager.instance.players[p].scoreGeneral; i++)
                     {
-                        /*GameObject oldMedal = */Instantiate(PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals[p], temp.transform);
+                        Instantiate(PlayerManager.instance.players[tempPlayerListPlayer[p].playerID].medals[p], temp.transform);
                     }
 
                     for (int i = 0; i < numberOfMedal; i++)
