@@ -129,6 +129,7 @@ public class ScoreManager : MonoBehaviour
         int bestScore = int.MinValue;
         Player playerWithBestScore = null;
         List<Player> playersSortedByScore = new List<Player>(); //list des players trié par score
+
         while (playersSortedByScore.Count < PlayerManager.instance.players.Count)
         {
             foreach (var p in PlayerManager.instance.players)
