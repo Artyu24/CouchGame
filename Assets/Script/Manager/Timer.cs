@@ -72,7 +72,7 @@ public class Timer : MonoBehaviour
         //    GameManager.instance.ActualGameState = GameState.INIT;
         //}
 
-        if (GameManager.instance.ActualGameState == GameState.ENDROUND)
+        if (GameManager.instance.ActualGameState == GameState.ENDSCORING)
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
                 ReloadScene();
@@ -209,7 +209,6 @@ public class Timer : MonoBehaviour
             {
                 int position = 0;
 
-
                 int bestScore = int.MinValue;
                 Player playerTemp = null;
                 List<Player> tempPlayerListPlayer = new List<Player>();
@@ -254,9 +253,19 @@ public class Timer : MonoBehaviour
                     position++;
                     numberOfMedal--;
                 }
+
+                StartCoroutine(CanLaunchNext());
             };
         }
     }
+
+    private IEnumerator CanLaunchNext()
+    {
+        yield return new WaitForSeconds(6.5f);
+        GameManager.instance.ActualGameState = GameState.ENDSCORING;
+        scoreWindowGeneral.transform.GetChild(2).gameObject.SetActive(true);
+    }
+
     private IEnumerator InstantiateMedals(Transform t, int position, int p)
     {
         yield return new WaitForSeconds(p);
