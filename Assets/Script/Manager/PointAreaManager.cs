@@ -106,7 +106,7 @@ public class PointAreaManager : MonoBehaviour
     {
         Transform point = null;
         int secuEnfant = 0;
-        while (point == null && secuEnfant < 1000)
+        while (point == null && secuEnfant < 10000)
         {
             RaycastHit hit;
             int i = Random.Range(0, listPoint.Count);
@@ -142,7 +142,7 @@ public class PointAreaManager : MonoBehaviour
         }
 
 
-        if (secuEnfant >= 1000)
+        if (secuEnfant >= 10000)
         {
             Debug.Log("LES GD VOUS FAITES NIMP");
             point = transform;
