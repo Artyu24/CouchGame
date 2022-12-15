@@ -291,6 +291,7 @@ public class Timer : MonoBehaviour
             PlayerManager.instance.players[i].HideGuy(true);
             PlayerManager.instance.players[i].ActualPlayerState = PlayerState.FIGHTING;
             PlayerManager.instance.players[i].isInvincible = false;
+            PlayerManager.instance.players[i].couronne.SetActive(false);
             PlayerManager.instance.players[i].GetComponent<PlayerMovement>().ActualCircle = 0;
             PlayerAttack playerAtk = PlayerManager.instance.players[i].GetComponent<PlayerAttack>();
             playerAtk.CurrentSpecial = 0;
