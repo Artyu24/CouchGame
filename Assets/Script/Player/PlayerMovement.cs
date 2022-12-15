@@ -128,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
             else
                 animator.SetBool("Run", true);
         }
+        else
+            movementInput = Vector3.zero;
     }
 
     public void OnCircleMovement(InputAction.CallbackContext ctx)
