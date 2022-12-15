@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class copiText : MonoBehaviour
 {
+    public Text text;
+    public Text text2;
+
+    private void Start()
+    {
+        text = GetComponent<Text>();
+        text2 = GetComponentInParent<Text>();
+
+    }
     void Update()
     {
-        GetComponent<Text>().text = GetComponentInParent<Text>().text;
+        text.text = text2.text;
     }
 }
