@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075a72b27bc6a8443b7c9ef0636e9a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &7384015259377065167
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,6 +4579,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5,
         type: 2}
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.74509805
+      objectReference: {fileID: 0}
     - target: {fileID: 1268651424737826772, guid: dd5653fb30ed303438fb3d0c340a37d9,
         type: 3}
       propertyPath: m_fontSizeBase
