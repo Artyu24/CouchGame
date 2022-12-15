@@ -300,7 +300,8 @@ public class GameManager : MonoBehaviour
 
         foreach (Player player in PlayerManager.instance.players.Values)
         {
-            player.transform.DOMoveY(5, 5.5f).SetEase(Ease.OutBack).OnComplete(() => player.transform.DOMoveY(1, 0.5f).SetEase(Ease.InBack));
+            player.GetComponent<Rigidbody>().useGravity = false;
+            player.transform.DOMoveY(3, 6f).SetEase(Ease.OutBack).OnComplete(() => player.GetComponent<Rigidbody>().useGravity = true);
         }
 
         FindObjectOfType<AudioManager>().Play("Five");

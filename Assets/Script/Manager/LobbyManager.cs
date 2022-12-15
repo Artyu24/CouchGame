@@ -31,13 +31,26 @@ public class LobbyManager : MonoBehaviour
             {
                 foreach (GameObject player in ListOfPlayerToStart)
                 {
-                    player.GetComponent<Player>().HideGuy(true);
-                    player.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
-                    player.GetComponent<PlayerMovement>().MovementInput = Vector3.zero;
+                    player.GetComponent<Player>().ActualPlayerState = PlayerState.WAIT;
                 }
-
-                SceneManager.LoadScene(1);
+                StartCoroutine(LoadNextScene());
             }
         }
+    }
+
+    private IEnumerator LoadNextScene()
+    {
+        CameraManager.Instance.AnimTransition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+
+        foreach (GameObject player in ListOfPlayerToStart)
+        {
+            player.GetComponent<Player>().HideGuy(true);
+            player.GetComponent<Player>().ActualPlayerState = PlayerState.FIGHTING;
+            player.GetComponent<PlayerMovement>().MovementInput = Vector3.zero;
+        }
+
+
+        SceneManager.LoadScene(1);
     }
 }
