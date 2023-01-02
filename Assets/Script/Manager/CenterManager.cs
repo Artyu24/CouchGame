@@ -102,9 +102,17 @@ public class CenterManager : MonoBehaviour, IInteractable
         col.enabled = true;
 
         actualCenterState = CenterState.REGENERATION;
-        ActivateShield();
+        StartCoroutine(ResetShield());
         StartCoroutine(ResetBridge());
     }
+
+    private IEnumerator ResetShield()
+    {
+        Instantiate(GameManager.instance.ChocWave, Vector3.zero, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        ActivateShield();
+    }
+
     private IEnumerator ResetBridge()
     {
         yield return new WaitForSeconds(TimeBtwNextCenter);
