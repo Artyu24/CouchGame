@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4921325804286862551}
   - component: {fileID: 7977463416774129942}
   - component: {fileID: -6880000224136301604}
+  - component: {fileID: -6397877658737113254}
   m_Layer: 0
   m_Name: MultiplierObject
   m_TagString: Untagged
@@ -77,6 +78,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 1
+--- !u!114 &-6397877658737113254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921325804286862545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734c67f3f2af4804492d2270ebb02d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6536907614658662211
 GameObject:
   m_ObjectHideFlags: 0

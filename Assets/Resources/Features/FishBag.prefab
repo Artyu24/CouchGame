@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 5834974773456773855}
   - component: {fileID: 3228860025302468189}
   - component: {fileID: 7601453647227636219}
+  - component: {fileID: -9204028288279507151}
   m_Layer: 11
   m_Name: FishBag
   m_TagString: FishBag
@@ -97,9 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  layer:
-    serializedVersion: 2
-    m_Bits: 4096
   isGolden: 0
 --- !u!65 &3228860025302468188
 BoxCollider:
@@ -163,6 +161,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-9204028288279507151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228860025302468178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734c67f3f2af4804492d2270ebb02d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6488012469880903532
 GameObject:
   m_ObjectHideFlags: 0

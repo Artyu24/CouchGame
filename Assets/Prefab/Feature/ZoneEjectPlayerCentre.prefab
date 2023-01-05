@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1726822158}
   - component: {fileID: 8922791186554308027}
   - component: {fileID: 3706205228983171823}
+  - component: {fileID: 2993020899923211078}
   m_Layer: 0
   m_Name: ZoneEjectPlayerCentre
   m_TagString: Untagged
@@ -62,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2847b36c766fb44a4ad3d53adb37b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cable: {fileID: 0}
 --- !u!65 &1726822158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111,6 +113,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2993020899923211078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137264077084393792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734c67f3f2af4804492d2270ebb02d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5624478298124192845
 PrefabInstance:
   m_ObjectHideFlags: 0

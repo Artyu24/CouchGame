@@ -111,6 +111,9 @@ public class GameManager : MonoBehaviour
 
     bool canMeteorite = true;
 
+    private GameObject chocWave;
+    public GameObject ChocWave => chocWave;
+
 
     [Header("Variables des Bumper")]
     [SerializeField] private float pushForceBumper = 1.5f;
@@ -242,6 +245,7 @@ public class GameManager : MonoBehaviour
         
 
         meteorite = Resources.Load<GameObject>("Meteorite");
+        chocWave = Resources.Load<GameObject>("ChocWave");
     }
     private void Start()
     {

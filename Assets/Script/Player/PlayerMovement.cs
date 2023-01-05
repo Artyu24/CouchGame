@@ -28,9 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     private GameObject meteorite;
     private Vector3 departChoc = Vector3.zero;
-    private GameObject chocWave;
-
-
 
 
     void Awake()
@@ -42,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         speed = GameManager.instance.MoveSpeed;
 
         meteorite = Resources.Load<GameObject>("Meteorite");
-        chocWave = Resources.Load<GameObject>("ChocWave");
     }
 
 
@@ -212,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
                 if (isInteracting == false)
                 {
                     GameManager.instance.ButtonToPress.SetActive(false);
-                    Instantiate(chocWave, departChoc , quaternion.identity);
+                    Instantiate(GameManager.instance.ChocWave, departChoc , quaternion.identity);
                     //Instantiate(chocWaveSprite, departChoc.transform.position, departChoc.transform.rotation);
                     StartCoroutine(CooldownForInteraction());
                 }
