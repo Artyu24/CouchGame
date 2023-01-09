@@ -13,6 +13,13 @@ public class Player : MonoBehaviour
 
     public int score = 0;
     public int scoreGeneral = 0;
+    private Sequence scoreScale;
+
+    public Sequence ScoreScale
+    {
+        get => scoreScale;
+        set => scoreScale = value;
+    }
 
     #region Boost / Malus
     private bool multiplier = false;

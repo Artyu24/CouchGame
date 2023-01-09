@@ -32,6 +32,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private GameObject scoreBoard;
     Sequence swapPlayerSequence;
+    
+    private Vector3 scaleText;
 
     private List<Vector3> positionUIScoreInOrder = new List<Vector3>();
 
@@ -109,9 +111,21 @@ public class ScoreManager : MonoBehaviour
 
         player.score += points * multi;
 
+<<<<<<< Updated upstream
         player.GetComponent<PlayerAttack>().SpeBarreSlider.transform.parent.transform.GetChild(0).localPosition = Vector3.zero;
         player.GetComponent<PlayerAttack>().SpeBarreSlider.transform.parent.transform.GetChild(0).transform.DOPunchScale(new Vector3(Random.value, Random.value, Random.value),.2f);
+=======
+>>>>>>> Stashed changes
 
+        if (player.ScoreScale != null && player.ScoreScale.IsPlaying())
+        {
+            player.ScoreScale.Kill();
+            scorePlayerText[player.playerID].transform.localScale = scaleText;
+        }
+        player.ScoreScale = DOTween.Sequence();
+
+        player.ScoreScale.Append(scorePlayerText[player.playerID].transform.DOPunchScale(new Vector3(Random.value, Random.value, Random.value),.2f).OnComplete(() => scorePlayerText[player.playerID].transform.localScale = scaleText));
+        
         ScoreBoardSorting();
         UpdateScores();
     }
@@ -212,6 +226,7 @@ public class ScoreManager : MonoBehaviour
 
         scoreTextTemp.name = "Player " + (p + 1);
         scorePlayerText[p] = scoreTextTemp.GetComponent<Text>();
+        scaleText = scoreTextTemp.transform.localScale;
         UpdateScoresPlayer(p);
     }
 }
