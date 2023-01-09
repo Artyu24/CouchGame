@@ -111,11 +111,6 @@ public class ScoreManager : MonoBehaviour
 
         player.score += points * multi;
 
-<<<<<<< Updated upstream
-        player.GetComponent<PlayerAttack>().SpeBarreSlider.transform.parent.transform.GetChild(0).localPosition = Vector3.zero;
-        player.GetComponent<PlayerAttack>().SpeBarreSlider.transform.parent.transform.GetChild(0).transform.DOPunchScale(new Vector3(Random.value, Random.value, Random.value),.2f);
-=======
->>>>>>> Stashed changes
 
         if (player.ScoreScale != null && player.ScoreScale.IsPlaying())
         {
