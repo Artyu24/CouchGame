@@ -125,9 +125,7 @@ public class CenterManager : MonoBehaviour, IInteractable
         shieldEffect.gameObject.GetComponent<Animator>().SetTrigger("Hit");
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.ShieldAttackedSound);
 
-        //shieldEffect.visualEffectAsset.
         if (healthPoint <= 0)
             DesactivateShield();
-
     }
 }

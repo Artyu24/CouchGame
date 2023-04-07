@@ -62,19 +62,6 @@ public class PlayerMovement : MonoBehaviour
             if (player.ActualPlayerState == PlayerState.MIDDLE)
             {
                 GameManager.instance.tabCircle[actualCircle].transform.eulerAngles = new Vector3(0, GameManager.instance.tabCircle[actualCircle].transform.eulerAngles.y + (rotation * GameManager.instance.CircleRotationSpeed * Time.fixedDeltaTime), 0);
-                //    if (Math.Abs(rotation) > 0)
-                //    {
-                //        FindObjectOfType<AudioManager>().PlayRandom(SoundState.RotateCircleSound);
-                //    }
-                //    else
-                //    {
-                //        FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound);
-                //    }
-                //}
-                //else
-                //{
-                //    FindObjectOfType<AudioManager>().Stop(SoundState.RotateCircleSound);
-                //}
             }
         }
     }
@@ -146,11 +133,6 @@ public class PlayerMovement : MonoBehaviour
                             rotation = -1;
                         else
                             rotation = 1;
-
-
-                        //son rota
-
-
                     }
                     
                 }
@@ -188,9 +170,8 @@ public class PlayerMovement : MonoBehaviour
                             GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<Outline>().enabled = true;
                             GameManager.instance.tabCircle[actualCircle].GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ColorCircleChoose;
                         }
-                        //son switch plata
+                        
                         FindObjectOfType<AudioManager>().PlayRandom(SoundState.SwitchCircleSound);
-
                     }
                 }
                 else
@@ -233,7 +214,6 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<AudioManager>().PlayRandom(SoundState.RechargedShockwaveSound);
         if(GameManager.instance.PlayerInMiddle != null)
         {
-
             GameManager.instance.ButtonToPress.SetActive(true);
         }
         

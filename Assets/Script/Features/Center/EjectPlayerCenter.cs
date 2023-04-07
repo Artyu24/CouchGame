@@ -28,17 +28,13 @@ public class EjectPlayerCenter : MonoBehaviour
         {
             GameManager.instance.ejectPlatesActive++;
             bc.enabled = false;
-            //GetComponentInChildren<MeshRenderer>().material.color = GameManager.instance.ActivatedColor;
+
             ScoreManager.instance.AddScore(ScoreManager.instance.scoreInterrupteur, other.GetComponent<Player>());
 
             GetComponent<Animator>().SetTrigger("Press");
 
-            //Material mat = cable.transform.GetChild(0).GetComponent<Material>();
-            //mat.SetColor("_MainColor", Color.green);
-
             cable.transform.GetChild(0).GetComponent<MeshRenderer>().material = cableDone;
             FindObjectOfType<AudioManager>().PlayRandom(SoundState.IglooInterrupteurPressedSound);
-
 
             if (GameManager.instance.ejectPlatesActive >= GameManager.instance.NumberOfPlate)
             {
